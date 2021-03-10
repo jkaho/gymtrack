@@ -1,0 +1,63 @@
+<header>
+    <nav id="index-navbar" class="navbar navbar-expand-lg navbar-light col-12">
+        <a class="navbar-brand" href="">Gym Name</a>
+        <button id="index-nav-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+                    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul id="index-link" class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Classes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Reviews</a>
+                </li>
+            </ul>
+        </div>  
+    </nav>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Reviews</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form class="search">
+                <label for="review-search">Find Class/Instructor Reviews</label> <!-- Dynamically switch between 'class'/'instructor depending on user selection -->
+                <input id="review-search" name="review-search" type="text" placeholder="">
+                <button type="submit">Search</button>
+            </form>
+            <form class="toggleswitch">
+                <label for="t1">Class Reviews</label>
+                <input id="t1" name="review-type" type="radio" checked>
+                <label for="t2">Instructor Reviews</label>
+                <input id="t2" name="review-type" type="radio">
+            </form>
+        </div>
+    </div>
+    {{#each classes}}
+        <div class="row">
+            <div class="col-12">
+                <h2>{{this.name}}</h2>
+            </div>
+        </div>
+        {{#each reviews}} <!-- refers to all reviews for each class -->
+            <div class="row">
+                <div class="individual-review col-5">
+                    <h3>{{this.author}}</h3>
+                    <div class="review-box">
+                        <p>{{this.rating}}/5</p> <!-- Change to stars later -->
+                        <p>{{this.review}}</p>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{/each}}
+</div>
