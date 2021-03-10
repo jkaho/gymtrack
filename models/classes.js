@@ -19,10 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       endTime: {
         type: DataTypes.DATE,
         allowNull: false
-      },
-      instructorId: {
-        type: DataTypes.INT,
-        allowNull: false
       }
     },
     { freezeTableName: true }
@@ -31,6 +27,7 @@ module.exports = function(sequelize, DataTypes) {
   Classes.associate = models => {
     Classes.belongsTo(models.User, {
       foreignKey: {
+        name: "adminId",
         allowNull: false
       }
     });
