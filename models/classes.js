@@ -25,14 +25,17 @@ module.exports = function(sequelize, DataTypes) {
   );
 
   Classes.associate = models => {
+    Classes.hasMany(models.UserClasses, {
+      onDelete: "CASCADE"
+    });
+    Classes.hasMany(models.ClassReviews, {
+      onDelete: "CASCADE"
+    });
     Classes.belongsTo(models.User, {
       foreignKey: {
         name: "instructorId",
         allowNull: false
       }
-    });
-    Classes.hasMany(models.ClassReviews, {
-      onDelete: "CASCADE"
     });
   };
   return Classes;
