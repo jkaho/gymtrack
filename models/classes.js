@@ -31,6 +31,9 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+    Classes.hasMany(models.classReviews, {
+      onDelete: "CASCADE"
+    });
   };
   return Classes;
 };
