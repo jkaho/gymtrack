@@ -19,5 +19,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     { freezeTableName: true }
   );
+
+  InstructorReviews.associate = models => {
+    InstructorReviews.belongsTo(models.User, {
+      foreignKey: {
+        name: "adminId",
+        allowNull: false
+      }
+    });
+  };
   return InstructorReviews;
 };
