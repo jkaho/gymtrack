@@ -1,7 +1,7 @@
-// Creates ClassReviews model
+// Creates InstructorReviews model
 module.exports = function(sequelize, DataTypes) {
-  const ClassReviews = sequelize.define(
-    "classReviews",
+  const InstructorReviews = sequelize.define(
+    "instructorReviews",
     {
       review: {
         type: DataTypes.TEXT,
@@ -19,14 +19,5 @@ module.exports = function(sequelize, DataTypes) {
     },
     { freezeTableName: true }
   );
-
-  ClassReviews.associate = models => {
-    ClassReviews.belongsTo(models.Classes, {
-      foreignKey: {
-        name: "authorId",
-        allowNull: false
-      }
-    });
-  };
-  return ClassReviews;
+  return InstructorReviews;
 };
