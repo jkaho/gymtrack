@@ -5,8 +5,6 @@ const path = require("path");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 
-
-
 module.exports = function(app) {
   app.get("/", (req, res) => {
     res.sendFile(path.join(_dirname, '../public/home.html'))
@@ -37,4 +35,7 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+   app.get("/bookings", isAuthenticated, (req, res) => {
+  res.render('bookings', {layout:bookings});
+});
 };
