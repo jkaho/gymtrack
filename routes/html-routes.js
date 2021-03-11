@@ -6,13 +6,21 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
+    res.sendFile(path.join(_dirname, "../public/home.html"));
+  });
+  app.get("/classes", (req, res) => {
+    res.render("classes", { layout: classes });
+  });
+  app.get("/reviews", (req, res) => {
+    res.render("reviews", { layout: reviews });
+  });
+  app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/members");
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
-
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -25,5 +33,8 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
+  });
+  app.get("/bookings", isAuthenticated, (req, res) => {
+    res.render("bookings", { layout: bookings });
   });
 };
