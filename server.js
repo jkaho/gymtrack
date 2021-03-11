@@ -23,10 +23,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Set Handlebars as the default templating engine.
-app.engine('handlebars', handlebars({
-  layoutsDir: __dirname + '/views/layouts',
-  }));
-app.set('view engine', 'handlebars');
+app.engine(
+  "handlebars",
+  handlebars({
+    layoutsDir: __dirname + "/views/layouts"
+  })
+);
+app.set("view engine", "handlebars");
 
 // Requiring our routes
 require("./routes/html-routes.js")(app);
