@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
   ClassReviews.associate = models => {
     ClassReviews.belongsTo(models.Classes, {
       foreignKey: {
-        name: "authorId",
+        name: "classId",
         allowNull: false
       }
     });
