@@ -2,34 +2,85 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="stylesheets/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CDNs -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link href="stylesheets/style.css" rel="stylesheet">
+    <title>Gym</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/logout">
-         Logout
-      </a>
-    </div>
-  </div>
-</nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="member-name"></span></h2>
-      </div>
-    </div>
-  </div>
+    <header>
+        <nav id="index-navbar" class="navbar navbar-expand-lg navbar-light col-12">
+            <a class="navbar-brand" href="">Gym Name</a>
+            <button id="index-nav-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul id="index-link" class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Reviews</a>
+                    </li>
+                </ul>
+            </div>  
+        </nav>
+    </header>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/members.js"></script>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Home</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Photo by <a href="https://unsplash.com/@brucemars?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">bruce mars</a> on <a href="/s/photos/people-gym?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> -->
+                <img src="images/fitness-class.jpg" alt="placeholder img" height="300" width="450">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>Welcome to our gym etc. General info about gym and classes.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action=""> <!-- Button goes to Classes page when clicked -->
+                    <input type="submit" value="View Classes">
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Photo by <a href="https://unsplash.com/@rodrisars?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rodrigo Sarsfield</a> on <a href="/s/photos/gym?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> -->
+                <img src="images/gym.jpg" alt="placeholder img" height="300" width="450">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>We provide the best fitness instruction in Sydney. Info about accreditation.<br>
+                "This is by far the best gym I've ever been to." - Samantha Johnson
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action=""> <!-- Button goes to Reviews page when clicked -->
+                    <input type="submit" value="View Reviews">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
