@@ -21,6 +21,12 @@ module.exports = function(sequelize, DataTypes) {
   );
 
   ClassReviews.associate = models => {
+    ClassReviews.belongsTo(models.User, {
+      foreignKey: {
+        name: "authorId",
+        allowNull: false
+      }
+    });
     ClassReviews.belongsTo(models.Classes, {
       foreignKey: {
         name: "classId",
