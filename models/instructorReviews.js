@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     });
     InstructorReviews.belongsTo(models.User, {
       foreignKey: {
-        name: "adminId",
+        name: "instructorId",
         allowNull: false
       }
     });

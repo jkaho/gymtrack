@@ -27,11 +27,11 @@ module.exports = function(sequelize, DataTypes) {
   Classes.associate = models => {
     Classes.belongsTo(models.User, {
       foreignKey: {
-        name: "adminId",
+        name: "instructorId",
         allowNull: false
       }
     });
-    Classes.hasMany(models.classReviews, {
+    Classes.hasMany(models.ClassReviews, {
       onDelete: "CASCADE"
     });
   };

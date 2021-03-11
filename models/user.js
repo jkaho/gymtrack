@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    admin: {
+    instructor: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
@@ -45,10 +45,13 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.Classes, {
       onDelete: "SET NULL"
     });
-    User.hasMany(models.classReviews, {
+    User.hasMany(models.ClassReviews, {
       onDelete: "CASCADE"
     });
-    User.hasMany(models.instructorReviews, {
+    User.hasMany(models.InstructorReviews, {
+      onDelete: "CASCADE"
+    });
+    User.hasMany(models.InstructorReviews, {
       onDelete: "CASCADE"
     });
   };
