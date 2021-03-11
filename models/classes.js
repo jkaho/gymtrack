@@ -26,9 +26,11 @@ module.exports = function(sequelize, DataTypes) {
 
   Classes.associate = models => {
     Classes.hasMany(models.ClassReviews, {
+      // Class can have many class reviews
       onDelete: "CASCADE"
     });
     Classes.belongsTo(models.User, {
+      // Class can only have one user (instructor)
       foreignKey: {
         name: "instructorId",
         allowNull: false
