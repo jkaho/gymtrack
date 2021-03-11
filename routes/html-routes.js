@@ -6,7 +6,14 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
+    let loginout = "";
+    if (req.user) {
+      loginout = "Log In";
+    } else {
+      loginout = "Log Out";
+    }
     res.sendFile(path.join(_dirname, "../public/home.html"));
+    res.send(loginout);
   });
   app.get("/classes", (req, res) => {
     res.render("classes", { layout: classes });

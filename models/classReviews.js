@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       },
       rating: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: false
         // Rating out of 5 stars
       },
