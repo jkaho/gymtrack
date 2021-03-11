@@ -1,7 +1,7 @@
 // Creates Classes model
 module.exports = function(sequelize, DataTypes) {
   const Classes = sequelize.define(
-    "Classes",
+    "classes",
     {
       name: {
         type: DataTypes.STRING,
