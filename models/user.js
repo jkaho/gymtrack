@@ -45,9 +45,6 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.Classes, {
       onDelete: "SET NULL"
     });
-    User.hasMany(models.UserClasses, {
-      onDelete: "SET NULL"
-    });
     User.hasMany(models.ClassReviews, {
       onDelete: "CASCADE"
     });
