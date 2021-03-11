@@ -11,7 +11,7 @@ module.exports = function(app) {
   app.get("/classes", (req, res) => {
     res.render("classes", { layout: classes });
   });
-  app.get("reviews", (req, res) => {
+  app.get("/reviews", (req, res) => {
     res.render("reviews", { layout: reviews });
   });
   app.get("/signup", (req, res) => {
