@@ -39,6 +39,10 @@ module.exports = function(sequelize, DataTypes) {
   User.associate = models => {
     User.hasMany(models.classes, {
       // User (instructor) can have many classes
+      foreignKey: {
+        name: "instructorId",
+        allowNull: false
+      },
       onDelete: "SET NULL"
     });
     User.belongsToMany(
@@ -51,14 +55,26 @@ module.exports = function(sequelize, DataTypes) {
     );
     User.hasMany(models.classReviews, {
       // User (member) can create many class reviews
+      foreignKey: {
+        name: "authorId",
+        allowNull: false
+      },
       onDelete: "CASCADE"
     });
     User.hasMany(models.instructorReviews, {
       // User (member) can create many instructor reviews
+      foreignKey: {
+        name: "authorId",
+        allowNull: false
+      },
       onDelete: "CASCADE"
     });
     User.hasMany(models.instructorReviews, {
       // Many instructor reviews can be written about a user (instructor)
+      foreignKey: {
+        name: "instructorId",
+        allowNull: false
+      },
       onDelete: "CASCADE"
     });
   };
