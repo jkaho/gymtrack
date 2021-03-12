@@ -21,14 +21,14 @@ module.exports = function(sequelize, DataTypes) {
   );
 
   ClassReviews.associate = models => {
-    ClassReviews.belongsTo(models.User, {
+    ClassReviews.belongsTo(models.user, {
       // Class review can only belong to one user (member)
       foreignKey: {
         name: "authorId",
         allowNull: false
       }
     });
-    ClassReviews.belongsTo(models.Classes, {
+    ClassReviews.belongsTo(models.classes, {
       // Class review can only refer to one class
       foreignKey: {
         name: "classId",
