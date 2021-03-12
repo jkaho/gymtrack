@@ -4,27 +4,37 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
+const db = require("../models");
+
 module.exports = function(app) {
   app.get("/", (req, res) => {
-    res.sendFile(path.join(_dirname, "../public/home.html"));
+    let loginout = "";
+    if (req.user) {
+      loginout = "Log In";
+    } else {
+      loginout = "Log Out";
+    }
+    res.sendFile(path.join(__dirname, "../public/home.html"), {
+      userStatus: loginout
+    });
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", { layout: classes });
+    res.render("classes", db.Classes);
   });
   app.get("/reviews", (req, res) => {
-    res.render("reviews", { layout: reviews });
+    res.render("reviews", db.InstructorReviews, db.ClassReviews);
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/profile");
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/profile");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
