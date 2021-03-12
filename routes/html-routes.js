@@ -7,16 +7,17 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
 module.exports = function(app) {
+  //   app.get("/", (req, res) => {
+  //     let userStatus = "Log In";
+  //     if (req.user) {
+  //       userStatus = "Log Out";
+  //     } else {
+  //       userStatus = "Log In";
+  //     }
+  //     res.json({ userStatus: userStatus });
+  //   });
   app.get("/", (req, res) => {
-    let loginout = "";
-    if (req.user) {
-      loginout = "Log In";
-    } else {
-      loginout = "Log Out";
-    }
-    res.sendFile(path.join(__dirname, "../public/home.html"), {
-      userStatus: loginout
-    });
+    res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/classes", (req, res) => {
     res.render("classes", db.Classes);

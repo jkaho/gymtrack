@@ -90,19 +90,17 @@
     </div>
 
     <script type="text/javascript">
-      $(document).ready(() => {
-        const loginSpan = $("#log-in-out");
-        const profileLink = $("#profile-link");
-
-        $.get("/", function(response) {
-            loginSpan.value(response.header);
-            if (data === "Log In") {
-              profileLink.css("display", "none");
-            } else {
-              profileLink.css("display", "inline-block");              
-            }
-        });
-      });
+        // const loginSpan = $("#log-in-out");
+        // const profileLink = $("#profile-link");
+        // $.get("/").then(response => {
+        //     loginSpan.val(response.header);
+        //     console.log(response.userStatus)
+        //     if (response.header === "Log In") {
+        //       profileLink.css("display", "none");
+        //     } else {
+        //       profileLink.css("display", "inline-block");              
+        //     }
+        // })
     </script>
 </body>
 
