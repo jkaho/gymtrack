@@ -19,10 +19,10 @@ module.exports = function(app) {
     });
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", db.classes);
+    res.render("classes", db.Classes);
   });
   app.get("/reviews", (req, res) => {
-    res.render("reviews", { layout: reviews });
+    res.render("reviews", db.InstructorReviews, db.ClassReviews);
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
