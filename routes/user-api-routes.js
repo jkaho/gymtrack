@@ -14,15 +14,17 @@ module.exports = function(app) {
 
   // Route for signup
   app.post("/api/signup", (req, res) => {
-    db.User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      dob: req.body.dob,
-      email: req.body.email,
-      password: req.body.password
-    }).catch(err => {
-      res.status(401).json(err);
-    });
+    db.user
+      .create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        dob: req.body.dob,
+        email: req.body.email,
+        password: req.body.password
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
   });
 
   // Route for get member data, for the one that's logged in
