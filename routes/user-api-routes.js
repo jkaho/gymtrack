@@ -13,7 +13,7 @@ module.exports = function(app) {
   });
 
   // Route for signup
-  app.get("/api/signup", (req, res) => {
+  app.post("/api/signup", (req, res) => {
     db.User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -32,19 +32,17 @@ module.exports = function(app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
+      // Otherwise send back the user's info
       res.json({
         firstName: req.user.firstName,
         lastName: req.user.lastName,
         dob: req.user.dob,
         email: req.user.email,
-        password: req.user.password,
         instructor: req.user.instructor
       });
     }
 
-    // **************** ALL BELOW DOES NOT WORK, STILL NEED WORK, JUST IGNORE **************
+    // **************** ALL BELOW DON'T WORK FOR NOW, JUST IGNORE **************
     // // Route for logging user out
     // app.get("/logout", (req, res) => {
     //   req.logout();
