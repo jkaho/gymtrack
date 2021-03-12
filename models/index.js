@@ -21,7 +21,7 @@ fs
   })
   .forEach(function(file) {
     // var model = sequelize['import'](path.join(__dirname, file)); --> starter code, caused error: defineCall is not a function
-    const model = require(path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
