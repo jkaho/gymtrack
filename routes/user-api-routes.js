@@ -19,8 +19,7 @@ module.exports = function(app) {
       lastName: req.body.lastName,
       dob: req.body.dob,
       email: req.body.email,
-      password: req.body.password,
-      instructor: req.body.instructor
+      password: req.body.password
     }).catch(err => {
       res.status(401).json(err);
     });
