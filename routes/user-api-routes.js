@@ -44,7 +44,7 @@ module.exports = function(app) {
       });
     }
 
-    // **************** ALL BELOW DOES NOT WORK YET, JUST IGNORE PLS **************
+    // **************** ALL BELOW DOES NOT WORK, STILL NEED WORK, JUST IGNORE **************
     // // Route for logging user out
     // app.get("/logout", (req, res) => {
     //   req.logout();
