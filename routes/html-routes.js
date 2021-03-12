@@ -12,8 +12,9 @@ module.exports = function(app) {
     } else {
       loginout = "Log Out";
     }
-    res.sendFile(path.join(_dirname, "../public/home.html"));
-    res.send(loginout);
+    res.sendFile(path.join(__dirname, "../public/home.html"), {
+      userStatus: loginout
+    });
   });
   app.get("/classes", (req, res) => {
     res.render("classes", { layout: classes });

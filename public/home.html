@@ -94,8 +94,8 @@
         const loginSpan = $("#log-in-out");
         const profileLink = $("#profile-link");
 
-        $.get("/", function(data) {
-            loginSpan.value(data);
+        $.get("/", function(response) {
+            loginSpan.value(response.header);
             if (data === "Log In") {
               profileLink.css("display", "none");
             } else {
