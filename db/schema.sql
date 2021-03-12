@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS blogger;
-CREATE DATABASE blogger;
+DROP DATABASE IF EXISTS gym_db;
+CREATE DATABASE gym_db;
 
-USE blogger;
+USE gym_db;
 
 SELECT * FROM users;
 SELECT * FROM classes;
