@@ -68,13 +68,13 @@ VALUES ("Yoga was okay. A bit too easy for my liking.", 3, CURRENT_TIMESTAMP, CU
 INSERT INTO classReviews (review, rating, createdAt, updatedAt, authorId, classId)
 VALUES ("Best spin class I've been to.", 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3, 1);
 
-INSERT INTO classReviews (review, rating, authorId, createdAt, updatedAt, classId)
+INSERT INTO classReviews (review, rating, createdAt, updatedAt, authorId, classId)
 VALUES ("Basic Training was very helpful in building my fitness.", 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 4, 3);
 
 -- Instructor Reviews --
 
-INSERT INTO classReviews (review, rating, createdAt, updatedAt, authorId, instructorId)
+INSERT INTO instructorReviews (review, rating, createdAt, updatedAt, authorId, instructorId)
 VALUES ("Tom is an amazing spin instructor!", 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1);
 
-INSERT INTO classReviews (review, rating, createdAt, updatedAt, authorId, instructorId)
+INSERT INTO instructorReviews (review, rating, createdAt, updatedAt, authorId, instructorId)
 VALUES ("Emily was nice but seemed a bit clueless.", 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 4, 3);

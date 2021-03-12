@@ -19,7 +19,7 @@ module.exports = function(app) {
     });
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", db.Classes);
+    res.render("classes", db.classes);
   });
   app.get("/reviews", (req, res) => {
     res.render("reviews", { layout: reviews });
