@@ -7,16 +7,17 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
 module.exports = function(app) {
+  //   app.get("/", (req, res) => {
+  //     let userStatus = "Log In";
+  //     if (req.user) {
+  //       userStatus = "Log Out";
+  //     } else {
+  //       userStatus = "Log In";
+  //     }
+  //     res.json({ userStatus: userStatus });
+  //   });
   app.get("/", (req, res) => {
-    let loginout = "";
-    if (req.user) {
-      loginout = "Log In";
-    } else {
-      loginout = "Log Out";
-    }
-    res.sendFile(path.join(__dirname, "../public/home.html"), {
-      userStatus: loginout
-    });
+    res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/classes", (req, res) => {
     res.render("classes", db.Classes);
@@ -42,6 +43,6 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/profile", isAuthenticated, (req, res) => {
-    res.render("profile", { layout: profile });
+    res.render("profile", req.user);
   });
 };
