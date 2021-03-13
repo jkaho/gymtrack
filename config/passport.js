@@ -22,7 +22,7 @@ passport.use(
           const hash = dbUser.password.toString();
           // If the email does not exist
           if (!dbUser) {
-            console.log("Incorrect Email")
+            console.log("Incorrect Email");
             return done(null, false, {
               message: "Incorrect email."
             });
