@@ -19,7 +19,6 @@ passport.use(
           }
         })
         .then(dbUser => {
-          const hash = dbUser.password.toString();
           // If the email does not exist
           if (!dbUser) {
             console.log("Incorrect Email");
@@ -27,6 +26,8 @@ passport.use(
               message: "Incorrect email."
             });
           }
+          const hash = dbUser.password.toString();
+
           //If the email exists
           if (dbUser.instructor === false) {
             bcrypt.compare(password, hash, (err, result) => {
