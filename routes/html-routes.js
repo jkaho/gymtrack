@@ -21,7 +21,11 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", db.Classes);
+    const classes = [];
+    db.classes.findAll({}).then(results => {
+      results.forEach(result => classes.push(result.dataValues));
+    });
+    res.render("classes", { classes: classes });
   });
   app.get("/reviews", (req, res) => {
     res.render("reviews", db.InstructorReviews, db.ClassReviews);
