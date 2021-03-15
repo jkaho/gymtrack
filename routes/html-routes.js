@@ -21,7 +21,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", db.Classes);
+    res.render("classes", db.classes);
   });
   app.get("/reviews", (req, res) => {
     res.render("reviews", db.InstructorReviews, db.ClassReviews);

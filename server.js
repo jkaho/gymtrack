@@ -47,3 +47,5 @@ db.sequelize.sync({ force: true }).then(() => {
     );
   });
 });
+
+console.log(db)
