@@ -21,7 +21,22 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", db.Classes);
+    const classes = [];
+    db.classes
+      .findAll({
+        include: [db.user]
+      })
+      .then(results => {
+        results.forEach(result => {
+          classes.push(result.dataValues);
+          const instructorName =
+            result.dataValues.user.firstName +
+            " " +
+            result.dataValues.user.LastName;
+          console.log(instructorName);
+        });
+      });
+    res.render("classes", { classes: classes });
   });
   app.get("/reviews", (req, res) => {
     res.render("reviews", db.InstructorReviews, db.ClassReviews);
