@@ -81,4 +81,7 @@ module.exports = function(app) {
   app.get("/profile", isAuthenticated, (req, res) => {
     res.render("profile", req.user);
   });
+  app.get("/add-class", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/add-class.html"));
+  });
 };
