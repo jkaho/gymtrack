@@ -43,6 +43,7 @@ CREATE TABLE userClasses (
 
 CREATE TABLE classReviews (
     id INT AUTO_INCREMENT NOT NULL,
+    title VARCHAR(255) NOT NULL,
     review TEXT NOT NULL,
     rating INT NOT NULL,
 	createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -56,6 +57,7 @@ CREATE TABLE classReviews (
 
 CREATE TABLE instructorReviews (
     id INT AUTO_INCREMENT NOT NULL,
+    title VARCHAR(255) NOT NULL,
     review TEXT NOT NULL,
     rating INT NOT NULL,
 	createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,

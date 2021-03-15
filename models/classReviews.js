@@ -3,6 +3,10 @@ module.exports = function(sequelize, DataTypes) {
   const ClassReviews = sequelize.define(
     "classReviews",
     {
+      title: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
       review: {
         type: DataTypes.TEXT,
         allowNull: false
