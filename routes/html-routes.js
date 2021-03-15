@@ -39,7 +39,16 @@ module.exports = function(app) {
     res.render("classes", { classes: classes });
   });
   app.get("/reviews", (req, res) => {
-    res.render("reviews", db.InstructorReviews, db.ClassReviews);
+    const classReviews = [];
+    db.classReviews.findAll({}).then(results => {
+      results.forEach(result => classReviews.push(result.dataValues));
+    });
+    res.render("classReviews", db.ClassReviews);
+    const instructorReviews = [];
+    db.instructorReviews.findAll({}).then(results => {
+      results.forEach(result => instructorReviews.push(result.dataValues));
+    });
+    res.render("reviews", db.InstructorReviews);
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
