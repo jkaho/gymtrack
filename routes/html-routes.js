@@ -4,6 +4,8 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
+const moment = require("moment");
+
 const db = require("../models");
 
 module.exports = function(app) {
@@ -34,10 +36,10 @@ module.exports = function(app) {
             result.dataValues.user.firstName +
             " " +
             result.dataValues.user.lastName;
-          rawDate = new Date("'" + result.dataValues.startTime + "'");
-          classDate = rawDate.getUTCDate();
-          console.log(classDate);
+          rawDate = result.dataValues.startTime;
+          classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
           result.dataValues.instructorName = instructorName;
+          result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
         res.render("classes", { classes: classes });

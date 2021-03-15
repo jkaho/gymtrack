@@ -29,21 +29,17 @@ passport.use(
           const hash = dbUser.password.toString();
 
           //If the email exists
-          if (dbUser.instructor === false) {
-            bcrypt.compare(password, hash, (err, result) => {
-              // If the input password was correct
-              if (result === true) {
-                return done(null, dbUser);
-              }
-              // If incorrect password
-              console.log("Incorrect password");
-              return done(null, false, {
-                message: "Incorrect password."
-              });
+          bcrypt.compare(password, hash, (err, result) => {
+            // If the input password was correct
+            if (result === true) {
+              return done(null, dbUser);
+            }
+            // If incorrect password
+            console.log("Incorrect password");
+            return done(null, false, {
+              message: "Incorrect password."
             });
-          } else {
-            return done(null, dbUser);
-          }
+          });
         });
     }
   )
