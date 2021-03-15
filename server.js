@@ -10,6 +10,7 @@ const handlebars = require("express-handlebars");
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
+const seeds = require("./db/seeds");
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
@@ -40,6 +41,7 @@ require("./routes/user-api-routes.js")(app);
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
+    seeds();
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
