@@ -4,6 +4,8 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
+const moment = require("moment");
+
 const db = require("../models");
 
 module.exports = function(app) {
@@ -21,10 +23,39 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", db.Classes);
+    const classes = [];
+    let instructorName;
+    let classDate;
+    db.classes
+      .findAll({
+        include: [db.user]
+      })
+      .then(results => {
+        results.forEach(result => {
+          instructorName =
+            result.dataValues.user.firstName +
+            " " +
+            result.dataValues.user.lastName;
+          rawDate = result.dataValues.startTime;
+          classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
+          result.dataValues.instructorName = instructorName;
+          result.dataValues.classDate = classDate;
+          classes.push(result.dataValues);
+        });
+        res.render("classes", { classes: classes });
+      });
   });
   app.get("/reviews", (req, res) => {
-    res.render("reviews", db.InstructorReviews, db.ClassReviews);
+    const classReviews = [];
+    db.classReviews.findAll({}).then(results => {
+      results.forEach(result => classReviews.push(result.dataValues));
+    });
+    res.render("classReviews", db.ClassReviews);
+    const instructorReviews = [];
+    db.instructorReviews.findAll({}).then(results => {
+      results.forEach(result => instructorReviews.push(result.dataValues));
+    });
+    res.render("reviews", db.InstructorReviews);
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
