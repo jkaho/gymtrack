@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Gym | Create a Class</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link href="stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Create a New Class</h2>
+        <form class="add-class">
+          <div class="form-group">
+            <label for="className">Class Name</label>
+            <input type="text" class="form-control" id="className-input" placeholder="Enter class name">
+          </div>
+          <div class="form-group">
+            <label for="classDescription">Description</label>
+            <input type="text" class="form-control" id="classDescription-input" placeholder="Enter a class description">
+          </div>
+          <div class="form-group">
+            <label for="classDate">Date</label>
+            <input type="date" class="form-control" id="classDate-input">
+          </div>
+          <div class="form-group">
+            <label for="startTime">Start Time</label>
+            <input type="time" class="form-control" id="startTime-input" placeholder="Enter the time the class will start">
+          </div>
+          <div class="form-group">
+            <label for="endTime">End Time</label>
+            <input type="time" class="form-control" id="endTime-input" placeholder="Enter the time the class will end">
+          </div>
+          <div class="form-group">
+            <label for="classPrice">Price ($/class)</label>
+            <input type="number" class="form-control" id="classPrice-input" placeholder="Enter the price of one class">
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <button type="submit" class="btn btn-default">Create</button>
+        </form>
+        <br />
+        <a href="/profile">Go back to your profile</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/add-class.js"></script>
+
+</body>
+
+</html>
