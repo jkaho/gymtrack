@@ -32,7 +32,7 @@ module.exports = function(app) {
     db.classReviews.findAll({}).then(results => {
       results.forEach(result => classReviews.push(result.dataValues));
     });
-    res.render("classReviews", db.ClassReviews);
+    res.render("reviews", db.ClassReviews);
     const instructorReviews = [];
     db.instructorReviews.findAll({}).then(results => {
       results.forEach(result => instructorReviews.push(result.dataValues));
@@ -60,7 +60,21 @@ module.exports = function(app) {
   });
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/profile", isAuthenticated, (req, res) => {
-    res.render("profile", req.user);
+  app.get("/profile", (req, res) => {
+    const users = [];
+    db.user.findAll({}).then(results => {
+      results.forEach(result => users.push(result.dataValues));
+      console.log(results[0].dataValues);
+      console.log(users[0].firstName, users[0].lastName, users[0].email);
+      res.render("user", {
+        firstname: users[0].firstName,
+        lastname: users[0].lastName,
+        email: users[0].email
+      });
+    });
   });
 };
+// const classReviews = [];
+// db.classReviews.findAll({}).then(results => {
+//   results.forEach(result => classReviews.push(result.dataValues));
+// });
