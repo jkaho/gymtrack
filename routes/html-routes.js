@@ -22,7 +22,8 @@ module.exports = function(app) {
   });
   app.get("/classes", (req, res) => {
     const classes = [];
-    let instructorName = "";
+    let instructorName;
+    let classDate;
     db.classes
       .findAll({
         include: [db.user]
@@ -33,6 +34,9 @@ module.exports = function(app) {
             result.dataValues.user.firstName +
             " " +
             result.dataValues.user.lastName;
+          rawDate = new Date("'" + result.dataValues.startTime + "'");
+          classDate = rawDate.getUTCDate();
+          console.log(classDate);
           result.dataValues.instructorName = instructorName;
           classes.push(result.dataValues);
         });
