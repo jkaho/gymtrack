@@ -19,6 +19,10 @@ module.exports = function(sequelize, DataTypes) {
       endTime: {
         type: DataTypes.DATE,
         allowNull: false
+      },
+      price: {
+        type: DataTypes.INT,
+        allowNull: false
       }
     },
     { freezeTableName: true }

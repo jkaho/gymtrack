@@ -22,17 +22,17 @@ INSERT INTO users (firstName, lastName, dob, email, password, createdAt, updated
 VALUES ("Chelsea", "Fernando", "1993-11-17", "chelsea-f-29@gmail.com", "daslfjei1", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, false);
 
 -- Classes -- 
-INSERT INTO classes (name, description, startTime, endTime, createdAt, updatedAt, instructorId)
-VALUES ("Saturday Spin", "Spin description", "2021-03-02 10:30:00", "2021-04-02 11:30:00", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
+INSERT INTO classes (name, description, startTime, endTime, price, createdAt, updatedAt, instructorId)
+VALUES ("Saturday Spin", "Spin description", "2021-03-02 10:30:00", "2021-04-02 11:30:00", 50, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
 
-INSERT INTO classes (name, description, startTime, endTime, createdAt, updatedAt, instructorId)
-VALUES ("Yoga For All", "Yoga description", "2021-03-02 11:30:00", "2021-04-02 13:00:00", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
+INSERT INTO classes (name, description, startTime, endTime, price, createdAt, updatedAt, instructorId)
+VALUES ("Yoga For All", "Yoga description", "2021-03-02 11:30:00", "2021-04-02 13:00:00", 25, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
 
-INSERT INTO classes (name, description, startTime, endTime, createdAt, updatedAt, instructorId)
-VALUES ("Zumba", "Zumba description", "2021-03-03 13:30:00", "2021-04-02 14:30:00", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
+INSERT INTO classes (name, description, startTime, endTime, price, createdAt, updatedAt, instructorId)
+VALUES ("Zumba", "Zumba description", "2021-03-03 13:30:00", "2021-04-02 14:30:00", 30, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
 
-INSERT INTO classes (name, description, startTime, endTime, createdAt, updatedAt, instructorId)
-VALUES ("Basic Training", "Basic Training description", "2021-03-03 14:00:00", "2021-04-02 16:00:00", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3);
+INSERT INTO classes (name, description, startTime, endTime, price, createdAt, updatedAt, instructorId)
+VALUES ("Basic Training", "Basic Training description", "2021-03-03 14:00:00", "2021-04-02 16:00:00", 55, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3);
 
 -- User Classes --
 
