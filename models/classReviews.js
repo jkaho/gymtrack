@@ -11,10 +11,6 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         allowNull: false
         // Rating out of 5 stars
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false
       }
     },
     { freezeTableName: true }
