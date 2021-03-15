@@ -22,21 +22,22 @@ module.exports = function(app) {
   });
   app.get("/classes", (req, res) => {
     const classes = [];
+    let instructorName = "";
     db.classes
       .findAll({
         include: [db.user]
       })
       .then(results => {
         results.forEach(result => {
-          classes.push(result.dataValues);
-          const instructorName =
+          instructorName =
             result.dataValues.user.firstName +
             " " +
-            result.dataValues.user.LastName;
-          console.log(instructorName);
+            result.dataValues.user.lastName;
+          result.dataValues.instructorName = instructorName;
+          classes.push(result.dataValues);
         });
+        res.render("classes", { classes: classes });
       });
-    res.render("classes", { classes: classes });
   });
   app.get("/reviews", (req, res) => {
     const classReviews = [];
