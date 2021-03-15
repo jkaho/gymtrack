@@ -28,16 +28,18 @@ module.exports = function(app) {
     res.render("classes", { classes: classes });
   });
   app.get("/reviews", (req, res) => {
-    const classReviews = [];
     db.classReviews.findAll({}).then(results => {
-      results.forEach(result => classReviews.push(result.dataValues));
+      results.forEach(result => {
+        console.log(result);
+        console.log(result.dataValues.review);
+        res.render("reviews", { reviews: result.dataValues.review });
+      });
     });
-    res.render("reviews", db.ClassReviews);
-    const instructorReviews = [];
-    db.instructorReviews.findAll({}).then(results => {
-      results.forEach(result => instructorReviews.push(result.dataValues));
-    });
-    res.render("reviews", db.InstructorReviews);
+    // const instructorReviews = [];
+    // db.instructorReviews.findAll({}).then(results => {
+    //   results.forEach(result => instructorReviews.push(result.dataValues));
+    // });
+    // res.render("reviews", { reviews: instructorReviews });
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
