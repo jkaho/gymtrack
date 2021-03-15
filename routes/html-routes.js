@@ -60,21 +60,18 @@ module.exports = function(app) {
   });
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/profile", (req, res) => {
-    const users = [];
-    db.user.findAll({}).then(results => {
-      results.forEach(result => users.push(result.dataValues));
-      console.log(results[0].dataValues);
-      console.log(users[0].firstName, users[0].lastName, users[0].email);
-      res.render("user", {
-        firstname: users[0].firstName,
-        lastname: users[0].lastName,
-        email: users[0].email
+  app.get("/profile", isAuthenticated, (req, res) => {
+    db.user
+      .findAll({
+        where: { id: req.user.id }
+      })
+      .then(result => {
+        console.log(result[0].dataValues.firstName);
+        res.render("profile", {
+          firstName: result[0].dataValues.firstName,
+          lastName: result[0].dataValues.lastName,
+          email: result[0].dataValues.email
+        });
       });
-    });
   });
 };
-// const classReviews = [];
-// db.classReviews.findAll({}).then(results => {
-//   results.forEach(result => classReviews.push(result.dataValues));
-// });

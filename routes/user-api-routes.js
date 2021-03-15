@@ -10,6 +10,7 @@ module.exports = function(app) {
   // Route for login
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
+    console.log(req.user);
   });
 
   // Route for signup
