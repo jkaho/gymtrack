@@ -1,5 +1,8 @@
+// This file was required to get the hashed version of the user passwords to put in the seeds.sql file
+// Import models
 const db = require("../models");
 
+// Instructor seeds
 const instructors = [
   {
     firstName: "Tom",
@@ -24,6 +27,7 @@ const instructors = [
   }
 ];
 
+// Member seeds
 const members = [
   {
     firstName: "James",
@@ -55,6 +59,7 @@ const members = [
   }
 ];
 
+// Add instructor and member seeds to db
 module.exports = function() {
   instructors.forEach(instructor => {
     db.user.create({
