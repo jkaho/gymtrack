@@ -4,6 +4,8 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
+const moment = require("moment");
+
 const db = require("../models");
 
 module.exports = function(app) {
@@ -63,16 +65,26 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/profile", isAuthenticated, (req, res) => {
+    let userType;
+    let dateJoined;
     db.user
       .findAll({
         where: { id: req.user.id }
       })
       .then(result => {
-        console.log(result[0].dataValues.firstName);
+        if (result[0].dataValues.instructor === true) {
+          userType = "Instructor";
+        } else {
+          userType = "Member";
+        }
+        rawDate = result[0].dataValues.createdAt;
+        dateJoined = moment(rawDate).format("dddd, MMMM Do, yyyy, h:mma");
         res.render("profile", {
           firstName: result[0].dataValues.firstName,
           lastName: result[0].dataValues.lastName,
-          email: result[0].dataValues.email
+          email: result[0].dataValues.email,
+          userType: userType,
+          dateJoined: dateJoined
         });
       });
   });
