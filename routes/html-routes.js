@@ -20,23 +20,32 @@ module.exports = function(app) {
   //   });
 
   app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/home.html"));
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
+    res.render("home", {
+      loggedIn: loggedIn,
+      profileIcon: "fas fa-user-circle"
+    });
   });
   app.get("/classes", (req, res) => {
     const classes = [];
     let instructorName;
     let classDate;
     let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     db.classes
       .findAll({
         include: [db.user]
       })
       .then(results => {
-        if (req.user) {
-          loggedIn = true;
-        } else {
-          loggedIn = false;
-        }
         results.forEach(result => {
           instructorName =
             result.dataValues.user.firstName +
@@ -48,23 +57,28 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { classes: classes, loggedIn: loggedIn });
+        res.render("classes", {
+          classes: classes,
+          loggedIn: loggedIn,
+          profileIcon: "fas fa-user-circle"
+        });
       });
   });
   app.get("/reviews", (req, res) => {
     let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     db.classReviews.findAll({}).then(results => {
-      if (req.user) {
-        loggedIn = true;
-      } else {
-        loggedIn = false;
-      }
       results.forEach(result => {
         // console.log(result);
         // console.log(result.dataValues.review);
         res.render("reviews", {
           reviews: result.dataValues.review,
-          loggedIn: loggedIn
+          loggedIn: loggedIn,
+          profileIcon: "fas fa-user-circle"
         });
       });
     });
@@ -133,7 +147,8 @@ module.exports = function(app) {
                 dateJoined: dateJoined,
                 instructorClasses: instructorClasses,
                 instructor: true,
-                hasClasses: true
+                hasClasses: true,
+                profileIcon: "fas fa-user-circle"
               });
             } else {
               res.render("profile", {
@@ -143,7 +158,8 @@ module.exports = function(app) {
                 userType: userType,
                 dateJoined: dateJoined,
                 instructor: true,
-                hasClasses: false
+                hasClasses: false,
+                profileIcon: "fas fa-user-circle"
               });
             }
           });
@@ -181,7 +197,8 @@ module.exports = function(app) {
                       dateJoined: dateJoined,
                       memberClasses: memberClasses,
                       member: true,
-                      hasClasses: true
+                      hasClasses: true,
+                      profileIcon: "fas fa-user-circle"
                     });
                   });
               });
@@ -193,7 +210,8 @@ module.exports = function(app) {
                 userType: userType,
                 dateJoined: dateJoined,
                 member: true,
-                hasClasses: false
+                hasClasses: false,
+                profileIcon: "fas fa-user-circle"
               });
             }
           });
