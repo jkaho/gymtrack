@@ -48,8 +48,8 @@ module.exports = function(app) {
   app.get("/reviews", (req, res) => {
     db.classReviews.findAll({}).then(results => {
       results.forEach(result => {
-        console.log(result);
-        console.log(result.dataValues.review);
+        // console.log(result);
+        // console.log(result.dataValues.review);
         res.render("reviews", { reviews: result.dataValues.review });
       });
     });
@@ -83,14 +83,16 @@ module.exports = function(app) {
   app.get("/profile", isAuthenticated, (req, res) => {
     let userType;
     let dateJoined;
-    const instructorClasses = [];
+    let classDate;
+    let hasClasses;
+    let instructorClasses = [];
     db.user
       .findAll({
         where: { id: req.user.id }
       })
       .then(result => {
-        rawDate = result[0].dataValues.createdAt;
-        dateJoined = moment(rawDate).format("dddd, MMMM Do, yyyy, h:mma");
+        rawJoinDate = result[0].dataValues.createdAt;
+        dateJoined = moment(rawJoinDate).format("dddd, MMMM Do, yyyy, h:mma");
         if (result[0].dataValues.instructor === true) {
           userType = "Instructor";
           db.user
@@ -102,7 +104,26 @@ module.exports = function(app) {
             })
             .then(results => {
               results.forEach(result => {
-                instructorClasses.push(result.dataValues);
+                result.dataValues.classes.forEach(item => {
+                  rawClassDate = item.dataValues.startTime;
+                  classDate = moment(rawClassDate).format(
+                    "dddd, MMMM Do, h:mma"
+                  );
+                  const instructorClass = {
+                    classDate: classDate,
+                    name: item.dataValues.name,
+                    description: item.dataValues.description,
+                    price: item.dataValues.price
+                  };
+                  instructorClasses.push(instructorClass);
+                });
+
+                const numberOfClasses = instructorClasses.length;
+                if (numberOfClasses > 0) {
+                  hasClasses = true;
+                } else {
+                  hasClasses = false;
+                }
               });
               res.render("profile", {
                 firstName: result[0].dataValues.firstName,
@@ -110,19 +131,13 @@ module.exports = function(app) {
                 email: result[0].dataValues.email,
                 userType: userType,
                 dateJoined: dateJoined,
-                instructorClasses: instructorClasses
+                instructorClasses,
+                instructor: true,
+                hasClasses: hasClasses
               });
             });
         } else {
           userType = "Member";
-          db.userClasses.findAll({
-            where: {
-              id: req.user.id
-            }
-          })
-          .then(results => {
-            console.log(results);
-          })
         }
       });
   });

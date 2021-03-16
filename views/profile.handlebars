@@ -46,6 +46,30 @@
         <div class="col-12">
             <h3>My Classes</h3>
             <!-- Render Member/Admin's current classes -->
+            {{#if instructor}}
+                {{#if hasClasses}}
+                    {{#each instructorClasses}}
+                    <div>
+                        <div>
+                            <h4>{{name}}, {{classDate}}</h4>
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p>
+                            <form action=""> 
+                                <button type="submit" value="Delete">
+                                    Delete
+                                </button>
+                            </form>
+                            <a href="/reviews">View Reviews</a>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    <h3>You currently have no classes</h3>
+                        <form action="/add-class"> <!-- For admins with no classes -->
+                            <input type="submit" value="Create Class">
+                        </form>
+                {{/if}}
+            {{/if}}
             <!-- If no classes, show message and either one of the buttons below -->
             <form action=""> <!-- For members with no booked classes -->
                 <input type="submit" value="Book Now">
