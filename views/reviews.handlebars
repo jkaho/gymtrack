@@ -60,27 +60,28 @@
                 <h2>{{this.name}}</h2>
             </div>
         </div> --}}
-        <h2>Class Reviwes</h2>
-        {{#each classreviews}} <!-- refers to all reviews for each class -->
-           <div class="row">
-               <div class="class-review col-5">
-
-                   <h3>Title: {{title}}</h3>
-                   <h4>Review: {{review}}</h4>
-                   <h4>Rate: {{rating}}</h4>
-                   <h6>{{author}}</h6><!--need to figure out how to get author-->
-               </div>
-            </div>
-         {{/each}}
-
+        <h2>Class Reviews</h2>
+        {{#each gymClasses}}
+            <h3>{{className}}</h3>
+            {{#each classReviews}}
+                <div class="row">
+                    <div class="class-review col-5">
+                    <h4>{{title}}</h4>
+                    <h4>Rating: {{rating}}</h4>
+                    <p>{{review}}</p>
+                    <h6>{{author}}</h6><!--need to figure out how to get author-->
+                    </div>
+                </div>
+            {{/each}}
+        {{/each}}
         <h2>Instructor Reviews</h2>
         {{#each instructorReviews}} 
            
             <div class="row">
                 <div class="individual-review col-5">               
-                <h3>Title: {{title}}</h3>
-                <h4>Review: {{review}}</h4>
-                <h4>Rate: {{rating}}</h4>
+                <h3>{{title}}</h3>
+                <h4>Rating: {{rating}}</h4>
+                <h4>{{review}}</h4>
                 </div>
             </div>
         {{/each}}

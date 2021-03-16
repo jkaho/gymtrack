@@ -52,22 +52,43 @@ module.exports = function(app) {
       });
   });
   app.get("/reviews", (req, res) => {
-    db.classReviews.findAll({}).then(results => {
-      // console.log(results);
-      results.forEach(result => {
-        classReviews.push(result.dataValues);
-      });
-      res.render("reviews", { classreviews: classReviews });
-
-      const instructorReviews = [];
-      db.instructorReviews.findAll({}).then(results => {
+    let classReviews = [];
+    const gymClasses = [];
+    db.classes
+      .findAll({
+        include: [db.classReviews]
+      })
+      .then(results => {
         results.forEach(result => {
-          instructorReviews.push(result.dataValues);
+          if (result.dataValues.classReviews.length > 0) {
+            classReviews = [];
+            const rawClassReviews = result.dataValues.classReviews;
+            rawClassReviews.forEach(rawClassReview => {
+              classReviews.push(rawClassReview.dataValues);
+            });
+            const gymClass = {
+              className: result.dataValues.name,
+              classReviews: classReviews
+            };
+            gymClasses.push(gymClass);
+            console.log(gymClasses);
+          }
         });
-        console.log(instructorReviews);
-        res.render("reviews", { instructorReviews: instructorReviews });
+        res.render("reviews", { gymClasses: gymClasses });
+
+        // results.forEach(result => {
+        //   classReviews.push(result.dataValues);
+        // });
+
+        //   const instructorReviews = [];
+        //   db.instructorReviews.findAll({}).then(results => {
+        //     results.forEach(result => {
+        //       instructorReviews.push(result.dataValues);
+        //     });
+        //     console.log(instructorReviews);
+        //     res.render("reviews", { instructorReviews: instructorReviews });
+        //   });
       });
-    });
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
