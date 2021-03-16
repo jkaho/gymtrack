@@ -85,6 +85,7 @@ module.exports = function(app) {
     let dateJoined;
     let classDate;
     let hasClasses;
+    let classInstructor;
     const instructorClasses = [];
     const memberClasses = [];
     db.user
@@ -139,23 +140,36 @@ module.exports = function(app) {
                 description: item.dataValues.description,
                 price: item.dataValues.price
               };
-              memberClasses.push(memberClass);
-            });
-            const numberOfClasses = memberClasses.length;
-            if (numberOfClasses > 0) {
-              hasClasses = true;
-            } else {
-              hasClasses = false;
-            }
-            res.render("profile", {
-              firstName: results[0].dataValues.firstName,
-              lastName: results[0].dataValues.lastName,
-              email: results[0].dataValues.email,
-              userType: userType,
-              dateJoined: dateJoined,
-              memberClasses: memberClasses,
-              member: true,
-              hasClasses: hasClasses
+              db.user
+                .findOne({
+                  where: {
+                    id: item.dataValues.instructorId
+                  }
+                })
+                .then(result => {
+                  classInstructor =
+                    result.dataValues.firstName +
+                    " " +
+                    result.dataValues.lastName;
+                  memberClass.classInstructor = classInstructor;
+                  memberClasses.push(memberClass);
+                  const numberOfClasses = memberClasses.length;
+                  if (numberOfClasses > 0) {
+                    hasClasses = true;
+                  } else {
+                    hasClasses = false;
+                  }
+                  res.render("profile", {
+                    firstName: results[0].dataValues.firstName,
+                    lastName: results[0].dataValues.lastName,
+                    email: results[0].dataValues.email,
+                    userType: userType,
+                    dateJoined: dateJoined,
+                    memberClasses: memberClasses,
+                    member: true,
+                    hasClasses: hasClasses
+                  });
+                });
             });
           });
         }
