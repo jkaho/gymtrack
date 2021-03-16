@@ -67,25 +67,47 @@ module.exports = function(app) {
   app.get("/profile", isAuthenticated, (req, res) => {
     let userType;
     let dateJoined;
+    const instructorClasses = [];
     db.user
       .findAll({
         where: { id: req.user.id }
       })
       .then(result => {
-        if (result[0].dataValues.instructor === true) {
-          userType = "Instructor";
-        } else {
-          userType = "Member";
-        }
         rawDate = result[0].dataValues.createdAt;
         dateJoined = moment(rawDate).format("dddd, MMMM Do, yyyy, h:mma");
-        res.render("profile", {
-          firstName: result[0].dataValues.firstName,
-          lastName: result[0].dataValues.lastName,
-          email: result[0].dataValues.email,
-          userType: userType,
-          dateJoined: dateJoined
-        });
+        if (result[0].dataValues.instructor === true) {
+          userType = "Instructor";
+          db.user
+            .findAll({
+              include: [db.classes],
+              where: {
+                id: req.user.id
+              }
+            })
+            .then(results => {
+              results.forEach(result => {
+                instructorClasses.push(result.dataValues);
+              });
+              res.render("profile", {
+                firstName: result[0].dataValues.firstName,
+                lastName: result[0].dataValues.lastName,
+                email: result[0].dataValues.email,
+                userType: userType,
+                dateJoined: dateJoined,
+                instructorClasses: instructorClasses
+              });
+            });
+        } else {
+          userType = "Member";
+          db.userClasses.findAll({
+            where: {
+              id: req.user.id
+            }
+          })
+          .then(results => {
+            console.log(results);
+          })
+        }
       });
   });
 };
