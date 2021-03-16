@@ -55,6 +55,13 @@
             </div>
         </div>
         {{#each reviews}} <!-- refers to all reviews for each class -->
+           <div class="row">
+               <div class="class-review col-5">
+                   <h3>{{title}}</h3>
+                   <h4>{{review}}</h4>
+                   <h4>{{rating}}</h4>
+               </div>
+           </div>
             <div class="row">
                 <div class="individual-review col-5">
                     <h3>{{this.author}}</h3>
