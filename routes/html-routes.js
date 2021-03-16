@@ -35,12 +35,6 @@ module.exports = function(app) {
     const classes = [];
     let instructorName;
     let classDate;
-    let loggedIn = false;
-    if (req.user) {
-      loggedIn = true;
-    } else {
-      loggedIn = false;
-    }
     db.classes
       .findAll({
         include: [db.user]
@@ -57,36 +51,20 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", {
-          classes: classes,
-          loggedIn: loggedIn,
-          profileIcon: "fas fa-user-circle"
-        });
+        res.render("classes", { classes: classes });
       });
   });
   app.get("/reviews", (req, res) => {
-    let loggedIn = false;
-    if (req.user) {
-      loggedIn = true;
-    } else {
-      loggedIn = false;
-    }
+    const classReviews = [];
     db.classReviews.findAll({}).then(results => {
-      results.forEach(result => {
-        // console.log(result);
-        // console.log(result.dataValues.review);
-        res.render("reviews", {
-          reviews: result.dataValues.review,
-          loggedIn: loggedIn,
-          profileIcon: "fas fa-user-circle"
-        });
-      });
+      results.forEach(result => classReviews.push(result.dataValues));
     });
-    // const instructorReviews = [];
-    // db.instructorReviews.findAll({}).then(results => {
-    //   results.forEach(result => instructorReviews.push(result.dataValues));
-    // });
-    // res.render("reviews", { reviews: instructorReviews });
+    res.render("classReviews", db.ClassReviews);
+    const instructorReviews = [];
+    db.instructorReviews.findAll({}).then(results => {
+      results.forEach(result => instructorReviews.push(result.dataValues));
+    });
+    res.render("reviews", db.InstructorReviews);
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
