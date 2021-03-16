@@ -54,41 +54,93 @@ module.exports = function(app) {
   app.get("/reviews", (req, res) => {
     let classReviews = [];
     const gymClasses = [];
+    let className;
+    let classReviewsExist = false;
     db.classes
       .findAll({
-        include: [db.classReviews]
+        include: {
+          model: db.classReviews,
+          include: db.user
+        }
       })
       .then(results => {
+        console.log(results);
+        // Loop through each class
         results.forEach(result => {
-          if (result.dataValues.classReviews.length > 0) {
+          const rawClassReviews = result.dataValues.classReviews;
+          if (rawClassReviews.length > 0) {
+            classReviewsExist = true;
             classReviews = [];
-            const rawClassReviews = result.dataValues.classReviews;
+            className = result.dataValues.name;
+            // Grab array of class reviews from each class
+            // Loop through array class reviews
             rawClassReviews.forEach(rawClassReview => {
+              // Push each review to classReviews
+              rawClassReview.dataValues.author =
+                rawClassReview.dataValues.user.dataValues.firstName +
+                " " +
+                rawClassReview.dataValues.user.dataValues.lastName;
               classReviews.push(rawClassReview.dataValues);
             });
             const gymClass = {
-              className: result.dataValues.name,
+              className: className,
               classReviews: classReviews
             };
             gymClasses.push(gymClass);
-            console.log(gymClasses);
           }
         });
-        res.render("reviews", { gymClasses: gymClasses });
-
-        // results.forEach(result => {
-        //   classReviews.push(result.dataValues);
-        // });
-
-        //   const instructorReviews = [];
-        //   db.instructorReviews.findAll({}).then(results => {
-        //     results.forEach(result => {
-        //       instructorReviews.push(result.dataValues);
-        //     });
-        //     console.log(instructorReviews);
-        //     res.render("reviews", { instructorReviews: instructorReviews });
-        //   });
+        res.render("reviews", {
+          gymClasses: gymClasses,
+          classReviewsExist: classReviewsExist
+        });
       });
+    // let gymClass = [];
+    // db.classes
+    //   .findAll({
+    //     include: [db.classReviews]
+    //   })
+    //   .then(results => {
+    //     results.forEach(result => {
+    //       if (result.dataValues.classReviews.length > 0) {
+    //         let authorName;
+    //         classReviews = [];
+    //         const rawClassReviews = result.dataValues.classReviews;
+    //         rawClassReviews.forEach(rawClassReview => {
+    //           db.user
+    //             .findOne({
+    //               where: {
+    //                 id: rawClassReview.dataValues.authorId
+    //               }
+    //             })
+    //             .then(author => {
+    //               authorName =
+    //                 author.dataValues.firstName +
+    //                 " " +
+    //                 author.dataValues.lastName;
+    //               rawClassReview.dataValues.authorName = authorName;
+    //             });
+    //           classReviews.push(rawClassReview.dataValues);
+    //         });
+    //         gymClass = {
+    //           className: result.dataValues.name,
+    //           classReviews: classReviews
+    //         };
+    //       }
+    //       gymClasses.push(gymClass);
+    //     });
+    // results.forEach(result => {
+    //   classReviews.push(result.dataValues);
+    // });
+
+    //   const instructorReviews = [];
+    //   db.instructorReviews.findAll({}).then(results => {
+    //     results.forEach(result => {
+    //       instructorReviews.push(result.dataValues);
+    //     });
+    //     console.log(instructorReviews);
+    //     res.render("reviews", { instructorReviews: instructorReviews });
+    //   });
+    //   });
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page

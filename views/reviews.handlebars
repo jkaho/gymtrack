@@ -60,20 +60,24 @@
                 <h2>{{this.name}}</h2>
             </div>
         </div> --}}
-        <h2>Class Reviews</h2>
-        {{#each gymClasses}}
-            <h3>{{className}}</h3>
-            {{#each classReviews}}
-                <div class="row">
-                    <div class="class-review col-5">
-                    <h4>{{title}}</h4>
-                    <h4>Rating: {{rating}}</h4>
-                    <p>{{review}}</p>
-                    <h6>{{author}}</h6><!--need to figure out how to get author-->
+        {{#if classReviewsExist}}
+            <h2>Class Reviews</h2>
+            {{#each gymClasses}}
+                <h3>{{className}}</h3>
+                {{#each classReviews}}
+                    <div class="row">
+                        <div class="class-review col-5">
+                        <h4>{{title}}</h4>
+                        <h4>Rating: {{rating}}</h4>
+                        <h6>{{author}}</h6>
+                        <p>{{review}}</p>
+                        </div>
                     </div>
-                </div>
+                {{/each}}
             {{/each}}
-        {{/each}}
+        {{else}}
+            <h2>No existing class reviews.</h2>
+        {{/if}}
         <h2>Instructor Reviews</h2>
         {{#each instructorReviews}} 
            
