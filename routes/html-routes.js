@@ -201,4 +201,7 @@ module.exports = function(app) {
         }
       });
   });
+  app.get("/add-class", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/add-class.html"));
+  });
 };
