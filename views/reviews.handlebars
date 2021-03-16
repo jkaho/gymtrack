@@ -48,29 +48,35 @@
             </form>
         </div>
     </div>
-    {{#each classes}}
+    {{!-- {{#each classes}}
         <div class="row">
             <div class="col-12">
                 <h2>{{this.name}}</h2>
             </div>
-        </div>
-        {{#each reviews}} <!-- refers to all reviews for each class -->
+        </div> --}}
+        <h2>Class Reviwes</h2>
+        {{#each classreviews}} <!-- refers to all reviews for each class -->
            <div class="row">
                <div class="class-review col-5">
-                   <h3>{{title}}</h3>
-                   <h4>{{review}}</h4>
-                   <h4>{{rating}}</h4>
+
+                   <h3>Title: {{title}}</h3>
+                   <h4>Review: {{review}}</h4>
+                   <h4>Rate: {{rating}}</h4>
+                   <h6>{{author}}</h6><!--need to figure out how to get author-->
                </div>
-           </div>
+            </div>
+         {{/each}}
+
+        <h2>Instructor Reviews</h2>
+        {{#each instructorReviews}} 
+           
             <div class="row">
-                <div class="individual-review col-5">
-                    <h3>{{this.author}}</h3>
-                    <div class="review-box">
-                        <p>{{this.rating}}/5</p> <!-- Change to stars later -->
-                        <p>{{this.review}}</p>
-                    </div>
+                <div class="individual-review col-5">               
+                <h3>Title: {{this.title}}</h3>
+                <h4>Review: {{this.review}}</h4>
+                <h4>Rate: {{this.rating}}</h4>
                 </div>
             </div>
         {{/each}}
-    {{/each}}
+   
 </div>
