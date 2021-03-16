@@ -41,25 +41,23 @@
     </div>
     <div class="row">
         <div class="col-12">
+            <div class="review-toggle">
+                <button id="class-toggle" class="toggle" type="submit">Classes</button>
+                <button id="instructor-toggle" class="toggle" type="submit">Instructors</button>
+            </div>
             <form class="search">
                 <label for="review-search">Find Class/Instructor Reviews</label> <!-- Dynamically switch between 'class'/'instructor depending on user selection -->
                 <input id="review-search" name="review-search" type="text" placeholder="">
                 <button type="submit">Search</button>
             </form>
-            <form class="toggleswitch">
+            {{!-- <form class="toggleswitch">
                 <label for="t1">Class Reviews</label>
                 <input id="t1" name="review-type" type="radio" checked>
                 <label for="t2">Instructor Reviews</label>
                 <input id="t2" name="review-type" type="radio">
-            </form>
+            </form> --}}
         </div>
     </div>
-    {{!-- {{#each classes}}
-        <div class="row">
-            <div class="col-12">
-                <h2>{{this.name}}</h2>
-            </div>
-        </div> --}}
         {{#if classReviewsExist}}
             <h2>Class Reviews</h2>
             {{#each gymClasses}}
@@ -89,5 +87,4 @@
                 </div>
             </div>
         {{/each}}
-   
 </div>

@@ -2,3 +2,24 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.review-toggle {
+    margin: 10px;
+}
+
+.toggle {
+    border: none;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+}
+
+#class-toggle {
+    background-color: rgb(255, 89, 0);
+    color: white;
+}
+
+#instructor-toggle {
+    background-color: white;
+    border: solid 1px black;
+}

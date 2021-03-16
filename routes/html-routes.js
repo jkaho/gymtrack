@@ -64,7 +64,6 @@ module.exports = function(app) {
         }
       })
       .then(results => {
-        console.log(results);
         // Loop through each class
         results.forEach(result => {
           // Grab array of class reviews from each class
