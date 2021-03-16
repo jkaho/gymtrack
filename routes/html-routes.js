@@ -99,7 +99,6 @@ module.exports = function(app) {
     let userType;
     let dateJoined;
     let classDate;
-    let hasClasses;
     let classInstructor;
     const instructorClasses = [];
     const memberClasses = [];
