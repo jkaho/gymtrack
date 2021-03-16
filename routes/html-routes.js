@@ -26,11 +26,17 @@ module.exports = function(app) {
     const classes = [];
     let instructorName;
     let classDate;
+    let loggedIn = false;
     db.classes
       .findAll({
         include: [db.user]
       })
       .then(results => {
+        if (req.user) {
+          loggedIn = true;
+        } else {
+          loggedIn = false;
+        }
         results.forEach(result => {
           instructorName =
             result.dataValues.user.firstName +
@@ -42,15 +48,24 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { classes: classes });
+        res.render("classes", { classes: classes, loggedIn: loggedIn });
       });
   });
   app.get("/reviews", (req, res) => {
+    let loggedIn = false;
     db.classReviews.findAll({}).then(results => {
+      if (req.user) {
+        loggedIn = true;
+      } else {
+        loggedIn = false;
+      }
       results.forEach(result => {
         // console.log(result);
         // console.log(result.dataValues.review);
-        res.render("reviews", { reviews: result.dataValues.review });
+        res.render("reviews", {
+          reviews: result.dataValues.review,
+          loggedIn: loggedIn
+        });
       });
     });
     // const instructorReviews = [];
