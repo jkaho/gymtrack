@@ -24,10 +24,26 @@ module.exports = function(app) {
   });
   app.get("/classes", (req, res) => {
     const classes = [];
-    db.classes.findAll({}).then(results => {
-      results.forEach(result => classes.push(result.dataValues));
-    });
-    res.render("classes", { classes: classes });
+    let instructorName;
+    let classDate;
+    db.classes
+      .findAll({
+        include: [db.user]
+      })
+      .then(results => {
+        results.forEach(result => {
+          instructorName =
+            result.dataValues.user.firstName +
+            " " +
+            result.dataValues.user.lastName;
+          rawDate = result.dataValues.startTime;
+          classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
+          result.dataValues.instructorName = instructorName;
+          result.dataValues.classDate = classDate;
+          classes.push(result.dataValues);
+        });
+        res.render("classes", { classes: classes });
+      });
   });
   app.get("/reviews", (req, res) => {
     db.classReviews.findAll({}).then(results => {
