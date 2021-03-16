@@ -44,7 +44,7 @@
 
     <div class="row">
         <div class="col-12">
-            <h3>My Classes</h3>
+            <h3>My Classes</h3><a href="/add-class">Create a class</a>
             <!-- Render Member/Admin's current classes -->
             {{#if instructor}}
                 {{#if hasClasses}}
@@ -65,9 +65,9 @@
                     {{/each}}
                 {{else}}
                     <h3>You currently have no classes</h3>
-                        <form action="/add-class"> <!-- For admins with no classes -->
-                            <input type="submit" value="Create Class">
-                        </form>
+                    <form action="/add-class"> <!-- For admins with no classes -->
+                        <input type="submit" value="Create Class">
+                    </form>
                 {{/if}}
             {{/if}}
             {{#if member}}
@@ -95,9 +95,9 @@
                     {{/each}}
                 {{else}}
                     <h3>You currently have no booked classes</h3>
-                        <form action="/classes">
-                            <input type="submit" value="View Classes">
-                        </form>
+                    <form action="/classes">
+                        <input type="submit" value="View Classes">
+                    </form>
                 {{/if}}
             {{/if}}
         </div>
