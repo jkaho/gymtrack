@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-12">
             <h2>{{firstName}} {{lastName}}</h2>
-            <h3>{{userType}}</h3>
+            <h5>{{userType}}</h5>
             <p>Email: {{email}}<p>
             <p>Date joined: {{dateJoined}}</p>
          </div>
@@ -63,20 +63,42 @@
                         </div>
                     </div>
                     {{/each}}
-                    {{else}}
+                {{else}}
                     <h3>You currently have no classes</h3>
                         <form action="/add-class"> <!-- For admins with no classes -->
                             <input type="submit" value="Create Class">
                         </form>
                 {{/if}}
             {{/if}}
-            <!-- If no classes, show message and either one of the buttons below -->
-            <form action=""> <!-- For members with no booked classes -->
-                <input type="submit" value="Book Now">
-            </form>
-            <form action=""> <!-- For admins with no classes -->
-                <input type="submit" value="Create Class">
-            </form>
+            {{#if member}}
+                {{#if hasClasses}}
+                    {{#each memberClasses}}
+                    <div>
+                        <div>
+                            <h4>{{name}}, {{classDate}}</h4>
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p>
+                            <!-- These forms pop up when class is over -->
+                            <form action=""> 
+                                <button type="submit" value="classReview">
+                                    Leave a class review
+                                </button>
+                            </form>
+                            <form action=""> 
+                                <button type="submit" value="instructorReview">
+                                    Leave an instructor review
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                    <h3>You currently have no booked classes</h3>
+                        <form action="/classes">
+                            <input type="submit" value="View Classes">
+                        </form>
+                {{/if}}
+            {{/if}}
         </div>
     </div>
 </div>

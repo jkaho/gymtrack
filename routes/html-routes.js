@@ -85,59 +85,79 @@ module.exports = function(app) {
     let dateJoined;
     let classDate;
     let hasClasses;
-    let instructorClasses = [];
+    const instructorClasses = [];
+    const memberClasses = [];
     db.user
       .findAll({
+        include: [db.classes],
         where: { id: req.user.id }
       })
-      .then(result => {
-        rawJoinDate = result[0].dataValues.createdAt;
+      .then(results => {
+        rawJoinDate = results[0].dataValues.createdAt;
         dateJoined = moment(rawJoinDate).format("dddd, MMMM Do, yyyy, h:mma");
-        if (result[0].dataValues.instructor === true) {
+        if (results[0].dataValues.instructor === true) {
           userType = "Instructor";
-          db.user
-            .findAll({
-              include: [db.classes],
-              where: {
-                id: req.user.id
-              }
-            })
-            .then(results => {
-              results.forEach(result => {
-                result.dataValues.classes.forEach(item => {
-                  rawClassDate = item.dataValues.startTime;
-                  classDate = moment(rawClassDate).format(
-                    "dddd, MMMM Do, h:mma"
-                  );
-                  const instructorClass = {
-                    classDate: classDate,
-                    name: item.dataValues.name,
-                    description: item.dataValues.description,
-                    price: item.dataValues.price
-                  };
-                  instructorClasses.push(instructorClass);
-                });
-
-                const numberOfClasses = instructorClasses.length;
-                if (numberOfClasses > 0) {
-                  hasClasses = true;
-                } else {
-                  hasClasses = false;
-                }
-              });
-              res.render("profile", {
-                firstName: result[0].dataValues.firstName,
-                lastName: result[0].dataValues.lastName,
-                email: result[0].dataValues.email,
-                userType: userType,
-                dateJoined: dateJoined,
-                instructorClasses,
-                instructor: true,
-                hasClasses: hasClasses
-              });
+          results.forEach(result => {
+            result.dataValues.classes.forEach(item => {
+              rawClassDate = item.dataValues.startTime;
+              classDate = moment(rawClassDate).format("dddd, MMMM Do, h:mma");
+              const instructorClass = {
+                classDate: classDate,
+                name: item.dataValues.name,
+                description: item.dataValues.description,
+                price: item.dataValues.price
+              };
+              instructorClasses.push(instructorClass);
             });
+
+            const numberOfClasses = instructorClasses.length;
+            if (numberOfClasses > 0) {
+              hasClasses = true;
+            } else {
+              hasClasses = false;
+            }
+          });
+          res.render("profile", {
+            firstName: results[0].dataValues.firstName,
+            lastName: results[0].dataValues.lastName,
+            email: results[0].dataValues.email,
+            userType: userType,
+            dateJoined: dateJoined,
+            instructorClasses,
+            instructor: true,
+            hasClasses: hasClasses
+          });
         } else {
           userType = "Member";
+          results.forEach(result => {
+            result.dataValues.classes.forEach(item => {
+              rawClassDate = item.dataValues.startTime;
+              classDate = moment(rawClassDate).format("dddd, MMMM Do, h:mma");
+              const memberClass = {
+                classDate: classDate,
+                name: item.dataValues.name,
+                description: item.dataValues.description,
+                price: item.dataValues.price
+              };
+              memberClasses.push(memberClass);
+            });
+            const numberOfClasses = memberClasses.length;
+            if (numberOfClasses > 0) {
+              hasClasses = true;
+            } else {
+              hasClasses = false;
+            }
+            res.render("profile", {
+              firstName: results[0].dataValues.firstName,
+              lastName: results[0].dataValues.lastName,
+              email: results[0].dataValues.email,
+              userType: userType,
+              dateJoined: dateJoined,
+              memberClasses: memberClasses,
+              member: true,
+              hasClasses: hasClasses
+            });
+          });
         }
       });
   });
