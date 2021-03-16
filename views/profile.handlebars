@@ -20,7 +20,7 @@
                     <a id="profile-link" class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login"><span id="log-in-out">Log In</span></a> <!-- This should change to Log Out -->
+                    <a class="nav-link" href="/logout"><span id="log-in-out">Log Out</span></a> <!-- This should change to Log Out -->
                 </li>
             </ul>
         </div>  
@@ -33,25 +33,74 @@
             <h1>Profile</h1>
         </div>
     </div>
-    <!-- Not sure how to render data for a specific person using handlebars e.g. where id = 5 -->
     <div class="row">
         <div class="col-12">
-            <h2>{{firstName}}{{lastName}}</h2><!-- Member/Admin name-->
-            <h4><!-- Member/Admin--></h4>
-            <!-- Add other info here later e.g. email, phone, etc. -->
-        </div>
-    </div>
+            <h2>{{firstName}} {{lastName}}</h2>
+            <h5>{{userType}}</h5>
+            <p>Email: {{email}}<p>
+            <p>Date joined: {{dateJoined}}</p>
+         </div>
+    </div> 
+
     <div class="row">
         <div class="col-12">
-            <h3>My Classes</h3>
+            <h3>My Classes</h3><a href="/add-class">Create a class</a>
             <!-- Render Member/Admin's current classes -->
-            <!-- If no classes, show message and either one of the buttons below -->
-            <form action=""> <!-- For members with no booked classes -->
-                <input type="submit" value="Book Now">
-            </form>
-            <form action="/add-class"> <!-- For admins with no classes -->
-                <input type="submit" value="Create Class">
-            </form>
+
+            {{#if instructor}}
+                {{#if hasClasses}}
+                    {{#each instructorClasses}}
+                    <div>
+                        <div>
+                            <h4>{{name}}, {{classDate}}</h4>
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p>
+                            <form action=""> 
+                                <button type="submit" value="Delete">
+                                    Delete
+                                </button>
+                            </form>
+                            <a href="/reviews">View Reviews</a>
+                        </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                    <h3>You currently have no classes</h3>
+                    <form action="/add-class"> <!-- For admins with no classes -->
+                        <input type="submit" value="Create Class">
+                    </form>
+                {{/if}}
+            {{/if}}
+            {{#if member}}
+                {{#if hasClasses}}
+                    {{#each memberClasses}}
+                    <div>
+                        <div>
+                            <h4>{{name}}, {{classDate}}</h4>
+                            <h5>Class Instructor: {{classInstructor}}</h5>
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p>
+                            <!-- These forms pop up when class is over -->
+                            <form action=""> 
+                                <button type="submit" value="classReview">
+                                    Leave a class review
+                                </button>
+                            </form>
+                            <form action=""> 
+                                <button type="submit" value="instructorReview">
+                                    Leave an instructor review
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                    <h3>You currently have no booked classes</h3>
+                    <form action="/classes">
+                        <input type="submit" value="View Classes">
+                    </form>
+                {{/if}}
+            {{/if}}
         </div>
     </div>
 </div>
