@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
+  <title>Gym | Signup</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
@@ -31,7 +31,7 @@
           </div>
           <div class="form-group">
             <label for="dob">Date of Birth</label>
-            <input type="date" class="form-control" id="dob-input">
+            <input type="date" class="form-control" min="1920-01-01" max="2003-12-31" id="dob-input">
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
@@ -39,6 +39,7 @@
           </div>
           <div class="form-group">
             <label for="password">Password</label>
+            <!-- Insert this into the input for pw validation: pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" (left out for testing purposes)-->
             <input type="password" class="form-control" id="password-input" placeholder="Enter password">
           </div>
           <div style="display: none" id="alert" class="alert alert-danger" role="alert">
