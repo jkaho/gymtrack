@@ -28,16 +28,18 @@ module.exports = function(sequelize, DataTypes) {
     InstructorReviews.belongsTo(models.user, {
       // Instructor review can only belong to one user (member)
       foreignKey: {
+        name: "authorId",
         allowNull: false
       },
-      as: "authorId"
+      as: "author"
     });
     InstructorReviews.belongsTo(models.user, {
       // Instructor review can only refer to one user (instructor)
       foreignKey: {
+        name: "instructorId",
         allowNull: false
       },
-      as: "instructorId"
+      as: "instructorOfReview"
     });
   };
   return InstructorReviews;

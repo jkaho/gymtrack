@@ -64,17 +64,19 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.instructorReviews, {
       // User (member) can create many instructor reviews
       foreignKey: {
+        name: "authorId",
         allowNull: false
       },
-      as: "authorId",
+      as: "author",
       onDelete: "CASCADE"
     });
     User.hasMany(models.instructorReviews, {
       // Many instructor reviews can be written about a user (instructor)
       foreignKey: {
+        name: "instructorId",
         allowNull: false
       },
-      as: "instructorId",
+      as: "instructorOfReview",
       onDelete: "CASCADE"
     });
   };

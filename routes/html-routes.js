@@ -77,11 +77,11 @@ module.exports = function(app) {
               include: [
                 {
                   model: db.user,
-                  as: "authorId"
+                  as: "author"
                 },
                 {
                   model: db.user,
-                  as: "instructorId"
+                  as: "instructorOfReview"
                 }
               ]
             }
