@@ -32,6 +32,12 @@ module.exports = function(app) {
     });
   });
   app.get("/classes", (req, res) => {
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     const classes = [];
     let instructorName;
     let classDate;
@@ -51,22 +57,16 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { classes: classes });
+        res.render("classes", { loggedIn: loggedIn, classes: classes });
       });
   });
   app.get("/reviews", (req, res) => {
-<<<<<<< HEAD
-    const classReviews = [];
-    db.classReviews.findAll({}).then(results => {
-      results.forEach(result => classReviews.push(result.dataValues));
-    });
-    res.render("classReviews", db.ClassReviews);
-    const instructorReviews = [];
-    db.instructorReviews.findAll({}).then(results => {
-      results.forEach(result => instructorReviews.push(result.dataValues));
-    });
-    res.render("reviews", db.InstructorReviews);
-=======
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     let classReviews = [];
     const gymClasses = [];
     let className;
@@ -217,13 +217,13 @@ module.exports = function(app) {
           }
         });
         res.render("reviews", {
+          loggedIn: loggedIn,
           gymClasses: gymClasses,
           classReviewsExist: classReviewsExist,
           instructors: instructors,
           instructorReviewsExist: instructorReviewsExist
         });
       });
->>>>>>> render-reviews
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
@@ -247,6 +247,12 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/profile", isAuthenticated, (req, res) => {
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     let userType;
     let dateJoined;
     let classDate;
@@ -277,6 +283,7 @@ module.exports = function(app) {
                 instructorClasses.push(instructorClass);
               });
               res.render("profile", {
+                loggedIn: loggedIn,
                 firstName: results[0].dataValues.firstName,
                 lastName: results[0].dataValues.lastName,
                 email: results[0].dataValues.email,
@@ -284,19 +291,18 @@ module.exports = function(app) {
                 dateJoined: dateJoined,
                 instructorClasses: instructorClasses,
                 instructor: true,
-                hasClasses: true,
-                profileIcon: "fas fa-user-circle"
+                hasClasses: true
               });
             } else {
               res.render("profile", {
+                loggedIn: loggedIn,
                 firstName: results[0].dataValues.firstName,
                 lastName: results[0].dataValues.lastName,
                 email: results[0].dataValues.email,
                 userType: userType,
                 dateJoined: dateJoined,
                 instructor: true,
-                hasClasses: false,
-                profileIcon: "fas fa-user-circle"
+                hasClasses: false
               });
             }
           });
@@ -327,6 +333,7 @@ module.exports = function(app) {
                     memberClass.classInstructor = classInstructor;
                     memberClasses.push(memberClass);
                     res.render("profile", {
+                      loggedIn: loggedIn,
                       firstName: results[0].dataValues.firstName,
                       lastName: results[0].dataValues.lastName,
                       email: results[0].dataValues.email,
@@ -334,21 +341,20 @@ module.exports = function(app) {
                       dateJoined: dateJoined,
                       memberClasses: memberClasses,
                       member: true,
-                      hasClasses: true,
-                      profileIcon: "fas fa-user-circle"
+                      hasClasses: true
                     });
                   });
               });
             } else {
               res.render("profile", {
+                loggedIn: loggedIn,
                 firstName: results[0].dataValues.firstName,
                 lastName: results[0].dataValues.lastName,
                 email: results[0].dataValues.email,
                 userType: userType,
                 dateJoined: dateJoined,
                 member: true,
-                hasClasses: false,
-                profileIcon: "fas fa-user-circle"
+                hasClasses: false
               });
             }
           });
