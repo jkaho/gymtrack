@@ -74,16 +74,17 @@ module.exports = function(app) {
             model: db.user,
             include: {
               model: db.instructorReviews,
-              include: [
-                {
-                  model: db.user,
-                  as: "author"
-                },
-                {
-                  model: db.user,
-                  as: "instructorOfReview"
-                }
-              ]
+              include: { all: true }
+              //   include: [
+              //     {
+              //       model: db.user,
+              //       as: "author"
+              //     },
+              //     {
+              //       model: db.user,
+              //       as: "reviewedInstructor"
+              //     }
+              //   ]
             }
           }
         ]
@@ -123,7 +124,7 @@ module.exports = function(app) {
               result.dataValues.user.lastName;
             // Loop through array of instructor reviews
             rawInstructorReviews.forEach(rawInstructorReview => {
-              console.log(rawInstructorReview);
+              //   console.log(rawInstructorReview);
               // Push each review to instructorReviews
               //   rawInstructorReview.dataValues.author =
               //     rawClassReview.dataValues.user.dataValues.firstName +

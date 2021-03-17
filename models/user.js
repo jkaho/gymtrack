@@ -67,7 +67,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "authorId",
         allowNull: false
       },
-      as: "author",
+      //   as: "author",
       onDelete: "CASCADE"
     });
     User.hasMany(models.instructorReviews, {
@@ -76,7 +76,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "instructorId",
         allowNull: false
       },
-      as: "instructorOfReview",
+      //   as: "reviewedInstructor",
       onDelete: "CASCADE"
     });
   };
