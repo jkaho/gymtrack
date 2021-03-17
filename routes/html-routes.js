@@ -57,7 +57,7 @@ module.exports = function(app) {
     let className;
     let classReviewsExist = false;
 
-    const gymReviews = [];
+    let instructorReviews = [];
     const instructors = [];
     let instructorName;
     let instructorReviewsExist = true;
@@ -72,7 +72,19 @@ module.exports = function(app) {
           },
           {
             model: db.user,
-            include: db.instructorReviews
+            include: {
+              model: db.instructorReviews,
+              include: [
+                {
+                  model: db.user,
+                  as: "authorId"
+                },
+                {
+                  model: db.user,
+                  as: "instructorId"
+                }
+              ]
+            }
           }
         ]
       })
@@ -111,6 +123,7 @@ module.exports = function(app) {
               result.dataValues.user.lastName;
             // Loop through array of instructor reviews
             rawInstructorReviews.forEach(rawInstructorReview => {
+              console.log(rawInstructorReview);
               // Push each review to instructorReviews
               //   rawInstructorReview.dataValues.author =
               //     rawClassReview.dataValues.user.dataValues.firstName +
@@ -124,7 +137,6 @@ module.exports = function(app) {
             };
             instructors.push(instructor);
           }
-          console.log(instructors)
         });
         res.render("reviews", {
           gymClasses: gymClasses,
