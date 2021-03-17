@@ -83,14 +83,16 @@
     font-weight: 300;
 }
 
-/* Add review modal */
+/* 'Add class review' modal */
 
 .modal-bg {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
+    background-color: rgba(255, 255, 255, 0.5)
 }
 
 .add-review-modal {
@@ -103,7 +105,7 @@
 .add-review-div {
     position: relative;
     width: 500px;
-    height: 380px;
+    height: 400px;
     margin: 0 auto;
     background-color: white;
     z-index: 10;
@@ -127,6 +129,18 @@
     font-size: 20px;
     font-weight: 200;
     padding-left: 40px;
+    width: fit-content;
+}
+
+.exit-review-add {
+    position: absolute;
+    top: 25px;
+    right: 55px;
+    cursor: pointer;
+}
+
+.add-review {
+    cursor: pointer;
 }
 
 .dropdown select {
@@ -161,6 +175,11 @@
     border: solid 1px rgb(59, 59, 59);
     border-radius: 0;
     float: right;
+}
+
+.add-review-btn:hover {
+    background-color: black;
+    color: white;
 }
 
 

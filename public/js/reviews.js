@@ -70,6 +70,14 @@ $(document).ready(() => {
     });
   });
 
+  $(".exit-review-add").on("click", () => {
+    $("#class-modal-bg").css("display", "none");
+  });
+
+  $("#add-class-review-link").on("click", () => {
+    $("#class-modal-bg").css("display", "block");
+  });
+
   //   $(".add-review").on("click", () => {
   //     $.ajax({
   //       url: "/api/user_data",
