@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <a id="add-class-review-link" class="add-review">Write a review</a>
+                <a id="add-instructor-review-link" class="add-review">Write a review</a>
             </div>
         </div>
         {{#each instructors}}
@@ -205,13 +205,13 @@
 </div>
 
 
-
+<!-- Modal for adding class reviews -->
 <div id="class-modal-bg" class="modal-bg">
     <div class="add-review-modal">
         <div class="add-review-div">
             <div class="modal-heading">
                 <h4>Leave a review</h4>
-                <i class="exit-review-add fas fa-times"></i>
+                <i id="exit-class-review" class="exit-review-add fas fa-times"></i>
             </div>
             <form class="add-review-form">
                 <div class="form-group dropdown">
@@ -219,6 +219,41 @@
                     <select name="class-reviews-list" id="class-reviews-list">
                         <option value="Yoga">Yoga</option>
                         <option value="Spin">Spin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="review-title-input" placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <i class="rate-star fas fa-star" id="star-one"></i>
+                    <i class="rate-star fas fa-star" id="star-two"></i>
+                    <i class="rate-star fas fa-star" id="star-three"></i>
+                    <i class="rate-star fas fa-star" id="star-four"></i>
+                    <i class="rate-star fas fa-star" id="star-five"></i>
+                </div>
+                <div class="form-group">
+                    <textarea style="resize: none" class="form-control" id="review-text-input" placeholder="Describe your experience with us"></textarea>
+                </div>
+                <button type="submit" class="add-review-btn btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for adding instructor reviews -->
+<div id="instructor-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="add-review-div">
+            <div class="modal-heading">
+                <h4>Leave a review</h4>
+                <i id="exit-instructor-review" class="exit-review-add fas fa-times"></i>
+            </div>
+            <form class="add-review-form">
+                <div class="form-group dropdown">
+                    <label for="instructor-reviews-list">Choose a class: </label>
+                    <select name="instructor-reviews-list" id="class-reviews-list">
+                        <option value="instructor1">Tom Smith</option>
+                        <option value="instructor2">Emily Zhang</option>
                     </select>
                 </div>
                 <div class="form-group">
