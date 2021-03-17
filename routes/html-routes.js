@@ -55,6 +55,7 @@ module.exports = function(app) {
       });
   });
   app.get("/reviews", (req, res) => {
+<<<<<<< HEAD
     const classReviews = [];
     db.classReviews.findAll({}).then(results => {
       results.forEach(result => classReviews.push(result.dataValues));
@@ -65,6 +66,164 @@ module.exports = function(app) {
       results.forEach(result => instructorReviews.push(result.dataValues));
     });
     res.render("reviews", db.InstructorReviews);
+=======
+    let classReviews = [];
+    const gymClasses = [];
+    let className;
+    let classReviewsExist = false;
+
+    let instructorReviews = [];
+    const instructors = [];
+    let instructorName;
+    let instructorReviewsExist = true;
+    db.classes
+      .findAll({
+        include: [
+          {
+            model: db.classReviews,
+            include: {
+              model: db.user
+            }
+          },
+          {
+            model: db.user,
+            include: {
+              model: db.instructorReviews,
+              include: { all: true }
+              //   include: [
+              //     {
+              //       model: db.user,
+              //       as: "author"
+              //     },
+              //     {
+              //       model: db.user,
+              //       as: "reviewedInstructor"
+              //     }
+              //   ]
+            }
+          }
+        ]
+      })
+      .then(results => {
+        // Loop through each class
+        results.forEach(result => {
+          //   Grab array of class reviews from each class
+          const rawClassReviews = result.dataValues.classReviews;
+          if (rawClassReviews.length > 0) {
+            classReviewsExist = true;
+            classReviews = [];
+            className = result.dataValues.name;
+            // Loop through array of class reviews
+            rawClassReviews.forEach(rawClassReview => {
+              // Push each review to classReviews
+              rawClassReview.dataValues.author =
+                rawClassReview.dataValues.user.dataValues.firstName +
+                " " +
+                rawClassReview.dataValues.user.dataValues.lastName;
+              if (rawClassReview.dataValues.rating === 5) {
+                rawClassReview.dataValues.ratingFive = true;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = false;
+              } else if (rawClassReview.dataValues.rating === 4) {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = true;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = false;
+              } else if (rawClassReview.dataValues.rating === 3) {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = true;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = false;
+              } else if (rawClassReview.dataValues.rating === 2) {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = true;
+                rawClassReview.dataValues.ratingOne = false;
+              } else {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = true;
+              }
+              classReviews.push(rawClassReview.dataValues);
+            });
+            const gymClass = {
+              className: className,
+              classReviews: classReviews
+            };
+            gymClasses.push(gymClass);
+          }
+
+          const rawInstructorReviews = result.dataValues.user.instructorReviews;
+          if (rawInstructorReviews.length > 0) {
+            instructorReviewsExist = true;
+            instructorReviews = [];
+            instructorName =
+              result.dataValues.user.firstName +
+              " " +
+              result.dataValues.user.lastName;
+            // Loop through array of instructor reviews
+            rawInstructorReviews.forEach(rawInstructorReview => {
+              //   console.log(rawInstructorReview);
+              // Push each review to instructorReviews
+              //   rawInstructorReview.dataValues.author =
+              //     rawClassReview.dataValues.user.dataValues.firstName +
+              //     " " +
+              //     rawClassReview.dataValues.user.dataValues.lastName;
+              if (rawInstructorReview.dataValues.rating === 5) {
+                rawInstructorReview.dataValues.ratingFive = true;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else if (rawInstructorReview.dataValues.rating === 4) {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = true;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else if (rawInstructorReview.dataValues.rating === 3) {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = true;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else if (rawInstructorReview.dataValues.rating === 2) {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = true;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = true;
+              }
+              instructorReviews.push(rawInstructorReview.dataValues);
+            });
+            const instructor = {
+              instructorName: instructorName,
+              instructorReviews: instructorReviews
+            };
+            instructors.push(instructor);
+          }
+        });
+        res.render("reviews", {
+          gymClasses: gymClasses,
+          classReviewsExist: classReviewsExist,
+          instructors: instructors,
+          instructorReviewsExist: instructorReviewsExist
+        });
+      });
+>>>>>>> render-reviews
   });
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
