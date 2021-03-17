@@ -56,23 +56,36 @@ module.exports = function(app) {
     const gymClasses = [];
     let className;
     let classReviewsExist = false;
+
+    const gymReviews = [];
+    const instructors = [];
+    let instructorName;
+    let instructorReviewsExist = true;
     db.classes
       .findAll({
-        include: {
-          model: db.classReviews,
-          include: db.user
-        }
+        include: [
+          {
+            model: db.classReviews,
+            include: {
+              model: db.user
+            }
+          },
+          {
+            model: db.user,
+            include: db.instructorReviews
+          }
+        ]
       })
       .then(results => {
         // Loop through each class
         results.forEach(result => {
-          // Grab array of class reviews from each class
+          //   Grab array of class reviews from each class
           const rawClassReviews = result.dataValues.classReviews;
           if (rawClassReviews.length > 0) {
             classReviewsExist = true;
             classReviews = [];
             className = result.dataValues.name;
-            // Loop through array class reviews
+            // Loop through array of class reviews
             rawClassReviews.forEach(rawClassReview => {
               // Push each review to classReviews
               rawClassReview.dataValues.author =
@@ -87,10 +100,37 @@ module.exports = function(app) {
             };
             gymClasses.push(gymClass);
           }
+
+          const rawInstructorReviews = result.dataValues.user.instructorReviews;
+          if (rawInstructorReviews.length > 0) {
+            instructorReviewsExist = true;
+            instructorReviews = [];
+            instructorName =
+              result.dataValues.user.firstName +
+              " " +
+              result.dataValues.user.lastName;
+            // Loop through array of instructor reviews
+            rawInstructorReviews.forEach(rawInstructorReview => {
+              // Push each review to instructorReviews
+              //   rawInstructorReview.dataValues.author =
+              //     rawClassReview.dataValues.user.dataValues.firstName +
+              //     " " +
+              //     rawClassReview.dataValues.user.dataValues.lastName;
+              instructorReviews.push(rawInstructorReview.dataValues);
+            });
+            const instructor = {
+              instructorName: instructorName,
+              instructorReviews: instructorReviews
+            };
+            instructors.push(instructor);
+          }
+          console.log(instructors)
         });
         res.render("reviews", {
           gymClasses: gymClasses,
-          classReviewsExist: classReviewsExist
+          classReviewsExist: classReviewsExist,
+          instructors: instructors,
+          instructorReviewsExist: instructorReviewsExist
         });
       });
   });
