@@ -45,53 +45,161 @@
                 <button id="class-toggle" class="toggle" type="submit">Classes</button>
                 <button id="instructor-toggle" class="toggle" type="submit">Instructors</button>
             </div>
-            <form class="search">
-                <label for="review-search">Find Class/Instructor Reviews</label> <!-- Dynamically switch between 'class'/'instructor depending on user selection -->
+            {{!-- <form class="search">
                 <input id="review-search" name="review-search" type="text" placeholder="">
                 <button type="submit">Search</button>
-            </form>
-            {{!-- <form class="toggleswitch">
-                <label for="t1">Class Reviews</label>
-                <input id="t1" name="review-type" type="radio" checked>
-                <label for="t2">Instructor Reviews</label>
-                <input id="t2" name="review-type" type="radio">
             </form> --}}
         </div>
     </div>
-        {{#if classReviewsExist}}
-            <h2>Class Reviews</h2>
-            {{#each gymClasses}}
-                <h3>{{className}}</h3>
-                {{#each classReviews}}
-                    <div class="row">
-                        <div class="review-div col-5">
-                            <h4>{{title}}</h4>
-                            <h4>Rating: {{rating}}</h4>
-                            <h6>{{author}}</h6>
-                            <p>{{review}}</p>
+</div>
+
+<div id="class-reviews" class="container review-container">
+    {{#if classReviewsExist}}
+        <div class="row">
+            <div class="col-8">
+                <div class="review-heading class-heading">
+                    <h3>Class Reviews</h3>
+                </div>
+            </div>
+            <div class="col-4">
+                <a class="add-review" href="/add-review">Write a review</a>
+            </div>
+        </div>
+        {{#each gymClasses}}
+            <div class="row">
+                <div class="col-12">
+                    <div class="class-name">
+                        <h4>{{className}}</h4>
+                    </div>
+                </div>
+            </div>
+            {{#each classReviews}}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="review-div">
+                            <h6 class="class-review-title">{{title}}</h6>
+                            <h6 class="review-rating">
+                                {{#if ratingOne}}
+                                <span class="rating-one">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingTwo}}
+                                <span class="rating-two">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingThree}}
+                                <span class="rating-three">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingFour}}
+                                <span class="rating-four">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                <span class="rating-five">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                            </h6>
+                            <p class="author">{{author}}</p>
+                            <p class="review-text">{{review}}</p>
                         </div>
                     </div>
-                {{/each}}
+                </div>
             {{/each}}
-        {{else}}
-            <h2>No existing class reviews.</h2>
-        {{/if}}
-        {{#if instructorReviewsExist}}
-            <h2>Instructor Reviews</h2>
-            {{#each instructors}}
-                <h3>{{instructorName}}</h3>
-                {{#each instructorReviews}}
-                    <div class="row">
-                        <div class="review-div col-5">
-                            <h4>{{title}}</h4>
-                            <h4>Rating: {{rating}}</h4>
-                            <h6>{{author}}</h6>
-                            <p>{{review}}</p>
+        {{/each}}
+    {{else}}
+        <h2>No existing class reviews.</h2>
+    {{/if}}
+</div>
+<div id="instructor-reviews" class="container review-container" style="display: none">
+    {{#if instructorReviewsExist}}
+        <div class="row">
+            <div class="col-8">
+                <div class="review-heading instructor-heading">
+                    <h3>Instructor Reviews</h3>
+                </div>
+            </div>
+            <div class="col-4">
+                <a class="add-review" href="/add-review">Write a review</a>
+            </div>
+        </div>
+        {{#each instructors}}
+            <div class="row">
+                <div class="col-12">
+                    <div class="instructor-name">
+                        <h4>{{instructorName}}</h4>
+                    </div>
+                </div>
+            </div>
+            {{#each instructorReviews}}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="review-div">
+                            <h6 class="instructor-review-title">{{title}}</h6>
+                            <h6 class="review-rating">
+                                {{#if ratingOne}}
+                                <span class="rating-one">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingTwo}}
+                                <span class="rating-two">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingThree}}
+                                <span class="rating-three">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingFour}}
+                                <span class="rating-four">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                <span class="rating-five">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                            </h6>
+                            <p class="author">{{author}}</p>
+                            <p class="review-text">{{review}}</p>
                         </div>
                     </div>
-                {{/each}}
+                </div>
             {{/each}}
-        {{else}}
-            <h2>No existing instructor reviews.</h2>
-        {{/if}}
+        {{/each}}
+    {{else}}
+        <h2>No existing instructor reviews.</h2>
+    {{/if}}
 </div>

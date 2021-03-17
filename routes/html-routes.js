@@ -105,6 +105,37 @@ module.exports = function(app) {
                 rawClassReview.dataValues.user.dataValues.firstName +
                 " " +
                 rawClassReview.dataValues.user.dataValues.lastName;
+              if (rawClassReview.dataValues.rating === 5) {
+                rawClassReview.dataValues.ratingFive = true;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = false;
+              } else if (rawClassReview.dataValues.rating === 4) {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = true;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = false;
+              } else if (rawClassReview.dataValues.rating === 3) {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = true;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = false;
+              } else if (rawClassReview.dataValues.rating === 2) {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = true;
+                rawClassReview.dataValues.ratingOne = false;
+              } else {
+                rawClassReview.dataValues.ratingFive = false;
+                rawClassReview.dataValues.ratingFour = false;
+                rawClassReview.dataValues.ratingThree = false;
+                rawClassReview.dataValues.ratingTwo = false;
+                rawClassReview.dataValues.ratingOne = true;
+              }
               classReviews.push(rawClassReview.dataValues);
             });
             const gymClass = {
@@ -130,6 +161,37 @@ module.exports = function(app) {
               //     rawClassReview.dataValues.user.dataValues.firstName +
               //     " " +
               //     rawClassReview.dataValues.user.dataValues.lastName;
+              if (rawInstructorReview.dataValues.rating === 5) {
+                rawInstructorReview.dataValues.ratingFive = true;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else if (rawInstructorReview.dataValues.rating === 4) {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = true;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else if (rawInstructorReview.dataValues.rating === 3) {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = true;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else if (rawInstructorReview.dataValues.rating === 2) {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = true;
+                rawInstructorReview.dataValues.ratingOne = false;
+              } else {
+                rawInstructorReview.dataValues.ratingFive = false;
+                rawInstructorReview.dataValues.ratingFour = false;
+                rawInstructorReview.dataValues.ratingThree = false;
+                rawInstructorReview.dataValues.ratingTwo = false;
+                rawInstructorReview.dataValues.ratingOne = true;
+              }
               instructorReviews.push(rawInstructorReview.dataValues);
             });
             const instructor = {
