@@ -22,7 +22,6 @@
 }
 
 .review-container {
-    font-family: 'Inter', sans-serif;
     border: solid 1px rgb(235, 235, 235);
     padding: 20px;
     margin: 50px auto;
@@ -58,7 +57,7 @@
 
 .review-div {
     border-bottom: solid 1px rgb(235, 235, 235);
-    padding: 10px;
+    padding: 20px 10px;
 }
 
 .class-review-title {
@@ -83,3 +82,104 @@
 .review-text {
     font-weight: 300;
 }
+
+/* 'Add class review' modal */
+
+.modal-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5)
+}
+
+.add-review-modal {
+    position: absolute;
+    top: 150px;
+    width: 100%;
+    height: 100%;
+}
+
+.add-review-div {
+    position: relative;
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.add-review-form {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.modal-heading {
+    background-color: rgb(46, 46, 71);
+    height: 60px;
+    padding-top: 20px;
+    padding-left: 15px;
+    color: white;
+}
+
+.modal-heading h4 {
+    font-size: 20px;
+    font-weight: 200;
+    padding-left: 40px;
+    width: fit-content;
+}
+
+.exit-review-add {
+    position: absolute;
+    top: 25px;
+    right: 55px;
+    cursor: pointer;
+}
+
+.add-review {
+    cursor: pointer;
+}
+
+.dropdown select {
+    width: 120px;
+    border: solid 1px rgb(212, 212, 212);
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.dropdown {
+    margin: 20px 0;
+}
+
+.add-review-form textarea {
+    height: 120px;
+}
+
+#review-title-input, #review-text-input {
+    border-radius: 0;
+}
+
+.rate-star {
+    color: rgb(218, 210, 210);
+}
+
+.add-review-btn {
+    display: block;
+    font-size: 14px;
+    background-color: white;
+    border: solid 1px rgb(59, 59, 59);
+    border-radius: 0;
+    float: right;
+}
+
+.add-review-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+
