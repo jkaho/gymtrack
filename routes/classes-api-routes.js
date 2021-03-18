@@ -11,6 +11,15 @@ module.exports = function(app) {
         res.status(400).json(err);
       });
   });
+  
+  //route for getting one class
+  app.get("/api/classlist", (req, res) => {
+    db.calsses.findOne({
+      where: {
+        id: req.params.id,
+      },
+    }).then((dbclasses) => res.json(dbclasses));
+  }
 
   // Route for adding new gym classes
   app.post("/api/classes", (req, res) => {
