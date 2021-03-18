@@ -60,6 +60,7 @@ module.exports = function(app) {
         res.render("classes", { loggedIn: loggedIn, classes: classes });
       });
   });
+
   app.get("/reviews", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -90,22 +91,11 @@ module.exports = function(app) {
             include: {
               model: db.instructorReviews,
               include: { all: true }
-              //   include: [
-              //     {
-              //       model: db.user,
-              //       as: "author"
-              //     },
-              //     {
-              //       model: db.user,
-              //       as: "reviewedInstructor"
-              //     }
-              //   ]
             }
           }
         ]
       })
       .then(results => {
-        const instructorsNoRepeats = [];
         // Loop through each class
         results.forEach(result => {
           //   Grab array of class reviews from each class
@@ -160,90 +150,96 @@ module.exports = function(app) {
             };
             gymClasses.push(gymClass);
           }
+        });
 
-          const rawInstructorReviews = result.dataValues.user.instructorReviews;
-          if (rawInstructorReviews.length > 0) {
-            instructorReviewsExist = true;
-            instructorReviews = [];
-            instructorName =
-              result.dataValues.user.firstName +
-              " " +
-              result.dataValues.user.lastName;
-            // Loop through array of instructor reviews
-            rawInstructorReviews.forEach(rawInstructorReview => {
-              if (!instructorsNoRepeats.includes(rawInstructorReviews)) {
-                instructorsNoRepeats.push(rawInstructorReviews);
-                rawInstructorReview.dataValues.author =
+        db.user
+          .findAll({
+            where: {
+              instructor: true
+            },
+            include: [db.instructorReviews]
+          })
+          .then(results => {
+            results.forEach(result => {
+              const rawInstructorReviews = result.dataValues.instructorReviews;
+              if (rawInstructorReviews.length > 0) {
+                instructorReviewsExist = true;
+                instructorReviews = [];
+                instructorName =
                   result.dataValues.firstName +
                   " " +
                   result.dataValues.lastName;
-                if (rawInstructorReview.dataValues.rating === 5) {
-                  rawInstructorReview.dataValues.ratingFive = true;
-                  rawInstructorReview.dataValues.ratingFour = false;
-                  rawInstructorReview.dataValues.ratingThree = false;
-                  rawInstructorReview.dataValues.ratingTwo = false;
-                  rawInstructorReview.dataValues.ratingOne = false;
-                } else if (rawInstructorReview.dataValues.rating === 4) {
-                  rawInstructorReview.dataValues.ratingFive = false;
-                  rawInstructorReview.dataValues.ratingFour = true;
-                  rawInstructorReview.dataValues.ratingThree = false;
-                  rawInstructorReview.dataValues.ratingTwo = false;
-                  rawInstructorReview.dataValues.ratingOne = false;
-                } else if (rawInstructorReview.dataValues.rating === 3) {
-                  rawInstructorReview.dataValues.ratingFive = false;
-                  rawInstructorReview.dataValues.ratingFour = false;
-                  rawInstructorReview.dataValues.ratingThree = true;
-                  rawInstructorReview.dataValues.ratingTwo = false;
-                  rawInstructorReview.dataValues.ratingOne = false;
-                } else if (rawInstructorReview.dataValues.rating === 2) {
-                  rawInstructorReview.dataValues.ratingFive = false;
-                  rawInstructorReview.dataValues.ratingFour = false;
-                  rawInstructorReview.dataValues.ratingThree = false;
-                  rawInstructorReview.dataValues.ratingTwo = true;
-                  rawInstructorReview.dataValues.ratingOne = false;
-                } else {
-                  rawInstructorReview.dataValues.ratingFive = false;
-                  rawInstructorReview.dataValues.ratingFour = false;
-                  rawInstructorReview.dataValues.ratingThree = false;
-                  rawInstructorReview.dataValues.ratingTwo = false;
-                  rawInstructorReview.dataValues.ratingOne = true;
-                }
-                instructorReviews.push(rawInstructorReview.dataValues);
-              }
-              //   console.log(rawInstructorReview);
-              // Push each review to instructorReviews
-              //   rawInstructorReview.dataValues.author =
-              //     rawClassReview.dataValues.user.dataValues.firstName +
-              //     " " +
-              //     rawClassReview.dataValues.user.dataValues.lastName;
-            });
-            const instructor = {
-              instructorName: instructorName,
-              instructorReviews: instructorReviews
-            };
-            let isInstructorSaved = false;
-            instructors.forEach(savedInstructor => {
-              if (
-                savedInstructor.instructorName === instructor.instructorName
-              ) {
-                isInstructorSaved = true;
-              } else {
-                isInstructorSaved = false;
+                // Loop through array of class reviews
+                rawInstructorReviews.forEach(rawInstructorReview => {
+                  if (rawInstructorReview.dataValues.rating === 5) {
+                    rawInstructorReview.dataValues.ratingFive = true;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 4) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = true;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 3) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = true;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 2) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = true;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = true;
+                  }
+                  // Push each review to instructorReviews
+                  instructorReviews.push(rawInstructorReview.dataValues);
+                });
+                // Create instructor obj containing instructor name and associated reviews
+                const instructor = {
+                  instructorName: instructorName,
+                  instructorReviews: instructorReviews
+                };
+                // Push instructor obj to instructors
+                instructors.push(instructor);
               }
             });
-            if (!isInstructorSaved) {
-              instructors.push(instructor);
-            }
-            console.log(instructors);
-          }
-        });
-        res.render("reviews", {
-          loggedIn: loggedIn,
-          gymClasses: gymClasses,
-          classReviewsExist: classReviewsExist,
-          instructors: instructors,
-          instructorReviewsExist: instructorReviewsExist
-        });
+            // Query for all users
+            db.user.findAll({}).then(users => {
+              instructors.forEach(instructor => {
+                const instructorReviews = instructor.instructorReviews;
+                instructorReviews.forEach(instructorReview => {
+                  users.forEach(user => {
+                    // Compare each user's id to each instructorReview authorId
+                    if (user.dataValues.id === instructorReview.authorId) {
+                      instructorReview.author =
+                        user.dataValues.firstName +
+                        " " +
+                        user.dataValues.lastName;
+                    }
+                  });
+                });
+              });
+
+              res.render("reviews", {
+                loggedIn: loggedIn,
+                gymClasses: gymClasses,
+                classReviewsExist: classReviewsExist,
+                instructors: instructors,
+                instructorReviewsExist: instructorReviewsExist
+              });
+            });
+          });
       });
   });
   app.get("/signup", (req, res) => {
