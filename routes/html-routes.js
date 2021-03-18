@@ -38,6 +38,7 @@ module.exports = function(app) {
     } else {
       loggedIn = false;
     }
+
     const classes = [];
     let instructorName;
     let classDate;
@@ -57,7 +58,7 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { loggedIn: loggedIn, classes: classes });
+        res.render("classes", { classes: classes, loggedIn: loggedIn });
       });
   });
 
@@ -348,7 +349,8 @@ module.exports = function(app) {
                   classDate: classDate,
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
-                  price: resultArr[i].dataValues.price
+                  price: resultArr[i].dataValues.price,
+                  id: resultArr[i].dataValues.id
                 };
                 db.user
                   .findOne({
@@ -396,5 +398,24 @@ module.exports = function(app) {
   });
   app.get("/add-class", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/add-class.html"));
+  });
+  // Get all existing bookings
+  app.get("/userclasses", (req, res) => {
+    db.userclasses.findAll({}).then(results => {
+      res.json({ results });
+    });
+  });
+  // Get req.user
+  app.get("/api/user_data", (req, res) => {
+    if (req.user === undefined) {
+      // The user is not logged in
+      res.json({
+        isLoggedIn: false
+      });
+    } else {
+      res.json({
+        user: req.user
+      });
+    }
   });
 };
