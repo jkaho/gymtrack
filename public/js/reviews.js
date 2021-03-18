@@ -33,6 +33,7 @@ $(document).ready(() => {
 
   let rating;
   let isStarClicked = false;
+  let authorId;
 
   // Rating star functionality on hover and click (for class reviews)
   $(".rate-star-c").on("mouseover", function() {
@@ -264,52 +265,92 @@ $(document).ready(() => {
     }
   });
 
-  // Functionality for 'Write a review' links
-  $("#add-class-review-link").on("click", () => {
-    $("#class-modal-bg").css("display", "block");
-  });
-
-  $("#add-instructor-review-link").on("click", () => {
-    $("#instructor-modal-bg").css("display", "block");
-  });
-
   // Functionality for exiting review modals
   $("#exit-instructor-review").on("click", () => {
     isStarClicked = false;
+    rating = 0;
     $("#instructor-modal-bg").css("display", "none");
   });
 
   $("#exit-class-review").on("click", () => {
     isStarClicked = false;
+    rating = 0;
     $("#class-modal-bg").css("display", "none");
   });
 
-  // Grabbing data from form to make HTTP POST request
+  // Grabbing data from modal forms to make HTTP POST request
   $("#add-class-review").on("click", event => {
     event.preventDefault();
-    console.log($("#class-reviews-list").val());
-    console.log(rating);
-    console.log($("#class-review-title-input").val());
-    console.log($("#class-review-text-input").val());
+
+    const classReview = {
+      className: $("#class-reviews-list").val(),
+      reviewTitle: $("#class-review-title-input").val(),
+      reviewText: $("#class-review-text-input").val(),
+      rating: rating,
+      authorId: authorId
+    };
+
+    if (
+      !classReview.className ||
+      !classReview.reviewTitle ||
+      !classReview.reviewText ||
+      !classReview.rating ||
+      classReview.rating === 0
+    ) {
+      return;
+    }
+
+    addClassReview(
+      classReview.className,
+      classReview.reviewTitle,
+      classReview.reviewTitle,
+      classReview.rating
+    );
+
+    $("#class-review-title-input").val("");
+    $("#class-review-text-input").val("");
+    rating = 0;
   });
 
-  $("#add-instructor-review").on("click", event => {
+  $("#add-instructor-review").on("submit", event => {
     event.preventDefault();
     console.log($("#instructor-reviews-list").val());
-    console.log(rating);
     console.log($("#instructor-review-title-input").val());
     console.log($("#instructor-review-text-input").val());
   });
-  //   $(".add-review").on("click", () => {
-  //     $.ajax({
-  //       url: "/api/user_data",
-  //       method: "GET"
-  //     }).then(result => {
-  //       if (result.isLoggedIn === true) {
 
-  //       } else {
-  //         window.location.replace("/");
-  //       }
-  //     });
-  //   });
+  $(".add-review").on("click", event => {
+    $.ajax({
+      url: "/api/user_data",
+      method: "GET"
+    }).then(result => {
+      if (result.isLoggedIn === true) {
+        authorId = result.authorId;
+        if (event.target.id === "add-class-review-link") {
+          $("#class-modal-bg").css("display", "block");
+        } else {
+          $("#instructor-modal-bg").css("display", "block");
+        }
+      } else {
+        window.location.replace("/login");
+      }
+    });
+  });
+
+  function addClassReview(classId, reviewTitle, reviewText, rating, authorId) {
+    $.post("/api/add_class_review", {
+      classId: classId,
+      reviewTitle: reviewTitle,
+      reviewText: reviewText,
+      rating: rating,
+      authorId: authorId
+    })
+      .then(() => {
+        window.location.replace("/profile");
+        // If there's an error, log the error
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 });

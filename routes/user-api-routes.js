@@ -43,7 +43,8 @@ module.exports = function(app) {
       const userName = req.user.firstName + " " + req.user.lastName;
       res.json({
         isLoggedIn: true,
-        userName: userName
+        userName: userName,
+        authorId: req.user.id
       });
     }
   });
