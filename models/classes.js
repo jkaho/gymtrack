@@ -44,6 +44,14 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+    Classes.belongsToMany(
+      models.user,
+      // User (member) can take many classes, class can have many users (members)
+      { through: "userClasses" },
+      {
+        onDelete: "CASCADE"
+      }
+    );
   };
   return Classes;
 };

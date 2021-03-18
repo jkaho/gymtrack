@@ -31,6 +31,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "authorId",
         allowNull: false
       }
+      //   as: "author"
     });
     InstructorReviews.belongsTo(models.user, {
       // Instructor review can only refer to one user (instructor)
@@ -38,6 +39,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "instructorId",
         allowNull: false
       }
+      //   as: "reviewedInstructor"
     });
   };
   return InstructorReviews;
