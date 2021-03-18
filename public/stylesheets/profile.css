@@ -1,0 +1,49 @@
+.container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.user-info {
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(321deg, rgba(154,151,173,1) 0%, rgba(81,93,149,1) 51%, rgba(46,58,126,1) 91%);
+    width: 100%;
+    color: white;
+}
+
+.user-info p {
+    font-weight: 200;
+}
+
+.my-classes {
+    width: 100%;
+}
+
+.classes-heading {
+    padding: 20px;
+}
+
+#add-class-btn {
+    font-size: 14px;
+    border: solid 1px black;
+    background-color: white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#add-class-btn:hover {
+    background-color: black;
+    color: white;
+}
+/* #add-class-link {
+    float: right;
+} */
+
+.instructor-class, .member-class {
+    margin: 0 auto;
+    padding: 20px;
+    width: 600px;
+    background-color: white;
+    box-shadow: 2px 2px .4em rgb(182, 182, 182), .4em .4em .4em rgb(182, 182, 182);
+}

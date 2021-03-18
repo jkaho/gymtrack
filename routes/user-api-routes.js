@@ -35,16 +35,52 @@ module.exports = function(app) {
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      res.json({
+        isLoggedIn: false
+      });
     } else {
       // Otherwise send back the user's info
+      const userName = req.user.firstName + " " + req.user.lastName;
       res.json({
-        firstName: req.user.firstName,
-        lastName: req.user.lastName,
-        dob: req.user.dob,
-        email: req.user.email,
-        instructor: req.user.instructor
+        isLoggedIn: true,
+        userName: userName,
+        authorId: req.user.id
       });
     }
+  });
+
+  // Route for getting all instructors
+  app.get("/api/instructorlist", (req, res) => {
+    db.classes
+      .findAll({
+        include: [
+          {
+            model: db.user
+          }
+        ]
+      })
+      .then(result => {
+        const instructorIdArr = [];
+        const instructorDataset = [];
+
+        result.forEach(gymClass => {
+          const instructorName =
+            gymClass.dataValues.user.firstName +
+            " " +
+            gymClass.dataValues.user.lastName;
+          if (!instructorIdArr.includes(gymClass.dataValues.user.id)) {
+            instructorIdArr.push(gymClass.dataValues.user.id);
+            const instructorData = {
+              instructorName: instructorName,
+              instructorId: gymClass.dataValues.user.id
+            };
+            instructorDataset.push(instructorData);
+          }
+        });
+        res.json(instructorDataset);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
   });
 };

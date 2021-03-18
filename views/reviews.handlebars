@@ -1,38 +1,3 @@
-<header>
-    <nav id="index-navbar" class="navbar navbar-expand-lg navbar-light col-12">
-        <a class="navbar-brand" href="">Gym Name</a>
-        <button id="index-nav-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-                    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul id="index-link" class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/classes">Classes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/reviews">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a id="profile-link" class="nav-link" href="/profile">Profile</a>
-                </li>
-                {{#if loggedIn}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout"><span id="log-in-out">Log Out</span></a>
-                </li>
-                {{else}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/login"><span id="log-in-out">Log In</span></a>
-                </li>
-                {{/if}}
-            </ul>
-        </div>  
-    </nav>
-</header>
-
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -41,35 +6,234 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form class="search">
-                <label for="review-search">Find Class/Instructor Reviews</label> <!-- Dynamically switch between 'class'/'instructor depending on user selection -->
+            <div class="review-toggle">
+                <button id="class-toggle" class="toggle" type="submit">Classes</button>
+                <button id="instructor-toggle" class="toggle" type="submit">Instructors</button>
+            </div>
+            {{!-- <form class="search">
                 <input id="review-search" name="review-search" type="text" placeholder="">
                 <button type="submit">Search</button>
-            </form>
-            <form class="toggleswitch">
-                <label for="t1">Class Reviews</label>
-                <input id="t1" name="review-type" type="radio" checked>
-                <label for="t2">Instructor Reviews</label>
-                <input id="t2" name="review-type" type="radio">
-            </form>
+            </form> --}}
         </div>
     </div>
-    {{#each classes}}
+</div>
+
+<div id="class-reviews" class="container review-container">
+    {{#if classReviewsExist}}
         <div class="row">
-            <div class="col-12">
-                <h2>{{this.name}}</h2>
+            <div class="col-8">
+                <div class="review-heading class-heading">
+                    <h3>Class Reviews</h3>
+                </div>
+            </div>
+            <div class="col-4">
+                <a id="add-class-review-link" class="add-review">Write a review</a>
             </div>
         </div>
-        {{#each reviews}} <!-- refers to all reviews for each class -->
+        {{#each gymClasses}}
             <div class="row">
-                <div class="individual-review col-5">
-                    <h3>{{this.author}}</h3>
-                    <div class="review-box">
-                        <p>{{this.rating}}/5</p> <!-- Change to stars later -->
-                        <p>{{this.review}}</p>
+                <div class="col-12">
+                    <div class="class-name">
+                        <h4>{{className}}</h4>
                     </div>
                 </div>
             </div>
+            {{#each classReviews}}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="review-div">
+                            <h6 class="class-review-title">{{title}}</h6>
+                            <h6 class="review-rating">
+                                {{#if ratingOne}}
+                                <span class="rating-one">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingTwo}}
+                                <span class="rating-two">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingThree}}
+                                <span class="rating-three">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingFour}}
+                                <span class="rating-four">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                <span class="rating-five">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                            </h6>
+                            <p class="author">{{author}}</p>
+                            <p class="review-text">{{review}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
         {{/each}}
-    {{/each}}
+    {{else}}
+        <h2>No existing class reviews.</h2>
+    {{/if}}
+</div>
+<div id="instructor-reviews" class="container review-container" style="display: none">
+    {{#if instructorReviewsExist}}
+        <div class="row">
+            <div class="col-8">
+                <div class="review-heading instructor-heading">
+                    <h3>Instructor Reviews</h3>
+                </div>
+            </div>
+            <div class="col-4">
+                <a id="add-instructor-review-link" class="add-review">Write a review</a>
+            </div>
+        </div>
+        {{#each instructors}}
+            <div class="row">
+                <div class="col-12">
+                    <div class="instructor-name">
+                        <h4>{{instructorName}}</h4>
+                    </div>
+                </div>
+            </div>
+            {{#each instructorReviews}}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="review-div">
+                            <h6 class="instructor-review-title">{{title}}</h6>
+                            <h6 class="review-rating">
+                                {{#if ratingOne}}
+                                <span class="rating-one">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingTwo}}
+                                <span class="rating-two">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingThree}}
+                                <span class="rating-three">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                {{#if ratingFour}}
+                                <span class="rating-four">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{else}}
+                                <span class="rating-five">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                            </h6>
+                            <p class="author">{{author}}</p>
+                            <p class="review-text">{{review}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{/each}}
+    {{else}}
+        <h2>No existing instructor reviews.</h2>
+    {{/if}}
+</div>
+
+
+<!-- Modal for adding class reviews -->
+<div id="class-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="add-review-div">
+            <div class="modal-heading">
+                <h4>Leave a review</h4>
+                <i id="exit-class-review" class="exit-review-add fas fa-times"></i>
+            </div>
+            <form class="add-review-form">
+                <div class="form-group dropdown">
+                    <label for="class-reviews-list">Choose a class: </label>
+                    <select name="class-reviews-list" id="class-reviews-list">
+                        <!-- <option> dynamically rendered --> 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="class-review-title-input" placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <i class="rate-star-c fas fa-star" id="star-one-c"></i>
+                    <i class="rate-star-c fas fa-star" id="star-two-c"></i>
+                    <i class="rate-star-c fas fa-star" id="star-three-c"></i>
+                    <i class="rate-star-c fas fa-star" id="star-four-c"></i>
+                    <i class="rate-star-c fas fa-star" id="star-five-c"></i>
+                </div>
+                <div class="form-group">
+                    <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us"></textarea>
+                </div>
+                <button type="submit" id="add-class-review" class="add-review-btn btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for adding instructor reviews -->
+<div id="instructor-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="add-review-div">
+            <div class="modal-heading">
+                <h4>Leave a review</h4>
+                <i id="exit-instructor-review" class="exit-review-add fas fa-times"></i>
+            </div>
+            <form class="add-review-form">
+                <div class="form-group dropdown">
+                    <label for="instructor-reviews-list">Choose an instructor: </label>
+                    <select name="instructor-reviews-list" id="instructor-reviews-list">
+                        <!-- Dynamically render instructor options -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="instructor-review-title-input" placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <i class="rate-star-i fas fa-star" id="star-one-i"></i>
+                    <i class="rate-star-i fas fa-star" id="star-two-i"></i>
+                    <i class="rate-star-i fas fa-star" id="star-three-i"></i>
+                    <i class="rate-star-i fas fa-star" id="star-four-i"></i>
+                    <i class="rate-star-i fas fa-star" id="star-five-i"></i>
+                </div>
+                <div class="form-group">
+                    <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us"></textarea>
+                </div>
+                <button type="submit" id="add-instructor-review" class="add-review-btn btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
