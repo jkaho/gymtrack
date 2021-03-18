@@ -32,7 +32,27 @@ module.exports = function(app) {
     });
   });
   app.get("/classes", (req, res) => {
-    res.render("classes", db.classes);
+    const classes = [];
+    let instructorName;
+    let classDate;
+    db.classes
+      .findAll({
+        include: [db.user]
+      })
+      .then(results => {
+        results.forEach(result => {
+          instructorName =
+            result.dataValues.user.firstName +
+            " " +
+            result.dataValues.user.lastName;
+          rawDate = result.dataValues.startTime;
+          classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
+          result.dataValues.instructorName = instructorName;
+          result.dataValues.classDate = classDate;
+          classes.push(result.dataValues);
+        });
+        res.render("classes", { classes: classes });
+      });
   });
   app.get("/reviews", (req, res) => {
     let loggedIn = false;
@@ -353,5 +373,22 @@ module.exports = function(app) {
   });
   app.get("/add-class", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/add-class.html"));
+  });
+  // Get all existing bookings
+  app.get("/userclasses", (req, res) => {
+    db.userclasses.findAll({}).then(results => {
+      res.json({ results });
+    });
+  });
+  // Get req.user
+  app.get("/api/user_data", (req, res) => {
+    if (req.user === undefined) {
+      // The user is not logged in
+      res.json({});
+    } else {
+      res.json({
+        user: req.user
+      });
+    }
   });
 };

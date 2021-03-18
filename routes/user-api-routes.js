@@ -43,8 +43,44 @@ module.exports = function(app) {
       const userName = req.user.firstName + " " + req.user.lastName;
       res.json({
         isLoggedIn: true,
-        userName: userName
+        userName: userName,
+        authorId: req.user.id
       });
     }
+  });
+
+  // Route for getting all instructors
+  app.get("/api/instructorlist", (req, res) => {
+    db.classes
+      .findAll({
+        include: [
+          {
+            model: db.user
+          }
+        ]
+      })
+      .then(result => {
+        const instructorIdArr = [];
+        const instructorDataset = [];
+
+        result.forEach(gymClass => {
+          const instructorName =
+            gymClass.dataValues.user.firstName +
+            " " +
+            gymClass.dataValues.user.lastName;
+          if (!instructorIdArr.includes(gymClass.dataValues.user.id)) {
+            instructorIdArr.push(gymClass.dataValues.user.id);
+            const instructorData = {
+              instructorName: instructorName,
+              instructorId: gymClass.dataValues.user.id
+            };
+            instructorDataset.push(instructorData);
+          }
+        });
+        res.json(instructorDataset);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
   });
 };
