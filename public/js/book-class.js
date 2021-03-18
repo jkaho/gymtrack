@@ -2,11 +2,18 @@
 $(document).ready(() => {
   const bookWithdrawBtn = $(".book-withdraw");
   const notificationEl = $("#notification");
-  $(bookWithdrawBtn).each(function() {
-    // Grab class Id
-    const classIdVal = this.getAttribute("data-id");
+  const cancelBtn = $(".withdraw");
+  // Option to cancel classes from profile page
+  // $(withdrawBtn).each(function () {
+  //   $(this).click(e => {
+  //     e.preventDefault();
+  //   })
+  // })
+  $.getJSON("api/user_data").then(data => {
     // Check log in status
-    $.getJSON("api/user_data").then(data => {
+    $(bookWithdrawBtn).each(function() {
+      // Grab class Id
+      const classIdVal = this.getAttribute("data-id");
       // If not logged in, clicking the booking button will redirect to the log in page
       if (data.isLoggedIn === false) {
         $(this).click(e => {
@@ -39,8 +46,18 @@ $(document).ready(() => {
         });
       }
     });
+    $(cancelBtn).each(function() {
+      $(this).click(e => {
+        e.preventDefault();
+        const classIdVal = this.getAttribute("data-id");
+        $.post("/api/withdraw", {
+          classId: classIdVal
+        }).done(() => {
+          location.reload();
+        });
+      });
+    });
   });
-
   // Function to check booking status and alter buttons' text display and attributes accordingly
   function InitialClass(thisClassId) {
     $.getJSON("api/user_data").then(data => {
@@ -83,6 +100,12 @@ $(document).ready(() => {
       `<div id="bookSuccess" style="position: fixed; background: ${colour};">${text}</div>`
     );
     $(notificationEl).append(message);
+    // Close notification by clicking anywhere on the page
+    $("body").click(e => {
+      e.preventDefault;
+      $(message).remove();
+    });
+    // Set notification display time with the argument in duration (in ms)
     setTimeout(() => {
       $(message).remove();
     }, duration);
