@@ -2,6 +2,16 @@
 const db = require("../models");
 
 module.exports = function(app) {
+  // Route for getting all classes
+  app.get("/api/classlist", (req, res) => {
+    db.classes
+      .findAll({})
+      .then(result => res.json(result))
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
+
   // Route for adding new gym classes
   app.post("/api/add_class", (req, res) => {
     db.Classes.create({

@@ -283,9 +283,11 @@ $(document).ready(() => {
   // Grabbing data from modal forms to make HTTP POST request
   $("#add-class-review").on("click", event => {
     event.preventDefault();
-
+    const classId = $("#class-reviews-list")
+      .val()
+      .split("-")[1];
     const classReview = {
-      classId: $("#class-reviews-list").val(),
+      classId: parseInt(classId),
       reviewTitle: $("#class-review-title-input").val(),
       reviewText: $("#class-review-text-input").val(),
       rating: rating,
@@ -293,7 +295,7 @@ $(document).ready(() => {
     };
 
     if (
-      classReview.classId === "no-classes" ||
+      classReview.classId === "classes" ||
       !classReview.reviewTitle ||
       !classReview.reviewText ||
       !classReview.rating ||
@@ -305,8 +307,9 @@ $(document).ready(() => {
     addClassReview(
       classReview.classId,
       classReview.reviewTitle,
-      classReview.reviewTitle,
-      classReview.rating
+      classReview.reviewText,
+      classReview.rating,
+      classReview.authorId
     );
 
     $("#class-review-title-input").val("");
@@ -314,11 +317,13 @@ $(document).ready(() => {
     rating = 0;
   });
 
-  $("#add-instructor-review").on("submit", event => {
+  $("#add-instructor-review").on("click", event => {
     event.preventDefault();
-
+    const instructorId = $("#instructor-reviews-list")
+      .val()
+      .split("-")[1];
     const instructorReview = {
-      instructorId: $("#instructor-reviews-list").val(),
+      instructorId: parseInt(instructorId),
       reviewTitle: $("#instructor-review-title-input").val(),
       reviewText: $("#instructor-review-text-input").val(),
       rating: rating,
@@ -326,7 +331,7 @@ $(document).ready(() => {
     };
 
     if (
-      !instructorReview.instructorId ||
+      instructorReview.instructorId === "instructors" ||
       !instructorReview.reviewTitle ||
       !instructorReview.reviewText ||
       !instructorReview.rating ||
@@ -336,9 +341,9 @@ $(document).ready(() => {
     }
 
     addInstructorReview(
-      instructorReview.instructorName,
+      instructorReview.instructorId,
       instructorReview.reviewTitle,
-      instructorReview.reviewTitle,
+      instructorReview.reviewText,
       instructorReview.rating,
       instructorReview.authorId
     );
@@ -359,6 +364,7 @@ $(document).ready(() => {
           $.get("/api/classlist").then(result => {
             classOptions = result;
             const classSelect = $("#class-reviews-list");
+            classSelect.empty();
             if (classOptions.length < 1) {
               const classOption = $(
                 "<option value='no-classes'>No classes</option"
@@ -379,7 +385,29 @@ $(document).ready(() => {
             $("#class-modal-bg").css("display", "block");
           });
         } else {
-          $("#instructor-modal-bg").css("display", "block");
+          $.get("/api/instructorlist").then(result => {
+            instructorOptions = result;
+            const instructorSelect = $("#instructor-reviews-list");
+            instructorSelect.empty();
+            if (instructorOptions.length < 1) {
+              const instructorOption = $(
+                "<option value='no-instructors'>No instructors</option"
+              );
+              instructorOptions.append(instructorOption);
+            } else {
+              result.forEach(instructor => {
+                const instructorOption = $(
+                  "<option value='instructor-" +
+                    instructor.instructorId +
+                    "'>" +
+                    instructor.instructorName +
+                    "</option>"
+                );
+                instructorSelect.append(instructorOption);
+              });
+            }
+            $("#instructor-modal-bg").css("display", "block");
+          });
         }
       } else {
         window.location.replace("/login");
@@ -396,8 +424,8 @@ $(document).ready(() => {
       authorId: authorId
     })
       .then(() => {
-        // Add confirmation "Your booking was successful!" -> reload page and show new review
-        window.location.replace("/profile");
+        // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
+        window.location.replace("/reviews");
         // If there's an error, log the error
       })
       .catch(err => {
@@ -420,8 +448,8 @@ $(document).ready(() => {
       authorId: authorId
     })
       .then(() => {
-        // Add confirmation "Your booking was successful!" -> reload page and show new review
-        window.location.replace("/profile");
+        // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
+        window.location.replace("/reviews");
         // If there's an error, log the error
       })
       .catch(err => {
