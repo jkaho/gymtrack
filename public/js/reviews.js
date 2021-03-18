@@ -31,6 +31,8 @@ $(document).ready(() => {
     }
   });
 
+  let classOptions;
+  let instructorOptions;
   let rating;
   let isStarClicked = false;
   let authorId;
@@ -291,7 +293,7 @@ $(document).ready(() => {
     };
 
     if (
-      !classReview.classId ||
+      classReview.classId === "no-classes" ||
       !classReview.reviewTitle ||
       !classReview.reviewText ||
       !classReview.rating ||
@@ -354,7 +356,28 @@ $(document).ready(() => {
       if (result.isLoggedIn === true) {
         authorId = result.authorId;
         if (event.target.id === "add-class-review-link") {
-          $("#class-modal-bg").css("display", "block");
+          $.get("/api/classlist").then(result => {
+            classOptions = result;
+            const classSelect = $("#class-reviews-list");
+            if (classOptions.length < 1) {
+              const classOption = $(
+                "<option value='no-classes'>No classes</option"
+              );
+              classSelect.append(classOption);
+            } else {
+              result.forEach(gymClass => {
+                const classOption = $(
+                  "<option value='class-" +
+                    gymClass.id +
+                    "'>" +
+                    gymClass.name +
+                    "</option>"
+                );
+                classSelect.append(classOption);
+              });
+            }
+            $("#class-modal-bg").css("display", "block");
+          });
         } else {
           $("#instructor-modal-bg").css("display", "block");
         }
@@ -389,7 +412,7 @@ $(document).ready(() => {
     rating,
     authorId
   ) {
-    $.post("/api/add_class_review", {
+    $.post("/api/add_instructor_review", {
       instructorId: instructorId,
       reviewTitle: reviewTitle,
       reviewText: reviewText,

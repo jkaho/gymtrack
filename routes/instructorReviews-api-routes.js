@@ -3,7 +3,7 @@ const db = require("../models");
 
 module.exports = function(app) {
   // Route for getting all instructor reviews
-  add.get("/api/instructor_reviews", (res, req) => {
+  app.get("/api/instructor_reviews", (res, req) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
