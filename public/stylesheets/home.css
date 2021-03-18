@@ -1,0 +1,32 @@
+body {
+    font-size: inherit;
+    line-height: inherit;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #111;
+    background-color: #fff;
+}
+
+.container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#index-navbar {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+}
+
+/*not working*/
+#index-link {
+    text-align: right;
+}
+
+#home-image {
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#class-button{}
+
