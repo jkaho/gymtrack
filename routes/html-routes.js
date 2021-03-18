@@ -227,29 +227,24 @@ module.exports = function(app) {
                   }
                   instructorReviews.push(rawInstructorReview.dataValues);
 
-                  if (counterTwo === rawInstructorReviews.length) {
-                      console.log(counterTwo)
-                      console.log(rawInstructorReviews.length)
                     const instructor = {
                         instructorName: instructorName,
                         instructorReviews: instructorReviews
                       };
                       instructors.push(instructor);
-                  }
-                  if (counterTwo === rawInstructorReviews.length && counterOne === classesLength) {
-                      console.log(classesLength)
-                    res.render("reviews", {
-                        loggedIn: loggedIn,
-                        gymClasses: gymClasses,
-                        classReviewsExist: classReviewsExist,
-                        instructors: instructors,
-                        instructorReviewsExist: instructorReviewsExist
-                      });
-                  }
+         
+
                 });
             });
           }
         });
+        res.render("reviews", {
+            loggedIn: loggedIn,
+            gymClasses: gymClasses,
+            classReviewsExist: classReviewsExist,
+            instructors: instructors,
+            instructorReviewsExist: instructorReviewsExist
+          });
       });
   });
   app.get("/signup", (req, res) => {

@@ -27,6 +27,12 @@
     margin: 50px auto;
 }
 
+#class-reviews, #instructor-reviews {
+    width: 80%;
+    margin: 0 auto;
+    padding : 20px;
+}
+
 .class-heading {
     color: rgb(255, 89, 0);
 }
