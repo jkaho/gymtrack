@@ -20,23 +20,32 @@ module.exports = function(app) {
   //   });
 
   app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/home.html"));
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
+    res.render("home", {
+      loggedIn: loggedIn,
+      profileIcon: "fas fa-user-circle"
+    });
   });
   app.get("/classes", (req, res) => {
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     const classes = [];
     let instructorName;
     let classDate;
-    let loggedIn = false;
     db.classes
       .findAll({
         include: [db.user]
       })
       .then(results => {
-        if (req.user) {
-          loggedIn = true;
-        } else {
-          loggedIn = false;
-        }
         results.forEach(result => {
           instructorName =
             result.dataValues.user.firstName +
@@ -48,10 +57,16 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { classes: classes, loggedIn: loggedIn });
+        res.render("classes", { loggedIn: loggedIn, classes: classes });
       });
   });
   app.get("/reviews", (req, res) => {
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     let classReviews = [];
     const gymClasses = [];
     let className;
@@ -202,6 +217,7 @@ module.exports = function(app) {
           }
         });
         res.render("reviews", {
+          loggedIn: loggedIn,
           gymClasses: gymClasses,
           classReviewsExist: classReviewsExist,
           instructors: instructors,
@@ -231,6 +247,12 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/profile", isAuthenticated, (req, res) => {
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     let userType;
     let dateJoined;
     let classDate;
@@ -261,6 +283,7 @@ module.exports = function(app) {
                 instructorClasses.push(instructorClass);
               });
               res.render("profile", {
+                loggedIn: loggedIn,
                 firstName: results[0].dataValues.firstName,
                 lastName: results[0].dataValues.lastName,
                 email: results[0].dataValues.email,
@@ -272,6 +295,7 @@ module.exports = function(app) {
               });
             } else {
               res.render("profile", {
+                loggedIn: loggedIn,
                 firstName: results[0].dataValues.firstName,
                 lastName: results[0].dataValues.lastName,
                 email: results[0].dataValues.email,
@@ -309,6 +333,7 @@ module.exports = function(app) {
                     memberClass.classInstructor = classInstructor;
                     memberClasses.push(memberClass);
                     res.render("profile", {
+                      loggedIn: loggedIn,
                       firstName: results[0].dataValues.firstName,
                       lastName: results[0].dataValues.lastName,
                       email: results[0].dataValues.email,
@@ -322,6 +347,7 @@ module.exports = function(app) {
               });
             } else {
               res.render("profile", {
+                loggedIn: loggedIn,
                 firstName: results[0].dataValues.firstName,
                 lastName: results[0].dataValues.lastName,
                 email: results[0].dataValues.email,

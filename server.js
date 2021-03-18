@@ -10,7 +10,7 @@ const handlebars = require("express-handlebars");
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
-
+const isLoggedIn = require("./config/middleware/isLoggedIn");
 // Creating express app and configuring middleware needed for authentication
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -28,7 +28,12 @@ app.use(passport.session());
 app.engine(
   "handlebars",
   handlebars({
-    layoutsDir: __dirname + "/views/layouts"
+    layoutsDir: __dirname + "/views/layouts",
+    helpers: {
+      isLoggedIn: function() {
+        return isLoggedIn();
+      }
+    }
   })
 );
 app.set("view engine", "handlebars");
