@@ -19,6 +19,10 @@ module.exports = function(sequelize, DataTypes) {
       endTime: {
         type: DataTypes.DATE,
         allowNull: false
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       }
     },
     { freezeTableName: true }
@@ -40,6 +44,14 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+    Classes.belongsToMany(
+      models.user,
+      // User (member) can take many classes, class can have many users (members)
+      { through: "userClasses" },
+      {
+        onDelete: "CASCADE"
+      }
+    );
   };
   return Classes;
 };

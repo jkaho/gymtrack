@@ -1,4 +1,11 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
 form.signup,
 form.login {
   margin-top: 50px;
+}
+
+#index-navbar {
+    width: 100%;
 }

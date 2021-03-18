@@ -1,57 +1,90 @@
-<header>
-    <nav id="index-navbar" class="navbar navbar-expand-lg navbar-light col-12">
-        <a class="navbar-brand" href="">Gym Name</a>
-        <button id="index-nav-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-                    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul id="index-link" class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/classes">Classes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/reviews">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a id="profile-link" class="nav-link" href="/profile">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login"><span id="log-in-out">Log In</span></a> <!-- This should change to Log Out -->
-                </li>
-            </ul>
-        </div>  
-    </nav>
-</header>
-
 <div class="container">
     <div class="row">
         <div class="col-12">
             <h1>Profile</h1>
         </div>
     </div>
-    <!-- Not sure how to render data for a specific person using handlebars e.g. where id = 5 -->
     <div class="row">
         <div class="col-12">
-            <h2><!-- Member/Admin name--></h2>
-            <h4><!-- Member/Admin--></h4>
-            <!-- Add other info here later e.g. email, phone, etc. -->
-        </div>
-    </div>
+            <div class="user-info">
+                <h2>{{firstName}} {{lastName}}</h2>
+                <h5>{{userType}}</h5>
+                <p>
+                    <strong>Email:</strong> {{email}}<br>
+                    <strong>Date joined: </strong>{{dateJoined}}
+                <p>
+            </div>
+         </div>
+    </div> 
+
     <div class="row">
         <div class="col-12">
-            <h3>My Classes</h3>
-            <!-- Render Member/Admin's current classes -->
-            <!-- If no classes, show message and either one of the buttons below -->
-            <form action=""> <!-- For members with no booked classes -->
-                <input type="submit" value="Book Now">
-            </form>
-            <form action=""> <!-- For admins with no classes -->
-                <input type="submit" value="Create Class">
-            </form>
+            <div class="my-classes">
+                <div class="row">
+                    <div class="classes-heading">
+                        <div class="col-1"></div>
+                        <div class="col-6">
+                            <h3>My Classes</h3>
+                        </div>
+                        <div class="col-4">
+                            <form action=""> 
+                                <button id="add-class-btn" type="submit" value="addClass">
+                                    Create a class
+                                </button>
+                            </form>
+                            {{!-- <a id="add-class-link" href="/add-class">Create a class</a> --}}
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+                <!-- Render Member/Admin's current classes -->
+
+                {{#if instructor}}
+                    {{#if hasClasses}}
+                        {{#each instructorClasses}}
+                        <div class="instructor-class">
+                            <h4>{{name}} | {{classDate}}</h4>
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p>
+                            <a href="">Delete</a> | <a href="">Edit</a>
+                        </div>
+                        {{/each}}
+                    {{else}}
+                        <h3>You currently have no classes</h3>
+                        <form action="/add-class"> <!-- For admins with no classes -->
+                            <input type="submit" value="Create Class">
+                        </form>
+                    {{/if}}
+                {{/if}}
+                {{#if member}}
+                    {{#if hasClasses}}
+                        {{#each memberClasses}}
+                        <div class="member-class">
+                            <h4>{{name}} | {{classDate}}</h4>
+                            <h5>Class Instructor: {{classInstructor}}</h5>
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p>
+                            <!-- These forms pop up when class is over -->
+                            <form action=""> 
+                                <button type="submit" value="classReview">
+                                    Leave a class review
+                                </button>
+                            </form>
+                            <form action=""> 
+                                <button type="submit" value="instructorReview">
+                                    Leave an instructor review
+                                </button>
+                            </form>
+                        </div>
+                        {{/each}}
+                    {{else}}
+                        <h3>You currently have no booked classes</h3>
+                        <form action="/classes">
+                            <input type="submit" value="View Classes">
+                        </form>
+                    {{/if}}
+                {{/if}}
+            </div>
         </div>
     </div>
 </div>

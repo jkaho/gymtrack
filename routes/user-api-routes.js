@@ -10,6 +10,7 @@ module.exports = function(app) {
   // Route for login
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
+    // console.log(req.user);
   });
 
   // Route for signup
@@ -34,15 +35,15 @@ module.exports = function(app) {
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      res.json({
+        isLoggedIn: false
+      });
     } else {
       // Otherwise send back the user's info
+      const userName = req.user.firstName + " " + req.user.lastName;
       res.json({
-        firstName: req.user.firstName,
-        lastName: req.user.lastName,
-        dob: req.user.dob,
-        email: req.user.email,
-        instructor: req.user.instructor
+        isLoggedIn: true,
+        userName: userName
       });
     }
   });
