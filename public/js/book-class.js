@@ -2,7 +2,7 @@
 $(document).ready(() => {
   const bookingBtns = $(".book-withdraw");
   const notificationEl = $("#notification");
-  $(bookingBtns).each(function(i) {
+  $(bookingBtns).each(function() {
     // Grab class Id
     const classIdVal = this.getAttribute("data-id");
     InitialClass(classIdVal);

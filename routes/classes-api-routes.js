@@ -28,32 +28,40 @@ module.exports = function(app) {
   });
   // Route for joining classes
   app.post("/api/booking", (req, res) => {
-    db.userclasses
-      .create({
-        userId: req.user.id,
-        classId: req.body.classId
-      })
-      .then(() => {
-        res.redirect("/profile");
-      })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+    if (!req.user) {
+      res.redirect("/login");
+    } else {
+      db.userclasses
+        .create({
+          userId: req.user.id,
+          classId: req.body.classId
+        })
+        .then(() => {
+          res.redirect("/profile");
+        })
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    }
   });
   // Route for joining classes
   app.post("/api/withdraw", (req, res) => {
-    db.userclasses
-      .destroy({
-        where: {
-          userId: req.user.id,
-          classId: req.body.classId
-        }
-      })
-      .then(() => {
-        res.redirect("/profile");
-      })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+    if (!req.user) {
+      res.redirect("/login");
+    } else {
+      db.userclasses
+        .destroy({
+          where: {
+            userId: req.user.id,
+            classId: req.body.classId
+          }
+        })
+        .then(() => {
+          res.redirect("/profile");
+        })
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    }
   });
 };

@@ -5,11 +5,19 @@ module.exports = function(sequelize, DataTypes) {
     {
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        }
       },
       classId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Classes",
+          key: "id"
+        }
       }
     },
     { freezeTableName: true }
