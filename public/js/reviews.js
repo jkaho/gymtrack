@@ -283,6 +283,8 @@ $(document).ready(() => {
   // Grabbing data from modal forms to make HTTP POST request
   $("#add-class-review").on("click", event => {
     event.preventDefault();
+    $("#class-modal-bg").css("display", "none");
+    $("#instructor-modal-bg").css("display", "none");
     // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
     const classId = $("#class-reviews-list")
       .val()
@@ -340,7 +342,7 @@ $(document).ready(() => {
       confirmationModal.css("display", "none");
       $("#class-review-title-input").val(classReview.reviewTitle);
       $("#class-review-text-input").val(classReview.reviewText);
-      $("#class-review-modal").css("display", "block");
+      $("#class-modal-bg").css("display", "block");
     });
 
     $("#confirm-review").on("click", () => {
@@ -359,6 +361,8 @@ $(document).ready(() => {
 
   $("#add-instructor-review").on("click", event => {
     event.preventDefault();
+    $("#instructor-modal-bg").css("display", "none");
+    $("#class-modal-bg").css("display", "none");
     // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
     const instructorId = $("#instructor-reviews-list")
       .val()
@@ -416,7 +420,7 @@ $(document).ready(() => {
       confirmationModal.css("display", "none");
       $("#instructor-review-title-input").val(instructorReview.reviewTitle);
       $("#instructor-review-text-input").val(instructorReview.reviewText);
-      $("#instructor-review-modal").css("display", "block");
+      $("#instructor-modal-bg").css("display", "block");
     });
 
     $("#confirm-review").on("click", () => {
@@ -496,16 +500,22 @@ $(document).ready(() => {
   });
 
   function addClassReview(classId, reviewTitle, reviewText, rating, authorId) {
-    $.post("/api/add_class_review", {
-      classId: classId,
-      reviewTitle: reviewTitle,
-      reviewText: reviewText,
-      rating: rating,
-      authorId: authorId
-    })
-      .then(() => {
+    $.post(
+      "/api/add_class_review",
+      {
+        classId: classId,
+        reviewTitle: reviewTitle,
+        reviewText: reviewText,
+        rating: rating,
+        authorId: authorId
+      },
+      () => {
+        console.log("success!")
         $("#confirmation-modal-bg").css("display", "none");
-      })
+        $("#success-modal-bg").css("display", "block");
+      }
+    )
+
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
@@ -519,17 +529,22 @@ $(document).ready(() => {
     rating,
     authorId
   ) {
-    $.post("/api/add_instructor_review", {
-      instructorId: instructorId,
-      reviewTitle: reviewTitle,
-      reviewText: reviewText,
-      rating: rating,
-      authorId: authorId
-    })
-      .then(() => {
+    $.post(
+      "/api/add_instructor_review",
+      {
+        instructorId: instructorId,
+        reviewTitle: reviewTitle,
+        reviewText: reviewText,
+        rating: rating,
+        authorId: authorId
+      },
+      () => {
+        console.log("success!")
         $("#confirmation-modal-bg").css("display", "none");
-        // If there's an error, log the error
-      })
+        $("#success-modal-bg").css("display", "block");
+      }
+    )
+      // If there's an error, log the error
       .catch(err => {
         console.log(err);
       });

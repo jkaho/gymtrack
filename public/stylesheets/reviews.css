@@ -212,7 +212,7 @@
     font-weight: 200;
     text-align: center;
     border-bottom: solid 1px rgb(212, 210, 210);
-    margin: 1
+    margin: 10px;
 }
 
 .confirm-stars {
@@ -251,4 +251,35 @@
 .confirm-btn:hover {
     background-color: black;
     color: white;
+}
+
+/* Success modal */ 
+.success-modal-div {
+    position: relative;
+    width: 500px;
+    height: 250px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.success-heading {
+    height: 180px;
+    padding-top: 20px;
+    padding-left: 15px;
+    font-weight: 200;
+    text-align: center;
+    margin: 10px;
+    font-weight: 300;
+}
+
+.fa-check-circle {
+    color: rgb(138, 197, 71);
+    margin-bottom: 20px;
+}
+
+.success-btn-div {
+    width: fit-content;
+    margin: 0 auto;
 }
