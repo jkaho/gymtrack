@@ -283,6 +283,7 @@ $(document).ready(() => {
   // Grabbing data from modal forms to make HTTP POST request
   $("#add-class-review").on("click", event => {
     event.preventDefault();
+    // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
     const classId = $("#class-reviews-list")
       .val()
       .split("-")[1];
@@ -319,6 +320,7 @@ $(document).ready(() => {
 
   $("#add-instructor-review").on("click", event => {
     event.preventDefault();
+    // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
     const instructorId = $("#instructor-reviews-list")
       .val()
       .split("-")[1];
@@ -424,10 +426,9 @@ $(document).ready(() => {
       authorId: authorId
     })
       .then(() => {
-        // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
-        window.location.replace("/reviews");
-        // If there's an error, log the error
+        $("#class-modal-bg").css("display", "none");
       })
+      // If there's an error, log the error
       .catch(err => {
         console.log(err);
       });
@@ -448,8 +449,7 @@ $(document).ready(() => {
       authorId: authorId
     })
       .then(() => {
-        // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
-        window.location.replace("/reviews");
+        $("#instructor-modal-bg").css("display", "none");
         // If there's an error, log the error
       })
       .catch(err => {

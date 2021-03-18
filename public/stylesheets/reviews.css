@@ -188,4 +188,62 @@
     color: white;
 }
 
+/* Confirmation modal */
 
+.confirmation-review-div {
+    position: relative;
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.confirmation-heading {
+    background-color: rgb(46, 46, 71);
+    height: 100px;
+    padding-top: 20px;
+    padding-left: 15px;
+    color: white;
+    font-weight: 200;
+    text-align: center;
+}
+
+.confirm-stars {
+    margin-bottom: 10px;
+}
+
+.confirmation-review {
+    padding: 20px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.review-para {
+    border: solid 1px rgb(199, 199, 199);
+    border-radius: 4px;
+    padding: 5px;
+    height: 120px;
+    overflow: auto;
+}
+
+.confirmation-btn-div {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.confirm-btn {
+    font-size: 14px;
+    background-color: white;
+    border: solid 1px black;
+    padding: 5px;
+    margin: 5px;
+    height: 40px;
+    width: 120px;
+}
+
+.confirm-btn:hover {
+    background-color: black;
+    color: white;
+}
