@@ -8,7 +8,7 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #111;
     background-color: #fff;
-    display: block;
+    display: inline-block;
     /* margin: 0 auto; */
 }
 
@@ -83,8 +83,10 @@ body {
    width:100vw
 }
 
-.fb-ic{
+fab {
     width: 50px;
+    height: 50px;
+    color: white;
 }
 form{
     margin-top: 30px;
@@ -98,7 +100,6 @@ form{
 @media (max-width: 599px){
 body{
     width:100vw
-
 }
 .container{
     margin: 0 auto;
