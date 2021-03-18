@@ -500,21 +500,17 @@ $(document).ready(() => {
   });
 
   function addClassReview(classId, reviewTitle, reviewText, rating, authorId) {
-    $.post(
-      "/api/add_class_review",
-      {
-        classId: classId,
-        reviewTitle: reviewTitle,
-        reviewText: reviewText,
-        rating: rating,
-        authorId: authorId
-      },
-      () => {
-        console.log("success!")
+    $.post("/api/add_class_review", {
+      classId: classId,
+      reviewTitle: reviewTitle,
+      reviewText: reviewText,
+      rating: rating,
+      authorId: authorId
+    })
+      .done(() => {
         $("#confirmation-modal-bg").css("display", "none");
         $("#success-modal-bg").css("display", "block");
-      }
-    )
+      })
 
       // If there's an error, log the error
       .catch(err => {
@@ -529,21 +525,17 @@ $(document).ready(() => {
     rating,
     authorId
   ) {
-    $.post(
-      "/api/add_instructor_review",
-      {
-        instructorId: instructorId,
-        reviewTitle: reviewTitle,
-        reviewText: reviewText,
-        rating: rating,
-        authorId: authorId
-      },
-      () => {
-        console.log("success!")
+    $.post("/api/add_instructor_review", {
+      instructorId: instructorId,
+      reviewTitle: reviewTitle,
+      reviewText: reviewText,
+      rating: rating,
+      authorId: authorId
+    })
+      .done(() => {
         $("#confirmation-modal-bg").css("display", "none");
         $("#success-modal-bg").css("display", "block");
-      }
-    )
+      })
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
