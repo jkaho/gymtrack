@@ -325,7 +325,8 @@ module.exports = function(app) {
                   classDate: classDate,
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
-                  price: resultArr[i].dataValues.price
+                  price: resultArr[i].dataValues.price,
+                  id: resultArr[i].dataValues.id
                 };
                 db.user
                   .findOne({
@@ -384,7 +385,9 @@ module.exports = function(app) {
   app.get("/api/user_data", (req, res) => {
     if (req.user === undefined) {
       // The user is not logged in
-      res.json({});
+      res.json({
+        isLoggedIn: false
+      });
     } else {
       res.json({
         user: req.user

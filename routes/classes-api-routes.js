@@ -20,7 +20,7 @@ module.exports = function(app) {
         description: req.body.description,
         startTime: req.body.startTime,
         endTime: req.body.endTime,
-        adminId: req.instructor.id
+        instructorId: req.body.instructorId
       })
       .catch(err => {
         res.status(401).json(err);

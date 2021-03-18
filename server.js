@@ -51,4 +51,4 @@ db.sequelize.sync().then(() => {
   });
 });
 
-console.log(db)
+console.log(db);
