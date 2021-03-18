@@ -26,7 +26,8 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: {
         name: "authorId",
         allowNull: false
-      }
+      },
+      as: "classAuthor"
     });
     ClassReviews.belongsTo(models.classes, {
       // Class review can only refer to one class

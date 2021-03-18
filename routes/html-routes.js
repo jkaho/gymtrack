@@ -89,17 +89,17 @@ module.exports = function(app) {
             model: db.user,
             include: {
               model: db.instructorReviews,
-              include: { all: true }
-              //   include: [
-              //     {
-              //       model: db.user,
-              //       as: "author"
-              //     },
-              //     {
-              //       model: db.user,
-              //       as: "reviewedInstructor"
-              //     }
-              //   ]
+              //   include: { all: true }
+              include: [
+                {
+                  model: db.user,
+                  as: "author"
+                },
+                {
+                  model: db.user,
+                  as: "reviewedInstructor"
+                }
+              ]
             }
           }
         ]
