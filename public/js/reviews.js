@@ -283,7 +283,7 @@ $(document).ready(() => {
     event.preventDefault();
 
     const classReview = {
-      className: $("#class-reviews-list").val(),
+      classId: $("#class-reviews-list").val(),
       reviewTitle: $("#class-review-title-input").val(),
       reviewText: $("#class-review-text-input").val(),
       rating: rating,
@@ -291,7 +291,7 @@ $(document).ready(() => {
     };
 
     if (
-      !classReview.className ||
+      !classReview.classId ||
       !classReview.reviewTitle ||
       !classReview.reviewText ||
       !classReview.rating ||
@@ -301,7 +301,7 @@ $(document).ready(() => {
     }
 
     addClassReview(
-      classReview.className,
+      classReview.classId,
       classReview.reviewTitle,
       classReview.reviewTitle,
       classReview.rating
@@ -314,9 +314,36 @@ $(document).ready(() => {
 
   $("#add-instructor-review").on("submit", event => {
     event.preventDefault();
-    console.log($("#instructor-reviews-list").val());
-    console.log($("#instructor-review-title-input").val());
-    console.log($("#instructor-review-text-input").val());
+
+    const instructorReview = {
+      instructorId: $("#instructor-reviews-list").val(),
+      reviewTitle: $("#instructor-review-title-input").val(),
+      reviewText: $("#instructor-review-text-input").val(),
+      rating: rating,
+      authorId: authorId
+    };
+
+    if (
+      !instructorReview.instructorId ||
+      !instructorReview.reviewTitle ||
+      !instructorReview.reviewText ||
+      !instructorReview.rating ||
+      instructorReview.rating === 0
+    ) {
+      return;
+    }
+
+    addInstructorReview(
+      instructorReview.instructorName,
+      instructorReview.reviewTitle,
+      instructorReview.reviewTitle,
+      instructorReview.rating,
+      instructorReview.authorId
+    );
+
+    $("#instructor-review-title-input").val("");
+    $("#instructor-review-text-input").val("");
+    rating = 0;
   });
 
   $(".add-review").on("click", event => {
@@ -346,6 +373,31 @@ $(document).ready(() => {
       authorId: authorId
     })
       .then(() => {
+        // Add confirmation "Your booking was successful!" -> reload page and show new review
+        window.location.replace("/profile");
+        // If there's an error, log the error
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  function addInstructorReview(
+    instructorId,
+    reviewTitle,
+    reviewText,
+    rating,
+    authorId
+  ) {
+    $.post("/api/add_class_review", {
+      instructorId: instructorId,
+      reviewTitle: reviewTitle,
+      reviewText: reviewText,
+      rating: rating,
+      authorId: authorId
+    })
+      .then(() => {
+        // Add confirmation "Your booking was successful!" -> reload page and show new review
         window.location.replace("/profile");
         // If there's an error, log the error
       })

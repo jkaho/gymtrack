@@ -19,14 +19,16 @@ module.exports = function(app) {
   });
   // Route for adding new class reviews
   app.post("/api/add_instructor_review", (req, res) => {
-    db.InstructorReviews.create({
-      title: req.body.title,
-      review: req.body.review,
-      rating: req.body.ratingdescription,
-      authorId: req.user.id,
-      instructorId: req.instructor.id //Not sure if it's req.instructor
-    }).catch(err => {
-      res.status(401).json(err);
-    });
+    db.instructorReviews
+      .create({
+        title: req.body.reviewTitle,
+        review: req.body.reviewText,
+        rating: req.body.rating,
+        authorId: req.body.authorId,
+        instructorId: req.body.instructorId //Not sure if it's req.instructor
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
   });
 };

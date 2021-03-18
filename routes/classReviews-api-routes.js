@@ -9,8 +9,8 @@ module.exports = function(app) {
         title: req.body.reviewTitle,
         review: req.body.reviewText,
         rating: req.body.rating,
-        authorId: req.user.authorId,
-        classId: req.class.id //Not sure if it's req.class
+        authorId: req.body.authorId,
+        classId: req.body.classId //Not sure if it's req.class
       })
       .catch(err => {
         res.status(401).json(err);
