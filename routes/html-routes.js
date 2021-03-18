@@ -32,6 +32,13 @@ module.exports = function(app) {
     });
   });
   app.get("/classes", (req, res) => {
+    let loggedIn = false;
+    if (req.user) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
+
     const classes = [];
     let instructorName;
     let classDate;
@@ -51,7 +58,7 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { classes: classes });
+        res.render("classes", { classes: classes, loggedIn: loggedIn });
       });
   });
   app.get("/reviews", (req, res) => {
