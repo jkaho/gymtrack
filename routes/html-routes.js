@@ -89,24 +89,28 @@ module.exports = function(app) {
             model: db.user,
             include: {
               model: db.instructorReviews,
-              //   include: { all: true }
-              include: [
-                {
-                  model: db.user,
-                  as: "author"
-                },
-                {
-                  model: db.user,
-                  as: "reviewedInstructor"
-                }
-              ]
+                include: { all: true }
+            //   include: [
+            //     {
+            //       model: db.user,
+            //       as: "author"
+            //     },
+            //     {
+            //       model: db.user,
+            //       as: "reviewedInstructor"
+            //     }
+            //   ]
             }
           }
         ]
       })
       .then(results => {
         // Loop through each class
+        let counterOne = 0;
+        let classesLength;
         results.forEach(result => {
+          counterOne++;
+          classesLength = results.length;
           //   Grab array of class reviews from each class
           const rawClassReviews = result.dataValues.classReviews;
           if (rawClassReviews.length > 0) {
@@ -169,59 +173,82 @@ module.exports = function(app) {
               " " +
               result.dataValues.user.lastName;
             // Loop through array of instructor reviews
+            let counterTwo = 0;
             rawInstructorReviews.forEach(rawInstructorReview => {
+              counterTwo++;
               //   console.log(rawInstructorReview);
               // Push each review to instructorReviews
               //   rawInstructorReview.dataValues.author =
               //     rawClassReview.dataValues.user.dataValues.firstName +
               //     " " +
               //     rawClassReview.dataValues.user.dataValues.lastName;
-              if (rawInstructorReview.dataValues.rating === 5) {
-                rawInstructorReview.dataValues.ratingFive = true;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else if (rawInstructorReview.dataValues.rating === 4) {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = true;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else if (rawInstructorReview.dataValues.rating === 3) {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = true;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else if (rawInstructorReview.dataValues.rating === 2) {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = true;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = true;
-              }
-              instructorReviews.push(rawInstructorReview.dataValues);
+
+              db.user
+                .findOne({
+                  where: {
+                    id: rawInstructorReview.dataValues.authorId
+                  }
+                })
+                .then(result => {
+                  rawInstructorReview.dataValues.author =
+                    result.dataValues.firstName +
+                    " " +
+                    result.dataValues.lastName;
+                  if (rawInstructorReview.dataValues.rating === 5) {
+                    rawInstructorReview.dataValues.ratingFive = true;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 4) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = true;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 3) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = true;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 2) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = true;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = true;
+                  }
+                  instructorReviews.push(rawInstructorReview.dataValues);
+
+                  if (counterTwo === rawInstructorReviews.length) {
+                      console.log(counterTwo)
+                      console.log(rawInstructorReviews.length)
+                    const instructor = {
+                        instructorName: instructorName,
+                        instructorReviews: instructorReviews
+                      };
+                      instructors.push(instructor);
+                  }
+                  if (counterTwo === rawInstructorReviews.length && counterOne === classesLength) {
+                      console.log(classesLength)
+                    res.render("reviews", {
+                        loggedIn: loggedIn,
+                        gymClasses: gymClasses,
+                        classReviewsExist: classReviewsExist,
+                        instructors: instructors,
+                        instructorReviewsExist: instructorReviewsExist
+                      });
+                  }
+                });
             });
-            const instructor = {
-              instructorName: instructorName,
-              instructorReviews: instructorReviews
-            };
-            instructors.push(instructor);
           }
-        });
-        res.render("reviews", {
-          loggedIn: loggedIn,
-          gymClasses: gymClasses,
-          classReviewsExist: classReviewsExist,
-          instructors: instructors,
-          instructorReviewsExist: instructorReviewsExist
         });
       });
   });
