@@ -1,0 +1,130 @@
+/* *, ::after, ::before{
+    box-sizing: content-box;
+} */
+
+body {
+    font-size: inherit;
+    line-height: inherit;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #111;
+    background-color: #fff;
+    display: inline-block;
+    /* margin: 0 auto; */
+}
+
+.container {
+    margin: 20px;
+ 
+}
+
+#index-navbar {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border-bottom: #111 2px solid;
+}
+
+.navbar-brand{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#home {
+    margin-top: 10px;
+    /* margin-left: 20px; */
+}
+
+/*not working*/
+#navbarSupportedContent {
+    text-align: right;
+}
+
+#home-image {
+    margin: 0 auto;
+    width: 100vw;
+    height: auto;
+    vertical-align: auto;
+    /* margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px; */
+}
+
+.page-link-img{
+ float: inherit;
+}
+
+.link-button{
+    display: inline-block;
+    height: auto;
+    padding: 14px 30px;
+    background: transparent;
+    background-image: none !important;
+    color: inherit !important;
+    letter-spacing: 0.03em;
+    font-size: 16px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.link-pages{
+    margin-top: 30px;
+    line-height: 60%;
+    margin: 20px;
+    width: 100vw;
+}
+
+
+
+.page-footer{
+   margin-top: 30px;
+   background-color: #111;
+   color: #fff;
+   width:100vw
+}
+
+fab {
+    width: 50px;
+    height: 50px;
+    color: white;
+}
+form{
+    margin-top: 30px;
+}
+
+
+@media (min-width: 600px){
+
+}
+
+@media (max-width: 599px){
+body{
+    width:100vw
+}
+.container{
+    margin: 0 auto;
+}
+.row{
+    margin: 0 auto;
+}
+#home-image{
+    width: 100vw;
+    height: auto;
+    vertical-align: middle;
+}
+.page-link-img{
+    width: 100vw;
+    height: auto;
+}
+.link-pages{
+    margin: 0;
+}
+
+.link-button{
+    padding: 10px 20px; 
+}
+.page-footer{
+   padding: 20px;
+   width: 100vw;
+}
+}
