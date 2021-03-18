@@ -8,13 +8,13 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #111;
     background-color: #fff;
+    display: block;
+    /* margin: 0 auto; */
 }
 
 .container {
-    vertical-align: middle;
-    display: grid;
-    /* margin-left: 20px;
-    margin-right: 20px; */
+    margin: 20px;
+ 
 }
 
 #index-navbar {
@@ -40,15 +40,17 @@ body {
 }
 
 #home-image {
+    margin: 0 auto;
+    width: 100vw;
+    height: auto;
+    vertical-align: auto;
     /* margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px; */
 }
 
 .page-link-img{
-    border-color: gray;
-    border-radius: 1px;
-    vertical-align: middle;
+ float: inherit;
 }
 
 .link-button{
@@ -59,7 +61,7 @@ body {
     background-image: none !important;
     color: inherit !important;
     letter-spacing: 0.03em;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -68,15 +70,60 @@ body {
 .link-pages{
     margin-top: 30px;
     line-height: 60%;
-
+    margin: 20px;
+    width: 100vw;
 }
 
+
+
 .page-footer{
-    margin-top: 30px;
+   margin-top: 30px;
    background-color: #111;
    color: #fff;
+   width:100vw
 }
 
 .fb-ic{
     width: 50px;
+}
+form{
+    margin-top: 30px;
+}
+
+
+@media (min-width: 600px){
+
+}
+
+@media (max-width: 599px){
+body{
+    width:100vw
+
+}
+.container{
+    margin: 0 auto;
+}
+.row{
+    margin: 0 auto;
+}
+#home-image{
+    width: 100vw;
+    height: auto;
+    vertical-align: middle;
+}
+.page-link-img{
+    width: 100vw;
+    height: auto;
+}
+.link-pages{
+    margin: 0;
+}
+
+.link-button{
+    padding: 10px 20px; 
+}
+.page-footer{
+   padding: 20px;
+   width: 100vw;
+}
 }
