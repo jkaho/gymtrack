@@ -186,7 +186,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="class-review-title-input" placeholder="Title">
+                    <input type="text" class="form-control" id="class-review-title-input" placeholder="Title" required>
                 </div>
                 <div class="form-group">
                     <i class="rate-star-c fas fa-star" id="star-one-c"></i>
@@ -196,7 +196,7 @@
                     <i class="rate-star-c fas fa-star" id="star-five-c"></i>
                 </div>
                 <div class="form-group">
-                    <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us"></textarea>
+                    <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us" required></textarea>
                 </div>
                 <button type="submit" id="add-class-review" class="add-review-btn btn btn-default">Submit</button>
             </form>
@@ -220,7 +220,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="instructor-review-title-input" placeholder="Title">
+                    <input type="text" class="form-control" id="instructor-review-title-input" placeholder="Title" required>
                 </div>
                 <div class="form-group">
                     <i class="rate-star-i fas fa-star" id="star-one-i"></i>
@@ -230,7 +230,7 @@
                     <i class="rate-star-i fas fa-star" id="star-five-i"></i>
                 </div>
                 <div class="form-group">
-                    <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us"></textarea>
+                    <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us" required></textarea>
                 </div>
                 <button type="submit" id="add-instructor-review" class="add-review-btn btn btn-default">Submit</button>
             </form>
@@ -239,26 +239,42 @@
 </div>
 
 <!-- Modal for review confirmation -->
-<div id="confirmation-modal-bg" class="modal-bg" style="display:block">
+<div id="confirmation-modal-bg" class="modal-bg">
     <div class="add-review-modal">
         <div class="confirmation-review-div">
             <div class="confirmation-heading">
+                <i class="fas fa-question-circle fa-3x"></i>
                 <h4>Confirmation</h4>
                 <p>Are you sure you want to leave this review?</p>
             </div>
             <div class="confirmation-review">
-                <h5>Review title</h5>
-                <div class="confirm-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="review-para">Review text</div>
+                <!-- Dynamically render review info -->
             </div>
             <div class="confirmation-btn-div">
-                <button class="confirm-btn" type="submit">Go back</button>
-                <button class="confirm-btn" type="submit">Confirm</button>
+                <button id="go-back" class="confirm-btn" type="submit">Go back</button>
+                <button id="confirm-review" class="confirm-btn" type="submit">Confirm</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Success message modal --> 
+<div id="success-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="confirmation-review-div">
+            <div class="confirmation-heading">
+                <i class="fas fa-check-circle fa-3x"></i><br>
+                <h4>Thank you!</h4>
+                <p>We really take your feedback to heart and strive to improve everyday.</p>
+            </div>
+            <div class="confirmation-review">
+                <!-- Dynamically render review info -->
+            </div>
+            <div class="confirmation-btn-div">
+                <button id="go-back" class="confirm-btn" type="submit">Go back</button>
+                <button id="confirm-review" class="confirm-btn" type="submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
