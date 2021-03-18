@@ -6,48 +6,61 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <h2>{{firstName}} {{lastName}}</h2>
-            <h5>{{userType}}</h5>
-            <p>Email: {{email}}<p>
-            <p>Date joined: {{dateJoined}}</p>
+            <div class="user-info">
+                <h2>{{firstName}} {{lastName}}</h2>
+                <h5>{{userType}}</h5>
+                <p>
+                    <strong>Email:</strong> {{email}}<br>
+                    <strong>Date joined: </strong>{{dateJoined}}
+                <p>
+            </div>
          </div>
     </div> 
 
     <div class="row">
         <div class="col-12">
-            <h3>My Classes</h3><a href="/add-class">Create a class</a>
-            <!-- Render Member/Admin's current classes -->
-
-            {{#if instructor}}
-                {{#if hasClasses}}
-                    {{#each instructorClasses}}
-                    <div>
-                        <div>
-                            <h4>{{name}}, {{classDate}}</h4>
-                            <p>Description: {{description}}</p>
-                            <p>Price: ${{price}}/class </p>
+            <div class="my-classes">
+                <div class="row">
+                    <div class="classes-heading">
+                        <div class="col-1"></div>
+                        <div class="col-6">
+                            <h3>My Classes</h3>
+                        </div>
+                        <div class="col-4">
                             <form action=""> 
-                                <button type="submit" value="Delete">
-                                    Delete
+                                <button id="add-class-btn" type="submit" value="addClass">
+                                    Create a class
                                 </button>
                             </form>
-                            <a href="/reviews">View Reviews</a>
+                            {{!-- <a id="add-class-link" href="/add-class">Create a class</a> --}}
                         </div>
+                        <div class="col-1"></div>
                     </div>
-                    {{/each}}
-                {{else}}
-                    <h3>You currently have no classes</h3>
-                    <form action="/add-class"> <!-- For admins with no classes -->
-                        <input type="submit" value="Create Class">
-                    </form>
+                </div>
+                <!-- Render Member/Admin's current classes -->
+
+                {{#if instructor}}
+                    {{#if hasClasses}}
+                        {{#each instructorClasses}}
+                        <div class="instructor-class">
+                            <h4>{{name}} | {{classDate}}</h4>
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p>
+                            <a href="">Delete</a> | <a href="">Edit</a>
+                        </div>
+                        {{/each}}
+                    {{else}}
+                        <h3>You currently have no classes</h3>
+                        <form action="/add-class"> <!-- For admins with no classes -->
+                            <input type="submit" value="Create Class">
+                        </form>
+                    {{/if}}
                 {{/if}}
-            {{/if}}
-            {{#if member}}
-                {{#if hasClasses}}
-                    {{#each memberClasses}}
-                    <div>
-                        <div>
-                            <h4>{{name}}, {{classDate}}</h4>
+                {{#if member}}
+                    {{#if hasClasses}}
+                        {{#each memberClasses}}
+                        <div class="member-class">
+                            <h4>{{name}} | {{classDate}}</h4>
                             <h5>Class Instructor: {{classInstructor}}</h5>
                             <p>Description: {{description}}</p>
                             <p>Price: ${{price}}/class </p>
@@ -63,15 +76,15 @@
                                 </button>
                             </form>
                         </div>
-                    </div>
-                    {{/each}}
-                {{else}}
-                    <h3>You currently have no booked classes</h3>
-                    <form action="/classes">
-                        <input type="submit" value="View Classes">
-                    </form>
+                        {{/each}}
+                    {{else}}
+                        <h3>You currently have no booked classes</h3>
+                        <form action="/classes">
+                            <input type="submit" value="View Classes">
+                        </form>
+                    {{/if}}
                 {{/if}}
-            {{/if}}
+            </div>
         </div>
     </div>
 </div>
