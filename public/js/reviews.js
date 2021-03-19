@@ -286,6 +286,9 @@ $(document).ready(() => {
     $("#instructor-modal-bg").css("display", "none");
   });
 
+  const confirmationModal = $("#confirmation-modal-bg");
+  let classReview = {};
+
   // Grabbing data from modal forms to make HTTP POST request
   $("#add-class-review").on("click", event => {
     event.preventDefault();
@@ -295,7 +298,7 @@ $(document).ready(() => {
     const classId = $("#class-reviews-list")
       .val()
       .split("-")[1];
-    const classReview = {
+    classReview = {
       classId: parseInt(classId),
       reviewTitle: $("#class-review-title-input").val(),
       reviewText: $("#class-review-text-input").val(),
@@ -313,8 +316,9 @@ $(document).ready(() => {
       return;
     }
 
-    const confirmationModal = $("#confirmation-modal-bg");
-    const confirmTitle = $("<h5>" + classReview.reviewTitle + "</h5>");
+    const confirmTitle = $(
+      "<h5 id='confirm-class'>" + classReview.reviewTitle + "</h5>"
+    );
     let confirmRating;
     if (classReview.rating === 1) {
       confirmRating = $(
@@ -343,27 +347,9 @@ $(document).ready(() => {
     $(".confirmation-review").empty();
     $(".confirmation-review").append(confirmTitle, confirmRating, confirmText);
     confirmationModal.css("display", "block");
-
-    $("#go-back").on("click", () => {
-      confirmationModal.css("display", "none");
-      $("#class-review-title-input").val(classReview.reviewTitle);
-      $("#class-review-text-input").val(classReview.reviewText);
-      $("#class-modal-bg").css("display", "block");
-    });
-
-    $("#confirm-review").on("click", () => {
-      addClassReview(
-        classReview.classId,
-        classReview.reviewTitle,
-        classReview.reviewText,
-        classReview.rating,
-        classReview.authorId
-      );
-      rating = 0;
-      $("#class-review-title-input").val("");
-      $("#class-review-text-input").val("");
-    });
   });
+
+  let instructorReview = {};
 
   $("#add-instructor-review").on("click", event => {
     event.preventDefault();
@@ -373,7 +359,7 @@ $(document).ready(() => {
     const instructorId = $("#instructor-reviews-list")
       .val()
       .split("-")[1];
-    const instructorReview = {
+    instructorReview = {
       instructorId: parseInt(instructorId),
       reviewTitle: $("#instructor-review-title-input").val(),
       reviewText: $("#instructor-review-text-input").val(),
@@ -391,8 +377,9 @@ $(document).ready(() => {
       return;
     }
 
-    const confirmationModal = $("#confirmation-modal-bg");
-    const confirmTitle = $("<h5>" + instructorReview.reviewTitle + "</h5>");
+    const confirmTitle = $(
+      "<h5 id='confirm-instructor'>" + instructorReview.reviewTitle + "</h5>"
+    );
     let confirmRating;
     if (instructorReview.rating === 1) {
       confirmRating = $(
@@ -421,15 +408,21 @@ $(document).ready(() => {
     $(".confirmation-review").empty();
     $(".confirmation-review").append(confirmTitle, confirmRating, confirmText);
     confirmationModal.css("display", "block");
+  });
 
-    $("#go-back").on("click", () => {
-      confirmationModal.css("display", "none");
-      $("#instructor-review-title-input").val(instructorReview.reviewTitle);
-      $("#instructor-review-text-input").val(instructorReview.reviewText);
-      $("#instructor-modal-bg").css("display", "block");
-    });
-
-    $("#confirm-review").on("click", () => {
+  $("#confirm-review").on("click", () => {
+    if ($(".confirmation-review h5").attr("id") === "confirm-class") {
+      addClassReview(
+        classReview.classId,
+        classReview.reviewTitle,
+        classReview.reviewText,
+        classReview.rating,
+        classReview.authorId
+      );
+      rating = 0;
+      $("#class-review-title-input").val("");
+      $("#class-review-text-input").val("");
+    } else {
       addInstructorReview(
         instructorReview.instructorId,
         instructorReview.reviewTitle,
@@ -440,7 +433,21 @@ $(document).ready(() => {
       rating = 0;
       $("#instructor-review-title-input").val("");
       $("#instructor-review-text-input").val("");
-    });
+    }
+  });
+
+  $("#go-back").on("click", () => {
+    if ($(".confirmation-review h5").attr("id") === "confirm-class") {
+      confirmationModal.css("display", "none");
+      $("#class-review-title-input").val(classReview.reviewTitle);
+      $("#class-review-text-input").val(classReview.reviewText);
+      $("#class-modal-bg").css("display", "block");
+    } else {
+      confirmationModal.css("display", "none");
+      $("#instructor-review-title-input").val(instructorReview.reviewTitle);
+      $("#instructor-review-text-input").val(instructorReview.reviewText);
+      $("#instructor-modal-bg").css("display", "block");
+    }
   });
 
   $(".add-review").on("click", event => {
@@ -455,6 +462,8 @@ $(document).ready(() => {
             classOptions = result;
             const classSelect = $("#class-reviews-list");
             classSelect.empty();
+            // $("#class-review-title-input").val("");
+            // $("#class-review-text-input").val("");
             if (classOptions.length < 1) {
               const classOption = $(
                 "<option value='no-classes'>No classes</option"
@@ -479,6 +488,8 @@ $(document).ready(() => {
             instructorOptions = result;
             const instructorSelect = $("#instructor-reviews-list");
             instructorSelect.empty();
+            // $("#instructor-review-title-input").val("");
+            // $("#instructor-review-text-input").val("");
             if (instructorOptions.length < 1) {
               const instructorOption = $(
                 "<option value='no-instructors'>No instructors</option"
@@ -548,6 +559,7 @@ $(document).ready(() => {
   }
 
   function showSuccessMessage() {
+    console.log("added to class!");
     $("#confirmation-modal-bg").css("display", "none");
     $("#success-modal-bg").css("display", "block");
   }
