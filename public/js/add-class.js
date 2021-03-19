@@ -59,19 +59,19 @@ $(document).ready(() => {
     price,
     instructorId
   ) {
-    $.post("/api/add_class", {
-      name: name,
-      description: description,
-      startTime: startTime,
-      endTime: endTime,
-      price: price,
-      instructorId: instructorId
-    })
-      .then(() => {
-        window.location.replace("/profile");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    $.post(
+      "/api/add_class",
+      {
+        name: name,
+        description: description,
+        startTime: startTime,
+        endTime: endTime,
+        price: price,
+        instructorId: instructorId
+      },
+      window.location.replace("/profile")
+    ).catch(err => {
+      console.log(err);
+    });
   }
 });

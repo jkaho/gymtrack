@@ -80,6 +80,11 @@
     margin-right: 20px;
 }
 
+.description-container {
+    max-height: 50px;
+    overflow: auto;
+}
+
 #cancel-btn {
     border: solid 1px rgb(212, 56, 56);
     color: rgb(212, 56, 56);
@@ -138,15 +143,13 @@
     width: 100%;
 }
 
-#edit-class-btn:hover {
+.edit-class-btn:hover {
     color: rgb(255, 166, 0);
+    background-color: rgb(248, 247, 247);
 }
 
-#delete-class-btn:hover {
+.delete-class-btn:hover {
     color: rgb(212, 56, 56);
-}
-
-.class-options-btn:hover {
     background-color: rgb(248, 247, 247);
 }
 
@@ -158,4 +161,54 @@
 
 .left-border {
     border-left: solid 1px rgb(236, 235, 235);
+}
+
+/* Edit modal */
+
+.edit-icon {
+    color: rgb(255, 166, 0);
+    margin-bottom: 20px;
+}
+
+.edit-class-div  {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.edit-class-heading {
+    height: 160px;
+    padding-top: 20px;
+    padding-left: 15px;
+    font-weight: 200;
+    text-align: center;
+    border-bottom: solid 1px rgb(212, 210, 210);
+    margin: 10px;
+}
+
+#class-info {
+    padding: 0 20px;
+}
+
+.table-row-one p {
+    margin-top: 5px;
+}
+
+.t2 {
+    vertical-align: top;
+}
+
+#edit-table input, #edit-table textarea {
+    width: 300px;
+    height: 30px;
+    border: solid 1px rgb(206, 206, 206);
+}
+
+#edit-table textarea {
+    height: 150px;
+    resize: none;
 }

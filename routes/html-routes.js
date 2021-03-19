@@ -300,7 +300,16 @@ module.exports = function(app) {
                   classDate = moment(rawClassDate).format(
                     "dddd, MMMM Do, h:mma"
                   );
+                  htmlClassDate = moment(rawClassDate).format("YYYY-MM-DD");
+                  htmlStartTime = moment(rawClassDate).format("HH:mm:ss");
+                  htmlEndTime = moment(result.dataValues.endTime).format(
+                    "HH:mm:ss"
+                  );
                   const instructorClass = {
+                    classId: result.dataValues.id,
+                    htmlClassDate: htmlClassDate,
+                    htmlStartTime: htmlStartTime,
+                    htmlEndTime: htmlEndTime,
                     classDate: classDate,
                     name: result.dataValues.name,
                     description: result.dataValues.description,
@@ -392,7 +401,11 @@ module.exports = function(app) {
       });
   });
   app.get("/add-class", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/add-class.html"));
+    if (!req.user) {
+      res.redirect("/login");
+    } else {
+      res.sendFile(path.join(__dirname, "../public/add-class.html"));
+    }
   });
   // Get all existing bookings
   app.get("/userclasses", (req, res) => {

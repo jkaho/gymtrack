@@ -48,7 +48,7 @@ module.exports = function(app) {
     }
   });
 
-  // Route for joining classes
+  // Route for withdrawing from classes
   app.post("/api/withdraw", (req, res) => {
     if (!req.user) {
       res.redirect("/login");
@@ -78,7 +78,7 @@ module.exports = function(app) {
           descrption: req.body.description,
           startTime: req.body.startTime,
           endTime: req.body.endTime,
-          instructorId: req.body.instructorId
+          price: req.body.price
         },
         {
           where: {

@@ -36,10 +36,10 @@
                             </button>
                         </form>
                         {{#each instructorClasses}}
-                        <div class="instructor-class">
+                        <div id="class-no-{{classId}}" class="instructor-class">
                             <div class="instructor-class-info">
                                 <div class="single-class-heading">
-                                    <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}</span></h4>
+                                    <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span" value="{{htmlClassDate}} {{htmlStartTime}} {{htmlEndTime}}">{{classDate}}</span></h4>
                                 </div>
                                 <table class="class-table">
                                     <tr>
@@ -47,7 +47,9 @@
                                             <p>DESCRIPTION:</p>
                                         </td>
                                         <td class="table-row-two">
-                                            <p>{{description}}</p>
+                                            <div class="description-container">
+                                                <p>{{description}}</p>
+                                            </div>                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -55,28 +57,26 @@
                                             <p>COST PER CLASS:</p>
                                         </td>
                                         <td class="table-row-two">
-                                            <p>${{price}}</p>
+                                            <p class="class-price-p">${{price}}</p>
                                         </td>
                                     </tr>                            
                                 </table>
-                                {{!-- <p>Description: {{description}}</p>
-                                <p>Price: ${{price}}/class </p> --}}
                             </div>
                             <table class="instructor-class-options">
                                 <tr>
                                     <td class="table-row-instructor">
-                                        <form class="class-options-form" action=""> 
-                                            <button id="edit-class-btn" type="submit" class="class-options-btn">
+                                        <div class="class-options-form"> 
+                                            <button id="edit-class-btn-{{classId}}" type="submit" class="class-options-btn edit-class-btn">
                                                 <i class="fas fa-edit"></i> Edit
                                             </button>
-                                        </form>
+                                        </div>
                                     </td>
                                     <td class="table-row-instructor left-border">
-                                        <form class="class-options-form"  action=""> 
-                                            <button id="delete-class-btn" type="submit" class="class-options-btn">
+                                        <div class="class-options-form"> 
+                                            <button id="delete-class-btn-{{classId}}" type="submit" class="class-options-btn delete-class-btn">
                                                 <i class="fas fa-minus-circle"></i> Delete
                                             </button>
-                                        </form>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
@@ -110,7 +110,9 @@
                                         <p>DESCRIPTION:</p>
                                     </td>
                                     <td class="table-row-two">
-                                        <p>{{description}}</p>
+                                        <div class="description-container">
+                                            <p>{{description}}:</p>
+                                        </div>       
                                     </td>
                                 </tr>
                                 <tr>
@@ -136,6 +138,81 @@
                         </form>
                     {{/if}}
                 {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for editing classes -->
+<div id="edit-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="edit-class-div">
+            <div class="edit-class-heading">
+                <i class="fas fa-edit edit-icon fa-3x"></i>
+                <h4>Edit Class</h4>
+                <p>Make changes to your class.</p>
+            </div>
+            <div id="class-info">
+                <!-- Dynamically render class info -->
+                <table id="edit-table" class="class-table">
+                    <tr>
+                        <td class="table-row-one">
+                            <p>TITLE:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class title -->
+                            <input id="title-check" type="text">                                            
+                        </td>
+                    </tr>                    <tr>
+                        <td class="table-row-one">
+                            <p>DESCRIPTION:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class description -->
+                            <textarea id="description-check" class="description-container"></textarea>                                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-row-one">
+                            <p>DATE:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class date -->
+                            <input id="date-check" type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-row-one">
+                            <p>START TIME:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class start time -->
+                            <input id="starttime-check" type="time">
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td class="table-row-one">
+                            <p>END TIME:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class end time -->
+                            <input id="endtime-check" type="time">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-row-one">
+                            <p>COST PER CLASS:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class price -->
+                            <input id="price-check" type="number">
+                        </td>
+                    </tr>                                                                          
+                </table>
+            </div>
+            <div id="edit-btn-div" class="confirmation-btn-div">
+                <button id="go-back-profile" class="confirm-btn" type="submit">Go back</button>
+                <button id="confirm-edit" class="confirm-btn" type="submit">Confirm</button>
             </div>
         </div>
     </div>
