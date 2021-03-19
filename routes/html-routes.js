@@ -38,6 +38,7 @@ module.exports = function(app) {
     } else {
       loggedIn = false;
     }
+
     const classes = [];
     let instructorName;
     let classDate;
@@ -57,9 +58,10 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { loggedIn: loggedIn, classes: classes });
+        res.render("classes", { classes: classes, loggedIn: loggedIn });
       });
   });
+
   app.get("/reviews", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -90,16 +92,6 @@ module.exports = function(app) {
             include: {
               model: db.instructorReviews,
               include: { all: true }
-              //   include: [
-              //     {
-              //       model: db.user,
-              //       as: "author"
-              //     },
-              //     {
-              //       model: db.user,
-              //       as: "reviewedInstructor"
-              //     }
-              //   ]
             }
           }
         ]
@@ -159,70 +151,96 @@ module.exports = function(app) {
             };
             gymClasses.push(gymClass);
           }
+        });
 
-          const rawInstructorReviews = result.dataValues.user.instructorReviews;
-          if (rawInstructorReviews.length > 0) {
-            instructorReviewsExist = true;
-            instructorReviews = [];
-            instructorName =
-              result.dataValues.user.firstName +
-              " " +
-              result.dataValues.user.lastName;
-            // Loop through array of instructor reviews
-            rawInstructorReviews.forEach(rawInstructorReview => {
-              //   console.log(rawInstructorReview);
-              // Push each review to instructorReviews
-              //   rawInstructorReview.dataValues.author =
-              //     rawClassReview.dataValues.user.dataValues.firstName +
-              //     " " +
-              //     rawClassReview.dataValues.user.dataValues.lastName;
-              if (rawInstructorReview.dataValues.rating === 5) {
-                rawInstructorReview.dataValues.ratingFive = true;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else if (rawInstructorReview.dataValues.rating === 4) {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = true;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else if (rawInstructorReview.dataValues.rating === 3) {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = true;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else if (rawInstructorReview.dataValues.rating === 2) {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = true;
-                rawInstructorReview.dataValues.ratingOne = false;
-              } else {
-                rawInstructorReview.dataValues.ratingFive = false;
-                rawInstructorReview.dataValues.ratingFour = false;
-                rawInstructorReview.dataValues.ratingThree = false;
-                rawInstructorReview.dataValues.ratingTwo = false;
-                rawInstructorReview.dataValues.ratingOne = true;
+        db.user
+          .findAll({
+            where: {
+              instructor: true
+            },
+            include: [db.instructorReviews]
+          })
+          .then(results => {
+            results.forEach(result => {
+              const rawInstructorReviews = result.dataValues.instructorReviews;
+              if (rawInstructorReviews.length > 0) {
+                instructorReviewsExist = true;
+                instructorReviews = [];
+                instructorName =
+                  result.dataValues.firstName +
+                  " " +
+                  result.dataValues.lastName;
+                // Loop through array of class reviews
+                rawInstructorReviews.forEach(rawInstructorReview => {
+                  if (rawInstructorReview.dataValues.rating === 5) {
+                    rawInstructorReview.dataValues.ratingFive = true;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 4) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = true;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 3) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = true;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else if (rawInstructorReview.dataValues.rating === 2) {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = true;
+                    rawInstructorReview.dataValues.ratingOne = false;
+                  } else {
+                    rawInstructorReview.dataValues.ratingFive = false;
+                    rawInstructorReview.dataValues.ratingFour = false;
+                    rawInstructorReview.dataValues.ratingThree = false;
+                    rawInstructorReview.dataValues.ratingTwo = false;
+                    rawInstructorReview.dataValues.ratingOne = true;
+                  }
+                  // Push each review to instructorReviews
+                  instructorReviews.push(rawInstructorReview.dataValues);
+                });
+                // Create instructor obj containing instructor name and associated reviews
+                const instructor = {
+                  instructorName: instructorName,
+                  instructorReviews: instructorReviews
+                };
+                // Push instructor obj to instructors
+                instructors.push(instructor);
               }
-              instructorReviews.push(rawInstructorReview.dataValues);
             });
-            const instructor = {
-              instructorName: instructorName,
-              instructorReviews: instructorReviews
-            };
-            instructors.push(instructor);
-          }
-        });
-        res.render("reviews", {
-          loggedIn: loggedIn,
-          gymClasses: gymClasses,
-          classReviewsExist: classReviewsExist,
-          instructors: instructors,
-          instructorReviewsExist: instructorReviewsExist
-        });
+            // Query for all users
+            db.user.findAll({}).then(users => {
+              instructors.forEach(instructor => {
+                const instructorReviews = instructor.instructorReviews;
+                instructorReviews.forEach(instructorReview => {
+                  users.forEach(user => {
+                    // Compare each user's id to each instructorReview authorId
+                    if (user.dataValues.id === instructorReview.authorId) {
+                      instructorReview.author =
+                        user.dataValues.firstName +
+                        " " +
+                        user.dataValues.lastName;
+                    }
+                  });
+                });
+              });
+
+              res.render("reviews", {
+                loggedIn: loggedIn,
+                gymClasses: gymClasses,
+                classReviewsExist: classReviewsExist,
+                instructors: instructors,
+                instructorReviewsExist: instructorReviewsExist
+              });
+            });
+          });
       });
   });
   app.get("/signup", (req, res) => {
@@ -331,7 +349,8 @@ module.exports = function(app) {
                   classDate: classDate,
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
-                  price: resultArr[i].dataValues.price
+                  price: resultArr[i].dataValues.price,
+                  id: resultArr[i].dataValues.id
                 };
                 db.user
                   .findOne({
@@ -379,5 +398,24 @@ module.exports = function(app) {
   });
   app.get("/add-class", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/add-class.html"));
+  });
+  // Get all existing bookings
+  app.get("/userclasses", (req, res) => {
+    db.userclasses.findAll({}).then(results => {
+      res.json({ results });
+    });
+  });
+  // Get req.user
+  app.get("/api/user_data", (req, res) => {
+    if (req.user === undefined) {
+      // The user is not logged in
+      res.json({
+        isLoggedIn: false
+      });
+    } else {
+      res.json({
+        user: req.user
+      });
+    }
   });
 };

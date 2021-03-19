@@ -283,6 +283,9 @@ $(document).ready(() => {
   // Grabbing data from modal forms to make HTTP POST request
   $("#add-class-review").on("click", event => {
     event.preventDefault();
+    $("#class-modal-bg").css("display", "none");
+    $("#instructor-modal-bg").css("display", "none");
+    // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
     const classId = $("#class-reviews-list")
       .val()
       .split("-")[1];
@@ -304,21 +307,63 @@ $(document).ready(() => {
       return;
     }
 
-    addClassReview(
-      classReview.classId,
-      classReview.reviewTitle,
-      classReview.reviewText,
-      classReview.rating,
-      classReview.authorId
+    const confirmationModal = $("#confirmation-modal-bg");
+    const confirmTitle = $("<h5>" + classReview.reviewTitle + "</h5>");
+    let confirmRating;
+    if (classReview.rating === 1) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i></div>"
+      );
+    } else if (classReview.rating === 2) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    } else if (classReview.rating === 3) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    } else if (classReview.rating === 4) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    } else {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    }
+    const confirmText = $(
+      "<div class='review-para'>" + classReview.reviewText + "</div>"
     );
+    $(".confirmation-review").empty();
+    $(".confirmation-review").append(confirmTitle, confirmRating, confirmText);
+    confirmationModal.css("display", "block");
 
-    $("#class-review-title-input").val("");
-    $("#class-review-text-input").val("");
-    rating = 0;
+    $("#go-back").on("click", () => {
+      confirmationModal.css("display", "none");
+      $("#class-review-title-input").val(classReview.reviewTitle);
+      $("#class-review-text-input").val(classReview.reviewText);
+      $("#class-modal-bg").css("display", "block");
+    });
+
+    $("#confirm-review").on("click", () => {
+      addClassReview(
+        classReview.classId,
+        classReview.reviewTitle,
+        classReview.reviewText,
+        classReview.rating,
+        classReview.authorId
+      );
+      rating = 0;
+      $("#class-review-title-input").val("");
+      $("#class-review-text-input").val("");
+    });
   });
 
   $("#add-instructor-review").on("click", event => {
     event.preventDefault();
+    $("#instructor-modal-bg").css("display", "none");
+    $("#class-modal-bg").css("display", "none");
+    // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
     const instructorId = $("#instructor-reviews-list")
       .val()
       .split("-")[1];
@@ -340,17 +385,56 @@ $(document).ready(() => {
       return;
     }
 
-    addInstructorReview(
-      instructorReview.instructorId,
-      instructorReview.reviewTitle,
-      instructorReview.reviewText,
-      instructorReview.rating,
-      instructorReview.authorId
+    const confirmationModal = $("#confirmation-modal-bg");
+    const confirmTitle = $("<h5>" + instructorReview.reviewTitle + "</h5>");
+    let confirmRating;
+    if (instructorReview.rating === 1) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i></div>"
+      );
+    } else if (instructorReview.rating === 2) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    } else if (instructorReview.rating === 3) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    } else if (instructorReview.rating === 4) {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    } else {
+      confirmRating = $(
+        "<div class='confirm-stars'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+      );
+    }
+    const confirmText = $(
+      "<div class='review-para'>" + instructorReview.reviewText + "</div>"
     );
+    $(".confirmation-review").empty();
+    $(".confirmation-review").append(confirmTitle, confirmRating, confirmText);
+    confirmationModal.css("display", "block");
 
-    $("#instructor-review-title-input").val("");
-    $("#instructor-review-text-input").val("");
-    rating = 0;
+    $("#go-back").on("click", () => {
+      confirmationModal.css("display", "none");
+      $("#instructor-review-title-input").val(instructorReview.reviewTitle);
+      $("#instructor-review-text-input").val(instructorReview.reviewText);
+      $("#instructor-modal-bg").css("display", "block");
+    });
+
+    $("#confirm-review").on("click", () => {
+      addInstructorReview(
+        instructorReview.instructorId,
+        instructorReview.reviewTitle,
+        instructorReview.reviewText,
+        instructorReview.rating,
+        instructorReview.authorId
+      );
+      rating = 0;
+      $("#instructor-review-title-input").val("");
+      $("#instructor-review-text-input").val("");
+    });
   });
 
   $(".add-review").on("click", event => {
@@ -423,11 +507,12 @@ $(document).ready(() => {
       rating: rating,
       authorId: authorId
     })
-      .then(() => {
-        // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
-        window.location.replace("/reviews");
-        // If there's an error, log the error
+      .done(() => {
+        $("#confirmation-modal-bg").css("display", "none");
+        $("#success-modal-bg").css("display", "block");
       })
+
+      // If there's an error, log the error
       .catch(err => {
         console.log(err);
       });
@@ -447,11 +532,11 @@ $(document).ready(() => {
       rating: rating,
       authorId: authorId
     })
-      .then(() => {
-        // Add confirmation "Are you sure you want to leave this review?" -> reload page and show new review
-        window.location.replace("/reviews");
-        // If there's an error, log the error
+      .done(() => {
+        $("#confirmation-modal-bg").css("display", "none");
+        $("#success-modal-bg").css("display", "block");
       })
+      // If there's an error, log the error
       .catch(err => {
         console.log(err);
       });
