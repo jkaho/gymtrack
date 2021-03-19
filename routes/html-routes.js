@@ -58,7 +58,10 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { classes: classes, loggedIn: loggedIn });
+        res.render("classes", { 
+          classes: classes, 
+          loggedIn: loggedIn 
+        });
       });
   });
 
