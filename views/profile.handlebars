@@ -1,6 +1,6 @@
-<div class="container">
+<div class="profile-container container">
     <div class="row">
-        <div class="col-12">
+        <div class="profile-heading col-12">
             <h1>Profile</h1>
         </div>
     </div>
@@ -37,7 +37,9 @@
                         </form>
                         {{#each instructorClasses}}
                         <div class="instructor-class">
-                            <h4>{{name}} | {{classDate}}</h4>
+                            <div class="single-class-heading">
+                                <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}</span></h4>
+                            </div>
                             <p>Description: {{description}}</p>
                             <p>Price: ${{price}}/class </p>
                             <a href="">Delete</a> | <a href="">Edit</a>
@@ -54,12 +56,39 @@
                     {{#if hasClasses}}
                         {{#each memberClasses}}
                         <div class="member-class">
-                            <h4>{{name}} | {{classDate}}</h4>
-                            <h5>Class Instructor: {{classInstructor}}</h5>
+                            <div class="single-class-heading">
+                                <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}</span></h4>
+                            </div>
+                            <table class="member-class-table">
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>INSTRUCTOR:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <p>{{classInstructor}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>DESCRIPTION:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <p>{{description}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>COST PER CLASS:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <p>${{price}}</p>
+                                    </td>
+                                </tr>                            </table>
+                            {{!-- <h5>Class Instructor: {{classInstructor}}</h5>
                             <p>Description: {{description}}</p>
-                            <p>Price: ${{price}}/class </p>
+                            <p>Price: ${{price}}/class </p> --}}
                             <form action=""> 
-                                <button type="submit" class = "withdraw" data-id="{{id}}">
+                                <button id="cancel-btn" type="submit" class = "withdraw" data-id="{{id}}">
                                     Cancel booking
                                 </button>
                             </form>
