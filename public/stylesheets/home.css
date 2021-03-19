@@ -1,7 +1,6 @@
 
 #home {
-    margin-top: 10px;
-    margin-left: 10px;
+   color: white;
 }
 
 /*not working*/
@@ -102,4 +101,12 @@ body{
    padding: 20px;
    width: 100vw;
 }
+}
+
+.header-hero{
+    background-image: url(/images/women-weight.jpg);
+    height: 75vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
