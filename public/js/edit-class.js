@@ -204,5 +204,6 @@ $(document).ready(() => {
   $("#delete-undo-success-btn").on("click", () => {
     $("#add-class-form").css("z-index", "0");
     $("#delete-undo-modal-bg").css("display", "none");
-  })
+    window.location.replace("/profile");
+  });
 });

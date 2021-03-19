@@ -69,9 +69,13 @@ $(document).ready(() => {
         price: price,
         instructorId: instructorId
       },
-      window.location.replace("/profile")
+      $("#add-success-modal-bg").css("display", "block")
     ).catch(err => {
       console.log(err);
     });
   }
+
+  $("#add-success-btn").on("click", () => {
+    $("#add-success-modal-bg").css("display", "none");
+  });
 });
