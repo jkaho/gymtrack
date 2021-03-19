@@ -21,26 +21,20 @@
         <div class="col-12">
             <div class="my-classes">
                 <div class="row">
-                    <div class="classes-heading">
-                        <div class="col-1"></div>
-                        <div class="col-6">
+                    <div class="col-12">
+                        <div class="classes-heading">
                             <h3>My Classes</h3>
                         </div>
-                        <div class="col-4">
-                            <form action=""> 
-                                <button id="add-class-btn" type="submit" value="addClass">
-                                    Create a class
-                                </button>
-                            </form>
-                            {{!-- <a id="add-class-link" href="/add-class">Create a class</a> --}}
-                        </div>
-                        <div class="col-1"></div>
                     </div>
                 </div>
-                <!-- Render Member/Admin's current classes -->
-
+                <!-- Render Member/Instructor's current classes -->
                 {{#if instructor}}
                     {{#if hasClasses}}
+                        <form action="/add-class"> 
+                            <button id="add-class-btn" type="submit" value="addClass">
+                                Create a class
+                            </button>
+                        </form>
                         {{#each instructorClasses}}
                         <div class="instructor-class">
                             <h4>{{name}} | {{classDate}}</h4>
@@ -51,7 +45,7 @@
                         {{/each}}
                     {{else}}
                         <h3>You currently have no classes</h3>
-                        <form action="/add-class"> <!-- For admins with no classes -->
+                        <form action="/add-class"> <!-- For instructosr with no classes -->
                             <input type="submit" value="Create Class">
                         </form>
                     {{/if}}
@@ -64,17 +58,6 @@
                             <h5>Class Instructor: {{classInstructor}}</h5>
                             <p>Description: {{description}}</p>
                             <p>Price: ${{price}}/class </p>
-                            <!-- These forms pop up when class is over -->
-                            <form action=""> 
-                                <button type="submit" value="classReview">
-                                    Leave a class review
-                                </button>
-                            </form>
-                            <form action=""> 
-                                <button type="submit" value="instructorReview">
-                                    Leave an instructor review
-                                </button>
-                            </form>
                             <form action=""> 
                                 <button type="submit" class = "withdraw" data-id="{{id}}">
                                     Cancel booking

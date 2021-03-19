@@ -68,7 +68,7 @@ module.exports = function(app) {
   });
 
   // Route for editing classes
-  app.put("/api/classes", (req, res) => {
+  app.put("/api/classes/:id", (req, res) => {
     db.classes
       .update(
         {
@@ -76,15 +76,15 @@ module.exports = function(app) {
           descrption: req.body.description,
           startTime: req.body.startTime,
           endTime: req.body.endTime,
-          adminId: req.instructor.id
+          instructorId: req.body.instructorId
         },
         {
           where: {
-            id: req.body.id
+            id: req.params.id
           }
         }
       )
-      .then(dbclasses => res.json(dbclasses))
+      .then(() => res.status(200))
       .catch(err => res.json(err));
   });
 
@@ -97,6 +97,6 @@ module.exports = function(app) {
           id: req.params.id
         }
       })
-      .then(dbclasses => res.json(dbclasses));
+      .then(() => res.status(200));
   });
 };

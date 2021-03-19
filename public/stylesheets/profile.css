@@ -21,7 +21,9 @@
 }
 
 .classes-heading {
-    padding: 20px;
+    padding-top: 50px;
+    margin: 0 auto;
+    width: 600px;
 }
 
 #add-class-btn {
@@ -41,9 +43,9 @@
 } */
 
 .instructor-class, .member-class {
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 20px;
     width: 600px;
     background-color: white;
-    box-shadow: 2px 2px .4em rgb(182, 182, 182), .4em .4em .4em rgb(182, 182, 182);
+    border: solid 1px rgb(236, 235, 235);
 }
