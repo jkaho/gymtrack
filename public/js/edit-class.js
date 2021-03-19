@@ -2,7 +2,6 @@ $(document).ready(() => {
   let classId;
   $(".edit-class-btn").on("click", function(e) {
     e.preventDefault();
-    console.log(this);
     $("#add-class-form").css("z-index", "0");
     classId = parseInt(this.getAttribute("id").split("-")[3]);
     const className = $("#class-no-" + classId + " .class-name-span").text();
@@ -40,40 +39,25 @@ $(document).ready(() => {
 
   $("#confirm-edit").on("click", e => {
     e.preventDefault();
-    //     $.post(
-    //       "/api/edit_class",
-    //       {
-    //         id: classId,
-    //         name: $("#title-check").val(),
-    //         description: $("#description-check").val(),
-    //         startTime:
-    //           $("#date-check").val() + " " + $("#starttime-check").val() + ":00",
-    //         endTime:
-    //           $("#date-check").val() + " " + $("#endtime-check").val() + ":00",
-    //         price: $("#price-check").val()
-    //       },
-    //       classUpdated()
-    //     ).catch(err => console.log(err));
-    //   });
-    $.ajax({
-      url: `/api/classes/${classId}`,
-      method: "PUT",
-      body: {
-        name: $("#title-check").val(),
-        description: $("#description-check").val(),
-        startTime:
-          $("#date-check").val() + " " + $("#starttime-check").val() + ":00",
-        endTime:
-          $("#date-check").val() + " " + $("#endtime-check").val() + ":00",
-        price: $("#price-check").val()
-      },
-      success: classUpdated()
-    }).catch(err => console.log(err));
+    const classData = {
+      name: $("#title-check").val(),
+      description: $("#description-check").val(),
+      startTime: $("#date-check").val() + " " + $("#starttime-check").val(),
+      endTime: $("#date-check").val() + " " + $("#endtime-check").val(),
+      price: parseInt($("#price-check").val())
+    };
+
+    updateClass(
+      classData.name,
+      classData.description,
+      classData.startTime,
+      classData.endTime,
+      classData.price
+    );
   });
 
   $(".delete-class-btn").on("click", function(e) {
     e.preventDefault();
-    console.log(this);
     classId = parseInt(this.getAttribute("id").split("-")[3]);
     $.ajax({
       url: `/api/classes/${classId}`,
@@ -82,8 +66,23 @@ $(document).ready(() => {
     });
   });
 
+  function updateClass(name, description, startTime, endTime, price) {
+    $.ajax({
+      url: `/api/classes/${classId}`,
+      method: "PUT",
+      data: {
+        name: name,
+        description: description,
+        startTime: startTime,
+        endTime: endTime,
+        price: price
+      },
+      success: classUpdated()
+    });
+  }
   function classUpdated() {
     console.log("successfully updated!");
+    window.location.replace("/profile");
   }
 
   function classDeleted() {

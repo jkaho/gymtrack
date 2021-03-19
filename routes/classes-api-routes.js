@@ -74,25 +74,26 @@ module.exports = function(app) {
     db.classes
       .update(
         {
-          name: req.body.name,
           description: req.body.description,
-          startTime: req.body.startTime,
           endTime: req.body.endTime,
-          price: req.body.price
+          name: req.body.name,
+          price: req.body.price,
+          startTime: req.body.startTime
         },
         {
           where: {
             id: req.params.id
-          }
+          },
+          returning: true,
+          plain: true
         }
       )
-      .then(result => res.json(result))
+      .then(() => console.log(req.body))
       .catch(err => res.json(err));
   });
 
   // Route for deleting classes
   app.delete("/api/classes/:id", (req, res) => {
-    //specify which class to delete
     db.classes
       .destroy({
         where: {
