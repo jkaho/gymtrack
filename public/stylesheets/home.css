@@ -43,7 +43,20 @@
     width: 100vw;
 }
 
+.btn{
+    color: #111;
+    font-size: 22px;
+    padding: 20 10;
+}
 
+h3{
+    text-align: center;
+    font-size: 22px;
+}
+/* 
+.btn :hover{
+    background-color: pink;
+} */
 
 .page-footer{
    margin-top: 30px;

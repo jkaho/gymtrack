@@ -42,9 +42,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/reviews">Reviews</a>
                     </li>
+                    {{#if loggedIn}}
                     <li class="nav-item">
                         <a id="profile-link" class="nav-link" href="/profile">Profile</a>
                     </li>
+                    {{/if}}
                     <li class="nav-item">
                         {{#if loggedIn}}
 

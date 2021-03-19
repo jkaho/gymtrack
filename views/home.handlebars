@@ -9,44 +9,37 @@
 <div class="container">
     <div class="row link-pages">
         <div class="col-lg-6 col-sm-12">
-
             <div class="card shadow">
                 <img class="card-img-top" src="images/group-weight-class.jpg" alt="group training">
-                <a href="/classes" class="btn btn-link">View Class</a>
-                <form class="card-body" action="">
-                    <h3>View our classes description</h3>
-                    <!-- Button goes to Classes page when clicked -->
-                    <input type="submit" value="View Classes" class="link-button">
-                </form>
+                <a type="button"  class="btn btn-outline-dark btn-link" href="/classes">View classes</a>
+                <h3>View our classes description</h3>
             </div>
-
-            {{!-- <img src="images/group-weight-class.jpg" alt="group-training" height="400" width="600"
-                class="page-link-img"> --}}
         </div>
         <div class="col-lg-6 col-sm-12">
-            <form action="">
-                <!-- Button goes to review page when clicked -->
-                <input type="submit" value="View Classes" class="link-button">
-            </form>
-            <p>Log in memeber page</p>
-            <img src="images/tube-training.jpg" alt="tube-training" height="400" width="600" class="page-link-img">
+             <div class="card shadow">
+                <img class="card-img-top" src="images/tube-training.jpg" alt="tube training">
+                <a type="button"  class="btn btn-outline-dark btn-link" href="/login">log in</a>
+                <h3>Log in and book your class</h3>
+            </div>
+                {{!-- <form class="card-body" action="">
+                    <h3>Log in and book your class</h3>
+                    <input type="submit" value="login page" class="link-button">
+                </form> --}}
         </div>
     </div>
     <div class="row link-pages" id="link-page-bottom">
         <div class="col-lg-6 col-sm-12">
-            <form action="">
-                <!-- Button goes login page when clicked -->
-                <input type="submit" value="View Classes" class="link-button">
-            </form>
-            <p>Check out Class review</p>
-            <img src="images/surfing-image.jpg" alt="surfing" height="400" width="600" class="page-link-img">
+            <div class="card shadow">
+                <img class="card-img-top" src="images/surfing-image.jpg" alt="surfing">
+                <a type="button"  class="btn btn-outline-dark btn-link" href="/reviews">View classe reviews</a>
+                <h3>View our class reviews</h3>
+            </div>
         </div>
         <div class="col-lg-6 col-sm-12">
-            <form action="">
-                <!-- Button goes to signin page when clicked -->
-                <input type="submit" value="View Classes" class="link-button">
-            </form>
-            <p>Our instructor and review</p>
-            <img src="images/yoga-class.jpg" alt="yoga-class" height="400" width="600" class="page-link-img">
+            <div class="card shadow">
+                <img class="card-img-top" src="images/yoga-class.jpg" alt="yoga class">
+                <a type="button"  class="btn btn-outline-dark btn-link" href="/reviews">View classe reviews</a>
+                <h3>View our instructor reviews</h3>
+            </div>
         </div>
     </div>
