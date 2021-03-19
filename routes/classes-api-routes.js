@@ -83,9 +83,7 @@ module.exports = function(app) {
         {
           where: {
             id: req.params.id
-          },
-          returning: true,
-          plain: true
+          }
         }
       )
       .then(() => console.log(req.body))

@@ -1,23 +1,30 @@
 $(document).ready(() => {
   let classId;
+  let className;
+  let classDescription;
+  let classDate;
+  let classStart;
+  let classEnd;
+  let classPrice;
+
   $(".edit-class-btn").on("click", function(e) {
     e.preventDefault();
     $("#add-class-form").css("z-index", "0");
     classId = parseInt(this.getAttribute("id").split("-")[3]);
-    const className = $("#class-no-" + classId + " .class-name-span").text();
-    const classDescription = $(
+    className = $("#class-no-" + classId + " .class-name-span").text();
+    classDescription = $(
       "#class-no-" + classId + " .description-container p"
     ).text();
-    const classDate = $("#class-no-" + classId + " .class-date-span")
+    classDate = $("#class-no-" + classId + " .class-date-span")
       .attr("value")
       .split(" ")[0];
-    const classStart = $("#class-no-" + classId + " .class-date-span")
+    classStart = $("#class-no-" + classId + " .class-date-span")
       .attr("value")
       .split(" ")[1];
-    const classEnd = $("#class-no-" + classId + " .class-date-span")
+    classEnd = $("#class-no-" + classId + " .class-date-span")
       .attr("value")
       .split(" ")[2];
-    const classPrice = parseInt(
+    classPrice = parseInt(
       $("#class-no-" + classId + " .class-price-p")
         .text()
         .slice(1)
@@ -65,6 +72,27 @@ $(document).ready(() => {
       success: classDeleted()
     });
   });
+  // Deleted class success/undo modal
+
+  $("#edit-undo-btn").on("click", () => {
+    $("#title-check").val(className);
+    $("#description-check").val(classDescription);
+    $("#date-check").val(classDate);
+    $("#starttime-check").val(classStart);
+    $("#endtime-check").val(classEnd);
+    $("#price-check").val(classPrice);
+
+    const prevClassStart = classDate + " " + classStart;
+    const prevClassEnd = classDate + " " + classEnd;
+
+    updateClass(
+      className,
+      classDescription,
+      prevClassStart,
+      prevClassEnd,
+      classPrice
+    );
+  });
 
   function updateClass(name, description, startTime, endTime, price) {
     $.ajax({
@@ -80,9 +108,15 @@ $(document).ready(() => {
       success: classUpdated()
     });
   }
+
   function classUpdated() {
-    console.log("successfully updated!");
-    window.location.replace("/profile");
+    if ($("#edit-modal-bg").css("display") === "block") {
+      $("#edit-modal-bg").css("display", "none");
+      $("#update-success-modal-bg").css("display", "block");
+    } else {
+      $("#edit-modal-bg").css("display", "block");
+      $("#update-success-modal-bg").css("display", "none");
+    }
   }
 
   function classDeleted() {
