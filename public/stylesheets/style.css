@@ -20,12 +20,14 @@ body {
     max-width: 100%;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 20px;
     padding: 20px;
     border-bottom: #111 2px solid;
+    font-size: 24px;
 }
 
 .navbar-brand{
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
 }
 
@@ -51,7 +53,10 @@ body {
   border-bottom: #111 2px solid;
 }
 
-.navbar-brand{
+.login-card{
+   padding: 20px 40px;
+}
+/* .navbar-brand{
   font-size: 24px;
   font-weight: bold;
-}
+} */
