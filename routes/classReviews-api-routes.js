@@ -12,6 +12,7 @@ module.exports = function(app) {
         authorId: req.body.authorId,
         classId: req.body.classId //Not sure if it's req.class
       })
+      .then(() => res.status(200))
       .catch(err => {
         res.status(401).json(err);
       });

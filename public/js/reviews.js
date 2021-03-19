@@ -271,13 +271,19 @@ $(document).ready(() => {
   $("#exit-instructor-review").on("click", () => {
     isStarClicked = false;
     rating = 0;
+    $("#instructor-review-title-input").val("");
+    $("#instructor-review-text-input").val("");
+    $("#class-modal-bg").css("display", "none");
     $("#instructor-modal-bg").css("display", "none");
   });
 
   $("#exit-class-review").on("click", () => {
     isStarClicked = false;
     rating = 0;
+    $("#class-review-title-input").val("");
+    $("#class-review-text-input").val("");
     $("#class-modal-bg").css("display", "none");
+    $("#instructor-modal-bg").css("display", "none");
   });
 
   // Grabbing data from modal forms to make HTTP POST request
@@ -500,18 +506,17 @@ $(document).ready(() => {
   });
 
   function addClassReview(classId, reviewTitle, reviewText, rating, authorId) {
-    $.post("/api/add_class_review", {
-      classId: classId,
-      reviewTitle: reviewTitle,
-      reviewText: reviewText,
-      rating: rating,
-      authorId: authorId
-    })
-      .done(() => {
-        $("#confirmation-modal-bg").css("display", "none");
-        $("#success-modal-bg").css("display", "block");
-      })
-
+    $.post(
+      "/api/add_class_review",
+      {
+        classId: classId,
+        reviewTitle: reviewTitle,
+        reviewText: reviewText,
+        rating: rating,
+        authorId: authorId
+      },
+      showSuccessMessage()
+    )
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
@@ -525,20 +530,29 @@ $(document).ready(() => {
     rating,
     authorId
   ) {
-    $.post("/api/add_instructor_review", {
-      instructorId: instructorId,
-      reviewTitle: reviewTitle,
-      reviewText: reviewText,
-      rating: rating,
-      authorId: authorId
-    })
-      .done(() => {
-        $("#confirmation-modal-bg").css("display", "none");
-        $("#success-modal-bg").css("display", "block");
-      })
+    $.post(
+      "/api/add_instructor_review",
+      {
+        instructorId: instructorId,
+        reviewTitle: reviewTitle,
+        reviewText: reviewText,
+        rating: rating,
+        authorId: authorId
+      },
+      showSuccessMessage()
+    )
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
       });
   }
+
+  function showSuccessMessage() {
+    $("#confirmation-modal-bg").css("display", "none");
+    $("#success-modal-bg").css("display", "block");
+  }
+
+  $("#ok-success").on("click", () => {
+    $("#success-modal-bg").css("display", "none");
+  });
 });

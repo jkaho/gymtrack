@@ -406,16 +406,16 @@ module.exports = function(app) {
     });
   });
   // Get req.user
-  app.get("/api/user_data", (req, res) => {
-    if (req.user === undefined) {
-      // The user is not logged in
-      res.json({
-        isLoggedIn: false
-      });
-    } else {
-      res.json({
-        user: req.user
-      });
-    }
-  });
+  //   app.get("/api/user_data", (req, res) => {
+  //     if (req.user === undefined) {
+  //       // The user is not logged in
+  //       res.json({
+  //         isLoggedIn: false
+  //       });
+  //     } else {
+  //       res.json({
+  //         user: req.user
+  //       });
+  //     }
+  //   });
 };
