@@ -75,7 +75,7 @@ module.exports = function(app) {
       .update(
         {
           name: req.body.name,
-          descrption: req.body.description,
+          description: req.body.description,
           startTime: req.body.startTime,
           endTime: req.body.endTime,
           price: req.body.price
@@ -86,7 +86,7 @@ module.exports = function(app) {
           }
         }
       )
-      .then(() => res.status(200))
+      .then(result => res.json(result))
       .catch(err => res.json(err));
   });
 
