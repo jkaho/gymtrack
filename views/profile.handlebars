@@ -30,19 +30,56 @@
                 <!-- Render Member/Instructor's current classes -->
                 {{#if instructor}}
                     {{#if hasClasses}}
-                        <form action="/add-class"> 
+                        <form id="add-class-form" action="/add-class"> 
                             <button id="add-class-btn" type="submit" value="addClass">
                                 Create a class
                             </button>
                         </form>
                         {{#each instructorClasses}}
                         <div class="instructor-class">
-                            <div class="single-class-heading">
-                                <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}</span></h4>
+                            <div class="instructor-class-info">
+                                <div class="single-class-heading">
+                                    <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}</span></h4>
+                                </div>
+                                <table class="class-table">
+                                    <tr>
+                                        <td class="table-row-one">
+                                            <p>DESCRIPTION:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <p>{{description}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row-one">
+                                            <p>COST PER CLASS:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <p>${{price}}</p>
+                                        </td>
+                                    </tr>                            
+                                </table>
+                                {{!-- <p>Description: {{description}}</p>
+                                <p>Price: ${{price}}/class </p> --}}
                             </div>
-                            <p>Description: {{description}}</p>
-                            <p>Price: ${{price}}/class </p>
-                            <a href="">Delete</a> | <a href="">Edit</a>
+                            <table class="instructor-class-options">
+                                <tr>
+                                    <td class="table-row-instructor">
+                                        <form class="class-options-form" action=""> 
+                                            <button id="edit-class-btn" type="submit" class="class-options-btn">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td class="table-row-instructor left-border">
+                                        <form class="class-options-form"  action=""> 
+                                            <button id="delete-class-btn" type="submit" class="class-options-btn">
+                                                <i class="fas fa-minus-circle"></i> Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         {{/each}}
                     {{else}}
@@ -59,7 +96,7 @@
                             <div class="single-class-heading">
                                 <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}</span></h4>
                             </div>
-                            <table class="member-class-table">
+                            <table class="class-table">
                                 <tr>
                                     <td class="table-row-one">
                                         <p>INSTRUCTOR:</p>
@@ -83,10 +120,8 @@
                                     <td class="table-row-two">
                                         <p>${{price}}</p>
                                     </td>
-                                </tr>                            </table>
-                            {{!-- <h5>Class Instructor: {{classInstructor}}</h5>
-                            <p>Description: {{description}}</p>
-                            <p>Price: ${{price}}/class </p> --}}
+                                </tr>                            
+                            </table>
                             <form action=""> 
                                 <button id="cancel-btn" type="submit" class = "withdraw" data-id="{{id}}">
                                     Cancel booking
