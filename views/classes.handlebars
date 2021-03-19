@@ -1,5 +1,7 @@
 <div id="notification"></div>
 <div class="container" id="class-body">
+<div class="container">
+    <input id="class-search" type="text" placeholder="Search classes" >
     <div class="row">
         <div class="col-12">
             <h1>Classes</h1>
@@ -10,6 +12,8 @@
         <div class="col-12">
             {{#each classes}}
                 <div id="each-class">
+            
+                <div>
                     <h3>{{classDate}}</h3>
                     <div>
                         <h3>{{name}}</h3>
@@ -29,6 +33,7 @@
                        
                     </div>
                 </div>
+          
             {{/each}}
         </div>
     </div>

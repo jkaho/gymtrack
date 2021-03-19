@@ -3,12 +3,44 @@ $(document).ready(() => {
   const bookWithdrawBtn = $(".book-withdraw");
   const notificationEl = $("#notification");
   const cancelBtn = $(".withdraw");
+
   // Option to cancel classes from profile page
   // $(withdrawBtn).each(function () {
   //   $(this).click(e => {
   //     e.preventDefault();
   //   })
   // })
+  // Set timer to search class every 0.4s
+  const searchString = "oga";
+  $.get(`/api/search_classes/${searchString}`).then(res => {
+    console.log(res[0].name);
+  });
+
+  console.log($("#class-search").length);
+  if ($("#class-search").length) {
+    $.get("/api/classlist").then(res => {
+      const allClasses = [];
+      for (let i = 0; i < res.length; i++) {
+        allClasses.push(res[i].name);
+      }
+      console.log(allClasses);
+      console.log($("[data-id =" + 2 + "]").text());
+      setInterval(() => {
+        const searchText = $("#class-search").val();
+        if (searchText) {
+          $.get(`/api/search_classes/${searchText}`).then(res => {
+            $(res).each(i => {
+              console.log(res[i].name);
+            });
+          });
+        }
+
+        $(allClasses).each(() => {});
+        console.log(searchText);
+      }, 1000);
+    });
+  }
+
   $.getJSON("api/user_data").then(data => {
     // Check log in status
     $(bookWithdrawBtn).each(function() {
