@@ -1,9 +1,32 @@
-body {
+/* body {
     font-family: 'Inter', sans-serif;
-}
+} */
 form.signup,
 form.login {
   margin-top: 50px;
+}
+
+body {
+    font-size: inherit;
+    line-height: inherit;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #111;
+    background-color: #fff;
+    display: inline-block;
+    /* margin: 0 auto; */
+}
+
+#index-navbar {
+    max-width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border-bottom: #111 2px solid;
+}
+
+.navbar-brand{
+    font-size: 24px;
+    font-weight: bold;
 }
 
 body {

@@ -1,37 +1,7 @@
-/* *, ::after, ::before{
-    box-sizing: content-box;
-} */
-
-body {
-    font-size: inherit;
-    line-height: inherit;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #111;
-    background-color: #fff;
-    display: inline-block;
-    /* margin: 0 auto; */
-}
-
-.container {
-    margin: 20px;
- 
-}
-
-#index-navbar {
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 20px;
-    border-bottom: #111 2px solid;
-}
-
-.navbar-brand{
-    font-size: 24px;
-    font-weight: bold;
-}
 
 #home {
     margin-top: 10px;
-    /* margin-left: 20px; */
+    margin-left: 10px;
 }
 
 /*not working*/
@@ -40,7 +10,7 @@ body {
 }
 
 #home-image {
-    margin: 0 auto;
+    margin: 10px;
     width: 100vw;
     height: auto;
     vertical-align: auto;
@@ -80,14 +50,19 @@ body {
    margin-top: 30px;
    background-color: #111;
    color: #fff;
-   width:100vw
+   width:100vw;
+}
+.icons{
+    display: flex;
+    justify-content: center;
+}
+.icon{
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+
 }
 
-fab {
-    width: 50px;
-    height: 50px;
-    color: white;
-}
 form{
     margin-top: 30px;
 }

@@ -1,26 +1,32 @@
 <div id="notification"></div>
-<div class="container">
+<div class="container" id="class-body">
     <div class="row">
         <div class="col-12">
             <h1>Classes</h1>
         </div>
     </div>
-    <div class="row">
+<!--put in center -->
+    <div class="row" id="classes">
         <div class="col-12">
             {{#each classes}}
-                <div>
+                <div id="each-class">
                     <h3>{{classDate}}</h3>
                     <div>
                         <h3>{{name}}</h3>
                         <p>Instructuor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
                         <p>Description: {{description}}</p>
                         <p>Price: ${{price}}/class </p>
-                        <form action=""> 
+                        <form class="jump" action=""> 
                             <button class= "book-withdraw" data-id="{{id}}" type="submit" value="Book Now">
                                 Book Now
                             </button>
                         </form>
-                        <a>View Reviews</a>
+                          <form class="jump" action=""> 
+                            <button class= "view-reviews" data-id="" type="submit" value="View Review">
+                                View Review
+                            </button>
+                        </form>
+                       
                     </div>
                 </div>
             {{/each}}
