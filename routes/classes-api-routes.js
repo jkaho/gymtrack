@@ -20,8 +20,10 @@ module.exports = function(app) {
         description: req.body.description,
         startTime: req.body.startTime,
         endTime: req.body.endTime,
+        price: req.body.price,
         instructorId: req.body.instructorId
       })
+      .then(() => res.status(200))
       .catch(err => {
         res.status(401).json(err);
       });

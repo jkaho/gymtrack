@@ -9,16 +9,6 @@ const moment = require("moment");
 const db = require("../models");
 
 module.exports = function(app) {
-  //   app.get("/", (req, res) => {
-  //     let userStatus = "Log In";
-  //     if (req.user) {
-  //       userStatus = "Log Out";
-  //     } else {
-  //       userStatus = "Log In";
-  //     }
-  //     res.json({ userStatus: userStatus });
-  //   });
-
   app.get("/", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -31,6 +21,7 @@ module.exports = function(app) {
       profileIcon: "fas fa-user-circle"
     });
   });
+
   app.get("/classes", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -243,6 +234,7 @@ module.exports = function(app) {
           });
       });
   });
+
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -251,6 +243,7 @@ module.exports = function(app) {
       res.sendFile(path.join(__dirname, "../public/signup.html"));
     }
   });
+
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -259,10 +252,12 @@ module.exports = function(app) {
       res.sendFile(path.join(__dirname, "../public/login.html"));
     }
   });
+
   app.get("/logout", (req, res) => {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
   });
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/profile", isAuthenticated, (req, res) => {
@@ -406,16 +401,16 @@ module.exports = function(app) {
     });
   });
   // Get req.user
-  app.get("/api/user_data", (req, res) => {
-    if (req.user === undefined) {
-      // The user is not logged in
-      res.json({
-        isLoggedIn: false
-      });
-    } else {
-      res.json({
-        user: req.user
-      });
-    }
-  });
+  //   app.get("/api/user_data", (req, res) => {
+  //     if (req.user === undefined) {
+  //       // The user is not logged in
+  //       res.json({
+  //         isLoggedIn: false
+  //       });
+  //     } else {
+  //       res.json({
+  //         user: req.user
+  //       });
+  //     }
+  //   });
 };
