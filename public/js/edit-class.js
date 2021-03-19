@@ -94,6 +94,11 @@ $(document).ready(() => {
     );
   });
 
+  $("#edit-success-btn").on("click", () => {
+    $("#update-success-modal-bg").css("display", "none");
+    window.location.replace("/profile");
+  });
+
   function updateClass(name, description, startTime, endTime, price) {
     $.ajax({
       url: `/api/classes/${classId}`,

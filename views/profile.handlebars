@@ -39,7 +39,7 @@
                         <div id="class-no-{{classId}}" class="instructor-class">
                             <div class="instructor-class-info">
                                 <div class="single-class-heading">
-                                    <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span" value="{{htmlClassDate}} {{htmlStartTime}} {{htmlEndTime}}">{{classDate}}</span></h4>
+                                    <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span" value="{{htmlClassDate}} {{htmlStartTime}} {{htmlEndTime}}">{{classDate}}-{{classEndTime}}</span></h4>
                                 </div>
                                 <table class="class-table">
                                     <tr>
@@ -94,7 +94,7 @@
                         {{#each memberClasses}}
                         <div class="member-class">
                             <div class="single-class-heading">
-                                <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}</span></h4>
+                                <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}-{{classEndTime}}</span></h4>
                             </div>
                             <table class="class-table">
                                 <tr>
@@ -225,7 +225,7 @@
             <div class="update-success-heading">
                 <i class="fas fa-check-circle fa-3x"></i>
                 <h4>Successfully updated!</h4>
-                <p id="refresh-message">Refresh the page to see your changes.</p>
+                <p id="refresh-message">Your changes have been saved.</p>
                 <p>Made a mistake? Click on the undo button below.</p>
             </div>
             <div class="success-btn-div">

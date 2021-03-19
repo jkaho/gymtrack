@@ -300,6 +300,9 @@ module.exports = function(app) {
                   classDate = moment(rawClassDate).format(
                     "dddd, MMMM Do, h:mma"
                   );
+                  classEndTime = moment(result.dataValues.endTime).format(
+                    "h:mma"
+                  );
                   htmlClassDate = moment(rawClassDate).format("YYYY-MM-DD");
                   htmlStartTime = moment(rawClassDate).format("HH:mm:ss");
                   htmlEndTime = moment(result.dataValues.endTime).format(
@@ -311,6 +314,7 @@ module.exports = function(app) {
                     htmlStartTime: htmlStartTime,
                     htmlEndTime: htmlEndTime,
                     classDate: classDate,
+                    classEndTime: classEndTime,
                     name: result.dataValues.name,
                     description: result.dataValues.description,
                     price: result.dataValues.price
@@ -349,8 +353,12 @@ module.exports = function(app) {
               for (let i = 0; i < resultArr.length; i++) {
                 rawClassDate = resultArr[i].dataValues.startTime;
                 classDate = moment(rawClassDate).format("dddd, MMMM Do, h:mma");
+                classEndTime = moment(result.dataValues.endTime).format(
+                  "h:mma"
+                );
                 const memberClass = {
                   classDate: classDate,
+                  classEndTime: classEndTime,
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
                   price: resultArr[i].dataValues.price,
