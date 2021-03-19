@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul id="index-link" class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/classes">Classes</a>
@@ -46,15 +46,14 @@
                     <li class="nav-item">
                         <a id="profile-link" class="nav-link" href="/profile">Profile</a>
                     </li>
-                    {{/if}}
                     <li class="nav-item">
-                        {{#if loggedIn}}
-
                         <a class="nav-link" href="/logout"><span id="log-in-out">Log Out</span></a>
-                        {{else}}
-                        <a class="nav-link" href="/login"><span id="log-in-out">Log In</span></a>
-                        {{/if}}
                     </li>
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><span id="log-in-out">Log In</span></a>
+                    </li>
+                    {{/if}}
                 </ul>
             </div>  
         </nav>
