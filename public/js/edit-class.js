@@ -63,17 +63,6 @@ $(document).ready(() => {
     );
   });
 
-  $(".delete-class-btn").on("click", function(e) {
-    e.preventDefault();
-    classId = parseInt(this.getAttribute("id").split("-")[3]);
-    $.ajax({
-      url: `/api/classes/${classId}`,
-      method: "DELETE",
-      success: classDeleted()
-    });
-  });
-  // Deleted class success/undo modal
-
   $("#edit-undo-btn").on("click", () => {
     $("#title-check").val(className);
     $("#description-check").val(classDescription);
@@ -95,6 +84,7 @@ $(document).ready(() => {
   });
 
   $("#edit-success-btn").on("click", () => {
+    $("#add-class-form").css("z-index", "10");
     $("#update-success-modal-bg").css("display", "none");
     window.location.replace("/profile");
   });
@@ -124,8 +114,95 @@ $(document).ready(() => {
     }
   }
 
-  function classDeleted() {
-    console.log("successfully deleted.");
+  $(".delete-class-btn").on("click", function(e) {
+    e.preventDefault();
+    classId = parseInt(this.getAttribute("id").split("-")[3]);
+
+    $("#add-class-form").css("z-index", "0");
+    $("#delete-confirm-modal-bg").css("display", "block");
+  });
+
+  $("#delete-goback-btn").on("click", () => {
+    $("#add-class-form").css("z-index", "10");
+    $("#delete-confirm-modal-bg").css("display", "none");
+  });
+
+  $("#delete-confirm-btn").on("click", () => {
+    $.ajax({
+      url: `/api/classes/${classId}`,
+      method: "DELETE",
+      success: classDeleted()
+    });
+  });
+
+  $("#delete-undo-btn").on("click", () => {
+    className = $("#class-no-" + classId + " .class-name-span").text();
+    classDescription = $(
+      "#class-no-" + classId + " .description-container p"
+    ).text();
+    classDate = $("#class-no-" + classId + " .class-date-span")
+      .attr("value")
+      .split(" ")[0];
+    classStart = $("#class-no-" + classId + " .class-date-span")
+      .attr("value")
+      .split(" ")[1];
+    classEnd = $("#class-no-" + classId + " .class-date-span")
+      .attr("value")
+      .split(" ")[2];
+    classPrice = parseInt(
+      $("#class-no-" + classId + " .class-price-p")
+        .text()
+        .slice(1)
+    );
+
+    const prevClassStartD = classDate + " " + classStart;
+    const prevClassEndD = classDate + " " + classEnd;
+
+    addDeletedClass(
+      className,
+      classDescription,
+      prevClassStartD,
+      prevClassEndD,
+      classPrice
+    );
+  });
+
+  $("#delete-success-btn").on("click", () => {
+    $("#add-class-form").css("z-index", "10");
+    $("#delete-success-modal-bg").css("display", "none");
     window.location.replace("/profile");
+  });
+
+  function classDeleted() {
+    $("#delete-confirm-modal-bg").css("display", "none");
+    $("#delete-success-modal-bg").css("display", "block");
   }
+
+  function addDeletedClass(name, description, startTime, endTime, price) {
+    $.get("/api/user_data").then(results => {
+      const instructorId = results.authorId;
+      $.post(
+        "/api/add_class",
+        {
+          name: name,
+          description: description,
+          startTime: startTime,
+          endTime: endTime,
+          price: price,
+          instructorId: instructorId
+        },
+        addDeletedClassSuccess()
+      ).catch(err => console.log(err));
+    });
+  }
+
+  function addDeletedClassSuccess() {
+    $("#delete-success-modal-bg").css("display", "none");
+    $("#delete-undo-modal-bg").css("display", "block");
+  }
+
+  $("#delete-undo-success-btn").on("click", () => {
+    $("#add-class-form").css("z-index", "0");
+    $("#delete-undo-modal-bg").css("display", "none");
+  })
 });
