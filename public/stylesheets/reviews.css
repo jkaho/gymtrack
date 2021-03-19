@@ -1,4 +1,6 @@
-
+#review-body{
+    margin: 10px;
+}
 .review-toggle {
     margin: 10px auto;
     width: fit-content;
