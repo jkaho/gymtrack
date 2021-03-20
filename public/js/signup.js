@@ -57,14 +57,12 @@ $(document).ready(() => {
         loginUser(email, password);
         // If there's an error, handle it by throwing up a bootstrap alert
       })
-      .catch(handleLoginErr);
+      .catch(err => {
+        console.log(err);
+        showErrorMessage();
+      });
   }
 
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-    console.log(err);
-  }
   function loginUser(email, password) {
     $.post("/api/login", {
       email: email,
@@ -76,6 +74,15 @@ $(document).ready(() => {
       })
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
+
+  function showErrorMessage() {
+    $("#error-modal-bg").css("display", "block");
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
 });

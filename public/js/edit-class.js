@@ -100,9 +100,18 @@ $(document).ready(() => {
         endTime: endTime,
         price: price
       },
-      success: classUpdated()
+      success: classUpdated(),
+      error: showErrorMessage()
     });
   }
+
+  function showErrorMessage() {
+    $("#error-modal-bg").css("display", "block");
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
 
   function classUpdated() {
     if ($("#edit-modal-bg").css("display") === "block") {
@@ -131,7 +140,8 @@ $(document).ready(() => {
     $.ajax({
       url: `/api/classes/${classId}`,
       method: "DELETE",
-      success: classDeleted()
+      success: classDeleted(),
+      error: showErrorMessage()
     });
   });
 
@@ -192,7 +202,10 @@ $(document).ready(() => {
           instructorId: instructorId
         },
         addDeletedClassSuccess()
-      ).catch(err => console.log(err));
+      ).catch(err => {
+        console.log(err);
+        showErrorMessage();
+      });
     });
   }
 

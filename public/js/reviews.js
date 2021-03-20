@@ -531,6 +531,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -555,6 +556,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -566,5 +568,13 @@ $(document).ready(() => {
 
   $("#ok-success").on("click", () => {
     $("#success-modal-bg").css("display", "none");
+  });
+
+  function showErrorMessage() {
+    $("#error-modal-bg").css("display", "block");
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
   });
 });

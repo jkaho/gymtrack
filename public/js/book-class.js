@@ -114,10 +114,17 @@ $(document).ready(() => {
         classId: classId
       },
       afterBooking(classId)
-    ).done(() =>
-      bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
-    );
+    )
+      .done(() =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
+      )
+      .catch(err => {
+        console.log(err);
+        $("#error-modal-bg").css("display", "block");
+      });
   }
+
   // Withdraw user from class
   function withdrawFromClass(classId) {
     $.post(
@@ -126,8 +133,17 @@ $(document).ready(() => {
         classId: classId
       },
       afterWithdraw(classId)
-    ).done(() => bookingNotification("Booking withdrawn!", "lightgreen", 4000));
+    )
+      .done(() => bookingNotification("Booking withdrawn!", "lightgreen", 4000))
+      .catch(err => {
+        console.log(err);
+        $("#error-modal-bg").css("display", "block");
+      });
   }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
 
   function afterBooking(classId) {
     withdrawBtn(classId);
