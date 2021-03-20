@@ -102,8 +102,9 @@ $(document).ready(() => {
         endTime: endTime,
         price: price
       },
-      success: classUpdated(),
-      error: showErrorMessage()
+      success: classUpdated()
+    }).catch(() => {
+      showErrorMessage();
     });
   }
 
@@ -142,8 +143,9 @@ $(document).ready(() => {
     $.ajax({
       url: `/api/classes/${classId}`,
       method: "DELETE",
-      success: classDeleted(),
-      error: showErrorMessage()
+      success: classDeleted()
+    }).catch(() => {
+      showErrorMessage();
     });
   });
 
@@ -186,6 +188,7 @@ $(document).ready(() => {
   });
 
   function classDeleted() {
+    console.log("class deleted!");
     $("#delete-confirm-modal-bg").css("display", "none");
     $("#delete-success-modal-bg").css("display", "block");
   }

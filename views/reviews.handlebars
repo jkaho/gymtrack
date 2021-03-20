@@ -26,9 +26,11 @@
                     <h3>Class Reviews</h3>
                 </div>
             </div>
+            {{#if isNotInstructor}}
             <div class="col-4">
                 <a id="add-class-review-link" class="add-review">Write a review</a>
             </div>
+            {{/if}}
             <div class="form-group dropdown">
                 <label for="filter-class">Class: </label>
                 <select name="filter-class" id="filter-class">
@@ -116,9 +118,12 @@
                     <h3>Instructor Reviews</h3>
                 </div>
             </div>
+            {{#if isNotInstructor}}
             <div class="col-4">
                 <a id="add-instructor-review-link" class="add-review">Write a review</a>
             </div>
+            {{/if}}
+
             <div class="form-group dropdown">
                 <label for="filter-class">Instructor: </label>
                 <select name="filter-class" id="filter-instructor">

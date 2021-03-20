@@ -39,9 +39,10 @@
 .instructor-class, .member-class {
     margin: 20px auto;
     padding: 20px;
+    padding-bottom: 50px;
     width: 600px;
     max-height: 340px;
-    height: 240px;
+    height: fit-content;
     background-color: white;
     border: solid 1px rgb(236, 235, 235);
 }
@@ -85,7 +86,7 @@
     overflow: auto;
 }
 
-#cancel-btn {
+.profile-withdraw-btn {
     border: solid 1px rgb(212, 56, 56);
     color: rgb(212, 56, 56);
     height: 35px;
@@ -95,7 +96,7 @@
     float: right;
 }
 
-#cancel-btn:hover {
+.profile-withdraw-btn:hover {
     color: white;
     background-color: rgb(212, 56, 56);
 }
@@ -214,7 +215,7 @@
 }
 
 /* Class delete confirmation modal */
-.delete-confirm-modal-div, .delete-undo-modal-div {
+.delete-confirm-modal-div, .delete-undo-modal-div, .withdraw-success-modal-div {
     position: relative;
     width: 500px;
     height: 220px;
@@ -224,7 +225,7 @@
     box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
 }
 
-.delete-confirm-heading, .update-success-heading, .delete-success-heading, .delete-undo-heading {
+.delete-confirm-heading, .update-success-heading, .delete-success-heading, .delete-undo-heading, .withdraw-success-heading {
     height: 150px;
     padding-top: 20px;
     font-weight: 200;
