@@ -379,7 +379,7 @@ module.exports = function(app) {
               for (let i = 0; i < resultArr.length; i++) {
                 rawClassDate = resultArr[i].dataValues.startTime;
                 classDate = moment(rawClassDate).format("dddd, MMMM Do, h:mma");
-                classEndTime = moment(result.dataValues.endTime).format(
+                classEndTime = moment(resultArr[i].dataValues.endTime).format(
                   "h:mma"
                 );
                 const memberClass = {

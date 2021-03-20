@@ -218,7 +218,6 @@ $(document).ready(() => {
 
   // Function for feedback notification for booking and withdrawing confirmations
   function bookingNotification(text, colour, duration) {
-    console.log("working?");
     const message = $(
       `<div id="bookSuccess" style="position: fixed; background: ${colour};">${text}</div>`
     );
@@ -265,5 +264,6 @@ $(document).ready(() => {
 
   $("#withdraw-success-btn").on("click", () => {
     $("#withdraw-success-modal-bg").css("display", "none");
+    window.location.replace("/profile");
   });
 });
