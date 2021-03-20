@@ -62,11 +62,19 @@ module.exports = function(app) {
 
   app.get("/reviews", (req, res) => {
     let loggedIn = false;
+    let isNotInstructor;
     if (req.user) {
       loggedIn = true;
+      if (req.user.instructor) {
+        isNotInstructor = false;
+      } else {
+        isNotInstructor = true;
+      }
     } else {
       loggedIn = false;
+      isNotInstructor = true;
     }
+
     let classReviews = [];
     const gymClasses = [];
     let className;
@@ -235,7 +243,8 @@ module.exports = function(app) {
                 gymClasses: gymClasses,
                 classReviewsExist: classReviewsExist,
                 instructors: instructors,
-                instructorReviewsExist: instructorReviewsExist
+                instructorReviewsExist: instructorReviewsExist,
+                isNotInstructor: isNotInstructor
               });
             });
           });
