@@ -58,8 +58,13 @@
                             </button>
                         </form> 
                     </div>
-                </div>
-            {{/each}}
+                {{/each}}
+            {{else}}
+            <div class="no-classes-message">
+                <h3>There are currently no classes</h3>    
+                <p id="no-classes-para">Please check in again later!</p>                 
+            </div>     
+            {{/if}}   
         </div>
     </div>
 </div>

@@ -36,29 +36,35 @@ module.exports = function(app) {
     const classes = [];
     let instructorName;
     let classDate;
+    let classEndTime;
     db.classes
       .findAll({
         include: [db.user]
       })
       .then(results => {
-        results.forEach(result => {
-          instructorName =
-            result.dataValues.user.firstName +
-            " " +
-            result.dataValues.user.lastName;
-          rawDate = result.dataValues.startTime;
-          classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
-          classEndTime = moment(result.dataValues.endTime).format("h:mma");
-          result.dataValues.instructorName = instructorName;
-          result.dataValues.classDate = classDate;
-          result.dataValues.classEndTime = classEndTime;
-          result.dataValues.isNotInstructor = isNotInstructor;
-          classes.push(result.dataValues);
-        });
-        res.render("classes", {
-          classes: classes,
-          loggedIn: loggedIn
-        });
+        if (results.length > 0) {
+          results.forEach(result => {
+            instructorName =
+              result.dataValues.user.firstName +
+              " " +
+              result.dataValues.user.lastName;
+            rawDate = result.dataValues.startTime;
+            classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
+            classEndTime = moment(result.dataValues.endTime).format("h:mma");
+            result.dataValues.instructorName = instructorName;
+            result.dataValues.classDate = classDate;
+            result.dataValues.classEndTime = classEndTime;
+            result.dataValues.isNotInstructor = isNotInstructor;
+            classes.push(result.dataValues);
+          });
+          res.render("classes", {
+            classesExist: true,
+            classes: classes,
+            loggedIn: loggedIn
+          });
+        } else {
+          res.render("classes", { classesExist: false });
+        }
       });
   });
 
@@ -85,7 +91,7 @@ module.exports = function(app) {
     let instructorReviews = [];
     const instructors = [];
     let instructorName;
-    let instructorReviewsExist = true;
+    let instructorReviewsExist = false;
     db.classes
       .findAll({
         include: [
@@ -317,7 +323,8 @@ module.exports = function(app) {
             .findAll({
               where: {
                 instructorId: req.user.id
-              }
+              },
+              order: [["startTime", "ASC"]]
             })
             .then(results => {
               if (results.length > 0) {

@@ -6,11 +6,17 @@ module.exports = function(sequelize, DataTypes) {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate: {
+          len: [1, 30]
+        }
       },
       description: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          len: [1, 200]
+        }
       },
       startTime: {
         type: DataTypes.DATE,
