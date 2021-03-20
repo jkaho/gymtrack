@@ -20,15 +20,23 @@ module.exports = function(app) {
 
   app.get("/classes", (req, res) => {
     let loggedIn = false;
+    let isNotInstructor;
     if (req.user) {
       loggedIn = true;
+      if (req.user.instructor) {
+        isNotInstructor = false;
+      } else {
+        isNotInstructor = true;
+      }
     } else {
       loggedIn = false;
+      isNotInstructor = true;
     }
 
     const classes = [];
     let instructorName;
     let classDate;
+    let classEndTime;
     db.classes
       .findAll({
         include: [db.user]
@@ -42,8 +50,11 @@ module.exports = function(app) {
               result.dataValues.user.lastName;
             rawDate = result.dataValues.startTime;
             classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
+            classEndTime = moment(result.dataValues.endTime).format("h:mma");
             result.dataValues.instructorName = instructorName;
             result.dataValues.classDate = classDate;
+            result.dataValues.classEndTime = classEndTime;
+            result.dataValues.isNotInstructor = isNotInstructor;
             classes.push(result.dataValues);
           });
           res.render("classes", {
@@ -59,11 +70,19 @@ module.exports = function(app) {
 
   app.get("/reviews", (req, res) => {
     let loggedIn = false;
+    let isNotInstructor;
     if (req.user) {
       loggedIn = true;
+      if (req.user.instructor) {
+        isNotInstructor = false;
+      } else {
+        isNotInstructor = true;
+      }
     } else {
       loggedIn = false;
+      isNotInstructor = true;
     }
+
     let classReviews = [];
     const gymClasses = [];
     let className;
@@ -232,7 +251,8 @@ module.exports = function(app) {
                 gymClasses: gymClasses,
                 classReviewsExist: classReviewsExist,
                 instructors: instructors,
-                instructorReviewsExist: instructorReviewsExist
+                instructorReviewsExist: instructorReviewsExist,
+                isNotInstructor: isNotInstructor
               });
             });
           });
@@ -366,7 +386,7 @@ module.exports = function(app) {
               for (let i = 0; i < resultArr.length; i++) {
                 rawClassDate = resultArr[i].dataValues.startTime;
                 classDate = moment(rawClassDate).format("dddd, MMMM Do, h:mma");
-                classEndTime = moment(result.dataValues.endTime).format(
+                classEndTime = moment(resultArr[i].dataValues.endTime).format(
                   "h:mma"
                 );
                 const memberClass = {
@@ -375,7 +395,7 @@ module.exports = function(app) {
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
                   price: resultArr[i].dataValues.price,
-                  id: resultArr[i].dataValues.id
+                  classId: resultArr[i].dataValues.id
                 };
                 db.user
                   .findOne({

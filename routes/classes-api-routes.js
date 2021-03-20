@@ -101,7 +101,7 @@ module.exports = function(app) {
           }
         }
       )
-      .then(() => console.log(req.body))
+      .then(() => res.status(200))
       .catch(err => res.json(err));
   });
 
@@ -113,6 +113,7 @@ module.exports = function(app) {
           id: req.params.id
         }
       })
-      .then(() => res.status(200));
+      .then(() => res.status(200))
+      .catch(err => res.json(err));
   });
 };

@@ -26,9 +26,11 @@
                     <h3>Class Reviews</h3>
                 </div>
             </div>
+            {{#if isNotInstructor}}
             <div class="col-4">
                 <a id="add-class-review-link" class="add-review">Write a review</a>
             </div>
+            {{/if}}
         </div>
         {{#each gymClasses}}
             <div class="row">
@@ -103,9 +105,11 @@
                     <h3>Instructor Reviews</h3>
                 </div>
             </div>
+            {{#if isNotInstructor}}
             <div class="col-4">
                 <a id="add-instructor-review-link" class="add-review">Write a review</a>
             </div>
+            {{/if}}
         </div>
         {{#each instructors}}
             <div class="row">
