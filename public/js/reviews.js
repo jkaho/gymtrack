@@ -454,6 +454,7 @@ $(document).ready(() => {
     $.ajax({
       url: "/api/user_data",
       method: "GET"
+<<<<<<< HEAD
     }).then(result => {
       if (result.isLoggedIn === true) {
         authorId = result.authorId;
@@ -480,41 +481,83 @@ $(document).ready(() => {
                     "</option>"
                 );
                 classSelect.append(classOption);
+=======
+    })
+      .then(result => {
+        if (result.isLoggedIn === true) {
+          authorId = result.authorId;
+          if (event.target.id === "add-class-review-link") {
+            $.get("/api/classlist")
+              .then(result => {
+                classOptions = result;
+                const classSelect = $("#class-reviews-list");
+                classSelect.empty();
+                // $("#class-review-title-input").val("");
+                // $("#class-review-text-input").val("");
+                if (classOptions.length < 1) {
+                  const classOption = $(
+                    "<option value='no-classes'>No classes</option"
+                  );
+                  classSelect.append(classOption);
+                } else {
+                  result.forEach(gymClass => {
+                    const classOption = $(
+                      "<option value='class-" +
+                        gymClass.id +
+                        "'>" +
+                        gymClass.name +
+                        "</option>"
+                    );
+                    classSelect.append(classOption);
+                  });
+                }
+                $("#class-modal-bg").css("display", "block");
+              })
+              .catch(err => {
+                console.log(err);
+                showErrorMessage();
+>>>>>>> main
               });
-            }
-            $("#class-modal-bg").css("display", "block");
-          });
+          } else {
+            $.get("/api/instructorlist")
+              .then(result => {
+                instructorOptions = result;
+                const instructorSelect = $("#instructor-reviews-list");
+                instructorSelect.empty();
+                // $("#instructor-review-title-input").val("");
+                // $("#instructor-review-text-input").val("");
+                if (instructorOptions.length < 1) {
+                  const instructorOption = $(
+                    "<option value='no-instructors'>No instructors</option"
+                  );
+                  instructorOptions.append(instructorOption);
+                } else {
+                  result.forEach(instructor => {
+                    const instructorOption = $(
+                      "<option value='instructor-" +
+                        instructor.instructorId +
+                        "'>" +
+                        instructor.instructorName +
+                        "</option>"
+                    );
+                    instructorSelect.append(instructorOption);
+                  });
+                }
+                $("#instructor-modal-bg").css("display", "block");
+              })
+              .catch(err => {
+                console.log(err);
+                showErrorMessage();
+              });
+          }
         } else {
-          $.get("/api/instructorlist").then(result => {
-            instructorOptions = result;
-            const instructorSelect = $("#instructor-reviews-list");
-            instructorSelect.empty();
-            // $("#instructor-review-title-input").val("");
-            // $("#instructor-review-text-input").val("");
-            if (instructorOptions.length < 1) {
-              const instructorOption = $(
-                "<option value='no-instructors'>No instructors</option"
-              );
-              instructorOptions.append(instructorOption);
-            } else {
-              result.forEach(instructor => {
-                const instructorOption = $(
-                  "<option value='instructor-" +
-                    instructor.instructorId +
-                    "'>" +
-                    instructor.instructorName +
-                    "</option>"
-                );
-                instructorSelect.append(instructorOption);
-              });
-            }
-            $("#instructor-modal-bg").css("display", "block");
-          });
+          window.location.replace("/login");
         }
-      } else {
-        window.location.replace("/login");
-      }
-    });
+      })
+      .catch(err => {
+        console.log(err);
+        showErrorMessage();
+      });
   });
 
   function addClassReview(classId, reviewTitle, reviewText, rating, authorId) {
@@ -532,6 +575,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -556,6 +600,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -569,6 +614,7 @@ $(document).ready(() => {
     $("#success-modal-bg").css("display", "none");
   });
 
+<<<<<<< HEAD
   // Filters
   // Per class
   $.get("/api/classlist").then(result => {
@@ -836,5 +882,13 @@ $(document).ready(() => {
           .fadeIn();
       });
     });
+=======
+  function showErrorMessage() {
+    $("#error-modal-bg").css("display", "block");
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+>>>>>>> main
   });
 });

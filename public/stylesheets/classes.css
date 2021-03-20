@@ -42,9 +42,9 @@
     padding-top:40px;
     padding-bottom:10px;
     font-size: 2em;
-  }
+}
   
-  #bookFail {
+#bookFail {
     position:fixed;
     width:100%;
     height:3em;
@@ -55,14 +55,13 @@
     padding-top:40px;
     padding-bottom:10px;
     font-size: 2em;
-  }
+}
   
-  
-  .opacity_max {
-    opacity:1;
-  }
+.opacity_max {
+    opacity: 1;
+}
 
-  .book-withdraw{
+.book-withdraw{
     display: inline-block;
     height: auto;
     padding: 14px 30px;
@@ -76,7 +75,7 @@
     margin-bottom: 10px;
 }
 
-.view-reviews{
+.view-reviews {
   display: inline-block;
     height: auto;
     padding: 14px 30px;
@@ -91,7 +90,6 @@
 }
 
 /* Booking confirmation modal */
-
 .booking-confirmation-review-div, .withdraw-confirmation-review-div {
     position: relative;
     width: 500px;
@@ -109,4 +107,11 @@
     font-weight: 200;
     text-align: center;
     margin: 10px;
+}
+
+/* No classes message */
+#no-classes-para {
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
 }
