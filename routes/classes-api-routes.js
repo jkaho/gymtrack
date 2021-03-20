@@ -40,7 +40,7 @@ module.exports = function(app) {
           classId: req.body.classId
         })
         .then(() => {
-          res.redirect("/profile");
+          res.redirect("/classes");
         })
         .catch(err => {
           res.status(500).json(err);
@@ -61,7 +61,7 @@ module.exports = function(app) {
           }
         })
         .then(() => {
-          res.redirect("/profile");
+          res.redirect("/classes");
         })
         .catch(err => {
           res.status(500).json(err);
