@@ -81,7 +81,7 @@ body {
     font-weight: 300;
 }
 
-.fa-times-circle {
+.fa-times-circle, .fa-times {
     color: rgb(219, 30, 30);
     margin-bottom: 20px;
 }
