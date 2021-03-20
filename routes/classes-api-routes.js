@@ -44,7 +44,7 @@ module.exports = function(app) {
         });
     }
   });
-  // Route for withdraw from classes
+  // Route for withdrawing from classes
   app.post("/api/withdraw", (req, res) => {
     if (!req.user) {
       res.redirect("/login");
@@ -66,7 +66,6 @@ module.exports = function(app) {
   });
   // Route for searching classes by characters
   app.get("/api/search_classes/:id", (req, res) => {
-    console.log("dfjhasdfjoiafdsa", req.params);
     db.classes
       .findAll({
         where: {

@@ -10,14 +10,10 @@ $(document).ready(() => {
   //     e.preventDefault();
   //   })
   // })
-  // Set timer to search class every 0.4s
 
   searchBar.on("keyup", e => {
     e.preventDefault();
     const searchText = e.target.value;
-
-    console.log(searchText);
-    console.log($("[data-id =" + 2 + "]").text());
     getClasses();
     const allClasses = [];
     const matchedClasses = [];
@@ -29,7 +25,6 @@ $(document).ready(() => {
         }
       });
       // Get matching classes
-      console.log(searchText);
       if (searchText) {
         await $.get(`/api/search_classes/${searchText}`).then(
           searchedClasses => {
@@ -43,27 +38,25 @@ $(document).ready(() => {
       const notMatchedClasses = $(allClasses)
         .not(matchedClasses)
         .get();
-      console.log(notMatchedClasses);
       // Search result display
       // If search bar empty, show all classes
       if (searchText.length === 0) {
         for (i = 0; i < allClasses.length; i++) {
-          console.log(allClasses[i]);
           $(`h3:contains('${allClasses[i]}')`)
             .parent()
             .parent()
             .fadeIn();
         }
       } else {
+        // Hide classes that don't have matching text in their names
         for (i = 0; i < notMatchedClasses.length; i++) {
-          console.log(notMatchedClasses[i]);
           $(`h3:contains('${notMatchedClasses[i]}')`)
             .parent()
             .parent()
             .fadeOut();
         }
+        // Display classes with matching text
         for (i = 0; i < matchedClasses.length; i++) {
-          console.log(matchedClasses[i]);
           $(`h3:contains('${matchedClasses[i]}')`)
             .parent()
             .parent()
