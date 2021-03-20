@@ -298,7 +298,8 @@ module.exports = function(app) {
             .findAll({
               where: {
                 instructorId: req.user.id
-              }
+              },
+              order: [["startTime", "ASC"]]
             })
             .then(results => {
               if (results.length > 0) {
