@@ -100,9 +100,18 @@ $(document).ready(() => {
         endTime: endTime,
         price: price
       },
-      success: classUpdated()
+      success: classUpdated(),
+      error: showErrorMessage()
     });
   }
+
+  function showErrorMessage() {
+    $("#error-modal-bg").css("display", "block");
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
 
   function classUpdated() {
     if ($("#edit-modal-bg").css("display") === "block") {
@@ -131,7 +140,8 @@ $(document).ready(() => {
     $.ajax({
       url: `/api/classes/${classId}`,
       method: "DELETE",
-      success: classDeleted()
+      success: classDeleted(),
+      error: showErrorMessage()
     });
   });
 
@@ -179,21 +189,29 @@ $(document).ready(() => {
   }
 
   function addDeletedClass(name, description, startTime, endTime, price) {
-    $.get("/api/user_data").then(results => {
-      const instructorId = results.authorId;
-      $.post(
-        "/api/add_class",
-        {
-          name: name,
-          description: description,
-          startTime: startTime,
-          endTime: endTime,
-          price: price,
-          instructorId: instructorId
-        },
-        addDeletedClassSuccess()
-      ).catch(err => console.log(err));
-    });
+    $.get("/api/user_data")
+      .then(results => {
+        const instructorId = results.authorId;
+        $.post(
+          "/api/add_class",
+          {
+            name: name,
+            description: description,
+            startTime: startTime,
+            endTime: endTime,
+            price: price,
+            instructorId: instructorId
+          },
+          addDeletedClassSuccess()
+        ).catch(err => {
+          console.log(err);
+          showErrorMessage();
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        showErrorMessage();
+      });
   }
 
   function addDeletedClassSuccess() {

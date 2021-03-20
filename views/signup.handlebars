@@ -5,33 +5,70 @@
             <form class="signup">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstname-input" placeholder="Enter first name">
+                    <input type="text" class="form-control" id="firstname-input" placeholder="Enter first name" required>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastname-input" placeholder="Enter last name">
+                    <input type="text" class="form-control" id="lastname-input" placeholder="Enter last name" required>
                 </div>
                     <div class="form-group">
                     <label for="dob">Date of Birth</label>
-                    <input type="date" class="form-control" min="1920-01-01" max="2003-12-31" id="dob-input">
+                    <input type="date" class="form-control" min="1920-01-01" max="2003-12-31" id="dob-input" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email-input" placeholder="Enter email address">
+                    <input type="email" class="form-control" id="email-input" placeholder="Enter email address" required>
                 </div>
                     <div class="form-group">
                     <label for="password">Password</label>
                 <!-- Insert this into the input for pw validation: pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" (left out for testing purposes)-->
-                    <input type="password" class="form-control" id="password-input" placeholder="Enter password">
-                </div>
+                    <input type="password" class="form-control" id="password-input" placeholder="Enter password" required>
+                {{!-- </div>
                     <div style="display: none" id="alert" class="alert alert-danger" role="alert">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span> <span class="msg"></span>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-default">Sign Up</button>
             </form>
             <br />
             <p>Or log in <a href="/login">here</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Error message modal --> 
+<div id="error-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="error-modal-div">
+            <div class="error-heading">
+                <i class="fas fa-times-circle fa-3x"></i>                
+                <h4>Oops!</h4>
+                <p>
+                    An error occurred whilst handling your request.<br>
+                    Please refresh the page or try again later.
+                </p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="error-ok-btn" class="confirm-btn" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login error message modal --> 
+<div id="login-error-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="login-error-modal-div">
+            <div class="login-error-heading">
+                <i class="fas fa-times fa-3x"></i>              
+                <h4>Incorrect login details</h4>
+                <p>
+                    You entered an incorrect email or password.
+                </p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="login-error-ok-btn" class="confirm-btn" type="submit">Okay</button>
+            </div>
         </div>
     </div>
 </div>
