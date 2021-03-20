@@ -72,11 +72,16 @@ $(document).ready(() => {
       $("#add-success-modal-bg").css("display", "block")
     ).catch(err => {
       console.log(err);
+      $("#error-modal-bg").css("display", "block");
     });
   }
 
   $("#add-success-btn").on("click", () => {
     $("#add-success-modal-bg").css("display", "none");
+  });
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
   });
 
   const currentDate = moment().format("YYYY-MM-DD");

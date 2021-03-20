@@ -1,8 +1,8 @@
-#class-body{
+#class-body {
   margin: 10px;
 }
 
-#classes{
+#classes {
   width: 80%;
   margin: 50px auto;
   padding: 20px;
@@ -10,23 +10,24 @@
   display: grid;
   
 }
-#each-class{
+#each-class {
   margin-bottom: 20px;
   padding: 20px;
   border: solid 1px rgb(235, 235, 235);
 
 }
-.jump{
+
+.jump {
   margin: 0 auto;
   display: inline-block;
 }
 
-.jump :hover{
+.jump:hover {
   background-color: rgb(255, 89, 0);
   border: none;
 }
 
-#class-search{
+#class-search {
   width: 20em;
 }
 
@@ -41,9 +42,9 @@
     padding-top:40px;
     padding-bottom:10px;
     font-size: 2em;
-  }
+}
   
-  #bookFail {
+#bookFail {
     position:fixed;
     width:100%;
     height:3em;
@@ -54,14 +55,13 @@
     padding-top:40px;
     padding-bottom:10px;
     font-size: 2em;
-  }
+}
   
-  
-  .opacity_max {
-    opacity:1;
-  }
+.opacity_max {
+    opacity: 1;
+}
 
-  .book-withdraw{
+.book-withdraw{
     display: inline-block;
     height: auto;
     padding: 14px 30px;
@@ -75,7 +75,7 @@
     margin-bottom: 10px;
 }
 
-.view-reviews{
+.view-reviews {
   display: inline-block;
     height: auto;
     padding: 14px 30px;
@@ -87,4 +87,24 @@
     line-height: 1;
     text-transform: uppercase;
     margin-bottom: 10px;
+}
+
+/* Booking confirmation modal */
+.booking-confirmation-review-div, .withdraw-confirmation-review-div {
+    position: relative;
+    width: 500px;
+    height: 230px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.booking-confirmation-heading, .withdraw-confirmation-heading {
+    height: 150px;
+    padding-top: 20px;
+    padding-left: 15px;
+    font-weight: 200;
+    text-align: center;
+    margin: 10px;
 }

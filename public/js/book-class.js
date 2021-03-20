@@ -1,9 +1,12 @@
 /* eslint-disable cambookMsgcase */
 $(document).ready(() => {
+  let currentId;
   const bookWithdrawBtn = $(".book-withdraw");
   const notificationEl = $("#notification");
   const cancelBtn = $(".withdraw");
   const searchBar = $("#class-search");
+  const confirmationModal = $("#booking-confirmation-modal-bg");
+  const withdrawModal = $("#withdraw-confirmation-modal-bg");
   // Option to cancel classes from profile page
   // $(withdrawBtn).each(function () {
   //   $(this).click(e => {
@@ -82,43 +85,57 @@ $(document).ready(() => {
         InitialClass(classIdVal);
         $(this).click(e => {
           e.preventDefault();
+          currentId = this.getAttribute("data-id");
           // Send request, and switch button attributes and display after being clicked
           const action = $(this).text();
           if (action === "Book Now") {
-            withdrawBtn(classIdVal);
-            $.post("/api/booking", {
-              classId: classIdVal
-            }).done(() => {
-              bookingNotification("Booking confirmed! :D", "lightgreen", 4000);
-            });
+            confirmationModal.css("display", "block");
           } else {
-            bookBtn(classIdVal);
-            $.post("/api/withdraw", {
-              classId: classIdVal
-            }).done(() => {
-              bookingNotification("Booking withdrawn!", "lightgreen", 4000);
-            });
+            withdrawModal.css("display", "block");
           }
         });
       }
     });
+
+    $("#booking-confirm").on("click", () => {
+      addToClass(currentId);
+    });
+
+    $("#booking-go-back").on("click", () => {
+      confirmationModal.css("display", "none");
+    });
+
+    $("#withdraw-confirm").on("click", () => {
+      withdrawFromClass(currentId);
+    });
+
+    $("#withdraw-go-back").on("click", () => {
+      withdrawModal.css("display", "none");
+    });
+
     $(cancelBtn).each(function() {
       $(this).click(e => {
         e.preventDefault();
         const classIdVal = this.getAttribute("data-id");
         $.post("/api/withdraw", {
           classId: classIdVal
-        }).done(() => {
-          location.reload();
-        });
+        })
+          .done(() => {
+            location.reload();
+          })
+          .catch(err => {
+            console.log(err);
+            $("#error-modal-bg").css("display", "block");
+          });
       });
     });
   });
+
   // Function to check booking status and alter buttons' text display and attributes accordingly
   function InitialClass(thisClassId) {
     $.getJSON("api/user_data").then(data => {
       // Get current userId-classId combination
-      const thisUserClass = data.user.id + "-" + thisClassId;
+      const thisUserClass = data.authorId + "-" + thisClassId;
       // Get all userId-classId combinations and compare to the current combination
       $.get("/userclasses").then(res => {
         for (i = 0; i < res.results.length; i++) {
@@ -150,8 +167,58 @@ $(document).ready(() => {
       .removeClass("book")
       .addClass("withdraw");
   }
+  // Add user to class
+  function addToClass(classId) {
+    $.post(
+      "/api/booking",
+      {
+        classId: classId
+      },
+      afterBooking(classId)
+    )
+      .done(() =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
+      )
+      .catch(err => {
+        console.log(err);
+        $("#error-modal-bg").css("display", "block");
+      });
+  }
+
+  // Withdraw user from class
+  function withdrawFromClass(classId) {
+    $.post(
+      "/api/withdraw",
+      {
+        classId: classId
+      },
+      afterWithdraw(classId)
+    )
+      .done(() => bookingNotification("Booking withdrawn!", "lightgreen", 4000))
+      .catch(err => {
+        console.log(err);
+        $("#error-modal-bg").css("display", "block");
+      });
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
+
+  function afterBooking(classId) {
+    withdrawBtn(classId);
+    confirmationModal.css("display", "none");
+  }
+
+  function afterWithdraw(classId) {
+    bookBtn(classId);
+    withdrawModal.css("display", "none");
+  }
+
   // Function for feedback notification for booking and withdrawing confirmations
   function bookingNotification(text, colour, duration) {
+    console.log("working?");
     const message = $(
       `<div id="bookSuccess" style="position: fixed; background: ${colour};">${text}</div>`
     );
