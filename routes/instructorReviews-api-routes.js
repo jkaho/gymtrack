@@ -27,6 +27,7 @@ module.exports = function(app) {
         authorId: req.body.authorId,
         instructorId: req.body.instructorId //Not sure if it's req.instructor
       })
+      .then(() => res.status(200))
       .catch(err => {
         res.status(401).json(err);
       });
