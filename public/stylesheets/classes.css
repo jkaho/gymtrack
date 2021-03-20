@@ -27,6 +27,10 @@
   border: none;
 }
 
+#class-search {
+  width: 20em;
+}
+
 #bookSuccess {
     position:fixed;
     width:100%;
