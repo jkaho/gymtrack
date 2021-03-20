@@ -20,10 +20,17 @@ module.exports = function(app) {
 
   app.get("/classes", (req, res) => {
     let loggedIn = false;
+    let isNotInstructor;
     if (req.user) {
       loggedIn = true;
+      if (req.user.instructor) {
+        isNotInstructor = false;
+      } else {
+        isNotInstructor = true;
+      }
     } else {
       loggedIn = false;
+      isNotInstructor = true;
     }
 
     const classes = [];
@@ -43,6 +50,7 @@ module.exports = function(app) {
           classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
           result.dataValues.instructorName = instructorName;
           result.dataValues.classDate = classDate;
+          result.dataValues.isNotInstructor = isNotInstructor;
           classes.push(result.dataValues);
         });
         res.render("classes", {

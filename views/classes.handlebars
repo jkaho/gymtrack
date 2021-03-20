@@ -17,14 +17,16 @@
                         <p>Instructor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
                         <p>Description: {{description}}</p>
                         <p>Price: ${{price}}/class </p>
+                        {{#if isNotInstructor}}
                         <form class="jump" action=""> 
                             <button class= "book-withdraw" data-id="{{id}}" type="submit" value="Book Now">
                                 Book Now
                             </button>
                         </form>
-                          <form class="jump" action=""> 
+                        {{/if}}
+                        <form class="jump" action=""> 
                             <button class= "view-reviews" data-id="" type="submit" value="View Review">
-                                View Review
+                                View Reviews
                             </button>
                         </form> 
                     </div>
