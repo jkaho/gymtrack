@@ -60,3 +60,33 @@ body {
   font-size: 24px;
   font-weight: bold;
 } */
+
+/* Error modal */
+.error-modal-div {
+    position: relative;
+    width: 500px;
+    height: 230px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.error-heading {
+    height: 160px;
+    padding-top: 20px;
+    font-weight: 200;
+    text-align: center;
+    margin: 10px;
+    font-weight: 300;
+}
+
+.fa-times-circle {
+    color: rgb(219, 30, 30);
+    margin-bottom: 20px;
+}
+
+.nav-btn-div {
+    width: fit-content;
+    margin: 0 auto;
+}
