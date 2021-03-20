@@ -1,5 +1,9 @@
 #class-body{
   margin: 10px;
+  background-image: url(../images/group-yoga.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 #classes{
@@ -8,12 +12,12 @@
   padding: 20px;
   vertical-align: middle;
   display: grid;
-  
 }
 #each-class{
   margin-bottom: 20px;
   padding: 20px;
-  border: solid 1px rgb(235, 235, 235);
+  /* border: solid 1px rgb(235, 235, 235); */
+  background-color: rgb(246, 246, 246, 0.7);
 
 }
 .jump{
@@ -26,6 +30,9 @@
   border: none;
 }
 
+p{
+  font-size: 20px;
+}
 
 
 #bookSuccess {
