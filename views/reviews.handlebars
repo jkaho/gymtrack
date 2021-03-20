@@ -36,7 +36,7 @@
                 <label for="filter-rating">Rating: </label>
                 <select name="filter-rating" id="filter-class-rating">
                 </select>
-                <Button type="button" id="clear-filter-class" class="clear-filter"data-bs-toggle="button">Clear all filters</Button>
+                <Button type="button" id="clear-filter-class" class="clear-filter">Clear all filters</Button>
             </div>
         </div>
         <div>
@@ -56,32 +56,32 @@
                             <h6 class="class-review-title">{{title}}</h6>
                             <h6 class="review-rating">
                                 {{#if ratingOne}}
-                                <span data-id="1 Star">
+                                <span class="rating-one" data-id="1 Star">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingTwo}}
-                                <span data-id="2 Stars">
+                                <span class="rating-two" data-id="2 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingThree}}
-                                <span data-id="3 Stars">
+                                <span class="rating-three" data-id="3 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingFour}}
-                                <span data-id="4 Stars">
+                                <span class="rating-four" data-id="4 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
-                                <span data-id="5 Stars">
+                                <span class="rating-five" data-id="5 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -124,7 +124,7 @@
                 <label for="filter-rating">Rating: </label>
                 <select name="filter-rating" id="filter-instructor-rating">
                 </select>
-                <Button type="button" id="clear-filter-instructor" class="clear-filter"data-bs-toggle="button">Clear all filters</Button>
+                <Button type="button" id="clear-filter-instructor" class="clear-filter">Clear all filters</Button>
             </div>
         </div>
         <div>
@@ -144,32 +144,32 @@
                             <h6 class="instructor-review-title">{{title}}</h6>
                             <h6 class="review-rating">
                                 {{#if ratingOne}}
-                                <span data-id ="1 Star">
+                                <span class="rating-one" data-id ="1 Star">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingTwo}}
-                                <span data-id="2 Stars">
+                                <span class="rating-two" data-id="2 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingThree}}
-                                <span data-id="3 Stars">
+                                <span class="rating-three" data-id="3 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingFour}}
-                                <span data-id="4 Stars">
+                                <span class="rating-four" data-id="4 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
-                                <span data-id="5 Stars">
+                                <span class="rating-five" data-id="5 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
