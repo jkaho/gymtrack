@@ -5,6 +5,7 @@
             <h1>Classes</h1>
         </div>
     </div>
+<input id="class-search" type="text" placeholder="Search classes" >
 <!--put in center -->
     <div class="row" id="classes">
         <div class="col-12">
@@ -13,7 +14,7 @@
                     <h3>{{classDate}}</h3>
                     <div>
                         <h3>{{name}}</h3>
-                        <p>Instructuor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
+                        <p>Instructor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
                         <p>Description: {{description}}</p>
                         <p>Price: ${{price}}/class </p>
                         <form class="jump" action=""> 
@@ -25,8 +26,7 @@
                             <button class= "view-reviews" data-id="" type="submit" value="View Review">
                                 View Review
                             </button>
-                        </form>
-                       
+                        </form> 
                     </div>
                 </div>
             {{/each}}

@@ -6,12 +6,68 @@ $(document).ready(() => {
   const cancelBtn = $(".withdraw");
   const confirmationModal = $("#booking-confirmation-modal-bg");
   const withdrawModal = $("#withdraw-confirmation-modal-bg");
+  const searchBar = $("#class-search");
   // Option to cancel classes from profile page
   // $(withdrawBtn).each(function () {
   //   $(this).click(e => {
   //     e.preventDefault();
   //   })
   // })
+
+  searchBar.on("keyup", e => {
+    e.preventDefault();
+    const searchText = e.target.value;
+    getClasses();
+    const allClasses = [];
+    const matchedClasses = [];
+    async function getClasses() {
+      // Get all existing classes
+      await $.get("/api/classlist").then(res => {
+        for (let i = 0; i < res.length; i++) {
+          allClasses.push(res[i].name);
+        }
+      });
+      // Get matching classes
+      if (searchText) {
+        await $.get(`/api/search_classes/${searchText}`).then(
+          searchedClasses => {
+            $(searchedClasses).each(i => {
+              matchedClasses.push(searchedClasses[i].name);
+            });
+          }
+        );
+      }
+      // Get classes that did not match the search text
+      const notMatchedClasses = $(allClasses)
+        .not(matchedClasses)
+        .get();
+      // Search result display
+      // If search bar empty, show all classes
+      if (searchText.length === 0) {
+        for (i = 0; i < allClasses.length; i++) {
+          $(`h3:contains('${allClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeIn();
+        }
+      } else {
+        // Hide classes that don't have matching text in their names
+        for (i = 0; i < notMatchedClasses.length; i++) {
+          $(`h3:contains('${notMatchedClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeOut();
+        }
+        // Display classes with matching text
+        for (i = 0; i < matchedClasses.length; i++) {
+          $(`h3:contains('${matchedClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeIn();
+        }
+      }
+    }
+  });
   $.getJSON("api/user_data").then(data => {
     // Check log in status
     $(bookWithdrawBtn).each(function() {
