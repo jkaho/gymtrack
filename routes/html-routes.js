@@ -17,8 +17,7 @@ module.exports = function(app) {
       loggedIn = false;
     }
     res.render("home", {
-      loggedIn: loggedIn,
-      profileIcon: "fas fa-user-circle"
+      loggedIn: loggedIn
     });
   });
 
@@ -239,20 +238,28 @@ module.exports = function(app) {
   });
 
   app.get("/signup", (req, res) => {
-    // If the user already has an account send them to the members page
+    // If the user already has an account send them to their profile page
     if (req.user) {
+      loggedIn = true;
       res.redirect("/profile");
     } else {
-      res.sendFile(path.join(__dirname, "../public/signup.html"));
+      loggedIn = false;
+      res.render("/signup", {
+        loggedIn: loggedIn
+      });
     }
   });
 
   app.get("/login", (req, res) => {
-    // If the user already has an account send them to the members page
+    // If the user already has an account send them to their profile page
     if (req.user) {
+      loggedIn = true;
       res.redirect("/profile");
     } else {
-      res.sendFile(path.join(__dirname, "../public/login.html"));
+      loggedIn = false;
+      res.render("/login", {
+        loggedIn: loggedIn
+      });
     }
   });
 
