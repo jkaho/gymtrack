@@ -93,3 +93,17 @@ p{
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+
+
+@media (min-width: 600px){
+  #class-body{
+    width: 100vw;
+  }
+}
+
+@media (max-width: 599px){
+  #class-body{
+    /* width: 100vw; */
+    background-size: 100vw;
+  }
+}
