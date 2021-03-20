@@ -7,8 +7,6 @@ $(document).ready(() => {
   const confirmationModal = $("#booking-confirmation-modal-bg");
   const withdrawModal = $("#withdraw-confirmation-modal-bg");
   const searchBar = $("#class-search");
-  const confirmationModal = $("#booking-confirmation-modal-bg");
-  const withdrawModal = $("#withdraw-confirmation-modal-bg");
   // Option to cancel classes from profile page
   // $(withdrawBtn).each(function () {
   //   $(this).click(e => {
