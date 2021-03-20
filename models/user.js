@@ -6,16 +6,25 @@ module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define("user", {
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1, 30]
+      }
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1, 50]
+      }
     },
     dob: {
       type: DataTypes.DATEONLY,
-      allowNull: false
-      // Add validation (must be over 18)
+      allowNull: false,
+      validate: {
+        isAfter: "1900-01-01",
+        isBefore: "2003-12-31"
+      }
     },
     email: {
       type: DataTypes.STRING,
@@ -27,7 +36,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        is: ["^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$"]
+      }
     },
     instructor: {
       type: DataTypes.BOOLEAN,

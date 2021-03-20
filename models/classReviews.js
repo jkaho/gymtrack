@@ -5,16 +5,21 @@ module.exports = function(sequelize, DataTypes) {
     {
       title: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          len: [1, 50]
+        }
       },
       review: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          len: [1, 250]
+        }
       },
       rating: {
         type: DataTypes.INTEGER,
         allowNull: false
-        // Rating out of 5 stars
       }
     },
     { freezeTableName: true }

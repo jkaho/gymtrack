@@ -6,31 +6,29 @@
             <form class="add-class">
                 <div class="form-group">
                     <label for="className">Class Name</label>
-                    <input type="text" class="form-control" id="className-input" placeholder="Enter class name">
+                    <input type="text" class="form-control" id="className-input" placeholder="Enter class name" maxlength="30" required>
+                    <div class="input-note">*Max. 30 characters</div>
                 </div>
                 <div class="form-group">
                     <label for="classDescription">Description</label>
-                    <textarea class="form-control" id="classDescription-input" placeholder="Enter a class description"></textarea>
+                    <textarea class="form-control" id="classDescription-input" placeholder="Enter a class description" maxlength="200" required></textarea>
+                    <div class="input-note">*Max. 200 characters</div>
                 </div>
                 <div class="form-group">
                     <label for="classDate">Date</label>
-                    <input type="date" class="form-control" id="classDate-input">
+                    <input type="date" class="form-control" id="classDate-input" required>
                 </div>
                 <div class="form-group">
                     <label for="startTime">Start Time</label>
-                    <input type="time" class="form-control" id="startTime-input" placeholder="Enter the time the class will start">
+                    <input type="time" class="form-control" id="startTime-input" placeholder="Enter the time the class will start" required>
                 </div>
                 <div class="form-group">
                     <label for="endTime">End Time</label>
-                    <input type="time" class="form-control" id="endTime-input" placeholder="Enter the time the class will end">
+                    <input type="time" class="form-control" id="endTime-input" placeholder="Enter the time the class will end" required>
                 </div>
                 <div class="form-group">
                     <label for="classPrice">Price ($/class)</label>
-                    <input type="number" class="form-control" id="classPrice-input" placeholder="Enter the price of one class">
-                </div>
-                    <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span> <span class="msg"></span>
+                    <input type="number" class="form-control" id="classPrice-input" placeholder="Enter the price of one class" required>
                 </div>
                 <button type="submit" class="btn btn-default">Create</button>
             </form>
@@ -38,21 +36,40 @@
             <a href="/profile">Go back to your profile</a>
         </div>
     </div>
+</div>
 
-    <!-- Modal for successfully undoing deletion of classes -->
-    <div id="add-success-modal-bg" class="modal-bg">
-        <div class="add-review-modal">
-            <div class="add-success-modal-div">
-                <div class="add-success-heading">
-                    <i class="fas fa-check-circle fa-3x"></i>
-                    <h4>Successfully added!</h4>
-                    <p>Your new class has been created.</p>
-                </div>
-                <div class="nav-btn-div">
-                    <form action="/profile">
-                        <button id="add-success-btn" class="confirm-btn" type="submit">Go back to profile</button>
-                    </form>
-                </div>
+<!-- Modal for successfully undoing deletion of classes -->
+<div id="add-success-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="add-success-modal-div">
+            <div class="add-success-heading">
+                <i class="fas fa-check-circle fa-3x"></i>
+                <h4>Successfully added!</h4>
+                <p>Your new class has been created.</p>
+            </div>
+            <div class="nav-btn-div">
+                <form action="/profile">
+                    <button id="add-success-btn" class="confirm-btn" type="submit">Go back to profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error message modal --> 
+<div id="error-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="error-modal-div">
+            <div class="error-heading">
+                <i class="fas fa-times-circle fa-3x"></i>                
+                <h4>Oops!</h4>
+                <p>
+                    An error occurred whilst handling your request.<br>
+                    Please refresh the page or try again later.
+                </p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="error-ok-btn" class="confirm-btn" type="submit">Okay</button>
             </div>
         </div>
     </div>
