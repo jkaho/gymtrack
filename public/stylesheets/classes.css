@@ -1,14 +1,19 @@
 #class-body{
   margin: 10px;
+  padding-top: 20px;
   background-image: url(../images/group-yoga.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
-
+h1{
+  color: #fff;
+  margin-top: 20px;
+}
 #classes{
   width: 80%;
   margin: 50px auto;
+  margin-top: 30px;
   padding: 20px;
   vertical-align: middle;
   display: grid;
