@@ -35,10 +35,13 @@ h1{
   border: none;
 }
 
-p{
+p {
   font-size: 20px;
 }
 
+#class-search {
+  width: 20em;
+}
 
 #bookSuccess {
     position:fixed;
