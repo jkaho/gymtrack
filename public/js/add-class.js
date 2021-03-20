@@ -22,7 +22,6 @@ $(document).ready(() => {
         price: classPriceInput.val(),
         instructorId: instructorId
       };
-      console.log(classData);
 
       if (
         !classData.name ||
