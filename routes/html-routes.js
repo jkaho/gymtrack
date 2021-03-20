@@ -1,6 +1,3 @@
-// Requiring path to so we can use relative routes to our HTML files
-const path = require("path");
-
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
@@ -9,16 +6,6 @@ const moment = require("moment");
 const db = require("../models");
 
 module.exports = function(app) {
-  //   app.get("/", (req, res) => {
-  //     let userStatus = "Log In";
-  //     if (req.user) {
-  //       userStatus = "Log Out";
-  //     } else {
-  //       userStatus = "Log In";
-  //     }
-  //     res.json({ userStatus: userStatus });
-  //   });
-
   app.get("/", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -27,10 +14,10 @@ module.exports = function(app) {
       loggedIn = false;
     }
     res.render("home", {
-      loggedIn: loggedIn,
-      profileIcon: "fas fa-user-circle"
+      loggedIn: loggedIn
     });
   });
+
   app.get("/classes", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -246,26 +233,38 @@ module.exports = function(app) {
           });
       });
   });
+
   app.get("/signup", (req, res) => {
-    // If the user already has an account send them to the members page
+    // If the user already has an account send them to their profile page
     if (req.user) {
+      loggedIn = true;
       res.redirect("/profile");
     } else {
-      res.sendFile(path.join(__dirname, "../public/signup.html"));
+      loggedIn = false;
+      res.render("signup", {
+        loggedIn: loggedIn
+      });
     }
   });
+
   app.get("/login", (req, res) => {
-    // If the user already has an account send them to the members page
+    // If the user already has an account send them to their profile page
     if (req.user) {
+      loggedIn = true;
       res.redirect("/profile");
     } else {
-      res.sendFile(path.join(__dirname, "../public/login.html"));
+      loggedIn = false;
+      res.render("login", {
+        loggedIn: loggedIn
+      });
     }
   });
+
   app.get("/logout", (req, res) => {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
   });
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/profile", isAuthenticated, (req, res) => {
@@ -308,8 +307,21 @@ module.exports = function(app) {
                   classDate = moment(rawClassDate).format(
                     "dddd, MMMM Do, h:mma"
                   );
+                  classEndTime = moment(result.dataValues.endTime).format(
+                    "h:mma"
+                  );
+                  htmlClassDate = moment(rawClassDate).format("YYYY-MM-DD");
+                  htmlStartTime = moment(rawClassDate).format("HH:mm:ss");
+                  htmlEndTime = moment(result.dataValues.endTime).format(
+                    "HH:mm:ss"
+                  );
                   const instructorClass = {
+                    classId: result.dataValues.id,
+                    htmlClassDate: htmlClassDate,
+                    htmlStartTime: htmlStartTime,
+                    htmlEndTime: htmlEndTime,
                     classDate: classDate,
+                    classEndTime: classEndTime,
                     name: result.dataValues.name,
                     description: result.dataValues.description,
                     price: result.dataValues.price
@@ -348,8 +360,12 @@ module.exports = function(app) {
               for (let i = 0; i < resultArr.length; i++) {
                 rawClassDate = resultArr[i].dataValues.startTime;
                 classDate = moment(rawClassDate).format("dddd, MMMM Do, h:mma");
+                classEndTime = moment(result.dataValues.endTime).format(
+                  "h:mma"
+                );
                 const memberClass = {
                   classDate: classDate,
+                  classEndTime: classEndTime,
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
                   price: resultArr[i].dataValues.price,
@@ -400,7 +416,16 @@ module.exports = function(app) {
       });
   });
   app.get("/add-class", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/add-class.html"));
+    let loggedIn;
+    if (!req.user) {
+      loggedIn = false;
+      res.redirect("/login");
+    } else {
+      loggedIn = true;
+      res.render("add-class", {
+        loggedIn: loggedIn
+      });
+    }
   });
   // Get all existing bookings
   app.get("/userclasses", (req, res) => {
@@ -409,16 +434,16 @@ module.exports = function(app) {
     });
   });
   // Get req.user
-  app.get("/api/user_data", (req, res) => {
-    if (req.user === undefined) {
-      // The user is not logged in
-      res.json({
-        isLoggedIn: false
-      });
-    } else {
-      res.json({
-        user: req.user
-      });
-    }
-  });
+  //   app.get("/api/user_data", (req, res) => {
+  //     if (req.user === undefined) {
+  //       // The user is not logged in
+  //       res.json({
+  //         isLoggedIn: false
+  //       });
+  //     } else {
+  //       res.json({
+  //         user: req.user
+  //       });
+  //     }
+  //   });
 };

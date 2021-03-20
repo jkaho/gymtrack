@@ -1,0 +1,23 @@
+/* Class delete confirmation modal */
+.add-success-modal-div {
+    position: relative;
+    width: 500px;
+    height: 220px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.add-success-heading {
+    height: 150px;
+    padding-top: 20px;
+    font-weight: 200;
+    text-align: center;
+    margin: 10px;
+    font-weight: 300;
+}
+
+#add-success-btn {
+    width: 150px;
+}

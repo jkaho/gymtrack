@@ -269,7 +269,6 @@
 .success-heading {
     height: 180px;
     padding-top: 20px;
-    padding-left: 15px;
     font-weight: 200;
     text-align: center;
     margin: 10px;
@@ -281,7 +280,7 @@
     margin-bottom: 20px;
 }
 
-.success-btn-div {
+.nav-btn-div {
     width: fit-content;
     margin: 0 auto;
 }
