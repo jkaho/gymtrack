@@ -31,8 +31,19 @@
                 <a id="add-class-review-link" class="add-review">Write a review</a>
             </div>
             {{/if}}
+            <div class="form-group dropdown">
+                <label for="filter-class">Class: </label>
+                <select name="filter-class" id="filter-class">
+                </select>
+                <label for="filter-rating">Rating: </label>
+                <select name="filter-rating" id="filter-class-rating">
+                </select>
+                <Button type="button" id="clear-filter-class" class="clear-filter">Clear all filters</Button>
+            </div>
         </div>
+        <div>
         {{#each gymClasses}}
+        <div>
             <div class="row">
                 <div class="col-12">
                     <div class="class-name">
@@ -47,32 +58,32 @@
                             <h6 class="class-review-title">{{title}}</h6>
                             <h6 class="review-rating">
                                 {{#if ratingOne}}
-                                <span class="rating-one">
+                                <span class="rating-one" data-id="1 Star">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingTwo}}
-                                <span class="rating-two">
+                                <span class="rating-two" data-id="2 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingThree}}
-                                <span class="rating-three">
+                                <span class="rating-three" data-id="3 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingFour}}
-                                <span class="rating-four">
+                                <span class="rating-four" data-id="4 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
-                                <span class="rating-five">
+                                <span class="rating-five" data-id="5 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -90,7 +101,9 @@
                     </div>
                 </div>
             {{/each}}
+            </div>
         {{/each}}
+        </div>
     {{else}}
         <div class="no-reviews-message">
             <h3>There are currently no class reviews</h3>                      
@@ -110,8 +123,20 @@
                 <a id="add-instructor-review-link" class="add-review">Write a review</a>
             </div>
             {{/if}}
+
+            <div class="form-group dropdown">
+                <label for="filter-class">Instructor: </label>
+                <select name="filter-class" id="filter-instructor">
+                </select>
+                <label for="filter-rating">Rating: </label>
+                <select name="filter-rating" id="filter-instructor-rating">
+                </select>
+                <Button type="button" id="clear-filter-instructor" class="clear-filter">Clear all filters</Button>
+            </div>
         </div>
+        <div>
         {{#each instructors}}
+        <div>
             <div class="row">
                 <div class="col-12">
                     <div class="instructor-name">
@@ -126,32 +151,32 @@
                             <h6 class="instructor-review-title">{{title}}</h6>
                             <h6 class="review-rating">
                                 {{#if ratingOne}}
-                                <span class="rating-one">
+                                <span class="rating-one" data-id ="1 Star">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingTwo}}
-                                <span class="rating-two">
+                                <span class="rating-two" data-id="2 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingThree}}
-                                <span class="rating-three">
+                                <span class="rating-three" data-id="3 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingFour}}
-                                <span class="rating-four">
+                                <span class="rating-four" data-id="4 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
-                                <span class="rating-five">
+                                <span class="rating-five" data-id="5 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -169,7 +194,9 @@
                     </div>
                 </div>
             {{/each}}
+            </div>
         {{/each}}
+        </div>
     {{else}}
         <div class="no-reviews-message">
             <h3>There are currently no instructor reviews</h3>                      
