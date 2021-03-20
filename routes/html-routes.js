@@ -419,10 +419,15 @@ module.exports = function(app) {
       });
   });
   app.get("/add-class", (req, res) => {
+    let loggedIn;
     if (!req.user) {
+      loggedIn = false;
       res.redirect("/login");
     } else {
-      res.sendFile(path.join(__dirname, "../public/add-class.html"));
+      loggedIn = true;
+      res.render("add-class", {
+        loggedIn: loggedIn
+      });
     }
   });
   // Get all existing bookings
