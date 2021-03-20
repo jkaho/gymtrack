@@ -34,21 +34,26 @@ module.exports = function(app) {
         include: [db.user]
       })
       .then(results => {
-        results.forEach(result => {
-          instructorName =
-            result.dataValues.user.firstName +
-            " " +
-            result.dataValues.user.lastName;
-          rawDate = result.dataValues.startTime;
-          classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
-          result.dataValues.instructorName = instructorName;
-          result.dataValues.classDate = classDate;
-          classes.push(result.dataValues);
-        });
-        res.render("classes", {
-          classes: classes,
-          loggedIn: loggedIn
-        });
+        if (results.length > 0) {
+          results.forEach(result => {
+            instructorName =
+              result.dataValues.user.firstName +
+              " " +
+              result.dataValues.user.lastName;
+            rawDate = result.dataValues.startTime;
+            classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
+            result.dataValues.instructorName = instructorName;
+            result.dataValues.classDate = classDate;
+            classes.push(result.dataValues);
+          });
+          res.render("classes", {
+            classesExist: true,
+            classes: classes,
+            loggedIn: loggedIn
+          });
+        } else {
+          res.render("classes", { classesExist: false });
+        }
       });
   });
 
