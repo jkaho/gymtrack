@@ -78,4 +78,7 @@ $(document).ready(() => {
   $("#add-success-btn").on("click", () => {
     $("#add-success-modal-bg").css("display", "none");
   });
+
+  const currentDate = moment().format("YYYY-MM-DD");
+  classDateInput.attr("min", currentDate);
 });
