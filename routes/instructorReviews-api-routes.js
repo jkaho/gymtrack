@@ -17,6 +17,13 @@ module.exports = function(app) {
       });
     }
   });
+  // New route for getting all instructor reviews
+  app.get("/api/instructorReviews", (req, res) => {
+    console.log("get request through (instructorRev)");
+    db.instructorReviews
+      .findAll({})
+      .then(dbinstructorReviews => res.json(dbinstructorReviews));
+  });
   // Route for adding new class reviews
   app.post("/api/add_instructor_review", (req, res) => {
     db.instructorReviews
