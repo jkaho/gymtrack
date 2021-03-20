@@ -1,6 +1,6 @@
-<div class="container">
+<div class="profile-container container">
     <div class="row">
-        <div class="col-12">
+        <div class="profile-heading col-12">
             <h1>Profile</h1>
         </div>
     </div>
@@ -21,37 +21,70 @@
         <div class="col-12">
             <div class="my-classes">
                 <div class="row">
-                    <div class="classes-heading">
-                        <div class="col-1"></div>
-                        <div class="col-6">
+                    <div class="col-12">
+                        <div class="classes-heading">
                             <h3>My Classes</h3>
                         </div>
-                        <div class="col-4">
-                            <form action=""> 
-                                <button id="add-class-btn" type="submit" value="addClass">
-                                    Create a class
-                                </button>
-                            </form>
-                            {{!-- <a id="add-class-link" href="/add-class">Create a class</a> --}}
-                        </div>
-                        <div class="col-1"></div>
                     </div>
                 </div>
-                <!-- Render Member/Admin's current classes -->
-
+                <!-- Render Member/Instructor's current classes -->
                 {{#if instructor}}
                     {{#if hasClasses}}
+                        <form id="add-class-form" action="/add-class"> 
+                            <button id="add-class-btn" type="submit" value="addClass">
+                                Create a class
+                            </button>
+                        </form>
                         {{#each instructorClasses}}
-                        <div class="instructor-class">
-                            <h4>{{name}} | {{classDate}}</h4>
-                            <p>Description: {{description}}</p>
-                            <p>Price: ${{price}}/class </p>
-                            <a href="">Delete</a> | <a href="">Edit</a>
+                        <div id="class-no-{{classId}}" class="instructor-class">
+                            <div class="instructor-class-info">
+                                <div class="single-class-heading">
+                                    <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span" value="{{htmlClassDate}} {{htmlStartTime}} {{htmlEndTime}}">{{classDate}}-{{classEndTime}}</span></h4>
+                                </div>
+                                <table class="class-table">
+                                    <tr>
+                                        <td class="table-row-one">
+                                            <p>DESCRIPTION:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <div class="description-container">
+                                                <p>{{description}}</p>
+                                            </div>                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row-one">
+                                            <p>COST PER CLASS:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <p class="class-price-p">${{price}}</p>
+                                        </td>
+                                    </tr>                            
+                                </table>
+                            </div>
+                            <table class="instructor-class-options">
+                                <tr>
+                                    <td class="table-row-instructor">
+                                        <div class="class-options-form"> 
+                                            <button id="edit-class-btn-{{classId}}" type="submit" class="class-options-btn edit-class-btn">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="table-row-instructor left-border">
+                                        <div class="class-options-form"> 
+                                            <button id="delete-class-btn-{{classId}}" type="submit" class="class-options-btn delete-class-btn">
+                                                <i class="fas fa-minus-circle"></i> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         {{/each}}
                     {{else}}
                         <h3>You currently have no classes</h3>
-                        <form action="/add-class"> <!-- For admins with no classes -->
+                        <form action="/add-class"> <!-- For instructors with no classes -->
                             <input type="submit" value="Create Class">
                         </form>
                     {{/if}}
@@ -60,23 +93,39 @@
                     {{#if hasClasses}}
                         {{#each memberClasses}}
                         <div class="member-class">
-                            <h4>{{name}} | {{classDate}}</h4>
-                            <h5>Class Instructor: {{classInstructor}}</h5>
-                            <p>Description: {{description}}</p>
-                            <p>Price: ${{price}}/class </p>
-                            <!-- These forms pop up when class is over -->
+                            <div class="single-class-heading">
+                                <h4><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}-{{classEndTime}}</span></h4>
+                            </div>
+                            <table class="class-table">
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>INSTRUCTOR:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <p>{{classInstructor}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>DESCRIPTION:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <div class="description-container">
+                                            <p>{{description}}:</p>
+                                        </div>       
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>COST PER CLASS:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <p>${{price}}</p>
+                                    </td>
+                                </tr>                            
+                            </table>
                             <form action=""> 
-                                <button type="submit" value="classReview">
-                                    Leave a class review
-                                </button>
-                            </form>
-                            <form action=""> 
-                                <button type="submit" value="instructorReview">
-                                    Leave an instructor review
-                                </button>
-                            </form>
-                            <form action=""> 
-                                <button type="submit" class = "withdraw" data-id="{{id}}">
+                                <button id="cancel-btn" type="submit" class = "withdraw" data-id="{{id}}">
                                     Cancel booking
                                 </button>
                             </form>
@@ -89,6 +138,151 @@
                         </form>
                     {{/if}}
                 {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for editing classes -->
+<div id="edit-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="edit-class-div">
+            <div class="edit-class-heading">
+                <i class="fas fa-edit edit-icon fa-3x"></i>
+                <h4>Edit Class</h4>
+                <p>Make changes to your class.</p>
+            </div>
+            <div id="class-info">
+                <!-- Dynamically render class info -->
+                <table id="edit-table" class="class-table">
+                    <tr>
+                        <td class="table-row-one">
+                            <p>NAME:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class title -->
+                            <input id="title-check" type="text">                                            
+                        </td>
+                    </tr>                    <tr>
+                        <td class="table-row-one">
+                            <p>DESCRIPTION:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class description -->
+                            <textarea id="description-check" class="description-container"></textarea>                                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-row-one">
+                            <p>DATE:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class date -->
+                            <input id="date-check" type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-row-one">
+                            <p>START TIME:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class start time -->
+                            <input id="starttime-check" type="time">
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td class="table-row-one">
+                            <p>END TIME:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class end time -->
+                            <input id="endtime-check" type="time">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-row-one">
+                            <p>COST PER CLASS:</p>
+                        </td>
+                        <td class="table-row-two t2">
+                            <!-- Class price -->
+                            <input id="price-check" type="number">
+                        </td>
+                    </tr>                                                                          
+                </table>
+            </div>
+            <div id="edit-btn-div" class="confirmation-btn-div">
+                <button id="go-back-profile" class="confirm-btn" type="submit">Go back</button>
+                <button id="confirm-edit" class="confirm-btn" type="submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for successfully updating classes -->
+<div id="update-success-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="update-success-modal-div">
+            <div class="update-success-heading">
+                <i class="fas fa-check-circle fa-3x"></i>
+                <h4>Successfully updated!</h4>
+                <p id="refresh-message">Your changes have been saved.</p>
+                <p>Made a mistake? Click on the undo button below.</p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="edit-undo-btn" class="confirm-btn" type="submit">Undo</button>
+                <button id="edit-success-btn" class="confirm-btn ok-update-success" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation modal for deleting classes -->
+<div id="delete-confirm-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="delete-confirm-modal-div">
+            <div class="delete-confirm-heading">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4>Confirmation</h4>
+                <p>Are you sure you want to delete this class?</p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="delete-goback-btn" class="confirm-btn" type="submit">Go back</button>
+                <button id="delete-confirm-btn" class="confirm-btn" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for successfully deleting classes -->
+<div id="delete-success-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="delete-success-modal-div">
+            <div class="delete-success-heading">
+                <i class="fas fa-check-circle fa-3x"></i>
+                <h4>Successfully deleted.</h4>
+                <p id="delete-message">Your class has been deleted.</p>
+                <p>Made a mistake? Click on the undo button below.</p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="delete-undo-btn" class="confirm-btn" type="submit">Undo</button>
+                <button id="delete-success-btn" class="confirm-btn ok-delete-success" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for successfully undoing deletion of classes -->
+<div id="delete-undo-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="delete-undo-modal-div">
+            <div class="delete-undo-heading">
+                <i class="fas fa-undo-alt fa-3x"></i>
+                <h4>Deletion undone.</h4>
+                <p>Your deleted class has been retrieved.</p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="delete-undo-success-btn" class="confirm-btn" type="submit">Okay</button>
             </div>
         </div>
     </div>

@@ -9,16 +9,6 @@ const moment = require("moment");
 const db = require("../models");
 
 module.exports = function(app) {
-  //   app.get("/", (req, res) => {
-  //     let userStatus = "Log In";
-  //     if (req.user) {
-  //       userStatus = "Log Out";
-  //     } else {
-  //       userStatus = "Log In";
-  //     }
-  //     res.json({ userStatus: userStatus });
-  //   });
-
   app.get("/", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -31,6 +21,7 @@ module.exports = function(app) {
       profileIcon: "fas fa-user-circle"
     });
   });
+
   app.get("/classes", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -58,7 +49,10 @@ module.exports = function(app) {
           result.dataValues.classDate = classDate;
           classes.push(result.dataValues);
         });
-        res.render("classes", { classes: classes, loggedIn: loggedIn });
+        res.render("classes", {
+          classes: classes,
+          loggedIn: loggedIn
+        });
       });
   });
 
@@ -243,6 +237,7 @@ module.exports = function(app) {
           });
       });
   });
+
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -251,6 +246,7 @@ module.exports = function(app) {
       res.sendFile(path.join(__dirname, "../public/signup.html"));
     }
   });
+
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -259,10 +255,12 @@ module.exports = function(app) {
       res.sendFile(path.join(__dirname, "../public/login.html"));
     }
   });
+
   app.get("/logout", (req, res) => {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
   });
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/profile", isAuthenticated, (req, res) => {
@@ -305,8 +303,21 @@ module.exports = function(app) {
                   classDate = moment(rawClassDate).format(
                     "dddd, MMMM Do, h:mma"
                   );
+                  classEndTime = moment(result.dataValues.endTime).format(
+                    "h:mma"
+                  );
+                  htmlClassDate = moment(rawClassDate).format("YYYY-MM-DD");
+                  htmlStartTime = moment(rawClassDate).format("HH:mm:ss");
+                  htmlEndTime = moment(result.dataValues.endTime).format(
+                    "HH:mm:ss"
+                  );
                   const instructorClass = {
+                    classId: result.dataValues.id,
+                    htmlClassDate: htmlClassDate,
+                    htmlStartTime: htmlStartTime,
+                    htmlEndTime: htmlEndTime,
                     classDate: classDate,
+                    classEndTime: classEndTime,
                     name: result.dataValues.name,
                     description: result.dataValues.description,
                     price: result.dataValues.price
@@ -345,8 +356,12 @@ module.exports = function(app) {
               for (let i = 0; i < resultArr.length; i++) {
                 rawClassDate = resultArr[i].dataValues.startTime;
                 classDate = moment(rawClassDate).format("dddd, MMMM Do, h:mma");
+                classEndTime = moment(result.dataValues.endTime).format(
+                  "h:mma"
+                );
                 const memberClass = {
                   classDate: classDate,
+                  classEndTime: classEndTime,
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
                   price: resultArr[i].dataValues.price,
@@ -397,7 +412,11 @@ module.exports = function(app) {
       });
   });
   app.get("/add-class", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/add-class.html"));
+    if (!req.user) {
+      res.redirect("/login");
+    } else {
+      res.sendFile(path.join(__dirname, "../public/add-class.html"));
+    }
   });
   // Get all existing bookings
   app.get("/userclasses", (req, res) => {

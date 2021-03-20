@@ -4,6 +4,11 @@
     padding: 0;
 }
 
+.profile-heading {
+    text-align: center;
+    margin: 20px 0;
+}
+
 .user-info {
     padding: 20px;
     text-align: center;
@@ -18,10 +23,88 @@
 
 .my-classes {
     width: 100%;
+    margin-bottom: 100px;
 }
 
 .classes-heading {
+    padding-top: 50px;
+    margin: 0 auto;
+    width: 600px;
+}
+
+.classes-heading h3 {
+    margin: 0;
+}
+
+.instructor-class, .member-class {
+    margin: 20px auto;
     padding: 20px;
+    width: 600px;
+    max-height: 340px;
+    height: 240px;
+    background-color: white;
+    border: solid 1px rgb(236, 235, 235);
+}
+
+.instructor-class {
+    padding: 0;
+    padding-top: 20px;
+    max-height: 300px;
+    height: fit-content;
+}
+
+.single-class-heading {
+    border-bottom: solid 1px rgb(207, 207, 207);
+    margin-bottom: 10px;
+}
+
+.class-name-span {
+    color: rgb(69, 87, 148);
+}
+
+.class-date-span {
+    font-weight: 300;
+}
+
+.class-table {
+    margin-top: 15px;
+}
+
+.table-row-one {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgb(128, 128, 128);
+}
+
+.table-row-one p {
+    margin-right: 20px;
+}
+
+.description-container {
+    max-height: 50px;
+    overflow: auto;
+}
+
+#cancel-btn {
+    border: solid 1px rgb(212, 56, 56);
+    color: rgb(212, 56, 56);
+    height: 35px;
+    width: 100%;
+    background-color: white;
+    font-size: 14px;
+    float: right;
+}
+
+#cancel-btn:hover {
+    color: white;
+    background-color: rgb(212, 56, 56);
+}
+
+#add-class-form {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    z-index: 10;
 }
 
 #add-class-btn {
@@ -30,20 +113,150 @@
     background-color: white;
     padding: 5px;
     cursor: pointer;
+    float: right;
+    margin-top: -30px;
 }
 
 #add-class-btn:hover {
     background-color: black;
     color: white;
 }
-/* #add-class-link {
-    float: right;
-} */
 
-.instructor-class, .member-class {
-    margin: 0 auto;
-    padding: 20px;
-    width: 600px;
+.instructor-class-info {
+    padding: 0 20px;
+}
+
+.instructor-class-options {
+    width: 100%;
+    border-top: solid 1px rgb(236, 235, 235);
+}
+
+.class-options-btn {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(97, 97, 97);
     background-color: white;
-    box-shadow: 2px 2px .4em rgb(182, 182, 182), .4em .4em .4em rgb(182, 182, 182);
+    border: none;
+    /* border-top: solid 1px rgb(218, 218, 218); */
+    height: 50px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.edit-class-btn:hover {
+    color: rgb(255, 166, 0);
+    background-color: rgb(248, 247, 247);
+}
+
+.delete-class-btn:hover {
+    color: rgb(212, 56, 56);
+    background-color: rgb(248, 247, 247);
+}
+
+.table-row-instructor {
+    text-align: center;
+    width: 50%;
+    padding: 0;
+}
+
+.left-border {
+    border-left: solid 1px rgb(236, 235, 235);
+}
+
+/* Edit modal */
+
+.edit-icon {
+    color: rgb(255, 166, 0);
+    margin-bottom: 20px;
+}
+
+.edit-class-div  {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.edit-class-heading {
+    height: 160px;
+    padding-top: 20px;
+    padding-left: 15px;
+    font-weight: 200;
+    text-align: center;
+    border-bottom: solid 1px rgb(212, 210, 210);
+    margin: 10px;
+}
+
+#class-info {
+    padding: 0 20px;
+}
+
+.table-row-one p {
+    margin-top: 5px;
+}
+
+.t2 {
+    vertical-align: top;
+}
+
+#edit-table input, #edit-table textarea {
+    width: 300px;
+    height: 30px;
+    border: solid 1px rgb(206, 206, 206);
+}
+
+#edit-table textarea {
+    height: 150px;
+    resize: none;
+}
+
+/* Class delete confirmation modal */
+.delete-confirm-modal-div, .delete-undo-modal-div {
+    position: relative;
+    width: 500px;
+    height: 220px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.delete-confirm-heading, .update-success-heading, .delete-success-heading, .delete-undo-heading {
+    height: 150px;
+    padding-top: 20px;
+    font-weight: 200;
+    text-align: center;
+    margin: 10px;
+    font-weight: 300;
+}
+
+/* Class update/delete success modals */ 
+.update-success-modal-div, .delete-success-modal-div {
+    position: relative;
+    width: 500px;
+    height: 240px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.update-success-heading, .delete-success-heading {
+    height: 170px;
+}
+
+#refresh-message {
+    margin-bottom: 5px;
+}
+
+#delete-message {
+    margin-bottom: 5px;
+}
+
+.fa-undo-alt {
+    color: rgb(29, 145, 212);
+    margin-bottom: 20px;
 }

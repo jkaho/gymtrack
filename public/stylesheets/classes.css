@@ -1,3 +1,33 @@
+#class-body{
+  margin: 10px;
+}
+
+#classes{
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  vertical-align: middle;
+  display: grid;
+  
+}
+#each-class{
+  margin-bottom: 20px;
+  padding: 20px;
+  border: solid 1px rgb(235, 235, 235);
+
+}
+.jump{
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.jump :hover{
+  background-color: rgb(255, 89, 0);
+  border: none;
+}
+
+
+
 #bookSuccess {
     position:fixed;
     width:100%;
@@ -28,3 +58,31 @@
   .opacity_max {
     opacity:1;
   }
+
+  .book-withdraw{
+    display: inline-block;
+    height: auto;
+    padding: 14px 30px;
+    background: transparent;
+    background-image: none !important;
+    color: inherit !important;
+    letter-spacing: 0.03em;
+    font-size: 16px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.view-reviews{
+  display: inline-block;
+    height: auto;
+    padding: 14px 30px;
+    background: transparent;
+    background-image: none !important;
+    color: inherit !important;
+    letter-spacing: 0.03em;
+    font-size: 16px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
