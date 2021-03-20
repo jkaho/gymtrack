@@ -171,6 +171,7 @@ $(document).ready(() => {
       },
       afterBooking(classId)
     ).done(() =>
+      // eslint-disable-next-line implicit-arrow-linebreak
       bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
     );
   }
