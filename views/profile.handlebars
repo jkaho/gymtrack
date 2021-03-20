@@ -125,7 +125,7 @@
                                 </tr>                            
                             </table>
                             <form action=""> 
-                                <button id="cancel-btn" type="submit" class = "withdraw" data-id="{{id}}">
+                                <button id="cancel-btn-{{classId}}" type="submit" class="profile-withdraw-btn">
                                     Cancel booking
                                 </button>
                             </form>
@@ -283,6 +283,39 @@
             </div>
             <div class="nav-btn-div">
                 <button id="delete-undo-success-btn" class="confirm-btn" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for withdrawal confirmation -->
+<div id="withdraw-p-confirmation-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="withdraw-confirmation-review-div">
+            <div class="withdraw-confirmation-heading">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4>Confirmation</h4>
+                <p>Are you sure you want to withdraw from this class?</p>
+            </div>
+            <div class="confirmation-btn-div">
+                <button id="withdraw-p-go-back" class="confirm-btn" type="submit">Go back</button>
+                <button id="withdraw-p-confirm" class="confirm-btn" type="submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for successfully withdrawing from class -->
+<div id="withdraw-success-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="withdraw-success-modal-div">
+            <div class="withdraw-success-heading">
+                <i class="fas fa-check-circle fa-3x"></i>
+                <h4>Successfully withdrawn.</h4>
+                <p>You no longer have a booking to attend this class.</p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="withdraw-success-btn" class="confirm-btn" type="submit">Okay</button>
             </div>
         </div>
     </div>

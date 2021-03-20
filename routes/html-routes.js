@@ -388,7 +388,7 @@ module.exports = function(app) {
                   name: resultArr[i].dataValues.name,
                   description: resultArr[i].dataValues.description,
                   price: resultArr[i].dataValues.price,
-                  id: resultArr[i].dataValues.id
+                  classId: resultArr[i].dataValues.id
                 };
                 db.user
                   .findOne({

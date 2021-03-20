@@ -213,4 +213,32 @@ $(document).ready(() => {
       $(message).remove();
     }, duration);
   }
+
+  /* Withdraw button on member profile page */
+  $(".profile-withdraw-btn").on("click", function(e) {
+    e.preventDefault();
+    classId = this.id.split("-")[2];
+    $("#withdraw-p-confirmation-modal-bg").css("display", "block");
+  });
+
+  $("#withdraw-p-go-back").on("click", () => {
+    $("#withdraw-p-confirmation-modal-bg").css("display", "none");
+  });
+
+  $("#withdraw-p-confirm").on("click", () => {
+    $.post(
+      "/api/withdraw",
+      {
+        classId: classId
+      },
+      withdrawSuccessMessage()
+    ).catch(err => {
+      console.log(err);
+    });
+  });
+
+  function withdrawSuccessMessage() {
+    $("#withdraw-success-modal-bg").css("display", "block");
+    $("#withdraw-p-confirmation-modal-bg").css("display", "none");
+  }
 });

@@ -214,7 +214,7 @@
 }
 
 /* Class delete confirmation modal */
-.delete-confirm-modal-div, .delete-undo-modal-div {
+.delete-confirm-modal-div, .delete-undo-modal-div, .withdraw-success-modal-bg {
     position: relative;
     width: 500px;
     height: 220px;
@@ -224,7 +224,7 @@
     box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
 }
 
-.delete-confirm-heading, .update-success-heading, .delete-success-heading, .delete-undo-heading {
+.delete-confirm-heading, .update-success-heading, .delete-success-heading, .delete-undo-heading, .withdraw-success-heading {
     height: 150px;
     padding-top: 20px;
     font-weight: 200;
