@@ -72,7 +72,7 @@ module.exports = function(app) {
     let instructorReviews = [];
     const instructors = [];
     let instructorName;
-    let instructorReviewsExist = true;
+    let instructorReviewsExist = false;
     db.classes
       .findAll({
         include: [
