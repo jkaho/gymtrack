@@ -6,6 +6,7 @@ $(document).ready(() => {
   let classStart;
   let classEnd;
   let classPrice;
+  const currentDate = moment().format("YYYY-MM-DD");
 
   $(".edit-class-btn").on("click", function(e) {
     e.preventDefault();
@@ -32,6 +33,7 @@ $(document).ready(() => {
 
     $("#title-check").val(className);
     $("#description-check").val(classDescription);
+    $("#description-check").attr("min", currentDate);
     $("#date-check").val(classDate);
     $("#starttime-check").val(classStart);
     $("#endtime-check").val(classEnd);
