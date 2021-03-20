@@ -189,24 +189,29 @@ $(document).ready(() => {
   }
 
   function addDeletedClass(name, description, startTime, endTime, price) {
-    $.get("/api/user_data").then(results => {
-      const instructorId = results.authorId;
-      $.post(
-        "/api/add_class",
-        {
-          name: name,
-          description: description,
-          startTime: startTime,
-          endTime: endTime,
-          price: price,
-          instructorId: instructorId
-        },
-        addDeletedClassSuccess()
-      ).catch(err => {
+    $.get("/api/user_data")
+      .then(results => {
+        const instructorId = results.authorId;
+        $.post(
+          "/api/add_class",
+          {
+            name: name,
+            description: description,
+            startTime: startTime,
+            endTime: endTime,
+            price: price,
+            instructorId: instructorId
+          },
+          addDeletedClassSuccess()
+        ).catch(err => {
+          console.log(err);
+          showErrorMessage();
+        });
+      })
+      .catch(err => {
         console.log(err);
         showErrorMessage();
       });
-    });
   }
 
   function addDeletedClassSuccess() {

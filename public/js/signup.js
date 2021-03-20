@@ -59,7 +59,7 @@ $(document).ready(() => {
       })
       .catch(err => {
         console.log(err);
-        showErrorMessage();
+        showLoginErrorMessage();
       });
   }
 
@@ -84,5 +84,13 @@ $(document).ready(() => {
 
   $("#error-ok-btn").on("click", () => {
     $("#error-modal-bg").css("display", "none");
+  });
+
+  function showLoginErrorMessage() {
+    $("#login-error-modal-bg").css("display", "block");
+  }
+
+  $("#login-error-ok-btn").on("click", () => {
+    $("#login-error-modal-bg").css("display", "none");
   });
 });

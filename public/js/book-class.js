@@ -63,9 +63,14 @@ $(document).ready(() => {
         const classIdVal = this.getAttribute("data-id");
         $.post("/api/withdraw", {
           classId: classIdVal
-        }).done(() => {
-          location.reload();
-        });
+        })
+          .done(() => {
+            location.reload();
+          })
+          .catch(err => {
+            console.log(err);
+            $("#error-modal-bg").css("display", "block");
+          });
       });
     });
   });
