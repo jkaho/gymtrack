@@ -81,8 +81,14 @@ body {
     font-weight: 300;
 }
 
-.fa-times-circle, .fa-times {
+.fa-times-circle, .fa-frown-open {
     color: rgb(219, 30, 30);
     margin-bottom: 20px;
 }
 
+/* Note under inputs */
+.input-note {
+    font-size: 12px;
+    color: rgb(129, 129, 129);
+    float: right;
+}

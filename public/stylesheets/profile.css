@@ -173,7 +173,7 @@
 .edit-class-div  {
     position: relative;
     width: 500px;
-    height: 500px;
+    height: 530px;
     margin: 0 auto;
     background-color: white;
     z-index: 10;
@@ -203,7 +203,7 @@
 }
 
 #edit-table input, #edit-table textarea {
-    width: 300px;
+    width: 350px;
     height: 30px;
     border: solid 1px rgb(206, 206, 206);
 }

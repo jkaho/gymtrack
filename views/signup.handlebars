@@ -6,14 +6,17 @@
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" id="firstname-input" placeholder="Enter first name" maxlength="30" required>
+                    <div class="input-note">*Max. 30 characters</div>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" class="form-control" id="lastname-input" placeholder="Enter last name" maxlength="50" required>
+                    <div class="input-note">*Max. 50 characters</div>
                 </div>
                     <div class="form-group">
                     <label for="dob">Date of Birth</label>
                     <input type="date" class="form-control" min="1900-01-01" max="2003-12-31" id="dob-input" required>
+                    <div class="input-note">*Must be 18 or over</div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
@@ -28,6 +31,7 @@
                         4. Min one number 
                     -->
                     <input type="password" class="form-control" id="password-input" placeholder="Enter password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required>
+                    <div class="input-note">*Min. length 8 characters, must contain at least one lowercase character, one uppercase and one number.</div>
                 </div>
                 {{!-- <div style="display: none" id="alert" class="alert alert-danger" role="alert">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

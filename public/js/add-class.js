@@ -9,6 +9,12 @@ $(document).ready(() => {
   const classPriceInput = $("input#classPrice-input");
 
   let instructorId;
+  classNameInput.val("");
+  classDescriptionInput.val("");
+  classDateInput.val("");
+  classStartInput.val("");
+  classEndInput.val("");
+  classPriceInput.val("");
 
   addClassForm.on("submit", event => {
     event.preventDefault();
