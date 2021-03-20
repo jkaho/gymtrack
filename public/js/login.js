@@ -34,6 +34,15 @@ $(document).ready(() => {
       })
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
+
+  function showErrorMessage() {
+    $("#error-modal-bg").css("display", "block");
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
 });

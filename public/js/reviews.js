@@ -454,67 +454,81 @@ $(document).ready(() => {
     $.ajax({
       url: "/api/user_data",
       method: "GET"
-    }).then(result => {
-      if (result.isLoggedIn === true) {
-        authorId = result.authorId;
-        if (event.target.id === "add-class-review-link") {
-          $.get("/api/classlist").then(result => {
-            classOptions = result;
-            console.log(result);
-            const classSelect = $("#class-reviews-list");
-            classSelect.empty();
-            // $("#class-review-title-input").val("");
-            // $("#class-review-text-input").val("");
-            if (classOptions.length < 1) {
-              const classOption = $(
-                "<option value='no-classes'>No classes</option"
-              );
-              classSelect.append(classOption);
-            } else {
-              result.forEach(gymClass => {
-                const classOption = $(
-                  "<option value='class-" +
-                    gymClass.id +
-                    "'>" +
-                    gymClass.name +
-                    "</option>"
-                );
-                classSelect.append(classOption);
+    })
+      .then(result => {
+        if (result.isLoggedIn === true) {
+          authorId = result.authorId;
+          if (event.target.id === "add-class-review-link") {
+            $.get("/api/classlist")
+              .then(result => {
+                classOptions = result;
+                const classSelect = $("#class-reviews-list");
+                classSelect.empty();
+                // $("#class-review-title-input").val("");
+                // $("#class-review-text-input").val("");
+                if (classOptions.length < 1) {
+                  const classOption = $(
+                    "<option value='no-classes'>No classes</option"
+                  );
+                  classSelect.append(classOption);
+                } else {
+                  result.forEach(gymClass => {
+                    const classOption = $(
+                      "<option value='class-" +
+                        gymClass.id +
+                        "'>" +
+                        gymClass.name +
+                        "</option>"
+                    );
+                    classSelect.append(classOption);
+                  });
+                }
+                $("#class-modal-bg").css("display", "block");
+              })
+              .catch(err => {
+                console.log(err);
+                showErrorMessage();
               });
-            }
-            $("#class-modal-bg").css("display", "block");
-          });
+          } else {
+            $.get("/api/instructorlist")
+              .then(result => {
+                instructorOptions = result;
+                const instructorSelect = $("#instructor-reviews-list");
+                instructorSelect.empty();
+                // $("#instructor-review-title-input").val("");
+                // $("#instructor-review-text-input").val("");
+                if (instructorOptions.length < 1) {
+                  const instructorOption = $(
+                    "<option value='no-instructors'>No instructors</option"
+                  );
+                  instructorOptions.append(instructorOption);
+                } else {
+                  result.forEach(instructor => {
+                    const instructorOption = $(
+                      "<option value='instructor-" +
+                        instructor.instructorId +
+                        "'>" +
+                        instructor.instructorName +
+                        "</option>"
+                    );
+                    instructorSelect.append(instructorOption);
+                  });
+                }
+                $("#instructor-modal-bg").css("display", "block");
+              })
+              .catch(err => {
+                console.log(err);
+                showErrorMessage();
+              });
+          }
         } else {
-          $.get("/api/instructorlist").then(result => {
-            instructorOptions = result;
-            const instructorSelect = $("#instructor-reviews-list");
-            instructorSelect.empty();
-            // $("#instructor-review-title-input").val("");
-            // $("#instructor-review-text-input").val("");
-            if (instructorOptions.length < 1) {
-              const instructorOption = $(
-                "<option value='no-instructors'>No instructors</option"
-              );
-              instructorOptions.append(instructorOption);
-            } else {
-              result.forEach(instructor => {
-                const instructorOption = $(
-                  "<option value='instructor-" +
-                    instructor.instructorId +
-                    "'>" +
-                    instructor.instructorName +
-                    "</option>"
-                );
-                instructorSelect.append(instructorOption);
-              });
-            }
-            $("#instructor-modal-bg").css("display", "block");
-          });
+          window.location.replace("/login");
         }
-      } else {
-        window.location.replace("/login");
-      }
-    });
+      })
+      .catch(err => {
+        console.log(err);
+        showErrorMessage();
+      });
   });
 
   function addClassReview(classId, reviewTitle, reviewText, rating, authorId) {
@@ -532,6 +546,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -556,6 +571,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -573,7 +589,6 @@ $(document).ready(() => {
   // Per class
   $.get("/api/classlist").then(result => {
     const classOptions = result;
-    console.log(result);
     const classFilter = $("#filter-class");
 
     // classSelect.empty();
@@ -585,9 +600,7 @@ $(document).ready(() => {
     } else {
       classFilter.append("<option value='All'>All</option>");
       result.forEach(gymClass => {
-        console.log(gymClass.name);
         const classOption = $("<option>" + gymClass.name + "</option>");
-        console.log(classOption);
         classFilter.append(classOption);
       });
     }
@@ -596,9 +609,6 @@ $(document).ready(() => {
       event.preventDefault();
       const className = $(classFilter).val();
       result.forEach(gymClass => {
-        if (!$(`h4:contains('${gymClass.name}')`)) {
-          console.log("not found class");
-        }
         $(`h4:contains('${gymClass.name}')`)
           .parent()
           .parent()
@@ -614,8 +624,6 @@ $(document).ready(() => {
         .fadeIn();
       if (classFilter.val() === "All") {
         classOptions.forEach(eachClass => {
-          console.log(eachClass);
-          console.log(eachClass.name);
           $(`h4:contains('${eachClass.name}')`)
             .parent()
             .parent()
@@ -630,8 +638,6 @@ $(document).ready(() => {
       classFilter.val("All");
       event.preventDefault();
       classOptions.forEach(eachClass => {
-        console.log(eachClass);
-        console.log(eachClass.name);
         $(`h4:contains('${eachClass.name}')`)
           .parent()
           .parent()
@@ -644,7 +650,6 @@ $(document).ready(() => {
   // Rating filter for classes
   $.get("/api/classReviews").then(result => {
     classOptions = result;
-    console.log(result);
     const ratingFilterClass = $("#filter-class-rating");
     // classSelect.empty();
     // // $("#class-review-title-input").val("");
@@ -658,16 +663,13 @@ $(document).ready(() => {
         const scoreOption = $(
           "<option value='" + score + "'>" + score + "</option>"
         );
-        console.log(scoreOption.text());
         ratingFilterClass.append(scoreOption);
       });
     }
     $(ratingFilterClass).change(event => {
       event.preventDefault();
       const classRating = $(ratingFilterClass).val();
-      console.log(classRating);
       ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
-        console.log(score);
         $("[data-id= '" + score + "']")
           .parent()
           .parent()
@@ -703,7 +705,6 @@ $(document).ready(() => {
   // Per Instructor
   $.get("/api/instructorlist").then(result => {
     const instructorOptions = result;
-    console.log(result);
     const instructorFilter = $("#filter-instructor");
     // Append option menu
     if (instructorOptions.length < 1) {
@@ -726,9 +727,6 @@ $(document).ready(() => {
       event.preventDefault();
       const instructorName = $(instructorFilter).val();
       result.forEach(instructor => {
-        if (!$(`h4:contains('${instructor.instructorName}')`)) {
-          console.log("not found instructor");
-        }
         $(`h4:contains('${instructor.instructorName}')`)
           .parent()
           .parent()
@@ -744,7 +742,6 @@ $(document).ready(() => {
         .fadeIn();
       if (instructorFilter.val() === "All") {
         instructorOptions.forEach(eachInstructor => {
-          console.log(eachInstructor);
           $(`h4:contains('${eachInstructor.instructorName}')`)
             .parent()
             .parent()
@@ -759,7 +756,6 @@ $(document).ready(() => {
       instructorFilter.val("All");
       event.preventDefault();
       instructorOptions.forEach(eachInstructor => {
-        console.log(eachInstructor);
         $(`h4:contains('${eachInstructor.instructorName}')`)
           .parent()
           .parent()
@@ -772,7 +768,6 @@ $(document).ready(() => {
   // Rating filter for instructors
   $.get("/api/instructorReviews").then(result => {
     instructorOptions = result;
-    console.log(result);
     const ratingFilterInstructor = $("#filter-instructor-rating");
     // classSelect.empty();
     // // $("#class-review-title-input").val("");
@@ -788,16 +783,13 @@ $(document).ready(() => {
         const scoreOption = $(
           "<option value='" + score + "'>" + score + "</option>"
         );
-        console.log(scoreOption.text());
         ratingFilterInstructor.append(scoreOption);
       });
     }
     $(ratingFilterInstructor).change(event => {
       event.preventDefault();
       const instructorRating = $(ratingFilterInstructor).val();
-      console.log(instructorRating);
       ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
-        console.log(score);
         $("[data-id= '" + score + "']")
           .parent()
           .parent()

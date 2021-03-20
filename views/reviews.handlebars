@@ -103,7 +103,9 @@
         {{/each}}
         </div>
     {{else}}
-        <h2>No existing class reviews.</h2>
+        <div class="no-reviews-message">
+            <h3>There are currently no class reviews</h3>                      
+        </div>    
     {{/if}}
 </div>
 <div id="instructor-reviews" class="container review-container" style="display: none">
@@ -191,7 +193,9 @@
         {{/each}}
         </div>
     {{else}}
-        <h2>No existing instructor reviews.</h2>
+        <div class="no-reviews-message">
+            <h3>There are currently no instructor reviews</h3>                      
+        </div>
     {{/if}}
 </div>
 
@@ -212,7 +216,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="class-review-title-input" placeholder="Title" required>
+                    <input type="text" class="form-control" id="class-review-title-input" placeholder="Title" max-length="50" required>
+                    <div class="input-note">*Max. 50 characters</div>
                 </div>
                 <div class="form-group">
                     <i class="rate-star-c fas fa-star" id="star-one-c"></i>
@@ -222,7 +227,8 @@
                     <i class="rate-star-c fas fa-star" id="star-five-c"></i>
                 </div>
                 <div class="form-group">
-                    <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us" required></textarea>
+                    <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us" maxlength="250" required></textarea>
+                    <div class="input-note">*Max. 250 characters</div>
                 </div>
                 <button type="submit" id="add-class-review" class="add-review-btn btn btn-default">Submit</button>
             </form>
@@ -246,7 +252,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="instructor-review-title-input" placeholder="Title" required>
+                    <input type="text" class="form-control" id="instructor-review-title-input" placeholder="Title" maxlength="50" required>
+                    <div class="input-note">*Max. 50 characters</div>
                 </div>
                 <div class="form-group">
                     <i class="rate-star-i fas fa-star" id="star-one-i"></i>
@@ -256,7 +263,8 @@
                     <i class="rate-star-i fas fa-star" id="star-five-i"></i>
                 </div>
                 <div class="form-group">
-                    <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us" required></textarea>
+                    <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us" maxlength="250" required></textarea>
+                    <div class="input-note">*Max. 250 characters</div>
                 </div>
                 <button type="submit" id="add-instructor-review" class="add-review-btn btn btn-default">Submit</button>
             </form>
@@ -295,6 +303,25 @@
             </div>
             <div class="nav-btn-div">
                 <button id="ok-success" class="confirm-btn" type="submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error message modal --> 
+<div id="error-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="error-modal-div">
+            <div class="error-heading">
+                <i class="fas fa-times-circle fa-3x"></i>                
+                <h4>Oops!</h4>
+                <p>
+                    An error occurred whilst handling your request.<br>
+                    Please refresh the page or try again later.
+                </p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="error-ok-btn" class="confirm-btn" type="submit">Okay</button>
             </div>
         </div>
     </div>
