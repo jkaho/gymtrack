@@ -9,6 +9,12 @@ $(document).ready(() => {
   const classPriceInput = $("input#classPrice-input");
 
   let instructorId;
+  classNameInput.val("");
+  classDescriptionInput.val("");
+  classDateInput.val("");
+  classStartInput.val("");
+  classEndInput.val("");
+  classPriceInput.val("");
 
   addClassForm.on("submit", event => {
     event.preventDefault();
@@ -83,4 +89,7 @@ $(document).ready(() => {
   $("#error-ok-btn").on("click", () => {
     $("#error-modal-bg").css("display", "none");
   });
+
+  const currentDate = moment().format("YYYY-MM-DD");
+  classDateInput.attr("min", currentDate);
 });

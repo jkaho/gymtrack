@@ -6,31 +6,29 @@
             <form class="add-class">
                 <div class="form-group">
                     <label for="className">Class Name</label>
-                    <input type="text" class="form-control" id="className-input" placeholder="Enter class name">
+                    <input type="text" class="form-control" id="className-input" placeholder="Enter class name" maxlength="30" required>
+                    <div class="input-note">*Max. 30 characters</div>
                 </div>
                 <div class="form-group">
                     <label for="classDescription">Description</label>
-                    <textarea class="form-control" id="classDescription-input" placeholder="Enter a class description"></textarea>
+                    <textarea class="form-control" id="classDescription-input" placeholder="Enter a class description" maxlength="200" required></textarea>
+                    <div class="input-note">*Max. 200 characters</div>
                 </div>
                 <div class="form-group">
                     <label for="classDate">Date</label>
-                    <input type="date" class="form-control" id="classDate-input">
+                    <input type="date" class="form-control" id="classDate-input" required>
                 </div>
                 <div class="form-group">
                     <label for="startTime">Start Time</label>
-                    <input type="time" class="form-control" id="startTime-input" placeholder="Enter the time the class will start">
+                    <input type="time" class="form-control" id="startTime-input" placeholder="Enter the time the class will start" required>
                 </div>
                 <div class="form-group">
                     <label for="endTime">End Time</label>
-                    <input type="time" class="form-control" id="endTime-input" placeholder="Enter the time the class will end">
+                    <input type="time" class="form-control" id="endTime-input" placeholder="Enter the time the class will end" required>
                 </div>
                 <div class="form-group">
                     <label for="classPrice">Price ($/class)</label>
-                    <input type="number" class="form-control" id="classPrice-input" placeholder="Enter the price of one class">
-                </div>
-                    <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span> <span class="msg"></span>
+                    <input type="number" class="form-control" id="classPrice-input" placeholder="Enter the price of one class" required>
                 </div>
                 <button type="submit" class="btn btn-default">Create</button>
             </form>
@@ -76,4 +74,3 @@
         </div>
     </div>
 </div>
-
