@@ -83,10 +83,12 @@
                         </div>
                         {{/each}}
                     {{else}}
-                        <h3>You currently have no classes</h3>
-                        <form action="/add-class"> <!-- For instructors with no classes -->
-                            <input type="submit" value="Create Class">
-                        </form>
+                        <div class="no-classes-message">
+                            <h3>You currently have no classes</h3>
+                            <form action="/add-class"> <!-- For instructors with no classes -->
+                                <input type="submit" class="confirm-btn" value="Create a class">
+                            </form>                        
+                        </div>
                     {{/if}}
                 {{/if}}
                 {{#if member}}
@@ -132,10 +134,12 @@
                         </div>
                         {{/each}}
                     {{else}}
-                        <h3>You currently have no booked classes</h3>
-                        <form action="/classes">
-                            <input type="submit" value="View Classes">
-                        </form>
+                        <div class="no-classes-message">
+                            <h3>You currently have no booked classes</h3>
+                            <form action="/classes"> <!-- For members with no classes -->
+                                <input type="submit" class="confirm-btn" value="View classes">
+                            </form>                        
+                        </div>
                     {{/if}}
                 {{/if}}
             </div>
