@@ -48,8 +48,10 @@ module.exports = function(app) {
             result.dataValues.user.lastName;
           rawDate = result.dataValues.startTime;
           classDate = moment(rawDate).format("dddd, MMMM Do, h:mma");
+          classEndTime = moment(result.dataValues.endTime).format("h:mma");
           result.dataValues.instructorName = instructorName;
           result.dataValues.classDate = classDate;
+          result.dataValues.classEndTime = classEndTime;
           result.dataValues.isNotInstructor = isNotInstructor;
           classes.push(result.dataValues);
         });
