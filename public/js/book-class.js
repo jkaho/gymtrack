@@ -3,7 +3,7 @@ $(document).ready(() => {
   const bookWithdrawBtn = $(".book-withdraw");
   const notificationEl = $("#notification");
   const cancelBtn = $(".withdraw");
-
+  const searchBar = $("#class-search");
   // Option to cancel classes from profile page
   // $(withdrawBtn).each(function () {
   //   $(this).click(e => {
@@ -11,36 +11,67 @@ $(document).ready(() => {
   //   })
   // })
   // Set timer to search class every 0.4s
-  const searchString = "oga";
-  $.get(`/api/search_classes/${searchString}`).then(res => {
-    console.log(res[0].name);
-  });
 
-  console.log($("#class-search").length);
-  if ($("#class-search").length) {
-    $.get("/api/classlist").then(res => {
-      const allClasses = [];
-      for (let i = 0; i < res.length; i++) {
-        allClasses.push(res[i].name);
-      }
-      console.log(allClasses);
-      console.log($("[data-id =" + 2 + "]").text());
-      setInterval(() => {
-        const searchText = $("#class-search").val();
-        if (searchText) {
-          $.get(`/api/search_classes/${searchText}`).then(res => {
-            $(res).each(i => {
-              console.log(res[i].name);
-            });
-          });
+  searchBar.on("keyup", e => {
+    e.preventDefault();
+    const searchText = e.target.value;
+
+    console.log(searchText);
+    console.log($("[data-id =" + 2 + "]").text());
+    getClasses();
+    const allClasses = [];
+    const matchedClasses = [];
+    async function getClasses() {
+      // Get all existing classes
+      await $.get("/api/classlist").then(res => {
+        for (let i = 0; i < res.length; i++) {
+          allClasses.push(res[i].name);
         }
-
-        $(allClasses).each(() => {});
-        console.log(searchText);
-      }, 1000);
-    });
-  }
-
+      });
+      // Get matching classes
+      console.log(searchText);
+      if (searchText) {
+        await $.get(`/api/search_classes/${searchText}`).then(
+          searchedClasses => {
+            $(searchedClasses).each(i => {
+              matchedClasses.push(searchedClasses[i].name);
+            });
+          }
+        );
+      }
+      // Get classes that did not match the search text
+      const notMatchedClasses = $(allClasses)
+        .not(matchedClasses)
+        .get();
+      console.log(notMatchedClasses);
+      // Search result display
+      // If search bar empty, show all classes
+      if (searchText.length === 0) {
+        for (i = 0; i < allClasses.length; i++) {
+          console.log(allClasses[i]);
+          $(`h3:contains('${allClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeIn();
+        }
+      } else {
+        for (i = 0; i < notMatchedClasses.length; i++) {
+          console.log(notMatchedClasses[i]);
+          $(`h3:contains('${notMatchedClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeOut();
+        }
+        for (i = 0; i < matchedClasses.length; i++) {
+          console.log(matchedClasses[i]);
+          $(`h3:contains('${matchedClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeIn();
+        }
+      }
+    }
+  });
   $.getJSON("api/user_data").then(data => {
     // Check log in status
     $(bookWithdrawBtn).each(function() {
