@@ -1,11 +1,12 @@
 <div class="profile-container container">
-    <div class="row">
+    {{!-- <div class="row">
         <div class="profile-heading col-12">
             <h1>Profile</h1>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
+    </div> --}}
+    <!-- Rows are causing alignment issues -->
+    {{!-- <div class="row">
+        <div class="col-12"> --}}
             <div class="user-info">
                 <h2>{{firstName}} {{lastName}}</h2>
                 <h5>{{userType}}</h5>
@@ -14,18 +15,14 @@
                     <strong>Date joined: </strong>{{dateJoined}}
                 <p>
             </div>
-         </div>
-    </div> 
+        {{!-- </div>
+    </div>  --}}
 
     <div class="row">
         <div class="col-12">
             <div class="my-classes">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="classes-heading">
-                            <h3>My Classes</h3>
-                        </div>
-                    </div>
+                <div class="classes-heading">
+                    <h3>My Classes</h3>
                 </div>
                 <!-- Render Member/Instructor's current classes -->
                 {{#if instructor}}
