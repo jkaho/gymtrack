@@ -119,9 +119,14 @@ $(document).ready(() => {
         const classIdVal = this.getAttribute("data-id");
         $.post("/api/withdraw", {
           classId: classIdVal
-        }).done(() => {
-          location.reload();
-        });
+        })
+          .done(() => {
+            location.reload();
+          })
+          .catch(err => {
+            console.log(err);
+            $("#error-modal-bg").css("display", "block");
+          });
       });
     });
   });
@@ -170,11 +175,17 @@ $(document).ready(() => {
         classId: classId
       },
       afterBooking(classId)
-    ).done(() =>
-      // eslint-disable-next-line implicit-arrow-linebreak
-      bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
-    );
+    )
+      .done(() =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
+      )
+      .catch(err => {
+        console.log(err);
+        $("#error-modal-bg").css("display", "block");
+      });
   }
+
   // Withdraw user from class
   function withdrawFromClass(classId) {
     $.post(
@@ -183,8 +194,17 @@ $(document).ready(() => {
         classId: classId
       },
       afterWithdraw(classId)
-    ).done(() => bookingNotification("Booking withdrawn!", "lightgreen", 4000));
+    )
+      .done(() => bookingNotification("Booking withdrawn!", "lightgreen", 4000))
+      .catch(err => {
+        console.log(err);
+        $("#error-modal-bg").css("display", "block");
+      });
   }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
 
   function afterBooking(classId) {
     withdrawBtn(classId);
@@ -198,7 +218,6 @@ $(document).ready(() => {
 
   // Function for feedback notification for booking and withdrawing confirmations
   function bookingNotification(text, colour, duration) {
-    console.log("working?");
     const message = $(
       `<div id="bookSuccess" style="position: fixed; background: ${colour};">${text}</div>`
     );
@@ -213,4 +232,38 @@ $(document).ready(() => {
       $(message).remove();
     }, duration);
   }
+
+  /* Withdraw button on member profile page */
+  $(".profile-withdraw-btn").on("click", function(e) {
+    e.preventDefault();
+    classId = this.id.split("-")[2];
+    $("#withdraw-p-confirmation-modal-bg").css("display", "block");
+  });
+
+  $("#withdraw-p-go-back").on("click", () => {
+    $("#withdraw-p-confirmation-modal-bg").css("display", "none");
+  });
+
+  $("#withdraw-p-confirm").on("click", () => {
+    $.post(
+      "/api/withdraw",
+      {
+        classId: classId
+      },
+      withdrawSuccessMessage()
+    ).catch(err => {
+      console.log(err);
+      $("#error-modal-bg").css("display", "block");
+    });
+  });
+
+  function withdrawSuccessMessage() {
+    $("#withdraw-success-modal-bg").css("display", "block");
+    $("#withdraw-p-confirmation-modal-bg").css("display", "none");
+  }
+
+  $("#withdraw-success-btn").on("click", () => {
+    $("#withdraw-success-modal-bg").css("display", "none");
+    window.location.replace("/profile");
+  });
 });

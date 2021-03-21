@@ -5,31 +5,68 @@
             <h1 class="class-page-title">Classes</h1>
         </div>
     </div>
-<input id="class-search" type="text" placeholder="Search classes" >
+    <input id="class-search" type="text" placeholder="Search classes" >
 <!--put in center -->
     <div class="row" id="classes">
         <div class="col-12">
-            {{#each classes}}
-                <div id="each-class">
-                    <h3 class="classes-name">{{classDate}}</h3>
-                    <div >
-                        <h3 class="classes-name">{{name}}</h3>
-                        <p>Instructuor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
-                        <p>Description: {{description}}</p>
-                        <p>Price: ${{price}}/class </p>
-                        <form class="jump" action=""> 
-                            <button class= "book-withdraw" data-id="{{id}}" type="submit" value="Book Now">
-                                Book Now
-                            </button>
-                        </form>
-                          <form class="jump" action=""> 
-                            <button class= "view-reviews" data-id="" type="submit" value="View Review">
-                                View Review
-                            </button>
-                        </form> 
+            {{#if classesExist}}
+                {{#each classes}}
+                    <div id="each-class">
+                        <h3>{{classDate}}-{{classEndTime}}</h3>
+                        <div>
+                            <h3>{{name}}</h3>
+                            <table class="class-table">
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>INSTRUCTOR:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <p>{{instructorName}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>DESCRIPTION:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <div class="description-container">
+                                            <p>{{description}}:</p>
+                                        </div>       
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-row-one">
+                                        <p>COST PER CLASS:</p>
+                                    </td>
+                                    <td class="table-row-two">
+                                        <p>${{price}}</p>
+                                    </td>
+                                </tr>                            
+                                </table>
+                            {{!-- <p>Instructor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
+                            <p>Description: {{description}}</p>
+                            <p>Price: ${{price}}/class </p> --}}
+                            {{#if isNotInstructor}}
+                            <form class="jump" action=""> 
+                                <button class= "book-withdraw" data-id="{{id}}" type="submit" value="Book Now">
+                                    Book Now
+                                </button>
+                            </form>
+                            {{/if}}
+                            <form class="jump" action=""> 
+                                <button class= "view-reviews" data-id="" type="submit" value="View Review">
+                                    View Reviews
+                                </button>
+                            </form> 
+                        </div>
                     </div>
-                </div>
-            {{/each}}
+                {{/each}} 
+            {{else}}
+                <div class="no-classes-message">
+                    <h3>There are currently no classes</h3>    
+                    <p id="no-classes-para">Please check in again later!</p>                 
+                </div>     
+            {{/if}}  
         </div>
     </div>
 </div>
@@ -63,6 +100,25 @@
             <div class="confirmation-btn-div">
                 <button id="withdraw-go-back" class="confirm-btn" type="submit">Go back</button>
                 <button id="withdraw-confirm" class="confirm-btn" type="submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error message modal --> 
+<div id="error-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="error-modal-div">
+            <div class="error-heading">
+                <i class="fas fa-times-circle fa-3x"></i>                
+                <h4>Oops!</h4>
+                <p>
+                    An error occurred whilst handling your request.<br>
+                    Please refresh the page or try again later.
+                </p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="error-ok-btn" class="confirm-btn" type="submit">Okay</button>
             </div>
         </div>
     </div>

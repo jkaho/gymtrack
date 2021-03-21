@@ -27,11 +27,24 @@
                     <h3>Class Reviews</h3>
                 </div>
             </div>
+            {{#if isNotInstructor}}
             <div class="col-4">
                 <a id="add-class-review-link" class="add-review">Write a review</a>
             </div>
+            {{/if}}
+            <div class="form-group dropdown">
+                <label for="filter-class">Class: </label>
+                <select name="filter-class" id="filter-class">
+                </select>
+                <label for="filter-rating">Rating: </label>
+                <select name="filter-rating" id="filter-class-rating">
+                </select>
+                <Button type="button" id="clear-filter-class" class="clear-filter">Clear all filters</Button>
+            </div>
         </div>
+        <div>
         {{#each gymClasses}}
+        <div>
             <div class="row">
                 <div class="col-12">
                     <div class="class-name">
@@ -46,32 +59,32 @@
                             <h6 class="class-review-title">{{title}}</h6>
                             <h6 class="review-rating">
                                 {{#if ratingOne}}
-                                <span class="rating-one">
+                                <span class="rating-one" data-id="1 Star">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingTwo}}
-                                <span class="rating-two">
+                                <span class="rating-two" data-id="2 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingThree}}
-                                <span class="rating-three">
+                                <span class="rating-three" data-id="3 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingFour}}
-                                <span class="rating-four">
+                                <span class="rating-four" data-id="4 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
-                                <span class="rating-five">
+                                <span class="rating-five" data-id="5 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -89,9 +102,13 @@
                     </div>
                 </div>
             {{/each}}
+            </div>
         {{/each}}
+        </div>
     {{else}}
-        <h2>No existing class reviews.</h2>
+        <div class="no-reviews-message">
+            <h3>There are currently no class reviews</h3>                      
+        </div>    
     {{/if}}
 </div>
 <div id="instructor-reviews" class="container review-container" style="display: none">
@@ -102,11 +119,25 @@
                     <h3>Instructor Reviews</h3>
                 </div>
             </div>
+            {{#if isNotInstructor}}
             <div class="col-4">
                 <a id="add-instructor-review-link" class="add-review">Write a review</a>
             </div>
+            {{/if}}
+
+            <div class="form-group dropdown">
+                <label for="filter-class">Instructor: </label>
+                <select name="filter-class" id="filter-instructor">
+                </select>
+                <label for="filter-rating">Rating: </label>
+                <select name="filter-rating" id="filter-instructor-rating">
+                </select>
+                <Button type="button" id="clear-filter-instructor" class="clear-filter">Clear all filters</Button>
+            </div>
         </div>
+        <div>
         {{#each instructors}}
+        <div>
             <div class="row">
                 <div class="col-12">
                     <div class="instructor-name">
@@ -121,32 +152,32 @@
                             <h6 class="instructor-review-title">{{title}}</h6>
                             <h6 class="review-rating">
                                 {{#if ratingOne}}
-                                <span class="rating-one">
+                                <span class="rating-one" data-id ="1 Star">
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingTwo}}
-                                <span class="rating-two">
+                                <span class="rating-two" data-id="2 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingThree}}
-                                <span class="rating-three">
+                                <span class="rating-three" data-id="3 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
                                 {{#if ratingFour}}
-                                <span class="rating-four">
+                                <span class="rating-four" data-id="4 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </span>
                                 {{else}}
-                                <span class="rating-five">
+                                <span class="rating-five" data-id="5 Stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -164,9 +195,13 @@
                     </div>
                 </div>
             {{/each}}
+            </div>
         {{/each}}
+        </div>
     {{else}}
-        <h2>No existing instructor reviews.</h2>
+        <div class="no-reviews-message">
+            <h3>There are currently no instructor reviews</h3>                      
+        </div>
     {{/if}}
 </div>
 
@@ -187,7 +222,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="class-review-title-input" placeholder="Title" required>
+                    <input type="text" class="form-control" id="class-review-title-input" placeholder="Title" max-length="50" required>
+                    <div class="input-note">*Max. 50 characters</div>
                 </div>
                 <div class="form-group">
                     <i class="rate-star-c fas fa-star" id="star-one-c"></i>
@@ -197,7 +233,8 @@
                     <i class="rate-star-c fas fa-star" id="star-five-c"></i>
                 </div>
                 <div class="form-group">
-                    <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us" required></textarea>
+                    <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us" maxlength="250" required></textarea>
+                    <div class="input-note">*Max. 250 characters</div>
                 </div>
                 <button type="submit" id="add-class-review" class="add-review-btn btn btn-default">Submit</button>
             </form>
@@ -221,7 +258,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="instructor-review-title-input" placeholder="Title" required>
+                    <input type="text" class="form-control" id="instructor-review-title-input" placeholder="Title" maxlength="50" required>
+                    <div class="input-note">*Max. 50 characters</div>
                 </div>
                 <div class="form-group">
                     <i class="rate-star-i fas fa-star" id="star-one-i"></i>
@@ -231,7 +269,8 @@
                     <i class="rate-star-i fas fa-star" id="star-five-i"></i>
                 </div>
                 <div class="form-group">
-                    <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us" required></textarea>
+                    <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us" maxlength="250" required></textarea>
+                    <div class="input-note">*Max. 250 characters</div>
                 </div>
                 <button type="submit" id="add-instructor-review" class="add-review-btn btn btn-default">Submit</button>
             </form>
@@ -274,5 +313,24 @@
         </div>
     </div>
 </div>
+</div>
+
+<!-- Error message modal --> 
+<div id="error-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="error-modal-div">
+            <div class="error-heading">
+                <i class="fas fa-times-circle fa-3x"></i>                
+                <h4>Oops!</h4>
+                <p>
+                    An error occurred whilst handling your request.<br>
+                    Please refresh the page or try again later.
+                </p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="error-ok-btn" class="confirm-btn" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
 </div>
 

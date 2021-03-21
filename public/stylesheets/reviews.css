@@ -305,3 +305,32 @@ h1{
     width: fit-content;
     margin: 0 auto;
 }
+
+#filter-class{
+    width: 13em;
+}
+#filter-instructor{
+    width: 13em;
+}
+#clear-filter-class{
+    color: rgb(255, 89, 0);
+}
+#clear-filter-instructor{
+    color: rgb(0, 174, 255);    
+}
+.clear-filter{
+    border: none;
+    height: 35px;
+    width: 150px;
+    font-size: 15px;
+    font-weight:bold;
+}
+
+/* No reviews message */
+.no-reviews-message {
+    width: 600px;
+    height: 250px;
+    margin: 20px auto;
+    text-align: center;
+    padding-top: 70px;
+}

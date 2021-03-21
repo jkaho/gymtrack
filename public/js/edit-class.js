@@ -6,6 +6,7 @@ $(document).ready(() => {
   let classStart;
   let classEnd;
   let classPrice;
+  const currentDate = moment().format("YYYY-MM-DD");
 
   $(".edit-class-btn").on("click", function(e) {
     e.preventDefault();
@@ -32,6 +33,7 @@ $(document).ready(() => {
 
     $("#title-check").val(className);
     $("#description-check").val(classDescription);
+    $("#description-check").attr("min", currentDate);
     $("#date-check").val(classDate);
     $("#starttime-check").val(classStart);
     $("#endtime-check").val(classEnd);
@@ -101,8 +103,18 @@ $(document).ready(() => {
         price: price
       },
       success: classUpdated()
+    }).catch(() => {
+      showErrorMessage();
     });
   }
+
+  function showErrorMessage() {
+    $("#error-modal-bg").css("display", "block");
+  }
+
+  $("#error-ok-btn").on("click", () => {
+    $("#error-modal-bg").css("display", "none");
+  });
 
   function classUpdated() {
     if ($("#edit-modal-bg").css("display") === "block") {
@@ -132,6 +144,8 @@ $(document).ready(() => {
       url: `/api/classes/${classId}`,
       method: "DELETE",
       success: classDeleted()
+    }).catch(() => {
+      showErrorMessage();
     });
   });
 
@@ -174,26 +188,35 @@ $(document).ready(() => {
   });
 
   function classDeleted() {
+    console.log("class deleted!");
     $("#delete-confirm-modal-bg").css("display", "none");
     $("#delete-success-modal-bg").css("display", "block");
   }
 
   function addDeletedClass(name, description, startTime, endTime, price) {
-    $.get("/api/user_data").then(results => {
-      const instructorId = results.authorId;
-      $.post(
-        "/api/add_class",
-        {
-          name: name,
-          description: description,
-          startTime: startTime,
-          endTime: endTime,
-          price: price,
-          instructorId: instructorId
-        },
-        addDeletedClassSuccess()
-      ).catch(err => console.log(err));
-    });
+    $.get("/api/user_data")
+      .then(results => {
+        const instructorId = results.authorId;
+        $.post(
+          "/api/add_class",
+          {
+            name: name,
+            description: description,
+            startTime: startTime,
+            endTime: endTime,
+            price: price,
+            instructorId: instructorId
+          },
+          addDeletedClassSuccess()
+        ).catch(err => {
+          console.log(err);
+          showErrorMessage();
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        showErrorMessage();
+      });
   }
 
   function addDeletedClassSuccess() {

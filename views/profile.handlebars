@@ -83,10 +83,12 @@
                         </div>
                         {{/each}}
                     {{else}}
-                        <h3>You currently have no classes</h3>
-                        <form action="/add-class"> <!-- For instructors with no classes -->
-                            <input type="submit" value="Create Class">
-                        </form>
+                        <div class="no-classes-message">
+                            <h3>You currently have no classes</h3>
+                            <form action="/add-class"> <!-- For instructors with no classes -->
+                                <input type="submit" class="confirm-btn" value="Create a class">
+                            </form>                        
+                        </div>
                     {{/if}}
                 {{/if}}
                 {{#if member}}
@@ -124,18 +126,18 @@
                                     </td>
                                 </tr>                            
                             </table>
-                            <form action=""> 
-                                <button id="cancel-btn" type="submit" class = "withdraw" data-id="{{id}}">
-                                    Cancel booking
-                                </button>
-                            </form>
+                            <button id="cancel-btn-{{classId}}" type="submit" class="profile-withdraw-btn">
+                                Withdraw from this class
+                            </button>
                         </div>
                         {{/each}}
                     {{else}}
-                        <h3>You currently have no booked classes</h3>
-                        <form action="/classes">
-                            <input type="submit" value="View Classes">
-                        </form>
+                        <div class="no-classes-message">
+                            <h3>You currently have no booked classes</h3>
+                            <form action="/classes"> <!-- For members with no classes -->
+                                <input type="submit" class="confirm-btn" value="View classes">
+                            </form>                        
+                        </div>
                     {{/if}}
                 {{/if}}
             </div>
@@ -161,7 +163,8 @@
                         </td>
                         <td class="table-row-two t2">
                             <!-- Class title -->
-                            <input id="title-check" type="text">                                            
+                            <input id="title-check" type="text" maxlength="30">   
+                            <div class="input-note">*Max. 30 characters</div>
                         </td>
                     </tr>                    <tr>
                         <td class="table-row-one">
@@ -169,7 +172,8 @@
                         </td>
                         <td class="table-row-two t2">
                             <!-- Class description -->
-                            <textarea id="description-check" class="description-container"></textarea>                                            
+                            <textarea id="description-check" class="description-container" maxlength="200"></textarea>                                            
+                            <div class="input-note">*Max. 200 characters</div>
                         </td>
                     </tr>
                     <tr>
@@ -247,7 +251,7 @@
             </div>
             <div class="nav-btn-div">
                 <button id="delete-goback-btn" class="confirm-btn" type="submit">Go back</button>
-                <button id="delete-confirm-btn" class="confirm-btn" type="submit">Okay</button>
+                <button id="delete-confirm-btn" class="confirm-btn" type="submit">Confirm</button>
             </div>
         </div>
     </div>
@@ -283,6 +287,58 @@
             </div>
             <div class="nav-btn-div">
                 <button id="delete-undo-success-btn" class="confirm-btn" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for withdrawal confirmation -->
+<div id="withdraw-p-confirmation-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="withdraw-confirmation-review-div">
+            <div class="withdraw-confirmation-heading">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4>Confirmation</h4>
+                <p>Are you sure you want to withdraw from this class?</p>
+            </div>
+            <div class="confirmation-btn-div">
+                <button id="withdraw-p-go-back" class="confirm-btn" type="submit">Go back</button>
+                <button id="withdraw-p-confirm" class="confirm-btn" type="submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for successfully withdrawing from class -->
+<div id="withdraw-success-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="withdraw-success-modal-div">
+            <div class="withdraw-success-heading">
+                <i class="fas fa-check-circle fa-3x"></i>
+                <h4>Successfully withdrawn.</h4>
+                <p>You no longer have a booking to attend this class.</p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="withdraw-success-btn" class="confirm-btn" type="submit">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error message modal --> 
+<div id="error-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="error-modal-div">
+            <div class="error-heading">
+                <i class="fas fa-times-circle fa-3x"></i>                
+                <h4>Oops!</h4>
+                <p>
+                    An error occurred whilst handling your request.<br>
+                    Please refresh the page or try again later.
+                </p>
+            </div>
+            <div class="nav-btn-div">
+                <button id="error-ok-btn" class="confirm-btn" type="submit">Okay</button>
             </div>
         </div>
     </div>

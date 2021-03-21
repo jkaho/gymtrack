@@ -454,66 +454,81 @@ $(document).ready(() => {
     $.ajax({
       url: "/api/user_data",
       method: "GET"
-    }).then(result => {
-      if (result.isLoggedIn === true) {
-        authorId = result.authorId;
-        if (event.target.id === "add-class-review-link") {
-          $.get("/api/classlist").then(result => {
-            classOptions = result;
-            const classSelect = $("#class-reviews-list");
-            classSelect.empty();
-            // $("#class-review-title-input").val("");
-            // $("#class-review-text-input").val("");
-            if (classOptions.length < 1) {
-              const classOption = $(
-                "<option value='no-classes'>No classes</option"
-              );
-              classSelect.append(classOption);
-            } else {
-              result.forEach(gymClass => {
-                const classOption = $(
-                  "<option value='class-" +
-                    gymClass.id +
-                    "'>" +
-                    gymClass.name +
-                    "</option>"
-                );
-                classSelect.append(classOption);
+    })
+      .then(result => {
+        if (result.isLoggedIn === true) {
+          authorId = result.authorId;
+          if (event.target.id === "add-class-review-link") {
+            $.get("/api/classlist")
+              .then(result => {
+                classOptions = result;
+                const classSelect = $("#class-reviews-list");
+                classSelect.empty();
+                // $("#class-review-title-input").val("");
+                // $("#class-review-text-input").val("");
+                if (classOptions.length < 1) {
+                  const classOption = $(
+                    "<option value='no-classes'>No classes</option"
+                  );
+                  classSelect.append(classOption);
+                } else {
+                  result.forEach(gymClass => {
+                    const classOption = $(
+                      "<option value='class-" +
+                        gymClass.id +
+                        "'>" +
+                        gymClass.name +
+                        "</option>"
+                    );
+                    classSelect.append(classOption);
+                  });
+                }
+                $("#class-modal-bg").css("display", "block");
+              })
+              .catch(err => {
+                console.log(err);
+                showErrorMessage();
               });
-            }
-            $("#class-modal-bg").css("display", "block");
-          });
+          } else {
+            $.get("/api/instructorlist")
+              .then(result => {
+                instructorOptions = result;
+                const instructorSelect = $("#instructor-reviews-list");
+                instructorSelect.empty();
+                // $("#instructor-review-title-input").val("");
+                // $("#instructor-review-text-input").val("");
+                if (instructorOptions.length < 1) {
+                  const instructorOption = $(
+                    "<option value='no-instructors'>No instructors</option"
+                  );
+                  instructorOptions.append(instructorOption);
+                } else {
+                  result.forEach(instructor => {
+                    const instructorOption = $(
+                      "<option value='instructor-" +
+                        instructor.instructorId +
+                        "'>" +
+                        instructor.instructorName +
+                        "</option>"
+                    );
+                    instructorSelect.append(instructorOption);
+                  });
+                }
+                $("#instructor-modal-bg").css("display", "block");
+              })
+              .catch(err => {
+                console.log(err);
+                showErrorMessage();
+              });
+          }
         } else {
-          $.get("/api/instructorlist").then(result => {
-            instructorOptions = result;
-            const instructorSelect = $("#instructor-reviews-list");
-            instructorSelect.empty();
-            // $("#instructor-review-title-input").val("");
-            // $("#instructor-review-text-input").val("");
-            if (instructorOptions.length < 1) {
-              const instructorOption = $(
-                "<option value='no-instructors'>No instructors</option"
-              );
-              instructorOptions.append(instructorOption);
-            } else {
-              result.forEach(instructor => {
-                const instructorOption = $(
-                  "<option value='instructor-" +
-                    instructor.instructorId +
-                    "'>" +
-                    instructor.instructorName +
-                    "</option>"
-                );
-                instructorSelect.append(instructorOption);
-              });
-            }
-            $("#instructor-modal-bg").css("display", "block");
-          });
+          window.location.replace("/login");
         }
-      } else {
-        window.location.replace("/login");
-      }
-    });
+      })
+      .catch(err => {
+        console.log(err);
+        showErrorMessage();
+      });
   });
 
   function addClassReview(classId, reviewTitle, reviewText, rating, authorId) {
@@ -531,6 +546,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -555,6 +571,7 @@ $(document).ready(() => {
       // If there's an error, log the error
       .catch(err => {
         console.log(err);
+        showErrorMessage();
       });
   }
 
@@ -566,5 +583,250 @@ $(document).ready(() => {
 
   $("#ok-success").on("click", () => {
     $("#success-modal-bg").css("display", "none");
+  });
+
+  // Filters
+  // Per class
+  $.get("/api/classlist").then(result => {
+    const classOptions = result;
+    const classFilter = $("#filter-class");
+
+    // classSelect.empty();
+    // // $("#class-review-title-input").val("");
+    // // $("#class-review-text-input").val("");
+    if (classOptions.length < 1) {
+      const classOption = $("<option value='no-classes'>No classes</option>");
+      classFilter.append(classOption);
+    } else {
+      classFilter.append("<option value='All'>All</option>");
+      result.forEach(gymClass => {
+        const classOption = $("<option>" + gymClass.name + "</option>");
+        classFilter.append(classOption);
+      });
+    }
+    // Class filter
+    $(classFilter).change(event => {
+      event.preventDefault();
+      const className = $(classFilter).val();
+      result.forEach(gymClass => {
+        $(`h4:contains('${gymClass.name}')`)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .fadeOut();
+      });
+      $(`h4:contains('${className}')`)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .fadeIn();
+      if (classFilter.val() === "All") {
+        classOptions.forEach(eachClass => {
+          $(`h4:contains('${eachClass.name}')`)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .fadeIn();
+        });
+      }
+    });
+
+    $("#clear-filter-class").on("click", event => {
+      classFilter.val("All");
+      event.preventDefault();
+      classOptions.forEach(eachClass => {
+        $(`h4:contains('${eachClass.name}')`)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .fadeIn();
+      });
+    });
+  });
+  // Rating filter for classes
+  $.get("/api/classReviews").then(result => {
+    classOptions = result;
+    const ratingFilterClass = $("#filter-class-rating");
+    // classSelect.empty();
+    // // $("#class-review-title-input").val("");
+    // // $("#class-review-text-input").val("");
+    if (classOptions.length < 1) {
+      const classOption = $("<option value='no-classes'>No classes</option>");
+      classesFilter.append(classOption);
+    } else {
+      ratingFilterClass.append("<option data-id='All'>All</option>");
+      ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
+        const scoreOption = $(
+          "<option value='" + score + "'>" + score + "</option>"
+        );
+        ratingFilterClass.append(scoreOption);
+      });
+    }
+    $(ratingFilterClass).change(event => {
+      event.preventDefault();
+      const classRating = $(ratingFilterClass).val();
+      ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
+        $("[data-id= '" + score + "']")
+          .parent()
+          .parent()
+          .fadeOut();
+      });
+      $("[data-id ='" + classRating + "']")
+        .parent()
+        .parent()
+        .fadeIn();
+      if (ratingFilterClass.val() === "All") {
+        ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(
+          score => {
+            $("[data-id ='" + score + "']")
+              .parent()
+              .parent()
+              .fadeIn();
+          }
+        );
+      }
+    });
+    $("#clear-filter-class").on("click", event => {
+      event.preventDefault();
+      ratingFilterClass.val("All");
+      ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
+        $("[data-id ='" + score + "']")
+          .parent()
+          .parent()
+          .fadeIn();
+      });
+    });
+  });
+
+  // Per Instructor
+  $.get("/api/instructorlist").then(result => {
+    const instructorOptions = result;
+    const instructorFilter = $("#filter-instructor");
+    // Append option menu
+    if (instructorOptions.length < 1) {
+      const instructorOption = $(
+        "<option value='no-instructors'>No instructors</option>"
+      );
+      instructorFilter.append(instructorOption);
+    } else {
+      instructorFilter.append("<option value='All'>All</option>");
+      result.forEach(instructor => {
+        // For some reason it won't append if I name the constant other than "classOption"
+        const classOption = $(
+          "<option>" + instructor.instructorName + "</option>"
+        );
+        instructorFilter.append(classOption);
+      });
+    }
+    // Instructor filter
+    $(instructorFilter).change(event => {
+      event.preventDefault();
+      const instructorName = $(instructorFilter).val();
+      result.forEach(instructor => {
+        $(`h4:contains('${instructor.instructorName}')`)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .fadeOut();
+      });
+      $(`h4:contains('${instructorName}')`)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .fadeIn();
+      if (instructorFilter.val() === "All") {
+        instructorOptions.forEach(eachInstructor => {
+          $(`h4:contains('${eachInstructor.instructorName}')`)
+            .parent()
+            .parent()
+            .parent()
+            .parent()
+            .fadeIn();
+        });
+      }
+    });
+    //  Clear filter and show all
+    $("#clear-filter-instructor").on("click", event => {
+      instructorFilter.val("All");
+      event.preventDefault();
+      instructorOptions.forEach(eachInstructor => {
+        $(`h4:contains('${eachInstructor.instructorName}')`)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .fadeIn();
+      });
+    });
+  });
+  // Rating filter for instructors
+  $.get("/api/instructorReviews").then(result => {
+    instructorOptions = result;
+    const ratingFilterInstructor = $("#filter-instructor-rating");
+    // classSelect.empty();
+    // // $("#class-review-title-input").val("");
+    // // $("#class-review-text-input").val("");
+    if (instructorOptions.length < 1) {
+      const instructorOption = $(
+        "<option value='no-classes'>No instructors</option>"
+      );
+      instructorFilter.append(instructorOption);
+    } else {
+      ratingFilterInstructor.append("<option data-id='All'>All</option>");
+      ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
+        const scoreOption = $(
+          "<option value='" + score + "'>" + score + "</option>"
+        );
+        ratingFilterInstructor.append(scoreOption);
+      });
+    }
+    $(ratingFilterInstructor).change(event => {
+      event.preventDefault();
+      const instructorRating = $(ratingFilterInstructor).val();
+      ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
+        $("[data-id= '" + score + "']")
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .fadeOut();
+      });
+      $("[data-id ='" + instructorRating + "']")
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .fadeIn();
+      if (ratingFilterInstructor.val() === "All") {
+        ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(
+          score => {
+            $("[data-id ='" + score + "']")
+              .parent()
+              .parent()
+              .parent()
+              .parent()
+              .fadeIn();
+          }
+        );
+      }
+    });
+    $("#clear-filter-instructor").on("click", event => {
+      event.preventDefault();
+      ratingFilterInstructor.val("All");
+      ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
+        $("[data-id ='" + score + "']")
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .fadeIn();
+      });
+    });
   });
 });

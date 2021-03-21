@@ -7,31 +7,6 @@ form.login {
 }
 
 body {
-    font-size: inherit;
-    line-height: inherit;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #111;
-    background-color: #fff;
-    display: inline-block;
-    /* margin: 0 auto; */
-}
-
-#index-navbar {
-    max-width: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    border-bottom: #111 2px solid;
-    font-size: 24px;
-}
-
-.navbar-brand{
-    font-size: 36px;
-    font-weight: bold;
-}
-
-body {
   font-size: inherit;
   line-height: inherit;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -98,4 +73,36 @@ body {
     padding: 5px 10px;
     font-size: 18px;
   }
+}
+
+/* Error modal */
+.error-modal-div, .login-error-modal-div {
+    position: relative;
+    width: 500px;
+    height: 230px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.error-heading, .login-error-heading {
+    height: 160px;
+    padding-top: 20px;
+    font-weight: 200;
+    text-align: center;
+    margin: 10px;
+    font-weight: 300;
+}
+
+.fa-times-circle, .fa-frown-open {
+    color: rgb(219, 30, 30);
+    margin-bottom: 20px;
+}
+
+/* Note under inputs */
+.input-note {
+    font-size: 12px;
+    color: rgb(129, 129, 129);
+    float: right;
 }
