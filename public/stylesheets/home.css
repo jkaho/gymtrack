@@ -18,7 +18,7 @@
     margin-bottom: 20px; */
 }
 
-.page-link-img{
+.page-link-img {
  float: inherit;
 }
 
@@ -36,7 +36,7 @@
     margin-bottom: 10px;
 }
 
-.link-pages{
+.link-pages {
     margin-top: 30px;
     line-height: 60%;
     margin: 20px;
@@ -48,17 +48,25 @@
     font-size: 22px;
     padding: 20 10;
 }
-.page-footer{
+
+.page-footer {
    margin-top: 30px;
    background-color: #111;
    color: #fff;
    width:100vw;
 }
-.icons{
+
+/* This code makes the footer a bit shorter */
+/* .page-footer div {
+    padding-bottom: 0!important;
+} */
+
+.icons {
     display: flex;
     justify-content: center;
 }
-.icon{
+
+.icon {
     color: #fff;
     text-decoration: none;
     padding: 10px;
@@ -74,15 +82,19 @@
 }
 
 @media only screen and (max-width: 599px){
-body{
+body {
     width:100vw
 }
-.container{
+
+.container {
     margin: 0 auto;
 }
-.row{
+
+/* This was stuffing up the responsiveness on the profile/reviews page*/
+/* .row {
     margin: 0 auto;
-}
+} */
+
 #home-image{
     width: 100vw;
     height: auto;
