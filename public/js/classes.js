@@ -38,7 +38,7 @@ $(document).ready(() => {
       ratingStars = $(
         "<div><i class='fas fa-star'><i class='fas fa-star'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
       );
-    } else if (avgRating >= 4.75 && avgRating <= 0.5) {
+    } else if (avgRating >= 4.75 && avgRating <= 5) {
       ratingStars = $(
         "<div><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
       );
