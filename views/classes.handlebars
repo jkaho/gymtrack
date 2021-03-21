@@ -5,15 +5,23 @@
             <h1 class="class-page-title">Classes</h1>
         </div>
     </div>
+<input id="class-search" type="text" placeholder="Search classes" >
 <!--put in center -->
     <div class="row" id="classes">
         <div class="col-12">
             {{#each classes}}
                 <div id="each-class">
+<<<<<<< HEAD
                     <h3 class="classes-name">{{classDate}}</h3>
                     <div >
                         <h3 class="classes-name">{{name}}</h3>
                         <p>Instructuor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
+=======
+                    <h3>{{classDate}}</h3>
+                    <div>
+                        <h3>{{name}}</h3>
+                        <p>Instructor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
+>>>>>>> 54b1006054f6a3a3013e1a28b92a6f840c45d9c2
                         <p>Description: {{description}}</p>
                         <p>Price: ${{price}}/class </p>
                         <form class="jump" action=""> 
@@ -25,11 +33,44 @@
                             <button class= "view-reviews" data-id="" type="submit" value="View Review">
                                 View Review
                             </button>
-                        </form>
-                       
+                        </form> 
                     </div>
                 </div>
             {{/each}}
+        </div>
+    </div>
+</div>
+
+<!-- Modal for booking confirmation -->
+<div id="booking-confirmation-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="booking-confirmation-review-div">
+            <div class="booking-confirmation-heading">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4>Confirmation</h4>
+                <p>Are you sure you want to book this class?</p>
+            </div>
+            <div class="confirmation-btn-div">
+                <button id="booking-go-back" class="confirm-btn" type="submit">Go back</button>
+                <button id="booking-confirm" class="confirm-btn" type="submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for withdrawal confirmation -->
+<div id="withdraw-confirmation-modal-bg" class="modal-bg">
+    <div class="add-review-modal">
+        <div class="withdraw-confirmation-review-div">
+            <div class="withdraw-confirmation-heading">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4>Confirmation</h4>
+                <p>Are you sure you want to withdraw from this class?</p>
+            </div>
+            <div class="confirmation-btn-div">
+                <button id="withdraw-go-back" class="confirm-btn" type="submit">Go back</button>
+                <button id="withdraw-confirm" class="confirm-btn" type="submit">Confirm</button>
+            </div>
         </div>
     </div>
 </div>

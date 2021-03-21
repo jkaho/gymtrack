@@ -1,6 +1,6 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
-
+const Sequelize = require("sequelize");
 module.exports = function(app) {
   // Route for getting all classes
   app.get("/api/classlist", (req, res) => {
@@ -40,7 +40,7 @@ module.exports = function(app) {
           classId: req.body.classId
         })
         .then(() => {
-          res.redirect("/profile");
+          res.redirect("/classes");
         })
         .catch(err => {
           res.status(500).json(err);
@@ -61,12 +61,27 @@ module.exports = function(app) {
           }
         })
         .then(() => {
-          res.redirect("/profile");
+          res.redirect("/classes");
         })
         .catch(err => {
           res.status(500).json(err);
         });
     }
+  });
+
+  // Route for searching classes by characters
+  app.get("/api/search_classes/:id", (req, res) => {
+    db.classes
+      .findAll({
+        where: {
+          name: {
+            [Sequelize.Op.like]: "%" + req.params.id + "%"
+          }
+        }
+      })
+      .then(results => {
+        res.json(results);
+      });
   });
 
   // Route for editing classes

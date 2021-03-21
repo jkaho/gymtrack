@@ -1,14 +1,73 @@
 /* eslint-disable cambookMsgcase */
 $(document).ready(() => {
+  let currentId;
   const bookWithdrawBtn = $(".book-withdraw");
   const notificationEl = $("#notification");
   const cancelBtn = $(".withdraw");
+  const confirmationModal = $("#booking-confirmation-modal-bg");
+  const withdrawModal = $("#withdraw-confirmation-modal-bg");
+  const searchBar = $("#class-search");
   // Option to cancel classes from profile page
   // $(withdrawBtn).each(function () {
   //   $(this).click(e => {
   //     e.preventDefault();
   //   })
   // })
+
+  searchBar.on("keyup", e => {
+    e.preventDefault();
+    const searchText = e.target.value;
+    getClasses();
+    const allClasses = [];
+    const matchedClasses = [];
+    async function getClasses() {
+      // Get all existing classes
+      await $.get("/api/classlist").then(res => {
+        for (let i = 0; i < res.length; i++) {
+          allClasses.push(res[i].name);
+        }
+      });
+      // Get matching classes
+      if (searchText) {
+        await $.get(`/api/search_classes/${searchText}`).then(
+          searchedClasses => {
+            $(searchedClasses).each(i => {
+              matchedClasses.push(searchedClasses[i].name);
+            });
+          }
+        );
+      }
+      // Get classes that did not match the search text
+      const notMatchedClasses = $(allClasses)
+        .not(matchedClasses)
+        .get();
+      // Search result display
+      // If search bar empty, show all classes
+      if (searchText.length === 0) {
+        for (i = 0; i < allClasses.length; i++) {
+          $(`h3:contains('${allClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeIn();
+        }
+      } else {
+        // Hide classes that don't have matching text in their names
+        for (i = 0; i < notMatchedClasses.length; i++) {
+          $(`h3:contains('${notMatchedClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeOut();
+        }
+        // Display classes with matching text
+        for (i = 0; i < matchedClasses.length; i++) {
+          $(`h3:contains('${matchedClasses[i]}')`)
+            .parent()
+            .parent()
+            .fadeIn();
+        }
+      }
+    }
+  });
   $.getJSON("api/user_data").then(data => {
     // Check log in status
     $(bookWithdrawBtn).each(function() {
@@ -26,26 +85,34 @@ $(document).ready(() => {
         InitialClass(classIdVal);
         $(this).click(e => {
           e.preventDefault();
+          currentId = this.getAttribute("data-id");
           // Send request, and switch button attributes and display after being clicked
           const action = $(this).text();
           if (action === "Book Now") {
-            withdrawBtn(classIdVal);
-            $.post("/api/booking", {
-              classId: classIdVal
-            }).done(() => {
-              bookingNotification("Booking confirmed! :D", "lightgreen", 4000);
-            });
+            confirmationModal.css("display", "block");
           } else {
-            bookBtn(classIdVal);
-            $.post("/api/withdraw", {
-              classId: classIdVal
-            }).done(() => {
-              bookingNotification("Booking withdrawn!", "lightgreen", 4000);
-            });
+            withdrawModal.css("display", "block");
           }
         });
       }
     });
+
+    $("#booking-confirm").on("click", () => {
+      addToClass(currentId);
+    });
+
+    $("#booking-go-back").on("click", () => {
+      confirmationModal.css("display", "none");
+    });
+
+    $("#withdraw-confirm").on("click", () => {
+      withdrawFromClass(currentId);
+    });
+
+    $("#withdraw-go-back").on("click", () => {
+      withdrawModal.css("display", "none");
+    });
+
     $(cancelBtn).each(function() {
       $(this).click(e => {
         e.preventDefault();
@@ -58,11 +125,12 @@ $(document).ready(() => {
       });
     });
   });
+
   // Function to check booking status and alter buttons' text display and attributes accordingly
   function InitialClass(thisClassId) {
     $.getJSON("api/user_data").then(data => {
       // Get current userId-classId combination
-      const thisUserClass = data.user.id + "-" + thisClassId;
+      const thisUserClass = data.authorId + "-" + thisClassId;
       // Get all userId-classId combinations and compare to the current combination
       $.get("/userclasses").then(res => {
         for (i = 0; i < res.results.length; i++) {
@@ -94,8 +162,43 @@ $(document).ready(() => {
       .removeClass("book")
       .addClass("withdraw");
   }
+  // Add user to class
+  function addToClass(classId) {
+    $.post(
+      "/api/booking",
+      {
+        classId: classId
+      },
+      afterBooking(classId)
+    ).done(() =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
+    );
+  }
+  // Withdraw user from class
+  function withdrawFromClass(classId) {
+    $.post(
+      "/api/withdraw",
+      {
+        classId: classId
+      },
+      afterWithdraw(classId)
+    ).done(() => bookingNotification("Booking withdrawn!", "lightgreen", 4000));
+  }
+
+  function afterBooking(classId) {
+    withdrawBtn(classId);
+    confirmationModal.css("display", "none");
+  }
+
+  function afterWithdraw(classId) {
+    bookBtn(classId);
+    withdrawModal.css("display", "none");
+  }
+
   // Function for feedback notification for booking and withdrawing confirmations
   function bookingNotification(text, colour, duration) {
+    console.log("working?");
     const message = $(
       `<div id="bookSuccess" style="position: fixed; background: ${colour};">${text}</div>`
     );

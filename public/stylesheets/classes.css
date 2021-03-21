@@ -1,4 +1,4 @@
-#class-body{
+#class-body {
   margin: 10px;
   padding-top: 20px;
   background-image: url(../images/group-yoga.jpg);
@@ -11,7 +11,8 @@
   color: #fff;
   margin-top: 20px;
 }
-#classes{
+
+#classes {
   width: 80%;
   margin: 50px auto;
   margin-top: 30px;
@@ -19,7 +20,7 @@
   vertical-align: middle;
   display: grid;
 }
-#each-class{
+#each-class {
   margin-bottom: 20px;
   padding: 20px;
   /* border: solid 1px rgb(235, 235, 235); */
@@ -31,16 +32,28 @@
   font-weight: 500;
   font-size: 28px;
 }
-.jump{
+
+.jump {
   margin: 0 auto;
   display: inline-block;
 }
 
-.jump :hover{
+.jump:hover {
   background-color: rgb(255, 89, 0);
   border: none;
 }
 
+<<<<<<< HEAD
+=======
+p {
+  font-size: 20px;
+}
+
+#class-search {
+  width: 20em;
+}
+
+>>>>>>> 54b1006054f6a3a3013e1a28b92a6f840c45d9c2
 #bookSuccess {
     position:fixed;
     width:100%;
@@ -100,6 +113,26 @@
     margin-bottom: 10px;
 }
 
+ /* Booking confirmation modal */
+
+.booking-confirmation-review-div, .withdraw-confirmation-review-div {
+    position: relative;
+    width: 500px;
+    height: 230px;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+}
+
+.booking-confirmation-heading, .withdraw-confirmation-heading {
+    height: 150px;
+    padding-top: 20px;
+    padding-left: 15px;
+    font-weight: 200;
+    text-align: center;
+    margin: 10px;
+}
 
 @media only screen and (max-width: 760px){
   #class-body{
@@ -125,4 +158,4 @@
     width: 100vw;
 
   }
-}
+
