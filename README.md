@@ -17,7 +17,7 @@ There are two types of application users: *instructors* and *members*. Instructo
 - [Links](#Links)
 - [Screenshots](#Screenshots)
 - [Contributors](#Contributors)
-- [Licence](#Licence)
+- [License](#License)
 
 ## Motivations 
 
