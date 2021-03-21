@@ -1,8 +1,27 @@
+h1{
+    text-align: center;
+}
+
+/* .review-background-hero {
+    position: relative; 
+} */
+
+.review-background-hero{
+    background-image: url(../images/men-weight-lift.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-bottom: 20px;
+    width: 100vw;
+    /* opacity: 0.75; */
+}
+
 #review-body{
     margin: 10px;
 }
 .review-toggle {
     margin: 10px auto;
+    margin-top: 50px;
     width: fit-content;
 }
 
@@ -24,9 +43,10 @@
 }
 
 .review-container {
-    border: solid 1px rgb(235, 235, 235);
+    /* border: solid 1px rgb(148, 148, 148); */
     padding: 20px;
     margin: 50px auto;
+    background-color: rgb(246, 246, 246, 0.7);
 }
 
 #class-reviews, #instructor-reviews {
@@ -40,7 +60,7 @@
 }
 
 .instructor-heading {
-    color: rgb(0, 174, 255);
+    color: rgb(66, 98, 214);
 }
 
 .review-container h3 {
@@ -55,7 +75,7 @@
 
 .class-name, .instructor-name {
     border-bottom: solid 2px rgb(207, 207, 207);
-    color: rgb(109, 107, 107);
+    /* color: rgb(109, 107, 107); */
 }
 
 .class-name h4, .instructor-name h4 {
@@ -77,18 +97,19 @@
 .instructor-review-title {
     font-size: 18px;
     font-weight: 600;
-    color: rgb(0, 174, 255);
+    color: rgb(66, 98, 214);
 }
 
 .author {
     font-weight: 200;
-    font-size: 15px;
-    color: rgb(112, 112, 112);
+    font-size: 20px;
+    /* color: rgb(112, 112, 112); */
     font-style: italic;
 }
 
 .review-text {
     font-weight: 300;
+    font-size: 20px;
 }
 
 /* 'Add class review' modal */
