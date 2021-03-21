@@ -12,9 +12,11 @@
             {{#if classesExist}}
                 {{#each classes}}
                     <div id="each-class">
-                        <h3>{{classDate}}-{{classEndTime}}</h3>
+                        <h3>{{name}} {{classDate}}-{{classEndTime}}</h3>
+                        <div id="avg-rating-{{id}}-{{avgRating}}" class="avg-rating-div">
+                            <!-- Dynamically render average rating -->
+                        </div>
                         <div>
-                            <h3>{{name}}</h3>
                             <table class="class-table">
                                 <tr>
                                     <td class="table-row-one">
