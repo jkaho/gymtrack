@@ -1,17 +1,25 @@
-#class-body {
-  margin: 10px;
+.class-bg-hero {
+  margin-top: 20px;
   padding-top: 20px;
   background-image: url(../images/group-yoga.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   width: 100vw;
+  height: 75vh;
+  align-items: center;
 }
 .class-page-title{
   color: #fff;
   margin-top: 20px;
-}
 
+}
+#class-search{
+  padding: 25px;
+  width: 70%;
+  border: none;
+  margin-left: 55px;
+}
 #classes {
   width: 80%;
   margin: 50px auto;
@@ -23,7 +31,7 @@
 #each-class {
   margin-bottom: 20px;
   padding: 20px;
-  /* border: solid 1px rgb(235, 235, 235); */
+  border: solid 1px rgb(235, 235, 235);
   background-color: rgb(246, 246, 246, 0.7);
   font-size: 20px;
 }

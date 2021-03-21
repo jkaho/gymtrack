@@ -146,6 +146,11 @@ h1{
     margin: 20px auto;
 }
 
+
+/* .add class review{
+    margin-right: 0 auto;
+} */
+
 .modal-heading {
     background-color: rgb(46, 46, 71);
     height: 60px;
@@ -203,7 +208,7 @@ h1{
     background-color: white;
     border: solid 1px rgb(59, 59, 59);
     border-radius: 0;
-    float: right;
+    float: left;
 }
 
 .add-review-btn:hover {

@@ -35,14 +35,21 @@
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+.link-card{
+    margin: 0 auto;
+}
 
 .link-pages{
     margin-top: 30px;
     line-height: 60%;
-    margin: 20px;
+    /* margin: 20px; */
     width: 100vw;
+    align-items: center;
+    height: 100%;
 }
-
+#img-tube{
+    height: 100%;
+}
 .btn-link {
     color: #111;
     font-size: 22px;
@@ -112,4 +119,5 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    margin-top: 20px;
 }
