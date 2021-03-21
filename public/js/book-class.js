@@ -178,7 +178,7 @@ $(document).ready(() => {
     )
       .done(() =>
         // eslint-disable-next-line implicit-arrow-linebreak
-        bookingNotification("Booking confirmed! :D", "lightgreen", 4000)
+        bookingNotification("Booking confirmed!", "black", 4000)
       )
       .catch(err => {
         console.log(err);
@@ -195,7 +195,7 @@ $(document).ready(() => {
       },
       afterWithdraw(classId)
     )
-      .done(() => bookingNotification("Booking withdrawn!", "lightgreen", 4000))
+      .done(() => bookingNotification("Booking withdrawn", "black", 4000))
       .catch(err => {
         console.log(err);
         $("#error-modal-bg").css("display", "block");

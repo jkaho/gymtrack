@@ -90,32 +90,6 @@
   background-color: rgb(255, 89, 0);
   border: none;
 } */
-
-#bookSuccess {
-    position:fixed;
-    width:100%;
-    height:3em;
-    line-height:1em;
-    left:0;
-    top:0;
-    text-align:center;
-    padding-top:40px;
-    padding-bottom:10px;
-    font-size: 2em;
-}
-  
-#bookFail {
-    position:fixed;
-    width:100%;
-    height:3em;
-    line-height:1em;
-    left:0;
-    top:0;
-    text-align:center;
-    padding-top:40px;
-    padding-bottom:10px;
-    font-size: 2em;
-}
   
 .opacity_max {
     opacity: 1;
@@ -173,6 +147,23 @@
     font-weight: 200;
     text-align: center;
     margin: 10px;
+}
+
+/* Booking success message */
+#bookSuccess, #bookFail {
+    position: fixed;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-weight: 300;
+    width: 100%;
+    height: 3.5em;
+    line-height: 1em;
+    left: 0;
+    top: 0;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    font-size: 2em;
 }
 
 /* No classes message */
