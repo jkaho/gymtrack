@@ -205,4 +205,24 @@
     background-size: cover;
     width: 100vw;
   }
+
+  #classes {
+    width: 95%;
+  }
+
+  .each-class h3 {
+    font-size: 18px;
+  }
+
+  .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
+    font-size: 15px;
+  }
+
+  .class-page-title {
+    font-size: 30px;
+  }
+
+  .class-page-banner-inner h1 {
+    font-size: 30px;
+  }
 }
