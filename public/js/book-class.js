@@ -88,7 +88,7 @@ $(document).ready(() => {
           currentId = this.getAttribute("data-id");
           // Send request, and switch button attributes and display after being clicked
           const action = $(this).text();
-          if (action === "Book Now") {
+          if (action === "Book now") {
             confirmationModal.css("display", "block");
           } else {
             withdrawModal.css("display", "block");
@@ -156,14 +156,14 @@ $(document).ready(() => {
   // Clear withdraw class and append 'book' class
   function bookBtn(id) {
     $("[data-id =" + id + "]")
-      .text("Book Now")
+      .text("Book now")
       .removeClass("withdraw")
       .addClass("book");
   }
   // Clear book class and append 'withdraw' class
   function withdrawBtn(id) {
     $("[data-id =" + id + "]")
-      .text("Withdraw Booking")
+      .text("Withdraw booking")
       .removeClass("book")
       .addClass("withdraw");
   }
