@@ -16,9 +16,10 @@ h1{
     /* opacity: 0.75; */
 }
 
-#review-body{
-    margin: 10px;
-}
+#review-body {
+    margin: 10px auto;
+} 
+
 .review-toggle {
     margin: 10px auto;
     margin-top: 50px;
@@ -46,7 +47,7 @@ h1{
     /* border: solid 1px rgb(148, 148, 148); */
     padding: 20px;
     margin: 50px auto;
-    background-color: rgb(246, 246, 246, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 #class-reviews, #instructor-reviews {
@@ -74,7 +75,7 @@ h1{
 }
 
 .class-name, .instructor-name {
-    border-bottom: solid 2px rgb(207, 207, 207);
+    border-bottom: solid 2px rgb(0, 0, 0);
     /* color: rgb(109, 107, 107); */
 }
 
@@ -102,14 +103,14 @@ h1{
 
 .author {
     font-weight: 200;
-    font-size: 20px;
+    font-size: 18px;
     /* color: rgb(112, 112, 112); */
     font-style: italic;
 }
 
 .review-text {
     font-weight: 300;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* 'Add class review' modal */
@@ -306,24 +307,52 @@ h1{
     margin: 0 auto;
 }
 
-#filter-class{
-    width: 13em;
+/* Review filters */
+.filter-div {
+    display: inline-block;
 }
-#filter-instructor{
-    width: 13em;
+
+#filter-class, #filter-instructor, #filter-class-rating, #filter-instructor-rating {
+    width: 150px;
+    height: 30px;
 }
-#clear-filter-class{
+
+#filter-class-rating, #filter-instructor-rating {
+    width: 110px;
+}
+
+#filter-class, #filter-class-rating {
+    border: solid 1px rgb(255, 89, 0);
+}
+
+#filter-instructor, #filter-instructor-rating {
+    border: solid 1px rgb(66, 98, 214);
+}
+
+#clear-filter-class, #clear-filter-instructor {
+    height: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    color: white;
+    background: black;
+    border: solid 1px black;
+    vertical-align: top;
+}
+
+#clear-filter-class:hover {
     color: rgb(255, 89, 0);
 }
-#clear-filter-instructor{
-    color: rgb(0, 174, 255);    
+
+#clear-filter-instructor:hover {
+    color: rgb(66, 98, 214);
 }
-.clear-filter{
+
+.clear-filter {
     border: none;
     height: 35px;
-    width: 150px;
+    width: 130px;
     font-size: 15px;
-    font-weight:bold;
+    margin-top: -6px;
 }
 
 /* No reviews message */
@@ -333,4 +362,30 @@ h1{
     margin: 20px auto;
     text-align: center;
     padding-top: 70px;
+}
+
+/* ------- MEDIA QUERIES ------- */
+
+@media (max-width: 768px) {
+    .filter-div {
+        display: block;
+        margin: 10px auto;
+        width: fit-content;
+    }
+
+    #filter-class, #filter-instructor, #filter-class-rating, #filter-instructor-rating {
+        width: 150px;
+    }
+
+    .clear-filter {
+        margin-top: 0;
+    }
+
+    .review-text, .author {
+        font-size: 16px;
+    }
+
+    #class-reviews, #instructor-reviews {
+        width: 90%;
+    }
 }
