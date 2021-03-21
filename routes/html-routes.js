@@ -39,11 +39,23 @@ module.exports = function(app) {
     let classEndTime;
     db.classes
       .findAll({
-        include: [db.user]
+        include: { all: true }
       })
       .then(results => {
         if (results.length > 0) {
           results.forEach(result => {
+            let totalRating = 0;
+            let numOfReviews = 0;
+            let avgRating;
+            result.dataValues.classReviews.forEach(review => {
+              numOfReviews++;
+              totalRating += review.dataValues.rating;
+            });
+            if (numOfReviews > 0) {
+              avgRating = totalRating / numOfReviews;
+            } else {
+              avgRating = 0;
+            }
             instructorName =
               result.dataValues.user.firstName +
               " " +
@@ -55,6 +67,7 @@ module.exports = function(app) {
             result.dataValues.classDate = classDate;
             result.dataValues.classEndTime = classEndTime;
             result.dataValues.isNotInstructor = isNotInstructor;
+            result.dataValues.avgRating = avgRating;
             classes.push(result.dataValues);
           });
           res.render("classes", {
