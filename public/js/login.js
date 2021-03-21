@@ -29,8 +29,10 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
-        window.location.replace("/profile");
-        // If there's an error, log the error
+        // Takes user to the profile page after logging in
+        // window.location.replace("/profile");
+        // Takes user to the page they were previously on after logging in
+        window.location.replace(document.referrer);
       })
       .catch(err => {
         console.log(err);
