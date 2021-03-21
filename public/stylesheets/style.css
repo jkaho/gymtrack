@@ -26,9 +26,12 @@ body {
     padding: 0;
     margin: 0;
 }
+
 .container {
   vertical-align: middle;
   display: grid;
+  margin-left: 0;
+  padding-left: 0;
   /* margin-left: 20px;
   margin-right: 20px; */
 }

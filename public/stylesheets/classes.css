@@ -121,6 +121,13 @@
     margin: 10px;
 }
 
+/* No classes message */
+#no-classes-para {
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+}
+
 @media only screen and (max-width: 760px){
   #class-body{
     margin: 10px;
@@ -143,12 +150,5 @@
     background-position: center;
     background-size: cover;
     width: 100vw;
-
   }
-
-/* No classes message */
-#no-classes-para {
-    font-size: 22px;
-    font-weight: 300;
-    font-style: italic;
 }

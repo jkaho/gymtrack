@@ -1,12 +1,12 @@
-h1{
+/* h1 {
     text-align: center;
-}
+} */
 
 /* .review-background-hero {
     position: relative; 
 } */
 
-.review-background-hero{
+.review-background-hero {
     background-image: url(../images/men-weight-lift.jpg);
     background-repeat: no-repeat;
     background-position: center;
