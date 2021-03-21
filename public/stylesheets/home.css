@@ -43,7 +43,7 @@
     width: 100vw;
 }
 
-.btn{
+.btn-link {
     color: #111;
     font-size: 22px;
     padding: 20 10;
@@ -69,11 +69,11 @@
     margin-top: 30px;
 } */
 
-@media (min-width: 600px){
+@media only screen and (max-width: 760px){
 
 }
 
-@media (max-width: 599px){
+@media only screen and (max-width: 599px){
 body{
     width:100vw
 }
@@ -108,6 +108,7 @@ body{
 .header-hero{
     background-image: url(/images/women-weight.jpg);
     height: 75vh;
+    width: 100vw;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

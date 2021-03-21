@@ -2,7 +2,7 @@
 <div class="container" id="class-body">
     <div class="row">
         <div class="col-12">
-            <h1>Classes</h1>
+            <h1 class="class-page-title">Classes</h1>
         </div>
     </div>
 <!--put in center -->
@@ -10,9 +10,9 @@
         <div class="col-12">
             {{#each classes}}
                 <div id="each-class">
-                    <h3>{{classDate}}</h3>
-                    <div>
-                        <h3>{{name}}</h3>
+                    <h3 class="classes-name">{{classDate}}</h3>
+                    <div >
+                        <h3 class="classes-name">{{name}}</h3>
                         <p>Instructuor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
                         <p>Description: {{description}}</p>
                         <p>Price: ${{price}}/class </p>

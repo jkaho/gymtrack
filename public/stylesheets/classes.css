@@ -5,8 +5,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  width: 100vw;
 }
-h1{
+.class-page-title{
   color: #fff;
   margin-top: 20px;
 }
@@ -23,7 +24,12 @@ h1{
   padding: 20px;
   /* border: solid 1px rgb(235, 235, 235); */
   background-color: rgb(246, 246, 246, 0.7);
+  font-size: 20px;
+}
 
+.classes-name {
+  font-weight: 500;
+  font-size: 28px;
 }
 .jump{
   margin: 0 auto;
@@ -34,11 +40,6 @@ h1{
   background-color: rgb(255, 89, 0);
   border: none;
 }
-
-p{
-  font-size: 20px;
-}
-
 
 #bookSuccess {
     position:fixed;
@@ -100,15 +101,28 @@ p{
 }
 
 
-@media (min-width: 600px){
+@media only screen and (max-width: 760px){
   #class-body{
+    margin: 10px;
+    padding-top: 20px;
+    background-image: url(../images/logan-weaver-9D_rUDe7xvA-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     width: 100vw;
+  
   }
 }
 
-@media (max-width: 599px){
+@media only screen and (max-width: 599px){
   #class-body{
-    /* width: 100vw; */
-    background-size: 100vw;
+    margin: 10px;
+    padding-top: 20px;
+    background-image: url(../images/logan-weaver-9D_rUDe7xvA-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+
   }
 }

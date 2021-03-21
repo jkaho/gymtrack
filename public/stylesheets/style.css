@@ -37,6 +37,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #111;
   background-color: #fff;
+  align-items: center;
 }
 
 .container {
@@ -66,21 +67,35 @@ body {
   text-align: center;
 }
 
-.signbtn{
+.signbtn, .logbtn, .add-class-btn{
   border-color: #111;
   border-style: 2px solid;
 }
-.signbtn :hover{
+/* }
+.signbtn, .logbtn, .add-class-btn :hover{
   background-color: rgb(255, 89, 0);
   color: white;
-}
-.logbtn
-{
-  border-color: #111;
-  border-style: 2px solid;
+} */
+
+@media only screen and (max-width: 760px){
+  .col-8 {
+    margin: 0 auto;
+    width: 80vw;
+  }
+
+  .signbtn, .logbtn, .add-class-btn{
+    padding: 5px 10px;
+    font-size: 18px;
+  }
 }
 
-.logbtn :hover{
-  background-color: rgb(255, 89, 0);
-  color: white;
+@media only screen and (max-width: 599px){
+  .col-8 {
+    margin: 0 auto;
+    width: 80vw;
+  }
+  .signbtn, .logbtn, .add-class-btn{
+    padding: 5px 10px;
+    font-size: 18px;
+  }
 }
