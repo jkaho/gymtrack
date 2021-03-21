@@ -47,7 +47,6 @@ $(document).ready(() => {
         for (i = 0; i < allClasses.length; i++) {
           $(`h3:contains('${allClasses[i]}')`)
             .parent()
-            .parent()
             .fadeIn();
         }
       } else {
@@ -55,13 +54,11 @@ $(document).ready(() => {
         for (i = 0; i < notMatchedClasses.length; i++) {
           $(`h3:contains('${notMatchedClasses[i]}')`)
             .parent()
-            .parent()
             .fadeOut();
         }
         // Display classes with matching text
         for (i = 0; i < matchedClasses.length; i++) {
           $(`h3:contains('${matchedClasses[i]}')`)
-            .parent()
             .parent()
             .fadeIn();
         }
