@@ -120,8 +120,11 @@ body{
     background-position: center;
     background-size: cover;
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin-top: 20px;
 =======
+=======
+>>>>>>> fed468b9ee66ad2ca2d8d9d78688eb7f5d0ba740
 }
 a {
     text-decoration: none;
@@ -167,5 +170,5 @@ background-color: #4CAF50;
 color: white;
 font-size: 16px;
 padding: 16px 32px;
->>>>>>> fed468b9ee66ad2ca2d8d9d78688eb7f5d0ba740
+
 }
