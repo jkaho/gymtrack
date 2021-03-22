@@ -3,7 +3,7 @@
 } */
 form.signup,
 form.login {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 html {
@@ -20,7 +20,21 @@ body {
   align-items: center;
   height: 100%;
   width: 100%;
+}
 
+#index-navbar {
+  max-width: 100%;
+  /* margin-left: 20px; */
+  /* margin-right: 20px; */
+  /* margin-bottom: 20px; */
+  padding: 20px;
+  border-bottom: #111 2px solid;
+  font-size: 24px;
+}
+
+.navbar-brand{
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .col-12 {
@@ -34,9 +48,10 @@ body {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
-  padding-right: 0;
-  /* margin-left: 20px;
-  margin-right: 20px; */
+}
+
+.form-card {
+  margin: 0 auto;
 }
 
 #index-navbar {
@@ -46,16 +61,44 @@ body {
   border-bottom: #111 2px solid;
 }
 
+/* Form styles */
+.submit-form-div {
+    margin: 0 auto;
+    width: 600px;
+    margin-bottom: 100px;
+}
+
+.form-btn {
+    margin-top: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.form-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+#addclass-to-profile, #orlogin {
+    font-size: 14px;
+    text-align: center;
+}
+
+.login-btm-links {
+    text-align: center;
+}
+
 .login-card {
   margin-top: 30px;
-   padding: 20px 40px;
+  padding: 20px;
 }
 
 .signin-card {
   margin-top: 30px;
-  padding: 20px 40px;
+  padding: 20px;
 }
-.sing-log-in {
+
+.sign-log-in {
   text-align: center;
 }
 
@@ -63,34 +106,26 @@ body {
   border-color: #111;
   border-style: 2px solid;
 }
+
+/* Footer */
+.page-footer {
+  margin-top: 30px;
+  background-color: #111;
+  color: #fff;
+  width:100vw;
+}
+
+.copyright-mark {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-size: 14px;
+}
+
 /* }
 .signbtn, .logbtn, .add-class-btn :hover{
   background-color: rgb(255, 89, 0);
   color: white;
 } */
-
-@media only screen and (max-width: 760px){
-  .col-8 {
-    margin: 0 auto;
-    width: 80vw;
-  }
-
-  .signbtn, .logbtn, .add-class-btn{
-    padding: 5px 10px;
-    font-size: 18px;
-  }
-}
-
-@media only screen and (max-width: 599px){
-  .col-8 {
-    margin: 0 auto;
-    width: 80vw;
-  }
-  .signbtn, .logbtn, .add-class-btn{
-    padding: 5px 10px;
-    font-size: 18px;
-  }
-}
 
 /* Error modal */
 .error-modal-div, .login-error-modal-div {
@@ -132,5 +167,51 @@ body {
 
     .error-heading, .login-error-heading {
         height: 180px;
+    }
+}
+
+@media only screen and (max-width: 760px){
+    /* .col-8 {
+        margin: 0 auto;
+        width: 80vw;
+    } */
+
+    .signbtn, .logbtn, .add-class-btn{
+        padding: 5px 10px;
+        font-size: 18px;
+    }
+
+    .page-footer {
+        padding: 20px;
+        width: 100vw;
+        height: 70vh;
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (max-width: 599px){
+    /* .col-8 {
+        margin: 0 auto;
+        width: 100vw;
+    } */
+    .submit-form-div {
+        width: 350px;
+    }
+
+    .signbtn, .logbtn, .add-class-btn{
+        padding: 5px 10px;
+        font-size: 18px;
+    }
+
+    .page-footer {
+        padding: 20px;
+        width: 100vw;
+        height: 70vh;
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+    .footer-copyright{
+        font-size: 14px;
+        padding: 20px;
     }
 }

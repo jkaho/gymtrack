@@ -294,6 +294,10 @@
     .class-table {
         font-size: 14px;
     }
+
+    .classes-heading {
+        padding-top: 10px;
+    }
 }
 
 @media (max-width: 599px) {
