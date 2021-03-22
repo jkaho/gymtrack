@@ -216,4 +216,16 @@
   .class-page-banner-inner h1 {
     font-size: 30px;
   }
+
+  .booking-confirmation-review-div, .withdraw-confirmation-review-div {
+    width: 300px;
+  }
+
+  .description-container {
+    margin-bottom: 20px;
+  }
+
+  .table-row-one-c {
+      width: 30%;
+  }
 }

@@ -391,3 +391,22 @@
         width: 90%;
     }
 }
+
+@media (max-width: 599px) {
+    .add-review-div, .confirmation-review-div, .success-modal-div {
+        width: 90%;
+    }
+
+    .exit-review-add {
+        top: 20px;
+        right: 35px;
+    }
+
+    .modal-heading {
+        padding-left: none;
+    }
+
+    .add-review-form {
+        width: 90%;
+    }
+}
