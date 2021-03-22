@@ -52,13 +52,23 @@
     margin-bottom: 10px;
 }
 
+.link-card{
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
 .link-pages {
     margin-top: 30px;
     line-height: 60%;
-    margin: 20px 0;
+    /* margin: 20px; */
     width: 100vw;
+    align-items: center;
+    height: 100%;
 }
-
+#img-tube{
+    height: 100%;
+}
 .btn-link {
     color: #111;
     font-family: 'Manrope', sans-serif;
@@ -76,12 +86,7 @@
     color: white;
 }
 
-.page-footer {
-   margin-top: 30px;
-   background-color: #111;
-   color: #fff;
-   width:100vw;
-}
+
 
 /* This code makes the footer a bit shorter */
 /* .page-footer div {
@@ -141,10 +146,7 @@
         padding: 10px 20px; 
     }
 
-    .page-footer {
-        padding: 20px;
-        width: 100vw;
-    }
+ 
 }
 
 .header-hero {
@@ -154,7 +156,9 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    margin: 0;
+    /* margin-top: 20px; */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 a {
@@ -202,3 +206,4 @@ a {
     font-size: 16px;
     padding: 16px 32px;
 }
+
