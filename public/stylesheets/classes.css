@@ -201,6 +201,10 @@
     width: 95%;
   }
 
+  #class-reviews, #instructor-reviews {
+    margin-top: 10px;
+  }
+
   .each-class h3 {
     font-size: 18px;
   }

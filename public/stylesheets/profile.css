@@ -108,7 +108,7 @@
     width: 600px;
     margin: 0 auto;
     margin-top: 20px;
-    z-index: 10;
+    /* z-index: 10; */
     text-align: center;
 }
 
@@ -170,7 +170,6 @@
 }
 
 /* Edit modal */
-
 .edit-icon {
     color: rgb(255, 166, 0);
     margin-bottom: 20px;
@@ -297,6 +296,42 @@
     }
 }
 
+@media (max-width: 599px) {
+    .delete-confirm-modal-div, .delete-undo-modal-div, .withdraw-success-modal-div {
+        width: 300px;
+        height: 230px;
+    }
+
+    #withdraw-p-confirmation-modal-bg .withdraw-confirmation-review-div {
+        height: 240px;
+    }
+
+    #withdraw-p-confirmation-modal-bg .withdraw-confirmation-heading {
+        height: 160px;
+    }
+    
+    .delete-confirm-heading, .update-success-heading, .delete-undo-heading, .withdraw-success-heading {
+        height: 160px;
+    }
+
+    .delete-success-heading {
+        height: 150px;
+    }
+    
+    .update-success-modal-div, .delete-success-modal-div {
+        width: 300px;
+        height: 250px;
+    }
+    
+    .update-success-heading {
+        height: 180px;
+    }
+
+    .delete-success-heading {
+        height: 170px;
+    }
+}
+
 @media (min-width: 500px) and (max-width: 768px){
     .single-class-heading h4 {
       font-size: 18px;
@@ -308,5 +343,48 @@
 
     .my-classes {
         margin: 20px auto;
+    }
+
+    .edit-class-div  {
+        height: 580px;
+    }
+}
+
+@media (max-width: 450px) {
+    #edit-class-modal {
+        top: 0px;
+    }
+
+    .edit-class-div  {
+        width: 320px;
+        height: 580px;
+    }
+    
+    .edit-class-heading {
+        height: 160px;
+        padding-top: 20px;
+        padding-left: 15px;
+        font-weight: 200;
+        text-align: center;
+        border-bottom: solid 1px rgb(212, 210, 210);
+        margin: 10px;
+    }
+    
+    #class-info {
+        padding: 0 20px;
+        font-size: 14px;
+    }
+    
+    .t2 {
+        vertical-align: top;
+    }
+    
+    #edit-table input, #edit-table textarea {
+        width: 170px;
+    }
+    
+    #edit-table textarea {
+        height: 150px;
+        resize: none;
     }
 }
