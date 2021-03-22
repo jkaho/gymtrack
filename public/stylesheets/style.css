@@ -20,7 +20,7 @@ body {
   align-items: center;
   height: 100%;
   width: 100%;
-
+}
 
 #index-navbar {
   max-width: 100%;
@@ -37,21 +37,17 @@ body {
   font-weight: bold;
 }
 
-
-=======
 .col-12 {
     padding: 0;
     margin: 0;
 }
->>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
+
 .container {
   vertical-align: middle;
   display: grid;
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
-  /* margin-left: 20px;
-  margin-right: 20px; */
 }
 
 #index-navbar {

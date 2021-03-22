@@ -58,11 +58,7 @@
 .link-pages {
     margin-top: 30px;
     line-height: 60%;
-<<<<<<< HEAD
     /* margin: 20px; */
-=======
-    margin: 20px 0;
->>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
     width: 100vw;
     align-items: center;
     height: 100%;
@@ -165,13 +161,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-<<<<<<< HEAD
-<<<<<<< HEAD
     margin-top: 20px;
-=======
-=======
-    margin: 0;
->>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
 }
 
 a {
@@ -214,17 +204,9 @@ a {
 }
 
 .text {
-<<<<<<< HEAD
-background-color: #4CAF50;
-color: white;
-font-size: 16px;
-padding: 16px 32px;
->>>>>>> fed468b9ee66ad2ca2d8d9d78688eb7f5d0ba740
-}
-=======
     background-color: #4CAF50;
     color: white;
     font-size: 16px;
     padding: 16px 32px;
 }
->>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
+

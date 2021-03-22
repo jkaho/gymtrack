@@ -1,41 +1,39 @@
-<<<<<<< HEAD
-.class-bg-hero {
-  margin-top: 20px;
+#class-body{
+  margin-top: 0 auto;
+  padding-top: 0;
 }
-=======
-/* #class-body {
-  margin: 10px;
->>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
-  padding-top: 20px;
+.class-page-banner {
+  /* height: 250px;
+  background: linear-gradient(321deg, rgba(255,212,198,1) 0%, rgba(221,111,61,1) 52%, rgba(251,34,20,1) 91%); */
   background-image: url(../images/group-yoga.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-<<<<<<< HEAD
   width: 100vw;
   height: 75vh;
   align-items: center;
-=======
-  width: 100%;
-} */
-
-.class-page-banner {
-    height: 250px;
-    background: linear-gradient(321deg, rgba(255,212,198,1) 0%, rgba(221,111,61,1) 52%, rgba(251,34,20,1) 91%);
 }
 
 .class-page-banner-inner {
-    width: fit-content;
-    padding: 40px 0;
-    margin: 0 auto;
-    text-align: center;
+  width: fit-content;
+  padding:40px 0;
+  margin: 0 auto;
+  margin-top: 80px;
+  text-align: center;
+  /* vertical-align: middle; */
 }
 
 .class-page-banner-inner h1 {
-    font-family: 'Manrope', sans-serif;
-    font-size: 50px;
-    font-weight: 500;
-    padding-bottom: 10px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 50px;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+
+.class-page-title {
+  color: #fff;
+  margin-top: 20px;
 }
 
 #class-search {
@@ -43,20 +41,8 @@
     width: 300px;
     border: none;
     border-radius: 10px;
->>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
 }
 
-.class-page-title {
-  color: #fff;
-  margin-top: 20px;
-
-}
-#class-search{
-  padding: 25px;
-  width: 70%;
-  border: none;
-  margin-left: 55px;
-}
 #classes {
   width: 80%;
   margin: 50px auto;
@@ -69,14 +55,9 @@
 .each-class {
   margin-bottom: 20px;
   padding: 20px;
-<<<<<<< HEAD
   border: solid 1px rgb(235, 235, 235);
-  background-color: rgb(246, 246, 246, 0.7);
-=======
-  border: solid 1px rgb(209, 208, 208);
   background-color: rgb(255, 255, 255);
   /* background-color: rgb(246, 246, 246, 0.7); */
->>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
   font-size: 20px;
 }
 
@@ -109,10 +90,10 @@
   width: 100%;
 }
 
-/* .jump:hover {
+ /* .jump:hover {
   background-color: rgb(255, 89, 0);
   border: none;
-} */
+}  */
   
 .opacity_max {
     opacity: 1;
@@ -197,27 +178,44 @@
 }
 
 @media only screen and (max-width: 760px){
-  #class-body{
-    margin: 10px;
-    padding-top: 20px;
-    /* background-image: url(../images/logan-weaver-9D_rUDe7xvA-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; */
-    width: 100vw;
-  
+  .class-page-banner{
+    height: 50vw;
   }
+  .class-page-banner-inner {
+    /* padding:40px 0; */
+    margin-top: 0;
+    vertical-align: middle;
+  }
+
+  #classes {
+    width: 95%;
+  }
+
+  .each-class h3 {
+    font-size: 18px;
+  }
+
+  .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
+    font-size: 15px;
+  }
+
+  .class-page-title {
+    font-size: 30px;
+  }
+
+  .class-page-banner-inner h1 {
+    font-size: 30px;
+  }
+
 }
 
 @media only screen and (max-width: 599px){
-  #class-body{
-    margin: 10px;
-    padding-top: 20px;
-    background-image: url(../images/logan-weaver-9D_rUDe7xvA-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100vw;
+  .class-page-banner{
+    height: 50vw;
+  }
+  .class-page-banner-inner {
+    padding:40px 0;
+    margin-top: 0;
   }
 
   #classes {
