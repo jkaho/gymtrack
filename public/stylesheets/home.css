@@ -51,9 +51,11 @@
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+
 .link-card{
     width: 100vw;
-    padding-left: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .link-pages {
@@ -154,7 +156,9 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 a {
