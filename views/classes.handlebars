@@ -28,37 +28,68 @@
                         </div>
                         <hr>
                         <div>
-                            <table class="class-table class-table-classes">
-                                <tr>
-                                    <td class="table-row-one-c">
-                                        <p>INSTRUCTOR:</p>
-                                    </td>
-                                    <td class="table-row-two">
-                                        <p>{{instructorName}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-row-one-c">
-                                        <p>DESCRIPTION:</p>
-                                    </td>
-                                    <td class="table-row-two">
-                                        <div class="description-container">
-                                            <p>{{description}}</p>
-                                        </div>       
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-row-one-c">
-                                        <p>COST PER CLASS:</p>
-                                    </td>
-                                    <td class="table-row-two">
-                                        <p>${{price}}</p>
-                                    </td>
-                                </tr>                            
+                            <div class="lg-table" style="display: none">
+                                <table class="class-table class-table-classes">
+                                    <tr>
+                                        <td class="table-row-one-c">
+                                            <p>INSTRUCTOR:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <p>{{instructorName}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row-one-c">
+                                            <p>DESCRIPTION:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <div class="description-container">
+                                                <p>{{description}}</p>
+                                            </div>       
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row-one-c">
+                                            <p>COST PER CLASS:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <p>${{price}}</p>
+                                        </td>
+                                    </tr>                            
                                 </table>
-                            {{!-- <p>Instructor: {{instructorName}}</p> <!-- May be more than one instructor (?) -->
-                            <p>Description: {{description}}</p>
-                            <p>Price: ${{price}}/class </p> --}}
+                            </div>
+                            <div class="sm-table" style="display: none">
+                                <table class="class-table class-table-classes">
+                                    <tr>
+                                        <td class="table-row-one-c">
+                                            <p>INSTRUCTOR:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <p>{{instructorName}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row-one-c">
+                                            <p>DESCRIPTION:</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="table-row-two">
+                                            <div class="description-container">
+                                                <p>{{description}}</p>
+                                            </div>       
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row-one-c">
+                                            <p>COST PER CLASS:</p>
+                                        </td>
+                                        <td class="table-row-two">
+                                            <p>${{price}}</p>
+                                        </td>
+                                    </tr>                            
+                                </table>
+                            </div>
                             {{#if isNotInstructor}}
                             <form class="jump" action=""> 
                                 <button class="book-withdraw" data-id="{{id}}" type="submit" value="Book Now">

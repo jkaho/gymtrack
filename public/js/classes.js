@@ -1,4 +1,22 @@
 $(document).ready(() => {
+  const responsiveClassDataDiv = $(".sm-table");
+  const classDataDiv = $(".lg-table");
+
+  changeClassDataFormat();
+
+  $(window).resize(() => {
+    changeClassDataFormat();
+  });
+
+  function changeClassDataFormat() {
+    if ($(window).width() > 599) {
+      classDataDiv.css("display", "block");
+      responsiveClassDataDiv.css("display", "none");
+    } else {
+      responsiveClassDataDiv.css("display", "block");
+      classDataDiv.css("display", "none");
+    }
+  }
   const avgRatingDiv = $(".avg-rating-div");
   avgRatingDiv.each(function() {
     // console.log($(this))

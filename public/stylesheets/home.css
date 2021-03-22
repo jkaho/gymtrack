@@ -21,7 +21,7 @@
 
 /*not working*/
 #navbarSupportedContent {
-    text-align: right;
+    text-align: center;
 }
 
 #home-image {
@@ -126,6 +126,14 @@
     /* .row {
         margin: 0 auto;
     } */
+
+    #welcome-h1 {
+        font-size: 45px;
+    }
+
+    #slogan-h5 {
+        font-size: 25px;
+    }
 
     #home-image {
         width: 100vw;
