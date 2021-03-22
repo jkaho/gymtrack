@@ -39,7 +39,8 @@ module.exports = function(app) {
     let classEndTime;
     db.classes
       .findAll({
-        include: { all: true }
+        include: { all: true },
+        order: [["startTime", "ASC"]]
       })
       .then(results => {
         if (results.length > 0) {
