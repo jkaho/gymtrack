@@ -56,7 +56,7 @@ You can test various application functionalities by logging in through one of th
 ## Screenshots 
 
 ### Homepage
-![Gymtrack web application homepage](public/images/readme/readme-homepage.png)
+![Gymtrack web application homepage](public/images/readme/readme-home.png)
 
 ### Classes 
 ![Gymtrack web application classes page](public/images/readme/readme-classes.png)
