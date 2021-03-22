@@ -238,6 +238,10 @@
 }
 
 /* Review confirmation modal */
+#confirm-review-x {
+    top: 75px;
+}
+
 .confirmation-review-div {
     position: relative;
     width: 500px;
