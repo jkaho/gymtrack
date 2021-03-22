@@ -74,6 +74,13 @@ body {
   border-color: #111;
   border-style: 2px solid;
 }
+
+.page-footer {
+  margin-top: 30px;
+  background-color: #111;
+  color: #fff;
+  width:100vw;
+}
 /* }
 .signbtn, .logbtn, .add-class-btn :hover{
   background-color: rgb(255, 89, 0);
@@ -90,6 +97,13 @@ body {
     padding: 5px 10px;
     font-size: 18px;
   }
+
+  .page-footer {
+    padding: 20px;
+    width: 100vw;
+    height: 70vh;
+    margin-bottom: 0;
+}
 }
 
 @media only screen and (max-width: 599px){
@@ -101,6 +115,17 @@ body {
     padding: 5px 10px;
     font-size: 18px;
   }
+  .page-footer {
+    padding: 20px;
+    width: 100vw;
+    height: 70vh;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.footer-copyright{
+  font-size: 14px;
+  padding: 20px;
+}
 }
 
 /* Error modal */

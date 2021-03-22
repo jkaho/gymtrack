@@ -53,6 +53,9 @@
 }
 .link-card{
     margin: 0 auto;
+    margin-left: 10px;
+    width: 100vw;
+    display: inline-block;
 }
 
 .link-pages {
@@ -83,12 +86,7 @@
     color: white;
 }
 
-.page-footer {
-   margin-top: 30px;
-   background-color: #111;
-   color: #fff;
-   width:100vw;
-}
+
 
 /* This code makes the footer a bit shorter */
 /* .page-footer div {
@@ -148,10 +146,7 @@
         padding: 10px 20px; 
     }
 
-    .page-footer {
-        padding: 20px;
-        width: 100vw;
-    }
+ 
 }
 
 .header-hero {
