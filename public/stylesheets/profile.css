@@ -170,6 +170,10 @@
 }
 
 /* Edit modal */
+#edit-class-modal {
+    top: 20px;
+}
+
 .edit-icon {
     color: rgb(255, 166, 0);
     margin-bottom: 20px;
