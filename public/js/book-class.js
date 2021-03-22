@@ -7,13 +7,8 @@ $(document).ready(() => {
   const confirmationModal = $("#booking-confirmation-modal-bg");
   const withdrawModal = $("#withdraw-confirmation-modal-bg");
   const searchBar = $("#class-search");
-  // Option to cancel classes from profile page
-  // $(withdrawBtn).each(function () {
-  //   $(this).click(e => {
-  //     e.preventDefault();
-  //   })
-  // })
 
+  // Class functionality
   searchBar.on("keyup", e => {
     e.preventDefault();
     const searchText = e.target.value;
@@ -241,6 +236,7 @@ $(document).ready(() => {
     $("#withdraw-p-confirmation-modal-bg").css("display", "none");
   });
 
+  // Request to withdraw from class
   $("#withdraw-p-confirm").on("click", () => {
     $.post(
       "/api/withdraw",
@@ -254,6 +250,7 @@ $(document).ready(() => {
     });
   });
 
+  // Show successful withdrawal message
   function withdrawSuccessMessage() {
     $("#withdraw-success-modal-bg").css("display", "block");
     $("#withdraw-p-confirmation-modal-bg").css("display", "none");

@@ -1,16 +1,11 @@
-// Requiring our models and passport as we've configured it
+// Requiring our models and configured passport
 const db = require("../models");
 const passport = require("../config/passport");
 
 module.exports = function(app) {
-  // Using the passport.authenticate middleware with our local strategy.
-  // If the user has valid login credentials, send them to the members page.
-  // Otherwise the user will be sent an error
-
   // Route for login
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
-    // console.log(req.user);
   });
 
   // Route for signup
@@ -31,15 +26,15 @@ module.exports = function(app) {
       });
   });
 
-  // Route for get member data, for the one that's logged in
+  // Route for get logged in member's data
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
-      // The user is not logged in, send back an empty object
+      // If the user is not logged in, send back an empty object
       res.json({
         isLoggedIn: false
       });
     } else {
-      // Otherwise send back the user's info
+      // Otherwise send back data
       const userName = req.user.firstName + " " + req.user.lastName;
       res.json({
         isLoggedIn: true,
@@ -75,37 +70,11 @@ module.exports = function(app) {
         res.status(400).json(err);
       });
   });
-  //   app.get("/api/instructorlist", (req, res) => {
-  //     db.classes
-  //       .findAll({
-  //         include: [
-  //           {
-  //             model: db.user
-  //           }
-  //         ]
-  //       })
-  //       .then(result => {
-  //         const instructorIdArr = [];
-  //         const instructorDataset = [];
 
-  //         result.forEach(gymClass => {
-  //           const instructorName =
-  //             gymClass.dataValues.user.firstName +
-  //             " " +
-  //             gymClass.dataValues.user.lastName;
-  //           if (!instructorIdArr.includes(gymClass.dataValues.user.id)) {
-  //             instructorIdArr.push(gymClass.dataValues.user.id);
-  //             const instructorData = {
-  //               instructorName: instructorName,
-  //               instructorId: gymClass.dataValues.user.id
-  //             };
-  //             instructorDataset.push(instructorData);
-  //           }
-  //         });
-  //         res.json(instructorDataset);
-  //       })
-  //       .catch(err => {
-  //         res.status(400).json(err);
-  //       });
-  //   });
+  // Route for getting class information for individual users
+  app.get("/userclasses", (req, res) => {
+    db.userclasses.findAll({}).then(results => {
+      res.json({ results });
+    });
+  });
 };

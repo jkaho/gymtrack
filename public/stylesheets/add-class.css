@@ -1,4 +1,4 @@
-/* Class delete confirmation modal */
+/* Add class success modal */
 .add-success-modal-div {
     position: relative;
     width: 500px;
@@ -27,6 +27,7 @@
 
 }
 
+/* ------- MEDIA QUERIES ------- */
 @media (max-width: 599px) {
     .add-success-modal-div {
         width: 300px;

@@ -19,7 +19,6 @@
     color: rgb(66, 98, 214);
 }
 
-/*not working*/
 #navbarSupportedContent {
     text-align: center;
 }
@@ -29,13 +28,10 @@
     width: 100vw;
     height: auto;
     vertical-align: auto;
-    /* margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px; */
 }
 
 .page-link-img {
- float: inherit;
+    float: inherit;
 }
 
 .link-button {
@@ -52,7 +48,7 @@
     margin-bottom: 10px;
 }
 
-.link-card{
+.link-card {
     width: 100vw;
     padding: 0;
     margin: 0;
@@ -61,14 +57,15 @@
 .link-pages {
     margin-top: 30px;
     line-height: 60%;
-    /* margin: 20px; */
     width: 100vw;
     align-items: center;
     height: 100%;
 }
-#img-tube{
+
+#img-tube {
     height: 100%;
 }
+
 .btn-link {
     color: #111;
     font-family: 'Manrope', sans-serif;
@@ -85,8 +82,6 @@
     background-color: black;
     color: white;
 }
-
-
 
 /* This code makes the footer a bit shorter */
 /* .page-footer div {
@@ -108,54 +103,6 @@
 /* form{
     margin-top: 30px;
 } */
-
-@media only screen and (max-width: 760px) {
-
-}
-
-@media only screen and (max-width: 599px){
-    body {
-        width:100vw
-    }
-    
-    .container {
-        margin: 0 auto;
-    }
-
-    /* This was stuffing up the responsiveness on the profile/reviews page*/
-    /* .row {
-        margin: 0 auto;
-    } */
-
-    #welcome-h1 {
-        font-size: 45px;
-    }
-
-    #slogan-h5 {
-        font-size: 25px;
-    }
-
-    #home-image {
-        width: 100vw;
-        height: auto;
-        vertical-align: middle;
-    }
-
-    .page-link-img {
-        width: 100vw;
-        height: auto;
-    }
-
-    .link-pages {
-        margin: 0;
-    }
-
-    .link-button {
-        padding: 10px 20px; 
-    }
-
- 
-}
 
 .header-hero {
     background-image: url(/images/women-weight.jpg);
@@ -213,5 +160,43 @@ a {
     color: white;
     font-size: 16px;
     padding: 16px 32px;
+}
+
+/* ------- MEDIA QUERIES ------- */
+@media only screen and (max-width: 599px) {
+    body {
+        width:100vw
+    }
+    
+    .container {
+        margin: 0 auto;
+    }
+
+    #welcome-h1 {
+        font-size: 45px;
+    }
+
+    #slogan-h5 {
+        font-size: 25px;
+    }
+
+    #home-image {
+        width: 100vw;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    .page-link-img {
+        width: 100vw;
+        height: auto;
+    }
+
+    .link-pages {
+        margin: 0;
+    }
+
+    .link-button {
+        padding: 10px 20px; 
+    }
 }
 

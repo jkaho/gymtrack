@@ -1,30 +1,15 @@
-// Requiring our models and passport as we've configured it
+// Requiring our models
 const db = require("../models");
 
 module.exports = function(app) {
-  // Route for getting all instructor reviews
-  app.get("/api/instructor_reviews", (res, req) => {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      res.json({
-        title: req.body.title,
-        review: req.body.review,
-        rating: req.body.ratingdescription,
-        authorId: req.user.id,
-        instructorId: req.instructor.id //Not sure if it's req.instructor
-      });
-    }
-  });
   // New route for getting all instructor reviews
   app.get("/api/instructorReviews", (req, res) => {
-    console.log("get request through (instructorRev)");
     db.instructorReviews
       .findAll({})
       .then(dbinstructorReviews => res.json(dbinstructorReviews));
   });
-  // Route for adding new class reviews
+
+  // Route for adding instructor reviews
   app.post("/api/add_instructor_review", (req, res) => {
     db.instructorReviews
       .create({
@@ -32,7 +17,7 @@ module.exports = function(app) {
         review: req.body.reviewText,
         rating: req.body.rating,
         authorId: req.body.authorId,
-        instructorId: req.body.instructorId //Not sure if it's req.instructor
+        instructorId: req.body.instructorId
       })
       .then(() => res.status(200))
       .catch(err => {

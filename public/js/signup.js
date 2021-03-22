@@ -7,7 +7,7 @@ $(document).ready(() => {
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
 
-  // When the signup button is clicked, we validate the email and password are not blank
+  // When the signup button is clicked, validate the email and password are not blank
   signUpForm.on("submit", event => {
     event.preventDefault();
     const userData = {
@@ -27,7 +27,7 @@ $(document).ready(() => {
     ) {
       return;
     }
-    // If we have an email and password, run the signUpUser function
+    // If there is an email and password, run the signUpUser function
     signUpUser(
       userData.firstName,
       userData.lastName,
@@ -42,8 +42,7 @@ $(document).ready(() => {
     passwordInput.val("");
   });
 
-  // Does a post to the signup route. If successful, we are redirected to the members page
-  // Otherwise we log any errors
+  // Request to sign up for account
   function signUpUser(firstName, lastName, dob, email, password) {
     $.post("/api/signup", {
       firstName: firstName,
@@ -53,9 +52,8 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
-        // Upon successfully signed up, log in automatically and redirect to the member page
+        // Redirect to login if successful
         loginUser(email, password);
-        // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(err => {
         console.log(err);
@@ -63,14 +61,15 @@ $(document).ready(() => {
       });
   }
 
+  // Request to log in
   function loginUser(email, password) {
     $.post("/api/login", {
       email: email,
       password: password
     })
       .then(() => {
+        // Take user to profile page if successful
         window.location.replace("/profile");
-        // If there's an error, log the error
       })
       .catch(err => {
         console.log(err);
@@ -78,6 +77,7 @@ $(document).ready(() => {
       });
   }
 
+  // Show error modal
   function showErrorMessage() {
     $("#error-modal-bg").css("display", "block");
   }

@@ -1,4 +1,5 @@
 $(document).ready(() => {
+  // Class description responsiveness
   const responsiveClassDataDiv = $(".sm-table");
   const classDataDiv = $(".lg-table");
 
@@ -17,9 +18,10 @@ $(document).ready(() => {
       classDataDiv.css("display", "none");
     }
   }
+
+  // Shows average stars for each class
   const avgRatingDiv = $(".avg-rating-div");
   avgRatingDiv.each(function() {
-    // console.log($(this))
     const avgRating = parseFloat(
       $(this)
         .attr("id")
