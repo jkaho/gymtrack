@@ -14,6 +14,7 @@ There are two types of application users: *instructors* and *members*. Instructo
 
 - [Motivations](#Motivations)
 - [Technologies Used](#Technologies-Used)
+- [Testing](#Testing)
 - [Links](#Links)
 - [Screenshots](#Screenshots)
 - [Contributors](#Contributors)
@@ -37,18 +38,38 @@ As budding web developers, we also approached this project with the objective to
 - Google Fonts
 - Font Awesome 
 
+
+## Testing 
+
+You can test various application functionalities by logging in through one of the seed accounts provided in the source code:
+1. Navigate to the the db/seeds.js file and use any one of the provided email and password credentials.
+2. To log in as an instructor, use the email and password of one of the three instructor accounts listed under the "Instructor seeds" comment.
+3. To log in as a member, use the email and password of any one of the four member accounts listed under the "Member seeds" comment. 
+4. Anyone who signs up for an account through the signup page is a member. In the meantime, instructor accounts must be created through the backend. 
+
 ## Links 
 
 GitHub repository: [github.com/jkaho/project-2](https://github.com/jkaho/project-2)
-Deployed application: []()
+Deployed application: [gymtrack-app.herokuapp.com](https://gymtrack-app.herokuapp.com/)
 
 ## Screenshots 
 
-![]()
+### Homepage
+![Gymtrack web application homepage](images/readme/readme-homepage.png)
 
-![]()
+### Classes 
+![Gymtrack web application classes page](images/readme/readme-classes.png)
 
-![]()
+### Reviews
+![Gymtrack web application reviews page](images/readme/readme-reviews.png)
+
+### Profile page 
+
+#### Member  
+![Gymtrack web application member profile page](images/readme/readme-profile-instructor.png)
+
+#### Instructor 
+![Gymtrack web application instructor profile page](images/readme/readme-profile-member.png)
 
 ## Contributers 
 
