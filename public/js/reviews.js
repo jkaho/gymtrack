@@ -313,6 +313,7 @@ $(document).ready(() => {
       !classReview.rating ||
       classReview.rating === 0
     ) {
+      showInputErrorMessage();
       return;
     }
 
@@ -374,6 +375,7 @@ $(document).ready(() => {
       !instructorReview.rating ||
       instructorReview.rating === 0
     ) {
+      showInputErrorMessage();
       return;
     }
 
@@ -585,6 +587,14 @@ $(document).ready(() => {
     window.location.replace("/reviews");
   });
 
+  function showInputErrorMessage() {
+    confirmationModal.css("display", "none");
+    $("#input-error-modal-bg").css("display", "block");
+  }
+
+  $("#input-error-ok-btn").on("click", () => {
+    $("#input-error-modal-bg").css("display", "none");
+  });
   // Filters
   // Per class
   $.get("/api/classlist").then(result => {
