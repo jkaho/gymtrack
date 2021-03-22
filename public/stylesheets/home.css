@@ -1,6 +1,22 @@
-
 #home {
    color: white;
+   padding-top: 150px;
+}
+
+#welcome-h1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 65px;
+    font-weight: 600;
+}
+
+#slogan-h5 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+#workout-span {
+    color: rgb(66, 98, 214);
 }
 
 /*not working*/
@@ -18,11 +34,11 @@
     margin-bottom: 20px; */
 }
 
-.page-link-img{
+.page-link-img {
  float: inherit;
 }
 
-.link-button{
+.link-button {
     display: inline-block;
     height: auto;
     padding: 14px 30px;
@@ -39,10 +55,14 @@
     margin: 0 auto;
 }
 
-.link-pages{
+.link-pages {
     margin-top: 30px;
     line-height: 60%;
+<<<<<<< HEAD
     /* margin: 20px; */
+=======
+    margin: 20px 0;
+>>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
     width: 100vw;
     align-items: center;
     height: 100%;
@@ -52,20 +72,39 @@
 }
 .btn-link {
     color: #111;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
     font-size: 22px;
+    text-decoration: none;
     padding: 20 10;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
-.page-footer{
+
+.btn-link:hover {
+    background-color: black;
+    color: white;
+}
+
+.page-footer {
    margin-top: 30px;
    background-color: #111;
    color: #fff;
    width:100vw;
 }
-.icons{
+
+/* This code makes the footer a bit shorter */
+/* .page-footer div {
+    padding-bottom: 0!important;
+} */
+
+.icons {
     display: flex;
     justify-content: center;
 }
-.icon{
+
+.icon {
     color: #fff;
     text-decoration: none;
     padding: 10px;
@@ -76,43 +115,50 @@
     margin-top: 30px;
 } */
 
-@media only screen and (max-width: 760px){
+@media only screen and (max-width: 760px) {
 
 }
 
 @media only screen and (max-width: 599px){
-body{
-    width:100vw
-}
-.container{
-    margin: 0 auto;
-}
-.row{
-    margin: 0 auto;
-}
-#home-image{
-    width: 100vw;
-    height: auto;
-    vertical-align: middle;
-}
-.page-link-img{
-    width: 100vw;
-    height: auto;
-}
-.link-pages{
-    margin: 0;
+    body {
+        width:100vw
+    }
+    
+    .container {
+        margin: 0 auto;
+    }
+
+    /* This was stuffing up the responsiveness on the profile/reviews page*/
+    /* .row {
+        margin: 0 auto;
+    } */
+
+    #home-image {
+        width: 100vw;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    .page-link-img {
+        width: 100vw;
+        height: auto;
+    }
+
+    .link-pages {
+        margin: 0;
+    }
+
+    .link-button {
+        padding: 10px 20px; 
+    }
+
+    .page-footer {
+        padding: 20px;
+        width: 100vw;
+    }
 }
 
-.link-button{
-    padding: 10px 20px; 
-}
-.page-footer{
-   padding: 20px;
-   width: 100vw;
-}
-}
-
-.header-hero{
+.header-hero {
     background-image: url(/images/women-weight.jpg);
     height: 75vh;
     width: 100vw;
@@ -120,19 +166,24 @@ body{
     background-position: center;
     background-size: cover;
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin-top: 20px;
 =======
+=======
+    margin: 0;
+>>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
 }
+
 a {
     text-decoration: none;
 }
 
-.content-hover{
+.content-hover {
     position: relative;
     font: 3em;
 }
    
-.img-redirect{
+.img-redirect {
     opacity: 1;
     display: block;
     width: 100%;
@@ -143,7 +194,7 @@ a {
 
 .text-redirect {
     width: 10em;
-    font-size: 2.5em;
+    font-size: 60px;
     transition: .5s ease;
     opacity: 0;
     position: absolute;
@@ -155,17 +206,25 @@ a {
 }
 
 .content-hover:hover .img-redirect {
-opacity: 0.1;
+    opacity: 0.1;
 }
 
 .content-hover:hover .text-redirect {
-opacity: 1;
+    opacity: 1;
 }
 
 .text {
+<<<<<<< HEAD
 background-color: #4CAF50;
 color: white;
 font-size: 16px;
 padding: 16px 32px;
 >>>>>>> fed468b9ee66ad2ca2d8d9d78688eb7f5d0ba740
 }
+=======
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+>>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c

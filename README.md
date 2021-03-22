@@ -1,39 +1,63 @@
-# Project 2 - Name to be added 
-
+# Gymtrack
 
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
-## Descritption ##
 
-This application allows the owner of a gym to manage their facitilities. Instructors are able to log in and add classes to the gym timetable. Members are able to login and through their user profile add classes to their schedule and subsequently add reviews about the class they attended.  
+## Description 
 
+*Gymtrack* is an application that provides gym owners with a system to manage data related to instructors, members, classes, and reviews left by members.
+
+There are two types of application users: *instructors* and *members*. Instructors are able to log in and add/edit/delete classes. Members are able to log in and book classes as well as leave reviews about classes and/or class instructors.  
 
 ## Table of Contents 
 
-- [Description](#Description)
-- [Usage](#Usage)
-- [Licence](#Licence)
+- [Motivations](#Motivations)
+- [Technologies Used](#Technologies-Used)
+- [Links](#Links)
+- [Screenshots](#Screenshots)
 - [Contributors](#Contributors)
-- [Repository Link](#Repository)
-- [GitHub Info](#GitHub) 
+- [License](#License)
 
+## Motivations 
 
-## Usage 
+We wanted to design a useful application that would facilitate the basic process of creating and booking classes at gyms, and to provide gym members with a platform on which to provide feedback.
 
-Used as the website for a gym with instructor and members profiles to add, attend and review classes 
+As budding web developers, we also approached this project with the objective to build on our understanding of application architectures, in particular, through the implementation of the Model-View-Controller design pattern. 
 
-## License 
+## Technologies Used
 
-afl-3.0
+- Node.js 
+- Express / Express sessions 
+- MySQL / Sequelize 
+- Passport.js
+- bcrypt
+- Handlebars 
+- CSS / Bootstrap
+- Google Fonts
+- Font Awesome 
+
+## Links 
+
+GitHub repository: [github.com/jkaho/project-2](https://github.com/jkaho/project-2)
+Deployed application: []()
+
+## Screenshots 
+
+![]()
+
+![]()
+
+![]()
 
 ## Contributers 
 
-Jessica Hong
-Tomomi Inoue
-Kevin Lin
-Joshua Steward
+- [Kevin Lin](https://github.com/klin4994)
+- [Jessica Hong](https://github.com/jkaho)
+- [Tomomi Inoue](https://github.com/Chib1co)
+- [Joshua Steward](https://github.com/JoshSteward)
 
+## License 
 
-## Repository 
-https://github.com/jkaho/project-2
-
+This application is covered under the ISC license.
+For more information, [click here](https://opensource.org/licenses/ISC).

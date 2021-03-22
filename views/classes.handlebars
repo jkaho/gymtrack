@@ -1,29 +1,46 @@
 <div id="notification"></div>
+<<<<<<< HEAD
 <div class="class-bg-hero">
   <div class="container" id="class-body"> 
     <div class="row">
+=======
+<!-- Commented out the container for now, since it was causing alignment issues -->
+{{!-- <div class="container" id="class-body"> --}}
+<!-- Heading row-->
+    {{!-- <div class="row">
+>>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
         <div class="col-12">
             <h1 class="class-page-title">Classes</h1>
         </div>
+    </div> --}}
+    <div class="class-page-banner">
+        <div class="class-page-banner-inner">
+            <h1 class="class-page-title">Join one of our classes today</h1>
+            <input id="class-search" type="text" placeholder="Search classes">
+        </div>
     </div>
+<<<<<<< HEAD
     <input id="class-search" type="text" placeholder="Search classes" >
 </div>
 </div>
 
+=======
+>>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
 <!--put in center -->
     <div class="row" id="classes">
         <div class="col-12">
             {{#if classesExist}}
                 {{#each classes}}
-                    <div id="each-class">
-                        <h3>{{name}} {{classDate}}-{{classEndTime}}</h3>
+                    <div class="each-class">
+                        <h3><span class="class-name-span">{{name}}</span> <span class="class-date-span">{{classDate}}-{{classEndTime}}</span></h3>
                         <div id="avg-rating-{{id}}-{{avgRating}}" class="avg-rating-div">
-                            <!-- Dynamically render average rating -->
+                            <span class="avg-rating-span">AVERAGE RATING:</span><!-- Dynamically render average rating -->
                         </div>
+                        <hr>
                         <div>
-                            <table class="class-table">
+                            <table class="class-table class-table-classes">
                                 <tr>
-                                    <td class="table-row-one">
+                                    <td class="table-row-one-c">
                                         <p>INSTRUCTOR:</p>
                                     </td>
                                     <td class="table-row-two">
@@ -31,17 +48,17 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="table-row-one">
+                                    <td class="table-row-one-c">
                                         <p>DESCRIPTION:</p>
                                     </td>
                                     <td class="table-row-two">
                                         <div class="description-container">
-                                            <p>{{description}}:</p>
+                                            <p>{{description}}</p>
                                         </div>       
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="table-row-one">
+                                    <td class="table-row-one-c">
                                         <p>COST PER CLASS:</p>
                                     </td>
                                     <td class="table-row-two">
@@ -54,8 +71,8 @@
                             <p>Price: ${{price}}/class </p> --}}
                             {{#if isNotInstructor}}
                             <form class="jump" action=""> 
-                                <button class= "book-withdraw" data-id="{{id}}" type="submit" value="Book Now">
-                                    Book Now
+                                <button class="book-withdraw" data-id="{{id}}" type="submit" value="Book Now">
+                                    Book now
                                 </button>
                             </form>
                             {{/if}}
@@ -70,7 +87,11 @@
             {{/if}}  
         </div>
     </div>
+<<<<<<< HEAD
 
+=======
+{{!-- </div> --}}
+>>>>>>> 44d5983f0fcfc107632bfb3c98a01261c34c378c
 
 <!-- Modal for booking confirmation -->
 <div id="booking-confirmation-modal-bg" class="modal-bg">

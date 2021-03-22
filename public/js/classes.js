@@ -12,38 +12,38 @@ $(document).ready(() => {
       ratingStars = $("<i class='fas fa-star'></i>");
     } else if (avgRating >= 1.25 && avgRating < 1.75) {
       ratingStars = $(
-        "<div><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
       );
     } else if (avgRating >= 1.75 && avgRating < 2.25) {
       ratingStars = $(
-        "<div><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
       );
     } else if (avgRating >= 2.25 && avgRating < 2.75) {
       ratingStars = $(
-        "<div><i class='fas fa-star'><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
       );
     } else if (avgRating >= 2.75 && avgRating < 3.25) {
       ratingStars = $(
-        "<div><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
       );
     } else if (avgRating >= 3.25 && avgRating < 3.75) {
       ratingStars = $(
-        "<div><i class='fas fa-star'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
       );
     } else if (avgRating >= 3.75 && avgRating < 4.25) {
       ratingStars = $(
-        "<div><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
       );
     } else if (avgRating >= 4.25 && avgRating < 4.75) {
       ratingStars = $(
-        "<div><i class='fas fa-star'><i class='fas fa-star'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'><i class='fas fa-star'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half'></i></div>"
       );
     } else if (avgRating >= 4.75 && avgRating <= 5) {
       ratingStars = $(
-        "<div><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
+        "<div class='avg-star-div'><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></div>"
       );
     } else {
-      ratingStars = $("<p>No reviews</p>");
+      ratingStars = $("<p class='no-star-rating'>No reviews</p>");
     }
     this.append(ratingStars[0]);
   });

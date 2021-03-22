@@ -20,7 +20,7 @@ $(document).ready(() => {
       otherToggleBtn = toggleBtn.previousElementSibling;
       toggleBtn.setAttribute(
         "style",
-        "background-color: rgb(0, 174, 255); border: none; color: white;"
+        "background-color: rgb(66, 98, 214); border: none; color: white;"
       );
       otherToggleBtn.setAttribute(
         "style",
@@ -647,6 +647,7 @@ $(document).ready(() => {
       });
     });
   });
+
   // Rating filter for classes
   $.get("/api/classReviews").then(result => {
     classOptions = result;
