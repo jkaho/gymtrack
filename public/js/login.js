@@ -36,15 +36,23 @@ $(document).ready(() => {
       })
       .catch(err => {
         console.log(err);
-        showErrorMessage();
+        showLoginErrorMessage();
       });
   }
 
-  function showErrorMessage() {
-    $("#error-modal-bg").css("display", "block");
+  //   function showErrorMessage() {
+  //     $("#error-modal-bg").css("display", "block");
+  //   }
+
+  //   $("#error-ok-btn").on("click", () => {
+  //     $("#error-modal-bg").css("display", "none");
+  //   });
+
+  function showLoginErrorMessage() {
+    $("#login-error-modal-bg").css("display", "block");
   }
 
-  $("#error-ok-btn").on("click", () => {
-    $("#error-modal-bg").css("display", "none");
+  $("#login-error-ok-btn").on("click", () => {
+    $("#login-error-modal-bg").css("display", "none");
   });
 });
