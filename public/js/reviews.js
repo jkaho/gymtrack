@@ -685,19 +685,19 @@ $(document).ready(() => {
       event.preventDefault();
       const classRating = $(ratingFilterClass).val();
       ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
-        $("[data-id= '" + score + "']")
+        $("[data-id-class= '" + score + "']")
           .parent()
           .parent()
           .fadeOut();
       });
-      $("[data-id ='" + classRating + "']")
+      $("[data-id-class ='" + classRating + "']")
         .parent()
         .parent()
         .fadeIn();
       if (ratingFilterClass.val() === "All") {
         ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(
           score => {
-            $("[data-id ='" + score + "']")
+            $("[data-id-class='" + score + "']")
               .parent()
               .parent()
               .fadeIn();
@@ -709,7 +709,7 @@ $(document).ready(() => {
       event.preventDefault();
       ratingFilterClass.val("All");
       ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
-        $("[data-id ='" + score + "']")
+        $("[data-id-class ='" + score + "']")
           .parent()
           .parent()
           .fadeIn();
@@ -805,14 +805,14 @@ $(document).ready(() => {
       event.preventDefault();
       const instructorRating = $(ratingFilterInstructor).val();
       ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
-        $("[data-id= '" + score + "']")
+        $("[data-id-instructor= '" + score + "']")
           .parent()
           .parent()
           .parent()
           .parent()
           .fadeOut();
       });
-      $("[data-id ='" + instructorRating + "']")
+      $("[data-id-instructor ='" + instructorRating + "']")
         .parent()
         .parent()
         .parent()
@@ -821,7 +821,7 @@ $(document).ready(() => {
       if (ratingFilterInstructor.val() === "All") {
         ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(
           score => {
-            $("[data-id ='" + score + "']")
+            $("[data-id-instructor ='" + score + "']")
               .parent()
               .parent()
               .parent()
@@ -835,7 +835,7 @@ $(document).ready(() => {
       event.preventDefault();
       ratingFilterInstructor.val("All");
       ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"].forEach(score => {
-        $("[data-id ='" + score + "']")
+        $("[data-id-instructor ='" + score + "']")
           .parent()
           .parent()
           .parent()
