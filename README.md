@@ -67,10 +67,10 @@ You can test various application functionalities by logging in through one of th
 ### Profile page 
 
 #### Member  
-![Gymtrack web application member profile page](public/images/readme/readme-profile-instructor.png)
+![Gymtrack web application instructor profile page](public/images/readme/readme-profile-member.png)
 
 #### Instructor 
-![Gymtrack web application instructor profile page](public/images/readme/readme-profile-member.png)
+![Gymtrack web application member profile page](public/images/readme/readme-profile-instructor.png)
 
 ## Contributers 
 
