@@ -52,10 +52,8 @@
     margin-bottom: 10px;
 }
 .link-card{
-    margin: 0 auto;
-    margin-left: 10px;
     width: 100vw;
-    display: inline-block;
+    padding-left: 0;
 }
 
 .link-pages {
