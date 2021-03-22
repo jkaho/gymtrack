@@ -21,25 +21,31 @@
 
 <div id="class-reviews" class="container review-container">
     {{#if classReviewsExist}}
-        <div class="row">
-            <div class="col-8">
+        <div class="row top-part">
+            <div class="col-7">
                 <div class="review-heading class-heading">
                     <h3>Class Reviews</h3>
                 </div>
             </div>
             {{#if isNotInstructor}}
-            <div class="col-4">
+            <div class="col-5">
                 <a id="add-class-review-link" class="add-review">Write a review</a>
             </div>
             {{/if}}
             <div class="form-group dropdown">
-                <label for="filter-class">Class: </label>
-                <select name="filter-class" id="filter-class">
-                </select>
-                <label for="filter-rating">Rating: </label>
-                <select name="filter-rating" id="filter-class-rating">
-                </select>
-                <Button type="button" id="clear-filter-class" class="clear-filter">Clear all filters</Button>
+                <div class="filter-div">
+                    <label for="filter-class">Class: </label>
+                    <select name="filter-class" id="filter-class">
+                    </select>
+                </div>
+                <div class="filter-div">
+                    <label for="filter-rating">Rating: </label>
+                    <select name="filter-rating" id="filter-class-rating">
+                    </select>
+                </div>
+                <div class="filter-div">
+                    <button type="button" id="clear-filter-class" class="clear-filter">Clear all filters</button>
+                </div>
             </div>
         </div>
         <div>
@@ -126,13 +132,19 @@
             {{/if}}
 
             <div class="form-group dropdown">
-                <label for="filter-class">Instructor: </label>
-                <select name="filter-class" id="filter-instructor">
-                </select>
-                <label for="filter-rating">Rating: </label>
-                <select name="filter-rating" id="filter-instructor-rating">
-                </select>
-                <Button type="button" id="clear-filter-instructor" class="clear-filter">Clear all filters</Button>
+                <div class="filter-div">
+                    <label for="filter-class">Instructor: </label>
+                    <select name="filter-class" id="filter-instructor">
+                    </select>
+                </div>
+                <div class="filter-div">
+                    <label for="filter-rating">Rating: </label>
+                    <select name="filter-rating" id="filter-instructor-rating">
+                    </select>                
+                </div>
+                <div class="filter-div">
+                    <button type="button" id="clear-filter-instructor" class="clear-filter">Clear all filters</button>
+                </div>
             </div>
         </div>
         <div>
