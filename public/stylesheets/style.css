@@ -21,17 +21,20 @@ body {
   height: 100%;
   width: 100%;
 
+}
 
 .col-12 {
     padding: 0;
     margin: 0;
 }
+
 .container {
   vertical-align: middle;
   display: grid;
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
+  padding-right: 0;
   /* margin-left: 20px;
   margin-right: 20px; */
 }
@@ -43,16 +46,16 @@ body {
   border-bottom: #111 2px solid;
 }
 
-.login-card{
+.login-card {
   margin-top: 30px;
    padding: 20px 40px;
 }
 
-.signin-card{
+.signin-card {
   margin-top: 30px;
   padding: 20px 40px;
 }
-.sing-log-in{
+.sing-log-in {
   text-align: center;
 }
 
