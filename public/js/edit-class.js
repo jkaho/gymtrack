@@ -8,6 +8,7 @@ $(document).ready(() => {
   let classPrice;
   const currentDate = moment().format("YYYY-MM-DD");
 
+  // Event on clicking 'Edit' (for instructors on profile page)
   $(".edit-class-btn").on("click", function(e) {
     e.preventDefault();
     $("#add-class-form").css("z-index", "0");
@@ -91,6 +92,7 @@ $(document).ready(() => {
     window.location.replace("/profile");
   });
 
+  // Request to update class
   function updateClass(name, description, startTime, endTime, price) {
     $.ajax({
       url: `/api/classes/${classId}`,
@@ -108,6 +110,7 @@ $(document).ready(() => {
     });
   }
 
+  // Show error message
   function showErrorMessage() {
     $("#error-modal-bg").css("display", "block");
   }
@@ -116,6 +119,7 @@ $(document).ready(() => {
     $("#error-modal-bg").css("display", "none");
   });
 
+  // Show message for successful class edit
   function classUpdated() {
     if ($("#edit-modal-bg").css("display") === "block") {
       $("#edit-modal-bg").css("display", "none");
@@ -139,6 +143,7 @@ $(document).ready(() => {
     $("#delete-confirm-modal-bg").css("display", "none");
   });
 
+  // Request to delete class
   $("#delete-confirm-btn").on("click", () => {
     $.ajax({
       url: `/api/classes/${classId}`,
@@ -149,6 +154,7 @@ $(document).ready(() => {
     });
   });
 
+  // Event for clicking undo button after deleting
   $("#delete-undo-btn").on("click", () => {
     className = $("#class-no-" + classId + " .class-name-span").text();
     classDescription = $(
@@ -187,12 +193,14 @@ $(document).ready(() => {
     window.location.replace("/profile");
   });
 
+  // Show successful class deletion message
   function classDeleted() {
     console.log("class deleted!");
     $("#delete-confirm-modal-bg").css("display", "none");
     $("#delete-success-modal-bg").css("display", "block");
   }
 
+  // Function for undoing class deletion
   function addDeletedClass(name, description, startTime, endTime, price) {
     $.get("/api/user_data")
       .then(results => {
@@ -219,6 +227,7 @@ $(document).ready(() => {
       });
   }
 
+  // Show successful undo message
   function addDeletedClassSuccess() {
     $("#delete-success-modal-bg").css("display", "none");
     $("#delete-undo-modal-bg").css("display", "block");

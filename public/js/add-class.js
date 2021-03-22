@@ -16,6 +16,7 @@ $(document).ready(() => {
   classEndInput.val("");
   classPriceInput.val("");
 
+  // Event for submitting form for adding classes
   addClassForm.on("submit", event => {
     event.preventDefault();
     $.get("/api/user_data").then(result => {
@@ -56,6 +57,7 @@ $(document).ready(() => {
     });
   });
 
+  // Function for creating a new class
   function addClass(
     name,
     description,
@@ -81,6 +83,7 @@ $(document).ready(() => {
     });
   }
 
+  // Success modal button event
   $("#add-success-btn").on("click", () => {
     $("#add-success-modal-bg").css("display", "none");
   });
@@ -89,6 +92,7 @@ $(document).ready(() => {
     $("#error-modal-bg").css("display", "none");
   });
 
+  // Grab current date to prevent users from entering a date prior to current date
   const currentDate = moment().format("YYYY-MM-DD");
   classDateInput.attr("min", currentDate);
 });

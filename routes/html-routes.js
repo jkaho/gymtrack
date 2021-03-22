@@ -1,11 +1,14 @@
-// Requiring our custom middleware for checking if a user is logged in
-const isAuthenticated = require("../config/middleware/isAuthenticated");
-
-const moment = require("moment");
-
+// Requiring our models
 const db = require("../models");
 
+// Requiring customised middleware for checking if a user is logged in
+const isAuthenticated = require("../config/middleware/isAuthenticated");
+
+// moment.js for formatting time
+const moment = require("moment");
+
 module.exports = function(app) {
+  // Route for homepage
   app.get("/", (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -18,6 +21,7 @@ module.exports = function(app) {
     });
   });
 
+  // Route for classes page
   app.get("/classes", (req, res) => {
     let loggedIn = false;
     let isNotInstructor;
@@ -82,6 +86,7 @@ module.exports = function(app) {
       });
   });
 
+  // Route for reviews page
   app.get("/reviews", (req, res) => {
     let loggedIn = false;
     let isNotInstructor;
@@ -273,6 +278,7 @@ module.exports = function(app) {
       });
   });
 
+  // Route for signup page
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to their profile page
     if (req.user) {
@@ -286,8 +292,9 @@ module.exports = function(app) {
     }
   });
 
+  // Route for login page
   app.get("/login", (req, res) => {
-    // If the user already has an account send them to their profile page
+    // If the user is already logged in, send them to their profile page
     if (req.user) {
       loggedIn = true;
       res.redirect("/profile");
@@ -299,13 +306,13 @@ module.exports = function(app) {
     }
   });
 
+  // Route for logging out
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
   });
 
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  // The isAuthenticated route prevents users who aren't logged in from accessing the profile page
   app.get("/profile", isAuthenticated, (req, res) => {
     let loggedIn = false;
     if (req.user) {
@@ -455,6 +462,8 @@ module.exports = function(app) {
         }
       });
   });
+
+  // Route for 'add class' page
   app.get("/add-class", (req, res) => {
     let loggedIn;
     if (!req.user) {
@@ -467,23 +476,4 @@ module.exports = function(app) {
       });
     }
   });
-  // Get all existing bookings
-  app.get("/userclasses", (req, res) => {
-    db.userclasses.findAll({}).then(results => {
-      res.json({ results });
-    });
-  });
-  // Get req.user
-  //   app.get("/api/user_data", (req, res) => {
-  //     if (req.user === undefined) {
-  //       // The user is not logged in
-  //       res.json({
-  //         isLoggedIn: false
-  //       });
-  //     } else {
-  //       res.json({
-  //         user: req.user
-  //       });
-  //     }
-  //   });
 };

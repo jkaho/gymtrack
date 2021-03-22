@@ -16,13 +16,13 @@ $(document).ready(() => {
       return;
     }
 
-    // If we have an email and password we run the loginUser function and clear the form
+    // If there is an email and password, log user in
     loginUser(userData.email, userData.password);
     emailInput.val("");
     passwordInput.val("");
   });
 
-  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+  // Request to log in
   function loginUser(email, password) {
     $.post("/api/login", {
       email: email,
@@ -48,6 +48,7 @@ $(document).ready(() => {
   //     $("#error-modal-bg").css("display", "none");
   //   });
 
+  // Show login error message
   function showLoginErrorMessage() {
     $("#login-error-modal-bg").css("display", "block");
   }

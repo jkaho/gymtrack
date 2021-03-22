@@ -30,7 +30,6 @@
   padding-bottom: 10px;
 }
 
-
 .class-page-title {
   color: #fff;
   margin-top: 20px;
@@ -89,11 +88,6 @@
   display: inline-block;
   width: 100%;
 }
-
- /* .jump:hover {
-  background-color: rgb(255, 89, 0);
-  border: none;
-}  */
   
 .opacity_max {
     opacity: 1;
@@ -177,108 +171,104 @@
     font-style: italic;
 }
 
+/* ------- MEDIA QUERIES ------- */
 @media only screen and (max-width: 760px){
-  
-  .class-page-banner-inner {
-    /* padding:40px 0; */
-    margin-top: 0;
-    vertical-align: middle;
-  }
+    .class-page-banner-inner {
+        /* padding:40px 0; */
+        margin-top: 0;
+        vertical-align: middle;
+    }
 
-  #classes {
-    width: 95%;
-  }
+    #classes {
+        width: 95%;
+    }
 
-  .each-class h3 {
-    font-size: 18px;
-  }
+    .each-class h3 {
+        font-size: 18px;
+    }
 
-  .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
-    font-size: 15px;
-  }
+    .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
+        font-size: 15px;
+    }
 
-  .class-page-title {
-    font-size: 30px;
-  }
+    .class-page-title {
+        font-size: 30px;
+    }
 
-  .class-page-banner-inner h1 {
-    font-size: 30px;
-  }
-
+    .class-page-banner-inner h1 {
+        font-size: 30px;
+    }
 }
 
 @media only screen and (max-width: 599px){
-   
-  
     .class-page-banner-inner {
-      padding: 30px 0;
-      margin-top: 0;
-      padding-top: 50px;
+        padding: 30px 0;
+        margin-top: 0;
+        padding-top: 50px;
     }
-  
+
     #classes {
-      width: 95%;
+        width: 95%;
     }
-  
+
     .each-class h3 {
-      font-size: 18px;
+        font-size: 18px;
     }
-  
+
     .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
-      font-size: 15px;
+        font-size: 15px;
     }
-  
+
     .class-page-banner-inner h1 {
-      font-size: 20px;
-      padding: 0;
+        font-size: 20px;
+        padding: 0;
     }
-  }
+}
   
-
 @media only screen and (max-width: 599px) and (min-width: 500px) {
-  .class-page-banner{
-    height: 50vw;
-  }
+    .class-page-banner{
+        height: 50vw;
+    }
 
-  .class-page-banner-inner {
-    padding: 40px 0;
-    margin-top: 0;
-    padding-top: 60px;
-  }
+    .class-page-banner-inner {
+        padding: 40px 0;
+        margin-top: 0;
+        padding-top: 60px;
+    }
 
-  #classes {
-    width: 95%;
-  }
+    #classes {
+        width: 95%;
+    }
 
-  #class-reviews, #instructor-reviews {
-    margin-top: 10px;
-  }
+    #class-reviews, #instructor-reviews {
+        margin-top: 10px;
+    }
 
-  .each-class h3 {
-    font-size: 18px;
-  }
+    .each-class h3 {
+        font-size: 18px;
+    }
 
-  .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
-    font-size: 15px;
-  }
+    .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
+        font-size: 15px;
+    }
 
-  .class-page-title {
-    font-size: 30px;
-  }
+    .class-page-title {
+        font-size: 30px;
+    }
 
-  .class-page-banner-inner h1 {
-    font-size: 30px;
-  }
+    .class-page-banner-inner h1 {
+        font-size: 30px;
+    }
 
-  .booking-confirmation-review-div, .withdraw-confirmation-review-div {
-    width: 300px;
-  }
+    .booking-confirmation-review-div, .withdraw-confirmation-review-div {
+        width: 300px;
+    }
 
-  .description-container {
-    margin-bottom: 20px;
-  }
+    .description-container {
+        margin-bottom: 20px;
+    }
 
-  .table-row-one-c {
-      width: 30%;
-  }
+    .table-row-one-c {
+        width: 30%;
+    }
 }

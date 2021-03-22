@@ -1,6 +1,7 @@
-// Requiring our models and passport as we've configured it
+// Requiring our models
 const db = require("../models");
 const Sequelize = require("sequelize");
+
 module.exports = function(app) {
   // Route for getting all classes
   app.get("/api/classlist", (req, res) => {
@@ -12,7 +13,7 @@ module.exports = function(app) {
       });
   });
 
-  // Route for adding new gym classes
+  // Route for adding new classes
   app.post("/api/add_class", (req, res) => {
     db.classes
       .create({
@@ -29,7 +30,7 @@ module.exports = function(app) {
       });
   });
 
-  // Route for joining classes
+  // Route for members to join classes
   app.post("/api/booking", (req, res) => {
     if (!req.user) {
       res.redirect("/login");
@@ -69,7 +70,7 @@ module.exports = function(app) {
     }
   });
 
-  // Route for searching classes by characters
+  // Route for searching class names by characters
   app.get("/api/search_classes/:id", (req, res) => {
     db.classes
       .findAll({

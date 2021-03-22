@@ -1,15 +1,11 @@
+/* Page container */
 .profile-container {
     max-width: 100%;
     margin: 0;
     padding: 0;
 }
 
-/* Commented out of HTML */
-/* .profile-heading {
-    text-align: center;
-    margin: 20px 0;
-} */
-
+/* User info section */
 .user-info {
     padding-top: 40px;
     text-align: center;
@@ -23,6 +19,7 @@
     font-weight: 200;
 }
 
+/* 'My Classes' section */
 .my-classes {
     width: 100%;
     margin-bottom: 100px;
@@ -128,6 +125,7 @@
     color: white;
 }
 
+/* Instructor 'My Classes' section */
 .instructor-class-info {
     padding: 0 20px;
 }
@@ -170,6 +168,10 @@
 }
 
 /* Edit modal */
+#edit-class-modal {
+    top: 20px;
+}
+
 .edit-icon {
     color: rgb(255, 166, 0);
     margin-bottom: 20px;
@@ -266,7 +268,7 @@
     margin-bottom: 20px;
 }
 
-/* Instructor - no classes message */
+/*  No classes message */
 .no-classes-message {
     width: 600px;
     height: 250px;
@@ -280,7 +282,7 @@
     margin-bottom: 10px;
 }
 
-/* ------ MEDIA QUERIES ------ */
+/* ------- MEDIA QUERIES ------- */
 @media (max-width: 500px) {
     .instructor-class, .member-class, .classes-heading, .my-classes, #add-class-form {
         width: 300px;

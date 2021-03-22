@@ -1,11 +1,4 @@
-/* h1 {
-    text-align: center;
-} */
-
-/* .review-background-hero {
-    position: relative; 
-} */
-
+/* Background */
 .review-background-hero {
     background-image: url(../images/men-weight-lift.jpg);
     background-repeat: no-repeat;
@@ -16,10 +9,12 @@
     /* opacity: 0.75; */
 }
 
+/* Body */
 #review-body {
     margin: 10px auto;
 } 
 
+/* Toggle between class/instructor reviews */
 .review-toggle {
     margin: 10px auto;
     margin-top: 50px;
@@ -43,8 +38,8 @@
     border: solid 1px black;
 }
 
+/* Reviews section */
 .review-container {
-    /* border: solid 1px rgb(148, 148, 148); */
     padding: 20px;
     margin: 50px auto;
     background-color: rgba(255, 255, 255, 0.8);
@@ -78,10 +73,6 @@
     width: 135px;
 }
 
-/* #add-class-review-link {
-    color: rgb(255, 89, 0);
-} */
-
 #add-class-review-link:hover {
     background-color: rgb(255, 89, 0);
     color: white;
@@ -100,7 +91,6 @@
 
 .class-name, .instructor-name {
     border-bottom: solid 2px rgb(0, 0, 0);
-    /* color: rgb(109, 107, 107); */
 }
 
 .class-name h4, .instructor-name h4 {
@@ -172,11 +162,6 @@
     width: 80%;
     margin: 20px auto;
 }
-
-
-/* .add class review{
-    margin-right: 0 auto;
-} */
 
 .modal-heading {
     background-color: rgb(46, 46, 71);
@@ -252,8 +237,7 @@
     color: white;
 }
 
-/* Confirmation modal */
-
+/* Review confirmation modal */
 .confirmation-review-div {
     position: relative;
     width: 500px;
@@ -317,7 +301,7 @@
     color: white;
 }
 
-/* Success modal */ 
+/* Review success modal */ 
 .success-modal-div {
     position: relative;
     width: 500px;
@@ -424,8 +408,7 @@
     font-weight: 300;
 }
 
-/* ------- MEDIA QUERIES ------- */
-
+/* -------- MEDIA QUERIES -------- */
 @media (max-width: 768px) {
     .filter-div {
         display: block;
