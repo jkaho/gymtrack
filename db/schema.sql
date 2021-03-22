@@ -69,8 +69,3 @@ CREATE TABLE instructorReviews (
     FOREIGN KEY(instructorId) REFERENCES users(id) ON DELETE CASCADE
 );
 
-SELECT * FROM users;
-SELECT * FROM classes;
-SELECT * FROM userClasses;
-SELECT * FROM classReviews;
-SELECT * FROM instructorReviews;
