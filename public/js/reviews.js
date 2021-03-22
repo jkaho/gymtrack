@@ -576,13 +576,13 @@ $(document).ready(() => {
   }
 
   function showSuccessMessage() {
-    console.log("added to class!");
     $("#confirmation-modal-bg").css("display", "none");
     $("#success-modal-bg").css("display", "block");
   }
 
   $("#ok-success").on("click", () => {
     $("#success-modal-bg").css("display", "none");
+    window.location.replace("/reviews");
   });
 
   // Filters

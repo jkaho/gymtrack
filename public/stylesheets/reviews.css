@@ -70,7 +70,9 @@ h1{
 .add-review {
     display: block;
     float: right;
-    padding-top: 5px;
+    padding: 10px;
+    background-color:white;
+    border: solid 1px;
 }
 
 .class-name, .instructor-name {
