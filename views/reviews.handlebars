@@ -22,14 +22,14 @@
 <div id="class-reviews" class="container review-container">
     {{#if classReviewsExist}}
         <div class="row top-part">
-            <div class="col-7">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                 <div class="review-heading class-heading">
                     <h3>Class Reviews</h3>
                 </div>
             </div>
             {{#if isNotInstructor}}
-            <div class="col-5">
-                <a id="add-class-review-link" class="add-review">Write a review</a>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <button id="add-class-review-link" class="add-review">Write a review</button>
             </div>
             {{/if}}
             <div class="form-group dropdown">
@@ -119,18 +119,17 @@
 </div>
 <div id="instructor-reviews" class="container review-container" style="display: none">
     {{#if instructorReviewsExist}}
-        <div class="row">
-            <div class="col-8">
+        <div class="row top-part">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                 <div class="review-heading instructor-heading">
                     <h3>Instructor Reviews</h3>
                 </div>
             </div>
             {{#if isNotInstructor}}
-            <div class="col-4">
-                <a id="add-instructor-review-link" class="add-review">Write a review</a>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <button id="add-instructor-review-link" class="add-review">Write a review</button>
             </div>
             {{/if}}
-
             <div class="form-group dropdown">
                 <div class="filter-div">
                     <label for="filter-class">Instructor: </label>
@@ -248,7 +247,9 @@
                     <textarea style="resize: none" class="form-control" id="class-review-text-input" placeholder="Describe your experience with us" maxlength="250" required></textarea>
                     <div class="input-note">*Max. 250 characters</div>
                 </div>
-                <button type="submit" id="add-class-review" class="add-review-btn btn btn-default">Submit</button>
+                <div class="add-btn-div">
+                    <button type="submit" id="add-class-review" class="add-review-btn btn btn-default">Submit</button>
+                </div>
             </form>
         </div>
     </div>
@@ -284,7 +285,9 @@
                     <textarea style="resize: none" class="form-control" id="instructor-review-text-input" placeholder="Describe your experience with us" maxlength="250" required></textarea>
                     <div class="input-note">*Max. 250 characters</div>
                 </div>
-                <button type="submit" id="add-instructor-review" class="add-review-btn btn btn-default">Submit</button>
+                <div class="add-btn-div">
+                    <button type="submit" id="add-instructor-review" class="add-review-btn btn btn-default">Submit</button>
+                </div>
             </form>
         </div>
     </div>

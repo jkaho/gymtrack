@@ -69,12 +69,34 @@
 }
 
 .add-review {
+    font-size: 14px;
     display: block;
     float: right;
-    padding: 10px;
-    background-color:white;
+    background-color:rgba(255, 255, 255, 0);
     border: solid 1px;
+    height: 30px;
+    width: 135px;
 }
+
+/* #add-class-review-link {
+    color: rgb(255, 89, 0);
+} */
+
+#add-class-review-link:hover {
+    background-color: rgb(255, 89, 0);
+    color: white;
+    border: solid 1px rgb(255, 89, 0);
+};
+
+.add-review #add-instructor-review-link {
+    color: rgb(66, 98, 214);
+}
+
+#add-instructor-review-link:hover {
+    background-color: rgb(66, 98, 214);
+    color: white;
+    border: solid 1px rgb(66, 98, 214);
+};
 
 .class-name, .instructor-name {
     border-bottom: solid 2px rgb(0, 0, 0);
@@ -200,13 +222,18 @@
     color: rgb(218, 210, 210);
 }
 
+.add-btn-div {
+    margin: 0 auto;
+    width: 100%;
+}
+
 .add-review-btn {
-    display: block;
     font-size: 14px;
     background-color: white;
     border: solid 1px rgb(59, 59, 59);
     border-radius: 0;
-    float: right;
+    margin: 10px auto;
+    width: 100%;
 }
 
 .add-review-btn:hover {
@@ -394,19 +421,51 @@
 
 @media (max-width: 599px) {
     .add-review-div, .confirmation-review-div, .success-modal-div {
-        width: 90%;
+        width: 95%;
+    }
+
+    .confirmation-review {
+        padding: 5px;
+    }
+    
+    .confirmation-heading {
+        padding-left: 0;
     }
 
     .exit-review-add {
         top: 20px;
-        right: 35px;
+        right: 20px;
     }
 
-    .modal-heading {
-        padding-left: none;
+    .modal-heading h4 {
+        padding-left: 0;
     }
 
     .add-review-form {
         width: 90%;
+    }
+
+    .add-review {
+        float: none;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    .review-heading h3 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    .top-part .form-group {
+        margin-top: 10px;
+        margin-bottom: 0;
+        padding: 10px 0;
+        border-top: solid 1px rgb(151, 151, 151);
+        border-bottom: solid 1px rgb(151, 151, 151);
+    }
+
+    .review-heading-break {
+        display: inline-block;
     }
 }
