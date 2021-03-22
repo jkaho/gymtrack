@@ -3,15 +3,15 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const db = require("../models");
 
-// Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
+// Using a local strategy to sign in with email & password
 passport.use(
   new LocalStrategy(
-    // Our user will sign in using an email, rather than a "username"
+    // Users sign up / log in with email
     {
       usernameField: "email"
     },
     (email, password, done) => {
-      // When a user tries to sign in this code runs
+      // When user attempts to log in, check for user's email
       db.user
         .findOne({
           where: {
@@ -28,13 +28,13 @@ passport.use(
           }
           const hash = dbUser.password.toString();
 
-          //If the email exists
+          // If the email exists, validate the password
           bcrypt.compare(password, hash, (err, result) => {
-            // If the input password was correct
+            // If the input password is correct
             if (result === true) {
               return done(null, dbUser);
             }
-            // If incorrect password
+            // If password is incorrect
             console.log("Incorrect password");
             return done(null, false, {
               message: "Incorrect password."
