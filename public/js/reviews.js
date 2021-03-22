@@ -647,6 +647,7 @@ $(document).ready(() => {
       });
     });
   });
+
   // Rating filter for classes
   $.get("/api/classReviews").then(result => {
     classOptions = result;

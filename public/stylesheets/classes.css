@@ -1,13 +1,40 @@
-#class-body {
+/* #class-body {
   margin: 10px;
   padding-top: 20px;
   background-image: url(../images/group-yoga.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 100vw;
+  width: 100%;
+} */
+
+.class-page-banner {
+    height: 250px;
+    background: linear-gradient(321deg, rgba(255,212,198,1) 0%, rgba(221,111,61,1) 52%, rgba(251,34,20,1) 91%);
 }
-.class-page-title{
+
+.class-page-banner-inner {
+    width: fit-content;
+    padding: 40px 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.class-page-banner-inner h1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+#class-search {
+    height: 40px;
+    width: 300px;
+    border: none;
+    border-radius: 10px;
+}
+
+.class-page-title {
   color: #fff;
   margin-top: 20px;
 }
@@ -20,12 +47,18 @@
   vertical-align: middle;
   display: grid;
 }
-#each-class {
+
+.each-class {
   margin-bottom: 20px;
   padding: 20px;
-  /* border: solid 1px rgb(235, 235, 235); */
-  background-color: rgb(246, 246, 246, 0.7);
+  border: solid 1px rgb(209, 208, 208);
+  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(246, 246, 246, 0.7); */
   font-size: 20px;
+}
+
+.each-class h3 {
+    margin-bottom: 20px;
 }
 
 .classes-name {
@@ -33,58 +66,53 @@
   font-size: 28px;
 }
 
+.table-row-one-c, .avg-rating-span {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgb(128, 128, 128);
+}
+
+.avg-star-div, .no-star-rating {
+    display: inline-block;
+}
+
+.no-star-rating {
+    margin: 0;
+}
+
 .jump {
   margin: 0 auto;
   display: inline-block;
+  width: 100%;
 }
 
-.jump:hover {
+/* .jump:hover {
   background-color: rgb(255, 89, 0);
   border: none;
-}
-
-#bookSuccess {
-    position:fixed;
-    width:100%;
-    height:3em;
-    line-height:1em;
-    left:0;
-    top:0;
-    text-align:center;
-    padding-top:40px;
-    padding-bottom:10px;
-    font-size: 2em;
-}
-  
-#bookFail {
-    position:fixed;
-    width:100%;
-    height:3em;
-    line-height:1em;
-    left:0;
-    top:0;
-    text-align:center;
-    padding-top:40px;
-    padding-bottom:10px;
-    font-size: 2em;
-}
+} */
   
 .opacity_max {
     opacity: 1;
 }
 
-.book-withdraw{
-    display: inline-block;
+.book-withdraw {
+    display: block;
     height: auto;
     padding: 14px 30px;
-    background: transparent;
-    background-image: none !important;
-    color: inherit !important;
+    background: white;
+    border: solid 1px black;
+    /* background-image: none !important;
+    color: inherit !important; */
     letter-spacing: 0.03em;
     font-size: 16px;
     line-height: 1;
-    text-transform: uppercase;
+    margin: 0 auto;
     margin-bottom: 10px;
+}
+
+.book-withdraw:hover {
+    background-color: black;
+    color: white;
 }
 
 .view-reviews {
@@ -121,14 +149,38 @@
     margin: 10px;
 }
 
+/* Booking success message */
+#bookSuccess, #bookFail {
+    position: fixed;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-weight: 300;
+    width: 100%;
+    height: 3.5em;
+    line-height: 1em;
+    left: 0;
+    top: 0;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    font-size: 2em;
+}
+
+/* No classes message */
+#no-classes-para {
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+}
+
 @media only screen and (max-width: 760px){
   #class-body{
     margin: 10px;
     padding-top: 20px;
-    background-image: url(../images/logan-weaver-9D_rUDe7xvA-unsplash.jpg);
+    /* background-image: url(../images/logan-weaver-9D_rUDe7xvA-unsplash.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; */
     width: 100vw;
   
   }
@@ -143,12 +195,25 @@
     background-position: center;
     background-size: cover;
     width: 100vw;
-
   }
 
-/* No classes message */
-#no-classes-para {
-    font-size: 22px;
-    font-weight: 300;
-    font-style: italic;
+  #classes {
+    width: 95%;
+  }
+
+  .each-class h3 {
+    font-size: 18px;
+  }
+
+  .class-table-classes, .table-row-one-c, .avg-rating-span, .avg-rating-div {
+    font-size: 15px;
+  }
+
+  .class-page-title {
+    font-size: 30px;
+  }
+
+  .class-page-banner-inner h1 {
+    font-size: 30px;
+  }
 }
