@@ -111,6 +111,7 @@
 .review-div {
     border-bottom: solid 1px rgb(235, 235, 235);
     padding: 20px 10px;
+    width: 100%;
 }
 
 .class-review-title {
@@ -135,6 +136,8 @@
 .review-text {
     font-weight: 300;
     font-size: 18px;
+    width: 600px;
+    overflow-wrap: break-word;
 }
 
 /* 'Add class review' modal */
@@ -195,6 +198,10 @@
 
 .add-review {
     cursor: pointer;
+}
+
+.review-para {
+    overflow-wrap: break-word;
 }
 
 .dropdown select {
@@ -434,6 +441,10 @@
         font-size: 16px;
     }
 
+    .review-text {
+        width: 500px;
+    }
+
     #class-reviews, #instructor-reviews {
         width: 90%;
     }
@@ -441,7 +452,16 @@
 
 @media (max-width: 599px) {
     .add-review-div, .confirmation-review-div, .success-modal-div {
-        width: 95%;
+        width: 92%;
+    }
+
+    .input-error-modal-div {
+        width: 300px;
+        height: 130px;
+    }
+
+    .input-error-heading {
+        height: 50px;
     }
 
     .confirmation-review {
@@ -488,4 +508,18 @@
     .review-heading-break {
         display: inline-block;
     }
+
+    .review-text {
+        width: 350px;
+    }
+
+    #instructor-modal-bg .add-review-div {
+        height: 420px;
+    }
 }
+
+@media (max-width: 400px) {
+    .review-text {
+        width: 250px;
+    }
+} 

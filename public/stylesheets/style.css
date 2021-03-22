@@ -123,3 +123,14 @@ body {
     color: rgb(129, 129, 129);
     float: right;
 }
+
+@media (max-width: 599px) {
+    .error-modal-div, .login-error-modal-div {
+        width: 300px;
+        height: 250px;
+    }
+
+    .error-heading, .login-error-heading {
+        height: 180px;
+    }
+}
