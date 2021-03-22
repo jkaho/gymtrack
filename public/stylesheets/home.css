@@ -108,11 +108,33 @@
 
 }
 
-/* There was a missing closing curly bracket somewhere, so these might not be the right styles in here*/
-@media only screen and (max-width: 599px) {
-    body {
-        width:100vw
-    }
+@media only screen and (max-width: 599px){
+body {
+    width:100vw
+}
+
+.container {
+    margin: 0 auto;
+}
+
+/* This was stuffing up the responsiveness on the profile/reviews page*/
+/* .row {
+    margin: 0 auto;
+} */
+
+#home-image{
+    width: 100vw;
+    height: auto;
+    vertical-align: middle;
+}
+.page-link-img{
+    width: 100vw;
+    height: auto;
+}
+.link-pages{
+    margin: 0;
+}
+
 
     .container {
         margin: 0 auto;

@@ -20,13 +20,12 @@ body {
   align-items: center;
   height: 100%;
   width: 100%;
-}
+
 
 .col-12 {
     padding: 0;
     margin: 0;
 }
-
 .container {
   vertical-align: middle;
   display: grid;
