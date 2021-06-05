@@ -40,27 +40,51 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul id="index-link" class="navbar-nav ml-auto">
                     <li class="nav-item active">
+                        {{#if home}}
+                        <a class="nav-link selected-nav-link" href="/">Home</a>
+                        {{else}}
                         <a class="nav-link" href="/">Home</a>
+                        {{/if}}
                     </li>
                     <li class="nav-item">
+                        {{#if classes}}
+                        <a class="nav-link selected-nav-link" href="/classes">Classes</a>
+                        {{else}}
                         <a class="nav-link" href="/classes">Classes</a>
+                        {{/if}}
                     </li>
                     <li class="nav-item">
+                        {{#if reviews}}
+                        <a class="nav-link selected-nav-link" href="/reviews">Reviews</a>
+                        {{else}}
                         <a class="nav-link" href="/reviews">Reviews</a>
+                        {{/if}}
                     </li>
                     {{#if loggedIn}}
                     <li class="nav-item">
-                        <a id="profile-link" class="nav-link" href="/profile">Profile</a>
+                        {{#if profile}}
+                        <a class="nav-link selected-nav-link" href="/profile">Profile</a>
+                        {{else}}
+                        <a class="nav-link" href="/profile">Profile</a>
+                        {{/if}}
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout"><span id="log-in-out">Log Out</span></a>
                     </li>
                     {{else}}
                     <li class="nav-item">
-                        <a class="nav-link" href="/login"><span id="log-in-out">Log In</span></a>
+                        {{#if login}}
+                        <a class="nav-link selected-nav-link" href="/login">Log In</a>
+                        {{else}}
+                        <a class="nav-link" href="/login">Log In</a>
+                        {{/if}}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/signup"><span id="log-in-out">Sign Up</span></a>
+                        {{#if signup}}
+                        <a class="nav-link selected-nav-link" href="/signup">Sign Up</a>
+                        {{else}}
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                        {{/if}}
                     </li>
                     {{/if}}
                 </ul>

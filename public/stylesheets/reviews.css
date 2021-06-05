@@ -1,516 +1,524 @@
 /* Background */
 .review-background-hero {
-    background-image: url(../images/men-weight-lift.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    padding-bottom: 20px;
-    width: 100vw;
-    /* opacity: 0.75; */
+  /* background-image: url(../images/men-weight-lift.jpg); */
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  background: rgb(0, 0, 0, 0.02);
+  padding-bottom: 20px;
+  width: 100vw;
+  /* opacity: 0.75; */
 }
 
 /* Body */
 #review-body {
-    margin: 10px auto;
+  margin: 0 auto;
 } 
 
 /* Toggle between class/instructor reviews */
 .review-toggle {
-    margin: 10px auto;
-    margin-top: 50px;
-    width: fit-content;
+  margin: 10px auto;
+  margin-top: 50px;
+  width: fit-content;
 }
 
 .toggle {
-    border: none;
-    height: 40px;
-    width: 150px;
-    font-size: 15px;
+  border: none;
+  height: 40px;
+  width: 150px;
+  font-size: 15px;
 }
 
 #class-toggle {
-    background-color: rgb(255, 89, 0);
-    color: white;
+  background-color: rgb(255, 89, 0);
+  color: white;
 }
 
 #instructor-toggle {
-    background-color: white;
-    border: solid 1px black;
+  background-color: white;
+  border: solid 1px black;
 }
 
 /* Reviews section */
 .review-container {
-    padding: 20px;
-    margin: 50px auto;
-    background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.top-part {
+  border-bottom: solid 1px rgb(214, 214, 214);
 }
 
 #class-reviews, #instructor-reviews {
-    width: 80%;
-    margin: 50px auto;
-    padding : 20px;
+  width: 80%;
+  margin: 50px auto;
+  margin-bottom: 100px;
+  padding : 20px;
+  border: solid 1px rgb(214, 214, 214);
 }
 
 .class-heading {
-    color: rgb(255, 89, 0);
+  color: rgb(255, 89, 0);
 }
 
 .instructor-heading {
-    color: rgb(66, 98, 214);
+  color: rgb(66, 98, 214);
 }
 
 .review-container h3 {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .add-review {
-    font-size: 14px;
-    display: block;
-    float: right;
-    background-color:rgba(255, 255, 255, 0);
-    border: solid 1px;
-    height: 30px;
-    width: 135px;
+  font-size: 14px;
+  display: block;
+  float: right;
+  background-color:rgba(255, 255, 255, 0);
+  border: solid 1px;
+  height: 30px;
+  width: 135px;
 }
 
 #add-class-review-link:hover {
-    background-color: rgb(255, 89, 0);
-    color: white;
-    border: solid 1px rgb(255, 89, 0);
+  background-color: rgb(255, 89, 0);
+  color: white;
+  border: solid 1px rgb(255, 89, 0);
 };
 
 .add-review #add-instructor-review-link {
-    color: rgb(66, 98, 214);
+  color: rgb(66, 98, 214);
 }
 
 #add-instructor-review-link:hover {
-    background-color: rgb(66, 98, 214);
-    color: white;
-    border: solid 1px rgb(66, 98, 214);
+  background-color: rgb(66, 98, 214);
+  color: white;
+  border: solid 1px rgb(66, 98, 214);
 };
 
 .class-name, .instructor-name {
-    border-bottom: solid 2px rgb(0, 0, 0);
+  border-bottom: solid 2px rgb(0, 0, 0);
 }
 
 .class-name h4, .instructor-name h4 {
-    margin: 0;
-    margin-top: 20px;
+  margin: 0;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 .review-div {
-    border-bottom: solid 1px rgb(235, 235, 235);
-    padding: 20px 10px;
-    width: 100%;
+  border-bottom: solid 1px rgb(235, 235, 235);
+  padding: 20px 10px;
+  width: 100%;
 }
 
 .class-review-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: rgb(255, 89, 0);
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(255, 89, 0);
 }
 
 .instructor-review-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: rgb(66, 98, 214);
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(66, 98, 214);
 }
 
 .author {
-    font-weight: 200;
-    font-size: 18px;
-    /* color: rgb(112, 112, 112); */
-    font-style: italic;
+  font-weight: 200;
+  font-size: 18px;
+  /* color: rgb(112, 112, 112); */
+  font-style: italic;
 }
 
 .review-text {
-    font-weight: 300;
-    font-size: 18px;
-    width: 600px;
-    overflow-wrap: break-word;
+  font-weight: 300;
+  font-size: 18px;
+  width: 600px;
+  overflow-wrap: break-word;
 }
 
 /* 'Add class review' modal */
 .modal-bg {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.5)
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5)
 }
 
 .add-review-modal {
-    position: absolute;
-    top: 150px;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  height: 100%;
 }
 
 .add-review-div {
-    position: relative;
-    width: 500px;
-    height: 400px;
-    margin: 0 auto;
-    background-color: white;
-    z-index: 10;
-    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+  position: relative;
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
 }
 
 .add-review-form {
-    width: 80%;
-    margin: 20px auto;
+  width: 80%;
+  margin: 20px auto;
 }
 
 .modal-heading {
-    background-color: rgb(46, 46, 71);
-    height: 60px;
-    padding-top: 20px;
-    padding-left: 15px;
-    color: white;
+  background-color: rgb(46, 46, 71);
+  height: 60px;
+  padding-top: 20px;
+  padding-left: 15px;
+  color: white;
 }
 
 .modal-heading h4 {
-    font-size: 20px;
-    font-weight: 200;
-    padding-left: 40px;
-    width: fit-content;
+  font-size: 20px;
+  font-weight: 200;
+  padding-left: 40px;
+  width: fit-content;
 }
 
 .exit-review-add {
-    position: absolute;
-    top: 25px;
-    right: 55px;
-    cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 55px;
+  cursor: pointer;
 }
 
 .add-review {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .review-para {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .dropdown select {
-    width: 120px;
-    border: solid 1px rgb(212, 212, 212);
+  width: 120px;
+  border: solid 1px rgb(212, 212, 212);
 }
 
 .form-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .dropdown {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .add-review-form textarea {
-    height: 120px;
+  height: 120px;
 }
 
 #review-title-input, #review-text-input {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 .rate-star {
-    color: rgb(218, 210, 210);
+  color: rgb(218, 210, 210);
 }
 
 .add-btn-div {
-    margin: 0 auto;
-    width: 100%;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .add-review-btn {
-    font-size: 14px;
-    background-color: white;
-    border: solid 1px rgb(59, 59, 59);
-    border-radius: 0;
-    margin: 10px auto;
-    width: 100%;
+  font-size: 14px;
+  background-color: white;
+  border: solid 1px rgb(59, 59, 59);
+  border-radius: 0;
+  margin: 10px auto;
+  width: 100%;
 }
 
 .add-review-btn:hover {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 /* Review confirmation modal */
 #confirm-review-x {
-    top: 75px;
+  top: 75px;
 }
 
 .confirmation-review-div {
-    position: relative;
-    width: 500px;
-    height: 460px;
-    margin: 0 auto;
-    background-color: white;
-    z-index: 10;
-    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+  position: relative;
+  width: 500px;
+  height: 460px;
+  margin: 0 auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
 }
 
 .fa-question-circle {
-    color: rgb(255, 166, 0);
-    margin-bottom: 20px;
+  color: rgb(255, 166, 0);
+  margin-bottom: 20px;
 }
 
 .confirmation-heading {
-    height: 160px;
-    padding-top: 20px;
-    padding-left: 15px;
-    font-weight: 200;
-    text-align: center;
-    border-bottom: solid 1px rgb(212, 210, 210);
-    margin: 10px;
+  height: 160px;
+  padding-top: 20px;
+  padding-left: 15px;
+  font-weight: 200;
+  text-align: center;
+  border-bottom: solid 1px rgb(212, 210, 210);
+  margin: 10px;
 }
 
 .confirm-stars {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .confirmation-review {
-    padding: 20px;
-    margin: 0 auto;
-    width: 90%;
+  padding: 20px;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .review-para {
-    border: solid 1px rgb(199, 199, 199);
-    border-radius: 4px;
-    padding: 5px;
-    height: 120px;
-    overflow: auto;
+  border: solid 1px rgb(199, 199, 199);
+  border-radius: 4px;
+  padding: 5px;
+  height: 120px;
+  overflow: auto;
 }
 
 .confirmation-btn-div {
-    margin: 0 auto;
-    width: fit-content;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 .confirm-btn {
-    font-size: 14px;
-    background-color: white;
-    border: solid 1px black;
-    padding: 5px;
-    margin: 5px;
-    height: 40px;
-    width: 120px;
+  font-size: 14px;
+  background-color: white;
+  border: solid 1px black;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+  width: 120px;
 }
 
 .confirm-btn:hover {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 /* Review success modal */ 
 .success-modal-div {
-    position: relative;
-    width: 500px;
-    height: 230px;
-    margin: 0 auto;
-    background-color: white;
-    z-index: 10;
-    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+  position: relative;
+  width: 500px;
+  height: 230px;
+  margin: 0 auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
 }
 
 .success-heading {
-    height: 160px;
-    padding-top: 20px;
-    font-weight: 200;
-    text-align: center;
-    margin: 10px;
-    font-weight: 300;
+  height: 160px;
+  padding-top: 20px;
+  font-weight: 200;
+  text-align: center;
+  margin: 10px;
+  font-weight: 300;
 }
 
 .fa-check-circle {
-    color: rgb(138, 197, 71);
-    margin-bottom: 20px;
+  color: rgb(138, 197, 71);
+  margin-bottom: 20px;
 }
 
 .nav-btn-div {
-    width: fit-content;
-    margin: 0 auto;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 /* Review filters */
 .filter-div {
-    display: inline-block;
+  display: inline-block;
 }
 
 #filter-class, #filter-instructor, #filter-class-rating, #filter-instructor-rating {
-    width: 150px;
-    height: 30px;
+  width: 150px;
+  height: 30px;
 }
 
 #filter-class-rating, #filter-instructor-rating {
-    width: 110px;
+  width: 110px;
 }
 
 #filter-class, #filter-class-rating {
-    border: solid 1px rgb(255, 89, 0);
+  border: solid 1px rgb(255, 89, 0);
 }
 
 #filter-instructor, #filter-instructor-rating {
-    border: solid 1px rgb(66, 98, 214);
+  border: solid 1px rgb(66, 98, 214);
 }
 
 #clear-filter-class, #clear-filter-instructor {
-    height: 30px;
-    font-weight: 400;
-    font-size: 14px;
-    color: white;
-    background: black;
-    border: solid 1px black;
-    vertical-align: top;
+  height: 30px;
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+  background: black;
+  border: solid 1px black;
+  vertical-align: top;
 }
 
 #clear-filter-class:hover {
-    color: rgb(255, 89, 0);
+  color: rgb(255, 89, 0);
 }
 
 #clear-filter-instructor:hover {
-    color: rgb(66, 98, 214);
+  color: rgb(66, 98, 214);
 }
 
 .clear-filter {
-    border: none;
-    height: 35px;
-    width: 130px;
-    font-size: 15px;
-    margin-top: -6px;
+  border: none;
+  height: 35px;
+  width: 130px;
+  font-size: 15px;
+  margin-top: -6px;
 }
 
 /* No reviews message */
 .no-reviews-message {
-    width: 600px;
-    height: 250px;
-    margin: 20px auto;
-    text-align: center;
-    padding-top: 70px;
+  width: 600px;
+  height: 250px;
+  margin: 20px auto;
+  text-align: center;
+  padding-top: 70px;
 }
 
 /* Input error modal */
 .input-error-modal-div {
-    position: relative;
-    width: 500px;
-    height: 120px;
-    margin: 0 auto;
-    background-color: white;
-    z-index: 10;
-    box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
+  position: relative;
+  width: 500px;
+  height: 120px;
+  margin: 0 auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 3px 3px .4em rgb(190, 190, 190), -.1em 0 .4em rgb(206, 206, 206);
 }
 
 .input-error-heading {
-    height: 40px;
-    padding-top: 20px;
-    font-weight: 200;
-    text-align: center;
-    margin: 10px;
-    font-weight: 300;
+  height: 40px;
+  padding-top: 20px;
+  font-weight: 200;
+  text-align: center;
+  margin: 10px;
+  font-weight: 300;
 }
 
 /* -------- MEDIA QUERIES -------- */
 @media (max-width: 768px) {
-    .filter-div {
-        display: block;
-        margin: 10px auto;
-        width: fit-content;
-    }
+  .filter-div {
+    display: block;
+    margin: 10px auto;
+    width: fit-content;
+  }
 
-    #filter-class, #filter-instructor, #filter-class-rating, #filter-instructor-rating {
-        width: 150px;
-    }
+  #filter-class, #filter-instructor, #filter-class-rating, #filter-instructor-rating {
+    width: 150px;
+  }
 
-    .clear-filter {
-        margin-top: 0;
-    }
+  .clear-filter {
+    margin-top: 0;
+  }
 
-    .review-text, .author {
-        font-size: 16px;
-    }
+  .review-text, .author {
+    font-size: 16px;
+  }
 
-    .review-text {
-        width: 500px;
-    }
+  .review-text {
+    width: 500px;
+  }
 
-    #class-reviews, #instructor-reviews {
-        width: 90%;
-    }
+  #class-reviews, #instructor-reviews {
+    width: 90%;
+  }
 }
 
 @media (max-width: 599px) {
-    .add-review-div, .confirmation-review-div, .success-modal-div {
-        width: 92%;
-    }
+  .add-review-div, .confirmation-review-div, .success-modal-div {
+    width: 92%;
+  }
 
-    .input-error-modal-div {
-        width: 300px;
-        height: 130px;
-    }
+  .input-error-modal-div {
+    width: 300px;
+    height: 130px;
+  }
 
-    .input-error-heading {
-        height: 50px;
-    }
+  .input-error-heading {
+    height: 50px;
+  }
 
-    .confirmation-review {
-        padding: 5px;
-    }
-    
-    .confirmation-heading {
-        padding-left: 0;
-    }
+  .confirmation-review {
+    padding: 5px;
+  }
+  
+  .confirmation-heading {
+    padding-left: 0;
+  }
 
-    .exit-review-add {
-        top: 20px;
-        right: 20px;
-    }
+  .exit-review-add {
+    top: 20px;
+    right: 20px;
+  }
 
-    .modal-heading h4 {
-        padding-left: 0;
-    }
+  .modal-heading h4 {
+    padding-left: 0;
+  }
 
-    .add-review-form {
-        width: 90%;
-    }
+  .add-review-form {
+    width: 90%;
+  }
 
-    .add-review {
-        float: none;
-        margin: 0 auto;
-        margin-bottom: 10px;
-    }
+  .add-review {
+    float: none;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
 
-    .review-heading h3 {
-        width: fit-content;
-        margin: 0 auto;
-        margin-bottom: 10px;
-    }
+  .review-heading h3 {
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
 
-    .top-part .form-group {
-        margin-top: 10px;
-        margin-bottom: 0;
-        padding: 10px 0;
-        border-top: solid 1px rgb(151, 151, 151);
-        border-bottom: solid 1px rgb(151, 151, 151);
-    }
+  .top-part .form-group {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 10px 0;
+    border-top: solid 1px rgb(151, 151, 151);
+    border-bottom: solid 1px rgb(151, 151, 151);
+  }
 
-    .review-heading-break {
-        display: inline-block;
-    }
+  .review-heading-break {
+    display: inline-block;
+  }
 
-    .review-text {
-        width: 350px;
-    }
+  .review-text {
+    width: 350px;
+  }
 
-    #instructor-modal-bg .add-review-div {
-        height: 420px;
-    }
+  #instructor-modal-bg .add-review-div {
+    height: 420px;
+  }
 }
 
 @media (max-width: 400px) {
-    .review-text {
-        width: 250px;
-    }
+  .review-text {
+    width: 250px;
+  }
 } 

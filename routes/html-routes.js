@@ -17,7 +17,8 @@ module.exports = function(app) {
       loggedIn = false;
     }
     res.render("home", {
-      loggedIn: loggedIn
+      loggedIn: loggedIn,
+      home: true
     });
   });
 
@@ -81,7 +82,7 @@ module.exports = function(app) {
             loggedIn: loggedIn
           });
         } else {
-          res.render("classes", { classesExist: false });
+          res.render("classes", { classesExist: false, classes: true });
         }
       });
   });
@@ -271,7 +272,8 @@ module.exports = function(app) {
                 classReviewsExist: classReviewsExist,
                 instructors: instructors,
                 instructorReviewsExist: instructorReviewsExist,
-                isNotInstructor: isNotInstructor
+                isNotInstructor: isNotInstructor,
+                reviews: true
               });
             });
           });
@@ -287,7 +289,8 @@ module.exports = function(app) {
     } else {
       loggedIn = false;
       res.render("signup", {
-        loggedIn: loggedIn
+        loggedIn: loggedIn,
+        signup: true
       });
     }
   });
@@ -301,7 +304,8 @@ module.exports = function(app) {
     } else {
       loggedIn = false;
       res.render("login", {
-        loggedIn: loggedIn
+        loggedIn: loggedIn,
+        login: true
       });
     }
   });
@@ -384,7 +388,8 @@ module.exports = function(app) {
                   dateJoined: dateJoined,
                   instructorClasses: instructorClasses,
                   instructor: true,
-                  hasClasses: true
+                  hasClasses: true,
+                  profile: true
                 });
               } else {
                 res.render("profile", {
@@ -395,7 +400,8 @@ module.exports = function(app) {
                   userType: userType,
                   dateJoined: dateJoined,
                   instructor: true,
-                  hasClasses: false
+                  hasClasses: false,
+                  profile: true
                 });
               }
             });
@@ -441,7 +447,8 @@ module.exports = function(app) {
                         dateJoined: dateJoined,
                         memberClasses: memberClasses,
                         member: true,
-                        hasClasses: true
+                        hasClasses: true,
+                        profile: true
                       });
                     }
                   });
@@ -455,7 +462,8 @@ module.exports = function(app) {
                 userType: userType,
                 dateJoined: dateJoined,
                 member: true,
-                hasClasses: false
+                hasClasses: false,
+                profile: true
               });
             }
           });

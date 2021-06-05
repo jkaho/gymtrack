@@ -1,86 +1,82 @@
 #home {
-   color: white;
-   padding-top: 150px;
+  color: white;
+  padding-top: 150px;
 }
 
 #welcome-h1 {
-    font-family: 'Manrope', sans-serif;
-    font-size: 65px;
-    font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+  font-size: 65px;
+  font-weight: 600;
 }
 
 #slogan-h5 {
-    font-family: 'Manrope', sans-serif;
-    font-size: 30px;
-    font-weight: 300;
+  font-family: 'Manrope', sans-serif;
+  font-size: 30px;
+  font-weight: 300;
 }
 
 #workout-span {
-    color: rgb(66, 98, 214);
-}
-
-#navbarSupportedContent {
-    text-align: center;
+  color: rgb(66, 98, 214);
 }
 
 #home-image {
-    margin: 10px;
-    width: 100vw;
-    height: auto;
-    vertical-align: auto;
+  margin: 10px;
+  width: 100vw;
+  height: auto;
+  vertical-align: auto;
 }
 
 .page-link-img {
-    float: inherit;
+  float: inherit;
 }
 
 .link-button {
-    display: inline-block;
-    height: auto;
-    padding: 14px 30px;
-    background: transparent;
-    background-image: none !important;
-    color: inherit !important;
-    letter-spacing: 0.03em;
-    font-size: 16px;
-    line-height: 1;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+  display: inline-block;
+  height: auto;
+  padding: 14px 30px;
+  background: transparent;
+  background-image: none !important;
+  color: inherit !important;
+  letter-spacing: 0.03em;
+  font-size: 16px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .link-card {
-    width: 100vw;
-    padding: 0;
-    margin: 0;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
 .link-pages {
-    margin-top: 30px;
-    line-height: 60%;
-    width: 100vw;
-    align-items: center;
-    height: 100%;
+  margin-top: 30px;
+  line-height: 60%;
+  width: 100vw;
+  align-items: center;
+  height: 100%;
 }
 
 #img-tube {
-    height: 100%;
+  height: 100%;
 }
 
 .btn-link {
-    color: #111;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 300;
-    font-size: 22px;
-    text-decoration: none;
-    padding: 20 10;
-    border: none;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  color: #111;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  text-decoration: none;
+  padding: 20 10;
+  border: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .btn-link:hover {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 /* This code makes the footer a bit shorter */
@@ -89,15 +85,14 @@
 } */
 
 .icons {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .icon {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
 }
 
 /* form{
@@ -105,98 +100,103 @@
 } */
 
 .header-hero {
-    background-image: url(/images/women-weight.jpg);
-    height: 75vh;
-    width: 100vw;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    /* margin-top: 20px; */
-    margin-left: 0;
-    margin-right: 0;
+  background-image: url(/images/women-weight.jpg);
+  height: 75vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* margin-top: 20px; */
+  margin-left: 0;
+  margin-right: 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .content-hover {
-    position: relative;
-    font: 3em;
+  position: relative;
+  font: 3em;
 }
    
 .img-redirect {
-    opacity: 1;
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }
 
 .text-redirect {
-    width: 10em;
-    font-size: 60px;
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
+  width: 10em;
+  font-size: 60px;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .content-hover:hover .img-redirect {
-    opacity: 0.1;
+  opacity: 0.1;
 }
 
 .content-hover:hover .text-redirect {
-    opacity: 1;
+  opacity: 1;
 }
 
 .text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+#home-whitespace {
+  width: 100%;
+  height: 120px;
 }
 
 /* ------- MEDIA QUERIES ------- */
 @media only screen and (max-width: 599px) {
-    body {
-        width:100vw
-    }
-    
-    .container {
-        margin: 0 auto;
-    }
+  body {
+    width:100vw
+  }
+  
+  .container {
+    margin: 0 auto;
+  }
 
-    #welcome-h1 {
-        font-size: 45px;
-    }
+  #welcome-h1 {
+    font-size: 45px;
+  }
 
-    #slogan-h5 {
-        font-size: 25px;
-    }
+  #slogan-h5 {
+    font-size: 25px;
+  }
 
-    #home-image {
-        width: 100vw;
-        height: auto;
-        vertical-align: middle;
-    }
+  #home-image {
+    width: 100vw;
+    height: auto;
+    vertical-align: middle;
+  }
 
-    .page-link-img {
-        width: 100vw;
-        height: auto;
-    }
+  .page-link-img {
+    width: 100vw;
+    height: auto;
+  }
 
-    .link-pages {
-        margin: 0;
-    }
+  .link-pages {
+    margin: 0;
+  }
 
-    .link-button {
-        padding: 10px 20px; 
-    }
+  .link-button {
+    padding: 10px 20px; 
+  }
 }
 
